@@ -1,0 +1,64 @@
+PROBLEM STATEMENT
+You are a guitar player and you like to play your guitars, but unfortunately, you broke n strings. Therefore, you have to buy new strings to replace them, and you want to spend as little money as possible. For each brand of strings, you can choose to buy either a package of 6 strings, or 1 or more single strings.
+
+You are given a vector <string> stringCosts, each element of which represents a single brand.  Each element is formatted as "PACKAGE SINGLE" (quotes for clarity only), where PACKAGE is the price of a package of 6 strings and SINGLE is the price of a single string. Return the minimum amount of money required to buy at least n strings.
+
+DEFINITION
+Class:BrokenStrings
+Method:buyStrings
+Parameters:int, vector <string>
+Returns:int
+Method signature:int buyStrings(int n, vector <string> stringCosts)
+
+
+NOTES
+-You are allowed to buy strings from different brands (it sometimes might even be needed to get the lowest price).
+-A package just contains 6 equal strings, so 1 package could be replaced by 6 single strings.
+
+
+CONSTRAINTS
+-n will be between 1 and 100, inclusive.
+-stringCosts will contain between 1 and 50 elements, inclusive.
+-Each element of stringCosts will be formatted as "PACKAGE SINGLE" (quotes for clarity only).
+-Each PACKAGE will be an integer between 0 and 1000, inclusive, with no extra leading zeroes.
+-Each SINGLE will be an integer between 0 and 1000, inclusive, with no extra leading zeroes.
+
+
+EXAMPLES
+
+0)
+4
+{"12 3",
+ "15 4"}
+
+Returns: 12
+
+You can choose to buy 1 package of the first brand, or 4 single strings. The price you pay will be 12 in both cases.
+
+1)
+17
+{"12 3"}
+
+Returns: 36
+
+The best option is to buy 3 packages (so you have 18 strings).
+
+2)
+7
+{"10 3",
+ "12 2"}
+
+Returns: 12
+
+Here you buy a package for 10, and another single string for 2 (from another brand) to get the lowest total price.
+
+
+3)
+9
+{"21 25","77 23","23 88","95 43","96 19","59 36",
+ "80 13","51 24","15 8","25 61","21 22","3 9",
+ "68 68","67 100","83 98","96 57"}
+
+Returns: 6
+
+

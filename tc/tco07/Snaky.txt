@@ -1,0 +1,69 @@
+PROBLEM STATEMENT
+
+       xxxxx...
+       ....xxxx
+       .x.....x
+       .xxxxxxx
+
+Your are given a picture of a snake. Lowercase 'x' characters indicate parts of the snake, and '.'
+characters represent
+empty areas. The snake consists of a sequence of horizontal and vertical segments.
+Successive segments in the snake share an 'x', which is considered to be in both segments.
+No two 'x's from different segments of the snake are horizontally or vertically adjacent.
+
+Given a vector <string> snake, return the length of the longest segment
+in the snake.  The picture is formed using successive elements of snake as successive
+rows in the picure.
+
+
+
+DEFINITION
+Class:Snaky
+Method:longest
+Parameters:vector <string>
+Returns:int
+Method signature:int longest(vector <string> snake)
+
+
+CONSTRAINTS
+-snake contains between 1 and 50 elements, inclusive.
+-Each element of snake contains the same number of characters.
+-Each element of snake contains between 1 and 50 characters, inclusive.
+-Each character in each element of snake is a period ('.') or a lowercase 'x'.
+-If two 'x's are adjacent to each other in the picture, they are in the same segment.
+-The picture shows just one connected snake, using at least 2 'x's.
+
+
+EXAMPLES
+
+0)
+{"x.xxx.xxx",
+ "x.x.x.x.x",
+ "xxx.xxx.x"}
+
+Returns: 3
+
+
+   This snake consists of 9 segments, each of length 3.
+
+
+
+1)
+{"xxxx..",
+ "...x..",
+ "...x..",
+ "......"}
+
+Returns: 4
+
+    One segment is length 4, the other is length 3.
+
+2)
+{"...x................",
+ "...x................",
+ "....................",
+ "...................."}
+
+Returns: 2
+
+

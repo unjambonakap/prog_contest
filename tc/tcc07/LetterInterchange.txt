@@ -1,0 +1,165 @@
+PROBLEM STATEMENT
+
+You are given a string of text.  You must interchange two letters that are in different positions in the text to obtain a new string.  Note that the two letters might be equal.  For example, the string "aba" could become "baa", "aab", or "aba".  You must choose the two letters such that the resulting string comes as early as possible alphabetically.
+
+
+You will be given the text as two vector <string>s s1 and s2.  Concatenate all elements of s1 and append the concatenation of all elements of s2 to obtain the text.  Return a vector <int> containing exactly two elements: the 0-based indices of the letters to interchange.  If there are multiple solutions, return the one with the smallest first index.  If there's a tie, return the one among them with the smaller second index.
+
+
+DEFINITION
+Class:LetterInterchange
+Method:interchangeWhich
+Parameters:vector <string>, vector <string>
+Returns:vector <int>
+Method signature:vector <int> interchangeWhich(vector <string> s1, vector <string> s2)
+
+
+CONSTRAINTS
+-s1 and s2 will each contain between 1 and 50 elements, inclusive.
+-Each element of s1 and each element of s2 will contain between 1 and 50 characters, inclusive.
+-Each element of s1 and each element of s2 will contain only lowercase letters ('a'-'z').
+
+
+EXAMPLES
+
+0)
+{"a", "b", "a"}
+{"c", "a", "b", "a"}
+
+Returns: {1, 6 }
+
+The text is "abacaba". We interchange the 1-st and 6-th letters to obtain "aaacabb". This is the best possible new text.
+
+1)
+{"aa"}
+{"bb"}
+
+Returns: {0, 1 }
+
+The text here is "aabb". The best thing we can do here is interchange two equal letters. Anything else would result in a string that comes later alphabetically.  To obtain the return value with smallest first element we interchange the 'a's.
+
+2)
+{"a"}
+{"b", "c"}
+
+Returns: {1, 2 }
+
+3)
+{"a", "b"}
+{"cb"}
+
+Returns: {2, 3 }
+
+4)
+{"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ "aaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+ "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+ "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+ "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+ "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+ "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+ "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+ "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccc",
+ "cccccccccccccccccccccccccccccccccccccccccccccccccc",
+ "cccccccccccccccccccccccccccccccccccccccccccccccccc",
+ "cccccccccccccccccccccccccccccccccccccccccccccccccc",
+ "cccccccccccccccccccccccccccccccccccccccccccccccccc",
+ "cccccccccccccccccccccccccccccccccccccccccccccccccc",
+ "cccccccccccccccccccccccccccccccccccccccccccccccccc",
+ "cccccccccccddddddddddddddddddddddddddddddddddddddd",
+ "dddddddddddddddddddddddddddddddddddddddddddddddddd",
+ "dddddddddddddddddddddddddddddddddddddddddddddddddd",
+ "dddddddddddddddddddddddddddddddddddddddddddddddddd",
+ "dddddddddddddddddddddddddddddddddddddddddddddddddd",
+ "dddddddddddddddddddddddddddddddddddddddddddddddddd",
+ "dddddddddddddddddddddddddddddddddddddddddddddddddd",
+ "ddddddddddddddddddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+ "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+ "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+ "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+ "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+ "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+ "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+ "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffffff",
+ "ffffffffffffffffffffffffffffffffffffffffffffffffff",
+ "ffffffffffffffffffffffffffffffffffffffffffffffffff",
+ "ffffffffffffffffffffffffffffffffffffffffffffffffff",
+ "ffffffffffffffffffffffffffffffffffffffffffffffffff",
+ "ffffffffffffffffffffffffffffffffffffffffffffffffff",
+ "ffffffffffffffffffffffffffffffffffffffffffffffffff",
+ "ffffffffffffffffffffffffffffffffffffffffffffffffff",
+ "fffffffffffffffggggggggggggggggggggggggggggggggggg",
+ "gggggggggggggggggggggggggggggggggggggggggggggggggg",
+ "gggggggggggggggggggggggggggggggggggggggggggggggggg",
+ "gggggggggggggggggggggggggggggggggggggggggggggggggg",
+ "gggggggggggggggggggggggggggggggggggggggggggggggggg",
+ "gggggggggggggggggggggggggggggggggggggggggggggggggg",
+ "gggggggggggggggggggggggggggggggggggggggggggggggggg"}
+{"gggggggggggggggggggggggggggggggggggggggggggggggggg",
+ "ghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+ "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+ "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+ "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+ "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+ "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+ "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhiiiiiiiiiiii",
+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+ "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+ "iiiiiiiiiiiiiiiiiiiiiijjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
+ "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkkkk",
+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkllll",
+ "llllllllllllllllllllllllllllllllllllllllllllllllll",
+ "llllllllllllllllllllllllllllllllllllllllllllllllll",
+ "llllllllllllllllllllllllllllllllllllllllllllllllll",
+ "llllllllllllllllllllllllllllllllllllllllllllllllll",
+ "llllllllllllllllllllllllllllllllllllllllllllllllll",
+ "llllllllllllllllllllllllllllllllllllllllllllllllll",
+ "llllllllllllllllllllllllllllllllllllllllllllllllll",
+ "lllllllllllllmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+ "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+ "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+ "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+ "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+ "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+ "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+ "mmmmmmmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+ "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+ "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+ "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+ "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+ "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+ "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"}
+
+Returns: {0, 1 }
+
+
+
+5)
+{"aa"}	
+{"b", "bcc"}
+
+Returns: {0, 1 }
+
+

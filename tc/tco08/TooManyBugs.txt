@@ -1,0 +1,84 @@
+PROBLEM STATEMENT
+
+There are a lot of bugs in the TooManyBugs project. Each bug is described by two values: priority and fixTime.
+There are only a few days left before the deadline. Each day has a corresponding workTime, and a bug can be fixed on that day if the bug's fixTime is less than or equal to workTime.  No more than one bug can be fixed in a single day, and no bug fix can span more than a single day.
+
+
+You are given a vector <string> info, each element of which describes either a single bug or a single day.  Each element can be in one of the following two formats:
+
+
+"PRIORITY FIX_TIME", which means that there is a bug with  
+	priority equal to PRIORITY and fixTime equal to FIX_TIME;
+"WORK_TIME", which means that there is a day with workTime equal to WORK_TIME.
+
+
+
+Determine a strategy that maximizes the sum of the priorities of the bugs you fix, and return this sum.
+
+
+
+DEFINITION
+Class:TooManyBugs
+Method:bestBugFixing
+Parameters:vector <string>
+Returns:int
+Method signature:int bestBugFixing(vector <string> info)
+
+
+NOTES
+-You can fix any of the bugs on any day (as long as the bug's fixTime is less than or equal to the day's workTime).  The order of the elements in info is irrelevant.  See example 2.
+
+
+CONSTRAINTS
+-info will contain between 1 and 50 elements, inclusive.
+-Each element of info will contain between 1 and 9 characters, inclusive.
+-Each element of info will be formatted as "PRIORITY FIX_TIME" or "WORK_TIME" (quotes for clarity).
+-In each element of info, PRIORITY, FIX_TIME and WORK_TIME will each be an integer between 1 and 1000, inclusive, without leading zeroes.
+
+
+EXAMPLES
+
+0)
+{"5 3", "20 20", "125"}
+
+Returns: 20
+
+We only have one day so we can only choose a single bug. Choose the second bug because it has a higher priority.
+
+1)
+{"5 3", "20 20", "15"}
+
+Returns: 5
+
+Fix the first bug.
+
+2)
+{"5 3", "20 20", "25", "15", "6 15"}
+
+Returns: 26
+
+Do not fix the first bug.
+
+3)
+{"5 3", "20 20", "7 2", 
+	"25", "3", "15", "6 15"}
+
+Returns: 33
+
+
+
+4)
+{"5 3", "20 20", "125", "125", "125", "125"}
+
+Returns: 25
+
+
+
+5)
+{"2 4", "5 1", "5 1", "9 1", "3 10", "4 8", "4 7", 
+	"9", "8", "4", "2"}
+
+
+Returns: 23
+
+

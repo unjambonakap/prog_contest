@@ -1,0 +1,54 @@
+PROBLEM STATEMENT
+
+A number y is said to be the k-th power of a number x if y = x^k, i.e., y is the product of k copies of x.
+
+
+You are given two strings left and right. Return the greatest k such that there is an integer y (left <= y <= right) such that y is the k-th power of some integer x.
+
+
+DEFINITION
+Class:PowerOfInteger
+Method:greatestPower
+Parameters:string, string
+Returns:int
+Method signature:int greatestPower(string left, string right)
+
+
+CONSTRAINTS
+-left will be an integer between 2 and 10^12, inclusive, without extra leading zeroes.
+-right will be an integer between left and 10^12, inclusive, without extra leading zeroes.
+
+
+EXAMPLES
+
+0)
+"5"
+"20"
+
+Returns: 4
+
+The greatest power between 5 and 20 is 16=2^4.
+
+1)
+"10"
+"12"
+
+Returns: 1
+
+No nontrivial power of integer between 10 and 12, so return 1.
+
+2)
+"2"
+"100"
+
+Returns: 6
+
+
+
+3)
+"1000000000000"
+"1000000000000"
+
+Returns: 12
+
+

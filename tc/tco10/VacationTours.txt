@@ -1,0 +1,100 @@
+PROBLEM STATEMENT
+
+A travel agent is organizing tours for a group of people. He is charging a fixed fee to the whole group for each tour they take. The company policy, however, forces him to make each tour completely different from other tours because tourists don't want to see the same sight twice.
+
+Each tour the agent plans starts at the group's hotel, consists of a sequence of distinct sights and ends at the hotel. The agent has managed to get the best price on transportation from the hotel to each of the sights, and between the sights. All transportation is directed, which means the cost to travel from A to B may be different from the cost to travel from B to A. The overall cost of a tour is the sum of all the transportation costs in the tour.
+
+You will be given the information the agent has. The fee will be given as an int. The transportation costs between sights or between each sight and the hotel are given in two vector <string>s, c and d. Character j of element i of c and d give the first and second digit, respectively, in base-64 coding (explained in the notes), of the cost to the agency of transporting the whole group from point i to point j. Point 0 is always the hotel, while all the other points are the sights. You have to return the maximum income the agency can make by allocating tours. The income will be the fee multiplied by the number of tours, minus the total costs of all transportation needed. See the examples for further clarification.
+
+
+DEFINITION
+Class:VacationTours
+Method:getIncome
+Parameters:vector <string>, vector <string>, int
+Returns:int
+Method signature:int getIncome(vector <string> c, vector <string> d, int fee)
+
+
+NOTES
+-If c is the first digit and d is the second digit in base-64 coding, then the value is c*64+d, where c and d are translated to a number between 0 and 63, inclusive, as follows: Uppercase letters 'A' to 'Z' have values 0 to 25, respectivelyLowercase letters 'a' to 'z' have values 26 to 51, respectivelyDigits '0' to '9' have values 52 to 61, respectively'+' has value 62 and '/' has value 63
+-Transportation costs are not necessarily reflexive, and do not necessarilly follow the triangle inequality. When the group needs to be transported from point i to point j, the agent has to do this directly, even if traveling through one or more intermediate points would result in a lower cost. See examples for further clarification.
+
+
+CONSTRAINTS
+-fee will be between 1 and 10000, inclusive.
+-c will contain between 2 and 50 elements, inclusive.
+-d will contain the same number of elements as c.
+-Each element of c and d will contain exactly N characters, where N is the number of elements of c.
+-Each character of each element of both c and d will be a base-64 coding character, as described in the notes. 
+-Character i of element i of both c and d will be an uppercase 'A'.
+
+
+EXAMPLES
+
+0)
+{"AAA",
+ "AAA",
+ "AAA"}
+{"ABJ",
+ "JAB",
+ "BJA"}
+15
+
+Returns: 12
+
+The price matrix is as follows:
+
+- 1 9
+9 - 1
+1 9 -
+
+You can set up two tours stopping at sight 1 and 2 respectively, for a cost of 10 each. You can earn 30=15*2 by doing it, making a total profit of 10. Alternatively, you can set up a single tour that goes to sight 1, then to sight 2, and returns to the hotel with a total cost of only 3. In the second case you can earn only 15, with an overall benefit of 12. The latter is the optimal arrangement.
+
+1)
+{"AAAA",
+ "AAAA",
+ "AAAA",
+ "AAAA"}
+{"AAAA",
+ "AAAA",
+ "AAAA",
+ "AAAA"}
+100
+
+Returns: 300
+
+All trips are free, so you must do as many tours as possible (3 in total, one for each sight).
+
+2)
+{"A//",
+ "/A/",
+ "//A"}
+{"A//",
+ "/A/",
+ "//A"}
+1000
+
+Returns: 0
+
+All possible trips are too expensive to get any benefit, so it's better to do no trips.
+
+3)
+{"AAA////",
+ "/AA/A//",
+ "//AA/A/",
+ "A//AA//",
+ "///AAA/",
+ "///A/AA",
+ "AA////A"}
+{"AKo////",
+ "/AU/X//",
+ "//AZ/o/",
+ "j//AK//",
+ "///XAo/",
+ "///y/AK",
+ "KP////A"}
+1000
+
+Returns: 1809
+
+

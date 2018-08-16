@@ -1,0 +1,64 @@
+PROBLEM STATEMENT
+Farmer John wants to buy a lottery ticket. Before he buys a ticket, Fox Brus decided to calculate the probability that John will get a prize.
+
+
+There are 1,000,000,000 types of lottery tickets. They are numbered "000000000" to "999999999" (they may have leading zeroes). Each type of ticket has an equal probability of being bought by John. You are given a vector <string> goodSuffixes. If the number written on John's ticket has at least one element of goodSuffixes as a suffix, he will get a prize.
+
+
+Return the probability that John will get a prize.
+
+DEFINITION
+Class:TheLotteryBothDivs
+Method:find
+Parameters:vector <string>
+Returns:double
+Method signature:double find(vector <string> goodSuffixes)
+
+
+NOTES
+-The returned value must have an absolute or relative error less than 1e-9.
+-A suffix of a string is obtained by removing zero or more contiguous characters from the beginning of the string.
+
+
+CONSTRAINTS
+-goodSuffixes will contain between 1 and 50 elements, inclusive.
+-Each element of goodSuffixes will contain between 1 and 9 characters, inclusive.
+-Each character in goodSuffixes will be a digit ('0'-'9').
+
+
+EXAMPLES
+
+0)
+{"4"}
+
+Returns: 0.1
+
+John will get a prize if the last digit is '4'. It happens with probability 0.1.
+
+1)
+{"4", "7"}
+
+Returns: 0.2
+
+
+
+2)
+{"47", "47"}
+
+Returns: 0.01
+
+goodSuffixes may contain duplicate elements.
+
+3)
+{"47", "58", "4747", "502"}
+
+Returns: 0.021
+
+
+
+4)
+{"8542861", "1954", "6", "523", "000000000", "5426", "8"}
+
+Returns: 0.201100101
+
+

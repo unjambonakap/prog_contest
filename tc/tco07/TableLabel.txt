@@ -1,0 +1,81 @@
+PROBLEM STATEMENT
+A rectangular table of strings is formed by giving
+each row and each column a label. Each label consists
+of one or more uppercase letters. The
+string in any row and column of the table is just 
+the column label
+appended to the row label. Here is an example with
+2 rows and 3 columns
+
+          X    XX   XXX
+
+ABC     ABCX ABCXX ABCXXX
+D       DX   DXX   DXXX
+
+
+The problem is that we are given the table entries, but
+don't know what the row and column labels are.
+Given a vector <string> table, return a vector <string> containing
+the column labels in left to right order, followed by the row labels in top to bottom order.
+If there is no way to assign non-empty labels to the table, 
+or if there are multiple ways to assign them, 
+return a vector <string> with just one element, 
+"none" or"multiple" (in lowercase, without the quotes).
+
+The i-th element of table will give the i-th row of the table (i=0 is
+the top row), with 
+adjacent entries separated by one or more spaces. It may have leading
+or trailing spaces.
+
+
+
+DEFINITION
+Class:TableLabel
+Method:labels
+Parameters:vector <string>
+Returns:vector <string>
+Method signature:vector <string> labels(vector <string> table)
+
+
+CONSTRAINTS
+-table will contain between 1 and 50 elements, inclusive.
+-Each element of table will contain between 1 and 50 characters, inclusive.
+-Each element of table will contain only spaces (' ') and uppercase letters ('A'-'Z').
+-Each element of table will contain at least 1 entry.
+-Each element of table will contain the same number of entries.
+
+
+EXAMPLES
+
+0)
+{"  ABCX ABCXX   ABCXXX  ","DX DXX DXXX    "}
+
+Returns: {"X", "XX", "XXX", "ABC", "D" }
+
+
+
+    This is the example given above.
+
+
+
+
+1)
+{"AAA AAA"," AAA   AAA"}
+
+Returns: {"multiple" }
+
+
+
+    The row labels could both be "A" and the column labels both be "AA",
+    or the row labels could both be "AA" and column labels "A".
+
+
+2)
+{"AB CD"}
+
+Returns: {"none" }
+
+
+  
+    If the row label could be empty we could label this table by giving the
+    columns the labels "AB" and "CD", but that is not allowed.

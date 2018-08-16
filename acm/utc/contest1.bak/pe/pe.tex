@@ -1,0 +1,41 @@
+\begin{problem}{Race day in Berland}{stdin}{stdout}{2 seconds}
+
+
+
+It is race day in a famous Berland city. 
+The city has $n$ junctions and $n-1$ roads connecting these junctions. 
+As any well designed city, you can reach any junction from any other by taking a succession of roads. 
+
+Race day consists of $k$ races which takes place during a single day. The $i-th$ race starts on the junction $a_i$, ends on the junction $b_i$ and $c_i$ will be participating in it.
+
+
+However today is also when the road network renewal starts. One road has to be rebuilt thus we have to cancel every race which cannot avoid using this road. 
+The mayor has asked you to pick the road such that the maximum number of drivers can still run today.
+
+\InputFile
+
+The first line contains $n$, the number of junctions in the city.
+The next $n-1$ lines contains 2 integers $1\le a \le n$ and $1 \le b \le n$, $a\not = b$ representing a pair of junctions connected by a direct road. 
+The next line contains a single integer $k$, the number of races.
+Each of the next $k$ lines describes a race.
+The $i-th$ line contains 3 integers, $a_i$, $b_i$ ($1\le a_i,b_i\le n$) and $c_i$.
+
+The constraints are as follows:
+$1\le n,k \le 2\times 10^5$,\\ 
+$1\le c_i \le 2\times 10^3$,\\ 
+
+
+\OutputFile
+Print two numbers on a single line separated by a space, the maximum number of drivers who will be able to run and the id of the road where the work should take place (the id is the number of line where the road was described, $1$-indexed).
+
+If there is more than one possible road, choose the one with the lowest id.
+
+\Example
+
+\begin{examplewide}
+\exmp{
+}{
+}%
+\end{examplewide}
+
+\end{problem}

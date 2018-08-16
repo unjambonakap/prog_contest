@@ -1,0 +1,64 @@
+PROBLEM STATEMENT
+You want to arrange a group of students so that their heights are in non-descending order, and boys and girls alternate with each other.
+
+You will be given a vector <string> students.  Each element of students will be in the format "name height sex" (quotes for clarity only), where height is an integer in centimeters and sex is either "boy" or "girl" (quotes for clarity only).  Return a string containing a dash-separated list of the students' names in the desired order.  If multiple return values are possible, return the one that comes first lexicographically.  If there is no possible ordering, return "" (empty String).  Note that dashes ('-') come earlier lexicographically than letters.
+
+
+DEFINITION
+Class:StudentsOrdering
+Method:findOrder
+Parameters:vector <string>
+Returns:string
+Method signature:string findOrder(vector <string> students)
+
+
+CONSTRAINTS
+-students will contain between 1 and 50 elements, inclusive.
+-Each element of students will be contain between 1 and 50 characters, inclusive.
+-Each element of students will be formatted as described in the problem statement.
+-The name of each student will consist of letters ('A'-'Z', 'a'-'z') only.
+-The height of each student will be between 100 and 250, inclusive.
+-The height of each student will contain no leading zeroes.
+
+
+EXAMPLES
+
+0)
+{"Alex 180 boy", 
+ "Josh 181 boy", 
+ "Mary 158 girl", 
+ "An 158 girl", 
+ "Tanya 180 girl", 
+ "Ted 158 boy"}
+
+Returns: "An-Ted-Mary-Alex-Tanya-Josh"
+
+
+
+1)
+{"Alex 180 boy", 
+ "Josh 158 boy", 
+ "Mary 180 girl", 
+ "An 158 girl", 
+ "Mary 180 girl", 
+ "Ted 158 boy"}
+
+Returns: "Josh-An-Ted-Mary-Alex-Mary"
+
+Student names can repeat. 
+
+2)
+{"Alex 180 boy", 
+ "Josh 170 boy", 
+ "An 158 girl", 
+ "Mary 180 girl", 
+ "Ted 175 boy"}
+
+Returns: ""
+
+There is no girl to place between Josh and Ted.
+
+3)
+{"Mary 175 girl"}
+
+Returns: "Mary"

@@ -1,0 +1,74 @@
+PROBLEM STATEMENT
+NOTE: This problem statement contains superscripts that may not display properly if viewed outside of the applet.
+
+You are a megadiamond hunter looking for diamonds in a peculiar mine.  The mine is a string containing only '<' and '>' characters.  Each megadiamond is a substring containing one or more consecutive '<' characters immediately followed by the same number of consecutive '>' characters.  For example, "<>", "<<>>" and "<<<<>>>>" are all megadiamonds.  Each time you find a megadiamond, you can remove it, and the corresponding characters are removed from the mine.
+
+For example, if the mine looks like this:
+
+><<><>>><
+
+You can start by removing the first occurrence of "<>" to get:
+
+><<>>><
+
+You can then remove the megadiamond "<<>>" to get:
+
+>><
+
+There are no more megadiamonds, so your expedition is done.
+
+The size of a megadiamond is the number of '<' characters it contains.  The value of a megadiamond of size n is n2.  The total income of your expedition is the sum of the values of the megadiamonds you removed from the mine.  Given a string mine, return the maximum possible income you can get from an expedition.
+
+
+DEFINITION
+Class:MegadiamondHunt
+Method:getValue
+Parameters:string
+Returns:int
+Method signature:int getValue(string mine)
+
+
+CONSTRAINTS
+-mine will contain between 1 and 50 elements, inclusive.
+-Each character of mine will be either '&lt' or '&gt'.
+
+
+EXAMPLES
+
+0)
+"><<><>>><"
+
+Returns: 5
+
+You remove two megadiamonds, one of size 1 and one of size 2, for a total income of 12+22=5.
+
+1)
+"<<><<>><<>>>"
+
+Returns: 14
+
+
+First, remove the rightmost megadiamond of size 2 to get:
+
+<<><<>>>
+
+Then, remove the leftmost megadiamond of size 1 to get:
+
+<<<>>>
+
+Finally, remove the last megadiamond of size 3 to empty the mine.  Your total income is 12 + 22 + 32 = 14.
+
+
+2)
+">>>>>><<<<<<<"
+
+Returns: 0
+
+No megadiamonds in this mine.
+
+3)
+"<<<<<<><><><<<<>>><><><<>><<<><<>><<<>>><<<<<>>>>>"
+
+Returns: 57
+
+

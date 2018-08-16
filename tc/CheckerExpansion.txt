@@ -1,0 +1,68 @@
+PROBLEM STATEMENT
+Alice and Bob are playing a game on an infinite grid. The grid is initially empty. Alice and Bob each have an infinite supply of checkers. Alice's checkers are red, Bob's are blue. In the first turn, Alice places one of her red checkers into the cell (0,0). The game continues by Bob and Alice taking alternate turns. In each turn, the current player places their checkers into some empty cells. The player must always add all the checkers that can be added in their turn by repeatedly applying the following rules:
+
+If cell (x-1,y-1) contains a checker of the other player and cell (x-2,y) is empty, add your checker into the cell (x,y).
+If cell (x-2,y) contains a checker of the other player and cell (x-1,y-1) is empty, add your checker into the cell (x,y).
+
+Bob has asked you to simulate the game so that he can understand it better. You are given long longs
+t, x0 and y0 and ints w and h. Return a vector <string> containing h elements of w characters each. The j-th character of the i-th element of your return value will represent the contents of cell at x=x0+j and y=y0+h-i-1 after t turns. The character representing a particular cell should be 'A' (quotes for clarity) if it contains one of Alice's checkers, 'B' if it contains one of Bob's checkers and '.' if it is empty. 
+
+DEFINITION
+Class:CheckerExpansion
+Method:resultAfter
+Parameters:long long, long long, long long, int, int
+Returns:vector <string>
+Method signature:vector <string> resultAfter(long long t, long long x0, long long y0, int w, int h)
+
+
+CONSTRAINTS
+-t will be between 1 and 1000000000000 (10^12), inclusive.
+-x0 and y0 will each be between 0 and 1000000000000 (10^12), inclusive.
+-w and h will each be between 1 and 50, inclusive. 
+
+
+EXAMPLES
+
+0)
+1
+0
+0
+4
+4
+
+Returns: {"....", "....", "....", "A..." }
+
+This is the initial turn.
+
+1)
+5
+4
+1
+3
+4
+
+Returns: {"A..", "...", "B..", ".B." }
+
+The checker that appears at the top row of this rectangle was placed by Alice just at the fifth turn.
+
+2)
+1024
+1525
+512
+20
+2
+
+Returns: {"B...B...B...........", ".B.A.B.A.B.........." }
+
+
+
+3)
+53
+85
+6
+5
+14
+
+Returns: {".....", ".....", "B....", ".B.A.", ".....", ".....", ".....", ".....", ".....", ".....", "B....", ".B...", "..B..", ".A.B." }
+
+

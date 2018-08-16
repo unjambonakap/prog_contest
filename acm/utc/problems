@@ -1,0 +1,17 @@
+>>> stupid chinese remainder (done by simulation), have to know when the x-th ocurrence happens
+
+>>> story: 1 player game, move on graph starting on a vertex. on one turn, cannot use the last edge used, can we play indefinitely?
+Can add edge on graph 
+# on line algo if there is cycle or not on dynamic graph (only add edge)
+
+
+>>> grid, cells can have 3 (or 4, if there is in fact not a lot of solutions) values, no 2 adj cells have same value, find number of solutions (some cells can be already set)
+
+>>> graph n nodes, have to pick k items in a fixed order. Items are available in some nodes, shortest path
+
+>>> count number of graphs with n vertices and m edges
+
+>>> 2 large strings, can change char, compare if 2 substr are =
+
+
+

@@ -1,0 +1,65 @@
+PROBLEM STATEMENT
+
+You are running a TV network that has the rights to transmit the olympic games. The network is going to create several channels that transmit events of the games continuously. A few rules have been established for these new channels:
+
+Each event cannot be transmitted on more than one channel
+Any part of an event may be included in the scheduled programming, even if the beginning and/or the end of it are excluded, but at most one interval of the event can be shown
+Each channel must have a continuous transmission
+
+
+You will be given the schedule of the olympics in 2 vector <int>s begin and end, with the ith element of begin and end representing the starting and ending time of the ith scheduled event in a special time unit (each interval contains both endpoints, see examples for further clarification). The duration of the games is exactly totalUnits of this time units, which means that the transmission of all the created channels must start at time 0 and end at time totalUnits. Return the maximum number of channels that can be created while satisfying these network policies.
+
+
+DEFINITION
+Class:OlympicsBroadcasting
+Method:getMaxChannels
+Parameters:vector <int>, vector <int>, int
+Returns:int
+Method signature:int getMaxChannels(vector <int> from, vector <int> to, int totalUnits)
+
+
+CONSTRAINTS
+-begin will have between 1 and 50 elements, inclusive.
+-begin and end will have the same number of elements.
+-totalUnits will be between 1 and 1000000000 (109), inclusive.
+-Each element of begin and end will be between 0 and totalUnits, inclusive.
+-The ith element of end will be greater than the ith element of begin.
+
+
+EXAMPLES
+
+0)
+{0,1,1,1,0}
+{2,2,3,3,3}
+3
+
+Returns: 2
+
+We can make 2 channels:
+
+ Event with index 0 from time 0 to time 2 and event 2 from 2 to 3. 
+ Event with index 4 from time 0 to time 3. 
+
+
+1)
+{0}
+{1000}
+1000
+
+Returns: 1
+
+2)
+{0,1,2,3,4}
+{1,2,3,4,5}
+5
+
+Returns: 1
+
+3)
+{0,4,8}
+{3,9,12}
+12
+
+Returns: 0
+
+There is no way to cover the 3-4 interval.

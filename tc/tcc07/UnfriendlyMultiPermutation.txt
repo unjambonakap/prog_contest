@@ -1,0 +1,48 @@
+PROBLEM STATEMENT
+An array a[1], a[2], ... a[k*n]  is called a k-multipermutation if each number between 1 and n, inclusive, occurs exactly k times in it.
+A k-multipermutation a is called unfriendly if no two adjacent elements in it are equal. For example, the 2-multipermutation (1, 2, 3, 2, 1, 3) is unfriendly,
+but (1, 2, 2, 3, 1, 3) is not.
+You are given ints n and k. Return the number of unfriendly k-multipermutations of size n. The answer can be quite large, so return it modulo 10^9+7.
+
+DEFINITION
+Class:UnfriendlyMultiPermutation
+Method:count
+Parameters:int, int
+Returns:int
+Method signature:int count(int n, int k)
+
+
+CONSTRAINTS
+-n will be between 1 and 20, inclusive.
+-k will be between 1 and 5, inclusive.
+
+
+EXAMPLES
+
+0)
+2
+2
+
+Returns: 2
+
+There are two such multipermutations: (1, 2, 1, 2) and (2, 1, 2, 1).
+
+1)
+3
+2
+
+Returns: 30
+
+2)
+5
+1
+
+Returns: 120
+
+All 1-multipermutations (or simply permutations) are unfriendly.
+
+3)
+2
+4
+
+Returns: 2

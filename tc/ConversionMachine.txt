@@ -1,0 +1,75 @@
+PROBLEM STATEMENT
+You are given two words, word1 and word2, of equal length. Their alphabet consists of only "a", "b", and "c" (quotes for clarity). You may change some characters into others for a specific cost:
+The cost to change "a" to "b", is costs[0].
+The cost to change "b" to "c", is costs[1].
+The cost to change "c" to "a", is costs[2].
+
+The remaining operations are not possible.
+
+You are given the strings word1 and word2, the vector <int> costs, and an int maxCost. Find the total number of sequences of moves that can change word1 into word2  with a total cost of at most maxCost, inclusive. Return it modulo 1000000007 (10^9+7). Two sequences of moves are different if their number of moves differ or if for some k the k-th move in one sequence changes a different position than the k-th move in the other sequence.
+
+DEFINITION
+Class:ConversionMachine
+Method:countAll
+Parameters:string, string, vector <int>, int
+Returns:int
+Method signature:int countAll(string word1, string word2, vector <int> costs, int maxCost)
+
+
+NOTES
+-Each letter can be changed multiple times.
+-Even if a letter currently matches the corresponding letter in word2, it can still be changed.
+
+
+CONSTRAINTS
+-word1 and word2 will contain the same number of characters.
+-word1 and word2 will each contain between 1 and 11 characters, inclusive.
+-Each character in word1 and word2 will be 'a', 'b' or 'c'.
+-costs will contain exactly 3 elements.
+-Each element of costs will be between 1 and 1000000000 (10^9), inclusive.
+-maxCost will be between 0 and 1000000000 (10^9), inclusive.
+
+
+EXAMPLES
+
+0)
+"a"
+"b"
+{100,2,3}
+205
+
+Returns: 2
+
+There are two sequences of moves with a total cost of at most 205:
+- "a" -> "b"  (Total cost = 100). 
+- "a" -> "b" -> "c" -> "a" -> "b". (Total cost = 205).
+
+1)
+"abcba"
+"abcba"
+{67,23,43}
+0
+
+Returns: 1
+
+Since the two words are equal, the empty sequence of moves is valid.
+
+2)
+"cccccccc"
+"aaaaaaaa"
+{10000000,1,1}
+100
+
+Returns: 40320
+
+
+
+3)
+"aa"
+"cc"
+{1,10,100}
+1787
+
+Returns: 123611681
+
+

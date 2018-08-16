@@ -1,0 +1,116 @@
+PROBLEM STATEMENT
+
+Let p[0], p[1], ..., p[N-1] be a permutation of integers between 0 and N-1, inclusive. A binary search tree is a rooted binary tree with an integer value stored at each node. We use the following pseudocode to construct a binary search tree from the permutation p:
+
+
+Create the root and put p[0] there
+For each i in (1, 2, ..., N-1)
+	Call insert(root, p[i])
+
+Procedure insert(vertex V, integer X)
+	If X < number at V
+		If V has left child
+			Call insert(left child of V, X)
+		Else
+			Create new left child of V with value X
+	Else
+		If V has right child
+			Call insert(right child of V, X)
+		Else
+			Create new right child of V with value X
+	End
+End
+
+
+You are given three ints: N, seed and limit. Use the following pseudocode to generate the permutation p (be sure to use 64-bit integers in computations where needed; note that '/' represents integer division and % represents remainder):
+
+
+X := seed
+For each i in (0, 1, ..., N-1)
+	p[i] := i
+	X := (X * 295397169) % 1073741789;
+	If (X * 1000000) / 1073741789 < limit
+		X := (X * 295397169) % 1073741789
+		// generate j within [0, i]
+		j := (X * (i + 1)) / 1073741789
+		// j <= i, so p[j] is already initialized
+		swap(p[i], p[j])
+	End
+End
+
+
+John constructed a binary search tree from the generated permutation using the pseudocode described above. 
+Return the sum of the heights of all nodes in the constructed tree. The height of a node V is the number of nodes in the path from the root to V.
+
+
+DEFINITION
+Class:BSTConstruction
+Method:sumHeights
+Parameters:int, int, int
+Returns:long long
+Method signature:long long sumHeights(int N, int seed, int limit)
+
+
+NOTES
+-The input is encoded purely for convenience. The intended solution does not rely on any properties of the way it is generated, and will work for any permutation p.
+
+
+CONSTRAINTS
+-N will be between 1 and 250,000, inclusive.
+-seed will be between 1 and 1,073,741,788, inclusive.
+-limit will be between 0 and 1,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+10
+12345678
+500000
+
+Returns: 40
+
+The permutation p here is (9, 1, 4, 3, 2, 5, 6, 7, 8, 0). The binary search tree for this permutation looks as follows:
+
+		9
+	       /
+              1
+             / \
+            0   4
+               / \
+              3   5
+             /     \
+            2       6
+                     \
+                      7
+                       \
+                        8
+
+The sum of the nodes' heights in this tree is 1+2+3+3+4+4+5+5+6+7=40.
+
+1)
+10
+87654321
+1000000
+
+Returns: 31
+
+Now p is (6, 3, 2, 7, 9, 4, 8, 1, 0, 5).
+
+2)
+10
+45454545
+0
+
+Returns: 55
+
+Here p = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9).
+
+3)
+1
+99988877
+12345
+
+Returns: 1
+
+

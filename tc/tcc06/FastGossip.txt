@@ -1,0 +1,63 @@
+PROBLEM STATEMENT
+
+There is a group of friends that is not as close as it should be. Not everybody inside the group
+likes everybody else. One of the friends has some important news that needs to be spread to 
+every member of the group. He has information on who would be willing to call each other and
+has to develop a strategy to make sure all members of the group receive the news as soon as possible.
+
+Each person can only call one friend each minute, and during that minute, he will transmit the news
+along with the calling strategy that the receiver should follow. Any person that has already been
+called is allowed to call other friends, but nobody can be on the phone (passing on or receiving
+the news) with more than one other person during the same minute.
+
+You will be given a vector <string> conn, where the jth character of the 
+ith element is 'Y' if the ith friend is willing to call the jth
+friend, or 'N' otherwise. The 0th person (0-based) is the one that initially learns
+about the news. Return the least number of minutes needed for the entire group to be aware of
+the news.  If it is impossible for this to happen, return -1.
+
+
+DEFINITION
+Class:FastGossip
+Method:minTime
+Parameters:vector <string>
+Returns:int
+Method signature:int minTime(vector <string> conn)
+
+
+NOTES
+-Note that the fact that one friend is willing to call another does not necessarily imply that the other is willing to call the first. See examples for further clarification.
+
+
+CONSTRAINTS
+-conn will contain between 1 and 14 elements, inclusive.
+-Each element of conn will contain exactly N characters, where N is the number of elements in conn.
+-Each character of each element of conn will be either 'Y' or 'N'.
+-The ith character of the ith element of conn will be 'N'.
+
+
+EXAMPLES
+
+0)
+{"NYNN","NNYN","NNNY","NNNN"}
+
+Returns: 3
+
+Individual 0 must call individual 1. Individual 1 must call individual 2. Individual 2 must call individual 3. Since all these actions must happen sequentially, the total time to reach the last individual is 3 minutes.
+
+1)
+{"NYYY",
+ "YNYY",
+ "YYNY",
+ "YYYN"}
+
+Returns: 2
+
+Everybody is a close friend. Individual 0 can call any one of the other individuals in the first minute, and during the second minute, both of them can call one of the remaining two.
+
+2)
+{"NN","YN"}
+
+Returns: -1
+
+Individual 0 can't call anybody, and therefore, it is impossible to spread the news to individual 1.

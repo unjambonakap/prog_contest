@@ -1,0 +1,78 @@
+PROBLEM STATEMENT
+String matching is extraordinarily useful. In our application, we define the
+match quality between 2 strings of lowercase letters to be the number 
+of positions that match
+exactly. For example, the match quality between
+"abcdedd" and "bcddd" is 1, since they only match in the 4th character.
+
+We have a string sequence, data, and are interested in finding string sequences
+of the same length that fit the data well. We say that one sequence fits the data
+better than another sequence if it has a higher quality match with the data at
+the first position where the match qualities differ.
+
+String sequences are ordered lexicographically based on the normal alphabetical
+comparison between individual strings. That means that if position i is the first
+position where 2 sequences differ, the sequence whose ith element would come later
+in a dictionary is later in the ordering of sequences.
+Given data and candidate return the next later permutation of candidate
+ that fits data better.
+If no lexicographically later permutation of candidate gives a better fit, 
+return candidate.
+
+
+
+DEFINITION
+Class:NextBetter
+Method:nextPerm
+Parameters:vector <string>, vector <string>
+Returns:vector <string>
+Method signature:vector <string> nextPerm(vector <string> data, vector <string> candidate)
+
+
+CONSTRAINTS
+-data will contain between 1 and 50 elements, inclusive.
+-candidate will contain the same number of elements as data.
+-Each element of data and candidate will contain between 1 and 10 characters, inclusive.
+-Each element of data and candidate will contain only lowercase letters ('a'-'z').
+
+
+EXAMPLES
+
+0)
+{"ab","cde"}
+{"xx","ade"}
+
+Returns: {"xx", "ade" }
+
+
+
+    The only permutation of "xx","ade" is earlier (since "ade" precedes "xx"). Therefore, there is no next permutation, and candidate is returned.
+  
+
+
+
+1)
+{"ad","cde"}
+{"xx","yde"}
+
+Returns: {"yde", "xx" }
+
+
+
+    "yde","xx" is the next permutation of "xx","yde" and it fits data better 
+    since it has
+    a match quality of 1 in the first position ("yde" vs "ad") while candidate
+    has a match quality of 0 in the first position of data.
+
+2)
+{"ade","cde","acd"}
+{"ab","ae","c"}
+
+Returns: {"ab", "c", "ae" }
+
+
+
+    All 5 permutations of candidate come later than candidate. "ab","c","ae" fits
+    data better than candidate, and so does "ae","c","ab". None of the
+    other permutations fits data better than candidate. So the return is
+    the earlier of these 2.

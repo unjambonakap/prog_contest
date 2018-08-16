@@ -1,0 +1,59 @@
+PROBLEM STATEMENT
+You have been given a vector <int> vals that is missing one element.  Luckily, you know the mean of the entire set (with the missing element present).  Using this information, reconstruct the full data set and return the median.
+
+DEFINITION
+Class:UsingStats
+Method:getMedian
+Parameters:vector <int>, int
+Returns:int
+Method signature:int getMedian(vector <int> vals, int mean)
+
+
+NOTES
+-The mean of a list of values is their average.  The median of a list of values is determined by sorting the list, and then taking the middle element.
+
+
+CONSTRAINTS
+-vals will contain between 2 and 50 elements, inclusive.
+-vals will contain an even number of elements.
+-Each element of vals will be between -1000 and 1000, inclusive.
+-mean will be between -1000 and 1000, inclusive.
+
+
+EXAMPLES
+
+0)
+{50,100}
+75
+
+Returns: 75
+
+To have a 75 average, the missing value must be 75.  This is also the median of the resulting set.
+
+1)
+{1,2,3,4}
+3
+
+Returns: 3
+
+The missing value is 5.  The resulting median is 3.
+
+2)
+{0,0,100,100}
+61
+
+Returns: 100
+
+The missing value is 105, and the resulting median is 100.
+
+3)
+{889,820,404,-901}
+539
+
+Returns: 820
+
+4)
+{-211,-504,461,283,791,646,205,459,-186,516,-933,762,418,656,746,-368,888,270,-355,-207,-990,435,717,-338}
+845
+
+Returns: 418

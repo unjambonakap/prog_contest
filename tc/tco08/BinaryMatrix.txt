@@ -1,0 +1,80 @@
+PROBLEM STATEMENT
+
+You are given a binary rectangular matrix with exactly five columns. A matrix is called good if it contains exactly columns[i] ones in the i-th column. To make the matrix good, you are allowed to perform at most maxMoveCount moves. With each move, you select a row of the matrix and circularly shift it to the right by 1 position (so, for example, row {0, 0, 1, 0, 0} becomes {0, 0, 0, 1, 0}).
+
+
+Given matrix, columns and maxMoveCount, return the lexicographically greatest good matrix you can achieve. If you can not achieve any good matrix, return an empty vector <string>. To compare two matrices lexicographically, concatenate all rows starting from the top for each of the matrices and compare the resulting strings. String A is lexicographically greater than string B if it contains the bigger character at the first position where they differ.
+
+
+DEFINITION
+Class:BinaryMatrix
+Method:getMaximalLexicographically
+Parameters:vector <string>, vector <int>, int
+Returns:vector <string>
+Method signature:vector <string> getMaximalLexicographically(vector <string> matrix, vector <int> columns, int maxMoveCount)
+
+
+CONSTRAINTS
+-matrix will contain between 1 and 40 elements, inclusive.
+-Each element of matrix will contain exactly five digits.
+-Each element of matrix will contain only digits '0' or '1'.
+-columns will contain exactly five elements.
+-Each element of columns will be between 0 and 40, inclusive.
+-maxMoveCount will be between 0 and 160, inclusive.
+
+
+EXAMPLES
+
+0)
+{"01000", "10000"}
+{1,1,0,0,0}
+5
+
+Returns: {"10000", "01000" }
+
+Shift the first row 4 times and the second row once.
+
+1)
+{"01000", "10000"}
+{1,1,0,0,0}
+4
+
+Returns: {"01000", "10000" }
+
+Don't change anything.
+
+2)
+{"00100", "10000", "00010", "00001", "01000"}
+{1,1,1,1,1}
+7
+
+Returns: {"10000", "01000", "00010", "00001", "00100" }
+
+
+
+3)
+{"00011","00010","11000"}
+{0,1,2,2,0}
+9
+
+Returns: {"01100", "00010", "00110" }
+
+
+
+4)
+{"00000","11111"}
+{5,0,0,0,0}
+160
+
+Returns: { }
+
+
+
+5)
+{"00011"}
+{0,1,0,1,0}
+160
+
+Returns: { }
+
+

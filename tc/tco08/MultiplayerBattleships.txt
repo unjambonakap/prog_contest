@@ -1,0 +1,69 @@
+PROBLEM STATEMENT
+Multiplayer Battleships is a game for playerCount players, who take turns one after another.  The game field is a rectangular grid containing one or more battleships.  A battleship of size p is a 1xp or px1 rectangle, where p is between 1 and 4, inclusive.  No two battleships share a cell, a side or a vertex.  Each cell of a battleship is called a deck.
+
+In one turn, a player selects one unattacked deck of any battleship and attacks it.  If this deck is the last unattacked deck of that battleship, the ship drowns and the player gets p points, where p is the original size of the ship (see example 2).  Otherwise, if the ship contains more unattacked decks, the player gets 1 point instead.  The game is over when all decks of all battleships have been attacked.
+
+All players follow the same strategy, and each player knows that all the other players are also following this strategy.  Each player is trying to maximize his score at the end of the game.  If there is more than one ship that the player can attack to achieve the highest possible score, he will pick the one among them whose top-left corner is the highest (i.e., in the uppermost row).  If there are still multiple such ships, he will choose the one among them whose top-left corner is farthest to the left (i.e., in the leftmost column).
+
+You will be given the game field in a vector <string>, where a '.' represents an empty cell and an uppercase 'X' represents a deck.  Each element represents a single row, and the rows are given from top to bottom.  The cells in each row are given from left to right.  Return the maximal score that can be achieved by the first player.
+
+DEFINITION
+Class:MultiplayerBattleships
+Method:getFirstPlayerScore
+Parameters:vector <string>, int
+Returns:int
+Method signature:int getFirstPlayerScore(vector <string> field, int playerCount)
+
+
+CONSTRAINTS
+-field will contain between 1 and 7 elements, inclusive.
+-Each element of field will contain exactly m characters, where m is between 1 and 7, inclusive.
+-Each character in each element of field will be either uppercase 'X' or '.'.
+-playerCount will be between 1 and 16, inclusive.
+-field will contain a valid game field.
+-field will contain at least one battleship.
+
+
+EXAMPLES
+
+0)
+{"X.",
+ "X."}
+2
+
+Returns: 1
+
+The first player attacks one deck for a total of 1 point.  The second player will then attack the remaining deck and get 2 points.
+
+1)
+{".XXXX.."}
+3
+
+Returns: 5
+
+The first player gets two turns.  On the first turn, he attacks one deck for 1 point.  On the second turn, he attacks the last remaining deck for 4 points.
+
+
+2)
+{".XX",
+ "...",
+ "XXX"}
+2
+
+Returns: 6
+
+Hit the bottom ship first.
+
+3)
+{"XXXX",
+ "....",
+ "XXXX",
+ "....",
+ "XXXX", 
+ "....",
+ "XXXX"}
+3
+
+Returns: 12
+
+

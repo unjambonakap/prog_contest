@@ -1,0 +1,146 @@
+PROBLEM STATEMENT
+
+BattleDice is a two-player game where each person uses his own N-sided die.
+The two players roll their dice, and whoever's die shows the highest number wins.
+In the event of a tie, they continue rolling until one player wins.
+You and your opponent start with a total of 3 dice.
+Your opponent selects one of the three, and then you select one of the remaining two.
+
+
+
+To make the game more interesting, you and your opponent begin with only two of the three dice.
+Given these two,
+determine the third die you would like to construct and add to the original two
+in order to maximize your probability of winning the game.
+Assume that your opponent will play optimally,
+making the selection that will give him the highest chance of winning.
+
+
+
+The two dice will be given as vector <int>s die1 and die2.
+The numbers on each side of the dice will be between 1 and range, inclusive,
+and the numbers on the third die you are constructing must also be in this range.
+The two given dice will have the same number of sides,
+and the die you are constructing must have the same number of sides as the first two.
+Return your die as a vector <int>, sorted in ascending order.
+
+
+
+Neither of the two given dice will have the same number on every side, but your third die may.
+
+
+
+There may be more than one third die that will give you the same optimal chance of winning the game.
+In this case, sort the values on each die in ascending order, find the first pair of corresponding values that differ,
+and prefer the die with the smaller of those two values.
+
+
+
+For example, if range = 6 and the first two dice are:
+
+
+
+    die1 = { 2, 2, 5 }
+    die2 = { 2, 3, 3 }
+
+
+you would choose to construct:
+
+
+
+    die3 = { 1, 3, 4 }
+
+
+
+If your opponent selects die1, you could choose die2 to give yourself a 4/7 chance of winning.
+If your opponent selects die2, you could choose die3 to give yourself a 4/7 chance of winning.
+If your opponent selects die3, you could choose die1 to give yourself a 5/9 chance of winning.
+Given these three choices your opponent will select die3, and you will have a 5/9 chance of winning.
+No other third die will give you a higher chance of winning.
+The die { 1, 4, 4 } also guarantees you a 5/9 chance of winning,
+but according to the tiebreaking rules { 1, 3, 4 } is the correct answer.
+
+
+DEFINITION
+Class:BattleDice
+Method:die3
+Parameters:vector <int>, vector <int>, int
+Returns:vector <int>
+Method signature:vector <int> die3(vector <int> die1, vector <int> die2, int range)
+
+
+NOTES
+-The dice used are fair dice, which means that every roll will result in each side with a 1/N probability.
+-Ignore the practical difficulties of constructing a die with an odd number of sides.
+
+
+CONSTRAINTS
+-die1 and die2 will each contain between 2 and 10 elements, inclusive.
+-die1 and die2 will have the same number of elements.
+-range will be betwen 2 and 15, inclusive.
+-Each element of die1 and die2 will be between 1 and range, inclusive.
+-At least two elements of die1 will be distinct.
+-At least two elements of die2 will be distinct.
+
+
+EXAMPLES
+
+0)
+{ 2, 2, 5 }
+{ 2, 3, 3 }
+6
+
+Returns: {1, 3, 4 }
+
+This is the example from the problem statement.
+
+1)
+{ 3, 5, 6 }
+{ 6, 3, 5 }
+15
+
+Returns: {1, 1, 1 }
+
+If the first 2 dice are the same, the best you can do is end up with a 50% chance of winning.  If you add a die better than the first two, your opponent will select it.  Otherwise, both you and your opponent will chose one of the first two.  Following the tiebreaking rules, the correct answer is therefore the smallest possible die, with a 1 on each side.
+
+2)
+{ 1, 3, 8, 10 }
+
+{ 1, 5, 6, 12 }
+
+12
+
+Returns: {1, 6, 6, 7 }
+
+
+
+3)
+{ 2, 3, 4 }
+{ 5, 6, 7 }
+8
+
+Returns: {1, 6, 8 }
+
+die2 beats die1 every time.  The best you can do is construct a third die that beats die2 50% of the time.
+
+4)
+{ 6, 6, 8, 9, 13, 13, 15 }
+
+{ 3, 5, 8, 10, 13, 14, 14 }
+
+15
+
+Returns: {1, 7, 9, 10, 13, 13, 14 }
+
+
+
+5)
+{ 1, 6, 5, 1, 5 }
+
+{ 3, 3, 7, 7, 1 }
+
+7
+
+Returns: {4, 4, 4, 4, 4 }
+
+

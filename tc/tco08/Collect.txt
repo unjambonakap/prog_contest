@@ -1,0 +1,46 @@
+PROBLEM STATEMENT
+A die has 6 sides, numbered 1-6, and each side is equally likely to come up after a roll.  In this problem, you are to consider rolling N dice in K rounds.  In each round, you select a subset of the dice rolled in the previous round (you have to roll them all in the first round) and reroll that subset (note that a subset can be all the dice from the previous round).  After K rounds, you pick a number between 1 and 6 inclusive and multiply it by the number of dice showing that number.  Your goal is to maximize this value.
+Assuming optimal play, what is the maximum expected score for a given N and K?
+
+DEFINITION
+Class:Collect
+Method:expected
+Parameters:int, int
+Returns:double
+Method signature:double expected(int N, int K)
+
+
+NOTES
+-If you elect not to reroll a die in one round, you may not reroll it in any subsequent round.
+
+
+CONSTRAINTS
+-N will be between 1 and 10, inclusive.
+-K will be between 1 and 100, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+1
+
+Returns: 3.5
+
+Rolling 1 die once gives an expected value of 3.5.
+
+1)
+1
+2
+
+Returns: 4.249999999999999
+
+If you can roll twice, you should keep a 4, 5, or 6 on the first round, and reroll a 1, 2, or 3.  Thus, half the time you'll reroll and expect 3.5, while the other half the time you'll expect to get a 5 (the average of 4, 5 and 6).  Thus, the overall expected value is (3.5+5)/2 = 4.25
+
+2)
+2
+2
+
+Returns: 6.262345679012343
+
+On the first roll, lock both if you have two threes or better.  Otherwise keep the higher of the two dice if it is over 3.  Otherwise, reroll both.

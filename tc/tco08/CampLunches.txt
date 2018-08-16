@@ -1,0 +1,72 @@
+PROBLEM STATEMENT
+My two kids go to different summer camps, and each day we go over their lunch menus.  I noticed that both camps have a different set of lunches that repeat on a regular basis.
+
+You will be given the repeating menu of lunches for each camp.  Each schedule will start at the first element on the first day, which is designated as day zero (0).  Return the first day that both camps serve the same lunch, or -1 if they will never serve the same lunch on the same day.
+
+DEFINITION
+Class:CampLunches
+Method:firstMatching
+Parameters:vector <string>, vector <string>
+Returns:int
+Method signature:int firstMatching(vector <string> menu1, vector <string> menu2)
+
+
+NOTES
+-The days start at zero (i.e., the first day of camp is day zero).
+-There may be repeats within each individual menu. See Example 2.
+
+
+CONSTRAINTS
+-menu1 and menu2 will each contain between 1 and 50 elements, inclusive.
+-Each element of each menu will contain only lower case letters ('a' - 'z') and spaces (' '). 
+-Each element of each menu will contain between 2 and 50 characters, inclusive.
+
+
+EXAMPLES
+
+0)
+{"pbj", "pizza"}
+{"pbj", "pizza"}
+
+Returns: 0
+
+They are the same on the very first day.  Even though they are also the same on the second day, we are looking for the first time they are the same.
+
+1)
+{"pbj", "pizza"}
+{"pizza", "pbj"}
+
+Returns: -1
+
+They will never be the same on the same day.
+
+
+2)
+{"pbj", "pizza"}
+{"pizza", "pbj", "pizza"}
+
+Returns: 3
+
+The sequence of lunches is pbj/pizza, pizza/pbj, pbj/pizza, pizza/pizza, so on the third day (starting from zero) they are the same.
+
+3)
+{"pbj"}
+{"pizza", "tuna", "pbj"}
+
+Returns: 2
+
+4)
+{"pizza", "pbj", "meatballs", "peanut butter and jelly", "pizza hero"}
+{"pbj", "meatballs", "peanut butter and jelly", "pizza hero"}
+
+Returns: 16
+
+Note, "pizza" is not the same lunch as "pizza hero".
+
+5)
+{"pizza"}
+{"pizza ", "pizza"}
+
+Returns: 1
+
+Watch out for trailing spaces.

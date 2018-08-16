@@ -1,0 +1,126 @@
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include <numeric>
+#include <utility>
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <cstring>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <cassert>
+//#include <ext/hash_map>
+
+
+using namespace std;
+using namespace __gnu_cxx;
+
+
+
+#define REP(i,n) for(i = 0; i < (n); i++)
+#define REPC(i,n,c) for(i = 0; (i < (n)) && (c); i++)
+
+#define REPV(i, n) for (i = (n) - 1; i >= 0; i--)
+#define REPVC(i, n, c) for (i = (n) - 1; (i >= 0) && (c); i--)
+#define FOR(i, a, b) for(i = (a); i <= (b); i++)
+#define FORC(i, a, b, c) for(i = (a); (i <= (b)) && (c); i++)
+#define FORV(i, a, b) for(i = (a); i >= (b); i--)
+#define FORVC(i, a, b, c) for(i = (a); (i >= (b)) && (c); i--)
+
+#define FE(i,t) for (typeof((t).begin())i=(t).begin();i!=(t).end();i++)
+#define FEV(i,t) for (typeof((t).rbegin())i=(t).rbegin();i!=(t).rend();i++)
+
+#define MAX(a,b) (((a) < (b)) ? (b) : (a))
+#define MIN(a,b) (((a) < (b)) ? (a) : (b))
+#define SZ(a) (int((a).size()))
+#define two(x) (1 << (x))
+#define twoll(x) (1LL << (x))
+#define ALL(a) (a).begin(), (a).end()
+#define CLR(a) (a).clear()
+#define SWAP(a,b,c) (c=a, a=b, b=c)
+
+#define SQR(x) (pow((x),2))
+#define DIST(x,y) (SQR(x)+SQR(y))
+#define MDIST(x,y,a,b) (abs((a)-(x))+abs((b)-(y)))
+
+#define CMP(x,y) ((fabs((x)-(y)) < EPS) ? 0 : ((x) < (y)) ? -1 : 1)
+
+#define pb push_back
+#define PF push_front
+#define ST first
+#define ND second
+#define MP make_pair
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int,int> pii;
+typedef vector<int> vi;
+typedef vector<string> vs;
+typedef queue<int> qi;
+
+inline int count_bit(int n){return (n == 0)?0:1+count_bit(n&(n-1));}
+inline ll sqr(int x){return ll(x)*ll(x);}
+inline double dist(ll x, ll y, ll a, ll b){return sqrt(double(sqr(x-a)+sqr(y-b)));}
+inline bool bit_set(int a, int b){return (a&two(b));}
+
+
+int wina(pii a, pii b, int pa, int sb, int eb){ //a>=b
+	int c=0;
+
+	assert(eb>=0);
+	if (sb>eb)return 0;
+
+	printf("%d %d %d (%d %d, %d %d)\n", pa, sb, eb, a.ST, a.ND, b.ST, b.ND);
+	sleep(1);
+	if (sb==eb && sb==0 && (a.ST*pa+sb*a.ND==0 || b.ST*pa+sb*b.ND==0))return 0;
+	//a >= 2*b
+	int e=ceil(double(pa*(a.ST-2.*b.ST))/(2.*b.ND-a.ND));
+	printf("%d\n", e);
+	
+	c+=MAX(0, MIN(eb, e)-sb+1);
+	if (e<eb)
+		c+=e-sb-wina(b, MP(a.ST-b.ST, a.ND-b.ND), pa, MAX(e+1, sb), eb);
+	return c;
+
+}
+
+ll solve(int aa, int ab, int ba, int bb){
+	int i, j, k;
+	ll c=0;
+	FOR(i, aa, ab){
+		j=max(ba, min(bb, i));
+		c+=wina(MP(1, 0), MP(0, 1), i, ba, j);
+		//c+=winb(i, j, bb);
+	}
+	return c;
+
+}
+
+int main(){
+	int X, t;
+	int i, j;
+	int aa, ab, ba, bb;
+
+	printf("%d\n", wina(MP(1, 0), MP(0, 1), 12, 7, 7));
+	exit(0);
+	scanf("%d", &X);
+
+	REP(t, X){
+		scanf("%d %d %d %d\n", &aa, &ab, &ba, &bb);
+		printf("Case #%d: %Ld\n", t+1, solve(aa, ab, ba, bb));
+
+	}
+
+
+	return EXIT_SUCCESS;
+}
+
+

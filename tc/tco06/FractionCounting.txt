@@ -1,0 +1,70 @@
+PROBLEM STATEMENT
+Consider the following set (see notes for clarification):
+  S = {  p/q  |   w <= p <= x,  y <= q <= z  }
+  Given w, x, y, and z return the number of distinct elements in S.
+
+DEFINITION
+Class:FractionCounting
+Method:howMany
+Parameters:int, int, int, int
+Returns:int
+Method signature:int howMany(int w, int x, int y, int z)
+
+
+NOTES
+-S is the set of all rational numbers whose numerators are between w and x inclusive, and whose denominators are between y and z inclusive.
+
+
+CONSTRAINTS
+-x and z will be between 1 and 100, inclusive.
+-w will be between 1 and x, inclusive.
+-y will be between 1 and z, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+1
+1
+1
+
+Returns: 1
+
+Only the value 1/1 is being considered.
+
+1)
+1
+10
+1
+1
+
+Returns: 10
+
+Here S contains the values 1,...,10.
+
+2)
+1
+2
+1
+2
+
+Returns: 3
+
+Here the values are 1/1, 1/2, 2/1, and 2/2.  Since 2/2 = 1/1 the answer is 3.
+
+3)
+2
+4
+2
+4
+
+Returns: 7
+
+4)
+1
+100
+1
+100
+
+Returns: 6087

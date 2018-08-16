@@ -1,0 +1,69 @@
+PROBLEM STATEMENT
+Alice and Bob are playing the following game. There is an NxN grid where each cell is colored red, green or blue. The players alternate turns, with Alice making the first move. In each of her turns, Alice chooses one row and crosses it out, and in each of his turns, Bob chooses one column and crosses it out. It's impossible to cross out the same row or column more than once.  
+
+The game ends when each of the players has made N-1 moves. At this point, there's just one row and column that have not been crossed out. Consider the color of the cell at this row and column. If it is red, Alice wins, if it is blue, Bob wins, and if it is green, then it's a draw. Both players play optimally, i.e. they aim to win, and if it's impossible, they aim to end the game in a draw.  
+
+You are given a vector <string> board that describes how the board for the game is generated. It contains N elements and each element is N characters long. The character j in element i describes the cell in row i, column j, and is one of 'R', 'G', 'B', '?'. 'R', 'G' and 'B' mean that this cell is always colored red, green or blue, correspondingly, and '?' means that the cell's color is chosen as red, green or blue uniformly, at random. 
+
+Return a vector <double> containing 2 elements. The first one is the probability that Alice wins and the second is the probability that Bob wins. Note that for the purpose of calculating the probabilities, a draw is not considered a partial victory for either of the players.
+
+DEFINITION
+Class:RGBGame
+Method:probabilities
+Parameters:vector <string>
+Returns:vector <double>
+Method signature:vector <double> probabilities(vector <string> board)
+
+
+NOTES
+-Each element of the return value must have an absolute or relative error of less than 1e-9.
+
+
+CONSTRAINTS
+-board will contain between 2 and 50 elements, inclusive.
+-Each element of board will contain the same number of characters as the number of elements in board.
+-Each element of board will contain only the characters 'R', 'G', 'B' and '?'.
+
+
+EXAMPLES
+
+0)
+{"RG",
+ "B?"}
+
+Returns: {0.0, 0.0 }
+
+This game always ends in a draw. Alice will cross out row 1 and then Bob will cross out column 0.
+
+1)
+{"RR",
+ "R?"}
+
+Returns: {1.0, 0.0 }
+
+Alice guarantees her win by crossing out row 1.
+
+2)
+{"BB",
+ "B?"}
+
+Returns: {0.0, 1.0 }
+
+Bob can guarantee his win by crossing out column 1.
+
+3)
+{"??",
+ "??"}
+
+Returns: {0.2098765432098766, 0.308641975308642 }
+
+The odds for Bob are almost 1.5 times higher than for Alice. Sounds like not a very fair game.
+
+4)
+{"???",
+ "???",
+ "???"}
+
+Returns: {0.10704669003708767, 0.34847330183407 }
+
+If I were Alice, I wouldn't like to play this game.

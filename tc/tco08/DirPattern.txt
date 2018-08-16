@@ -1,0 +1,59 @@
+PROBLEM STATEMENT
+
+Your home directory contains a list of files.  All the filenames have equal length.  When you type a command in the form "dir PATTERN", it will show all the filenames that match the specified pattern.  A pattern can contain only letters ('a'-'z'), '.' characters, and '?' symbols.  Each '?' matches any single character (including '.'), and all other characters match only themselves.  For example, the pattern "conte?t.info" matches the filenames "contest.info" and "content.info", but not "contemn.info" or "contests.nfo" (all quotes for clarity only).
+
+
+You are given a vector <string> filenames, where each element represents the filename of a single file in your home directory.  Return the pattern that will match all the filenames while containing as few '?' symbols as possible.
+
+
+DEFINITION
+Class:DirPattern
+Method:matchFiles
+Parameters:vector <string>
+Returns:string
+Method signature:string matchFiles(vector <string> filenames)
+
+
+CONSTRAINTS
+-filenames will contain between 1 and 50 elements, inclusive.
+-Each element of filenames will contain between 1 and 50 characters, inclusive.
+-All elements of filenames will have equal length.
+-Each element of filenames will contain only lowercase letters ('a'-'z') and '.' characters.
+
+
+EXAMPLES
+
+0)
+{"contest.txt", "context.txt"}
+
+Returns: "conte?t.txt"
+
+
+
+1)
+{"config.sys", "config.inf", "configures"}
+
+Returns: "config????"
+
+
+
+2)
+{"c.user.mike.programs", "c.user.nike.programs", "c.user.rice.programs"}
+
+Returns: "c.user.?i?e.programs"
+
+
+
+3)
+{"a", "a", "b", "b"}
+
+Returns: "?"
+
+
+
+4)
+{"onlyonefile"}
+
+Returns: "onlyonefile"
+
+

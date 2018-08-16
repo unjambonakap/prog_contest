@@ -1,0 +1,60 @@
+PROBLEM STATEMENT
+Nim is a game in which players take turns removing objects from distinct heaps. On each turn, a player must remove at least one object, and may remove any number of objects provided they all come from the same heap. The player to remove the last object is the winner.
+
+You and your friend got tired of the same old game so you decided to try something different. The modified game consists of two phases. In the first phase you first take a turn removing as many entire heaps as you want. Your opponent then takes a turn removing as many heaps as he wants. Both you and your opponent are allowed to take no heaps, but are not allowed to take all the remaining heaps. After this the second phase starts in which the game continues as a normal Nim game.
+
+You are given a vector <string> where each element represents the number of objects in a single heap at the beginning of the game.  Return the minimum total number of objects you must remove in the first phase to ensure your victory even if your friend plays optimally.
+
+DEFINITION
+Class:MoreNim
+Method:bestSet
+Parameters:vector <string>
+Returns:long long
+Method signature:long long bestSet(vector <string> heaps)
+
+
+CONSTRAINTS
+-heaps will contain between 1 and 50 elements, inclusive.
+-Each element of heaps will contain digits ('0' - '9') only.
+-Each element of heaps will represent a positive integer without leading zeros.
+-Each element of heaps will contain between 1 and 16 characters, inclusive.
+
+
+EXAMPLES
+
+0)
+{"5","5","6","6","5","5"}
+
+Returns: 21
+
+If you're left with two equal piles at the end of the first phase, you will lose the game.  In each turn, however many objects you remove from a heap, your opponent will remove the same number of objects from the other heap, and you will eventually lose.  To prevent this from happening, remove three of the heaps containing 5 objects and one of the heaps containing 6 objects (for a total of 21 objects).
+
+
+1)
+{"1","2","3"}
+
+Returns: 1
+
+Here, the piles are distinct, but if you are presented with them at the beginning of the second phase, you will lose the game.  No matter how many objects you remove during your turn, your opponent will be able to make a move that leaves you with two equal piles in your next turn.  Removing the heap of size 1 during the first phase will guarantee your victory.
+
+
+2)
+{"1","2","3","4","5","6","7","8","9"}
+
+Returns: 16
+
+
+
+3)
+{"1","2","4","8","16","32","64","128","256"}
+
+Returns: 0
+
+
+
+4)
+{"12","13","16","121","13","14","52","23","1","29"}
+
+Returns: 27
+
+

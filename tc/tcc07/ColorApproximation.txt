@@ -1,0 +1,55 @@
+PROBLEM STATEMENT
+In the RGB color model, colors are encoded as triples (R, G, B), where R, G and B denote the quantity of red, green and blue, respectively, in the color.  Each number in the triple is between 0 and 255, inclusive. The distance between two colors (R1, G1, B1) and (R2, G2, B2) is max{|R1-R2|, |G1-G2|, |B1-B2|}. The distance between a color C and a set of colors S is the maximum among the distances between C and each color in S. A best approximation for a set of colors S is a color C such that the distance between C and S is as small as possible.
+
+You will be given a vector <string> colors, each element of which contains a single space separated list of colors, with no leading or trailing spaces. Each color in the list will be formatted as "RRGGBB" (quotes for clarity), where RR, GG and BB are the color's two-digit red, green and blue quantities, respectively, in hexadecimal notation. All letters will be uppercase. Find the best approximation for this set of colors and return it as a string in the same format as the input colors. If there are multiple possible answers, return the string among them that comes first alphabetically.
+
+DEFINITION
+Class:ColorApproximation
+Method:bestApproximation
+Parameters:vector <string>
+Returns:string
+Method signature:string bestApproximation(vector <string> colors)
+
+
+NOTES
+-Digits come before letters in the alphabetical order. For example, string "A9" is alphabetically less than string "AA".
+
+
+CONSTRAINTS
+-colors will contain between 1 and 50 elements, inclusive.
+-Each element of colors will contain between 6 and 48 characters, inclusive.
+-Each element of colors will contain a single space separated list of colors without leading or trailing spaces.
+-Each color in each element of colors will contain exactly 6 hexadecimal digits ('0'-'9', 'A'-'F').
+-All colors will be distinct.
+
+
+EXAMPLES
+
+0)
+{"F36F4E"}
+
+Returns: "F36F4E"
+
+If a set contains only one color, that color is the set's best approximation.
+
+1)
+{"7A946B","3B6473"}
+
+Returns: "5A7453"
+
+This set contains two colors (122, 148, 107) and (59, 100, 115).  Every best approximation for this set will have a distance of 32 from it.  The one among them whose hexadecimal representation comes first alphabetically is (90, 116, 83).
+
+2)
+{"40FE20", "800040"}
+
+Returns: "017F00"
+
+
+
+3)
+{"626848 321D3A 60EACA 521A88 9C188F",
+ "94F0B3 B55795 B34004 20983C 7A644B"}
+
+Returns: "49845E"
+
+

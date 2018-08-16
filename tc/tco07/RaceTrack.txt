@@ -1,0 +1,63 @@
+PROBLEM STATEMENT
+
+A race track is represented as a line segment.  You are given its length, and a vector <int> pos containing the positions where judges may be located.  Each element of pos is the distance from the starting point of the race track.  The elements of pos are given in strictly increasing order (pos[i] < pos[i+1]).
+
+
+
+You are given an int judges, the number of judges in the next competition.  You must assign the judges to positions such that the distance between the two closest judges is as large as possible.  Return a string containing exactly n characters, where n is the number of elements in pos.  The i-th character should be '1' (one) if there is a judge assigned to the i-th position, and '0' (zero) if there is not.  The judges are lazy and don't want to go far from the starting point, so if there are multiple optimal solutions, return the one that comes latest lexicographically.
+
+
+
+DEFINITION
+Class:RaceTrack
+Method:judgePositions
+Parameters:int, int, vector <int>
+Returns:string
+Method signature:string judgePositions(int length, int judges, vector <int> pos)
+
+
+CONSTRAINTS
+-length will be between 1 and 1000000, inclusive.
+-pos will contain between 2 and 50 elements, inclusive.
+-Each element of pos will be greater than the previous, if it exists.
+-Each element of pos will be between 0 and length, inclusive.
+-judges will be between 2 and number of elements in pos, inclusive.
+
+
+EXAMPLES
+
+0)
+11
+3
+{0, 5, 10, 11}
+
+Returns: "1110"
+
+Another solution that maximizes the distance between the two closest judges is "1101", but it is not the lexicographically latest.
+
+1)
+11
+2
+{0, 5, 10, 11}
+
+Returns: "1001"
+
+The distance between the two judges should be as large as possible.
+
+2)
+11
+4
+{0, 5, 10, 11}
+
+Returns: "1111"
+
+The judges do not have any choice.
+
+3)
+1000
+5
+{6, 9, 33, 59, 100, 341, 431, 444, 565, 857}
+
+Returns: "1000010111"
+
+

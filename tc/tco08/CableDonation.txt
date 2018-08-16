@@ -1,0 +1,105 @@
+PROBLEM STATEMENT
+
+A local charity is asking for donations of Ethernet cable.
+You realize that you probably have a lot of extra cable in your house, and make the decision that
+you will donate as much cable as you can spare.
+
+
+
+You will be given a vector <string> lengths indicating the length (in meters) of cables
+between each pair of rooms in your house.
+You wish to keep only enough cable so that every pair of rooms in your house is connected by some
+chain of cables, of any length.
+The jth character of lengths[i] gives the length of the cable between
+rooms i and j in your house.
+A value of '0' (zero) indicates no cable,
+values of 'a' through 'z' indicate lengths of 1 through 26,
+and values of 'A' through 'Z' indicate lengths of 27 through 52.
+
+
+
+If both the jth character of lengths[i]
+and the ith character of lengths[j] are greater than 0,
+this means that you have two cables
+connecting rooms i and j, and you can certainly donate at least one of them.
+If the ith character of lengths[i] is greater than 0,
+this indicates unused cable in room i,
+which you can donate without affecting your home network in any way.
+
+
+
+You are not to rearrange any cables in your house; you are only to remove unnecessary ones.
+Return the maximum total length of cables (in meters) that you can donate.
+If any pair of rooms is not initially connected by some path, return -1.
+
+
+DEFINITION
+Class:CableDonation
+Method:cable
+Parameters:vector <string>
+Returns:int
+Method signature:int cable(vector <string> lengths)
+
+
+CONSTRAINTS
+-lengths will contain between 1 and 50 elements, inclusive.
+-The length of each element of lengths will be equal to the number of elements in lengths.
+-Each character in lengths will be a letter ('a'-'z', 'A'-'Z') or '0' (zero).
+
+
+EXAMPLES
+
+0)
+{ "abc",
+  "def",
+  "ghi" }
+
+Returns: 40
+
+You can part with the following cables:
+
+length 1 in room 0
+length 5 in room 1
+length 9 in room 2
+length 4 between rooms 0 and 1
+length 7 between rooms 0 and 2
+length 6 between rooms 1 and 2
+length 8 between rooms 1 and 2
+
+for a total of 40 meters.
+
+1)
+{ "a0",
+  "0b" }
+
+Returns: -1
+
+The two rooms are not connected.
+
+2)
+{ "0X00",
+  "00Y0",
+  "0000",
+  "00Z0" }
+
+Returns: 0
+
+You have no unnecessary cable.
+
+3)
+{ "Az",
+  "aZ" }
+
+Returns: 105
+
+
+
+4)
+{ "0top",
+  "c0od",
+  "er0o",
+  "pen0" }
+
+Returns: 134
+
+

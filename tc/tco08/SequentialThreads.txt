@@ -1,0 +1,65 @@
+PROBLEM STATEMENT
+You have written a complicated multi-threaded program, and you would like to analyze its expected runtime.
+
+The program consists of n threads in a specific order, indexed from 0 to n-1.  Each thread has a task to execute which is divided into up to 10 subtasks.  Each subtask requires one time slice to process, and they must be processed in order.  In every thread (except the first), one of the subtasks will be a special "synchronization" subtask; the thread may not process this subtask until all the threads with lower indices have finished.  The thread's task is described as a string with a character for each subtask.  A normal subtask is denoted by a '.'; the "synchronization" subtask is denoted by 'S'.
+
+The processor executes your program in a simple way.  For each time slice it picks a thread uniformly at random and allows it to process one subtask.  If the chosen thread has already finished, the unfinished thread with the lowest index is picked instead.  However, if the chosen thread is blocked on a "synchronization" subtask, that time slice is wasted.  (Yes, this is a silly way to implement multithreading!)
+
+Return the expected (average) number of time slices the entire program will take to execute.
+
+DEFINITION
+Class:SequentialT
+Method:expectedExecutionTime
+Parameters:vector <string>
+Returns:double
+Method signature:double expectedExecutionTime(vector <string> threads)
+
+
+NOTES
+-The returned value must be accurate to within a relative or absolute value of 1E-9.
+
+
+CONSTRAINTS
+-threads will contain between 1 and 10 elements, inclusive.
+-Each element of threads will contain between 1 and 10 characters, inclusive.
+-Each element of threads will contain only the characters '.' and 'S'.
+-Each element of threads, except the first, will have exactly one 'S'.
+-The first element of threads will not contain an uppercase 'S'.
+
+
+EXAMPLES
+
+0)
+{"....."}
+
+Returns: 5.0
+
+No multithreading; just 5 subtasks to perform.
+
+1)
+{".","S"}
+
+Returns: 2.9999999999999996
+
+There's a 1/2 chance of 0 wasted time slices, a 1/4 chance of 1, a 1/8 of 2, and so on.  An average of 1 time slice is wasted.
+
+2)
+{"..","S"}
+
+Returns: 4.999999999999999
+
+Now there is a (k+1)/2k+2 chance of wasting k time slices.
+
+3)
+{".","...S.",".........S"}
+
+Returns: 16.144458312987712
+
+These threads will most likely not have to wait.
+
+4)
+{".....","...S...","S......","......S..","...S.","..S"}
+
+Returns: 65.45700302526924
+
+

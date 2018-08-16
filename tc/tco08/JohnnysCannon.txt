@@ -1,0 +1,77 @@
+PROBLEM STATEMENT
+Johnny has recently constructed a cannon, and he wants to a hit a ground target that is distance units away. The cannon shoots bullets at velocity units per second. When a bullet is in the air, its flight follows the standard laws of physics. This means that if he shoots a bullet at angle alpha from the ground, it will travel a distance of      ( 2 * velocity^2 * sin(alpha) * cos(alpha) ) / g ,where g is the acceleration of gravity on Earth. In this problem, we will use 10 as the value of g.
+The cannon can only be set at the angles given in the vector <int> angles (all angles are given in degrees). Johnny must pick the angle that will land the bullet as close as possible to the target. Return this closest possible distance between the landing point and the target as a double.
+
+DEFINITION
+Class:JohnnysCannon
+Method:getDistance
+Parameters:int, int, vector <int>
+Returns:double
+Method signature:double getDistance(int velocity, int distance, vector <int> angles)
+
+
+NOTES
+-The returned value must be accurate to within a relative or absolute value of 1e-9.
+
+
+CONSTRAINTS
+-velocity will be between 1 and 1000, inclusive.
+-distance will be between 0 and 100000, inclusive.
+-angles will contain between 1 and 50 elements, inclusive.
+-Each element of angles will be between 0 and 90, inclusive.
+
+
+EXAMPLES
+
+0)
+5
+40
+{ 0, 45, 90 }
+
+Returns: 37.5
+
+Here we can choose 0, 45 or 90 degrees. The first and the last options are not very clever as we will shoot ourselves rather than hitting any target. So, the best possibility is 45 degrees.
+
+1)
+10
+5
+{ 23, 76, 33, 12, 45 }
+
+Returns: 0.30528437214108894
+
+Here are the distances the bullet will travel using the given angles:
+
+     23 degrees: 7.193...
+     76 degrees: 4.694...
+     33 degrees: 9.135...
+     12 degrees: 4.067...
+     45 degrees: 10.0
+
+We will be closest to hitting the target if we choose 76 degrees.
+
+2)
+100
+15
+{ 4, 55, 22, 13, 7, 88, 90 }
+
+Returns: 14.999999999999877
+
+
+
+3)
+120
+20367
+{ 4, 55, 22, 13, 7, 88, 90 }
+
+Returns: 19013.842626068294
+
+
+
+4)
+1000
+10000
+{ 45 }
+
+Returns: 90000.0
+
+

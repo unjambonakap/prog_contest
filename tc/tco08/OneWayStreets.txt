@@ -1,0 +1,88 @@
+PROBLEM STATEMENT
+
+The king of Absurdistan has become very angry, and thus he has decided to make an evil reform of the road network.
+
+
+
+Currently, the network contains several towns, connected by some one-way and some two-way streets. The king's goal is to change all two-way streets into one-way streets. That is, for each currently present two-way street the king will pick one of the two directions,
+and make the street one-way in the chosen direction.
+
+
+
+To make it even worse, the king has a simple goal he wants to achieve: After the reform the network must be so evil that once someone starts traveling along the roads, he will never be able to return back to the town where he started.
+
+
+
+You will be given the current map as a vector <string> roads. 
+
+
+
+More precisely, the towns are numbered from 0 to N-1 for some N.
+The j-th character of the i-th element of roads is 'Y' if there is a direct road that allows us to travel from i to j, otherwise it will be 'N'.
+Each pair of towns is connected by at most one direct road. If the input contains a 'Y' both for a i->j road and for a j->i road, this means that the road between i and j is currently two-way.
+
+
+
+Write a method that will return
+either "YES" or "NO" (quotes for clarity), depending on whether the king can achieve his evil goal.
+
+
+DEFINITION
+Class:OneWayStreets
+Method:canChange
+Parameters:vector <string>
+Returns:string
+Method signature:string canChange(vector <string> roads)
+
+
+CONSTRAINTS
+-roads will contain N elements, where N is between 2 and 50, inclusive.
+-Each element of roads will contain exactly N characters.
+-Each character in each element of roads will be either 'Y' or 'N'.
+-For each i the i-th character of the i-th element of roads will be 'N'.
+
+
+EXAMPLES
+
+0)
+{"NYN","NNY","NNN"}
+
+Returns: "YES"
+
+This map contains two roads: 0->1 and 1->2. Both roads are already one-way, so the king can't change
+anything.
+However, the map already has the desired property.
+
+1)
+{"NYN","YNY","NYN"}
+
+Returns: "YES"
+
+This map contains two roads: 0<->1 and 1<->2. Both roads are two-way. The king can change them to
+one-way streets 0->1 and 1->2, thus creating the situation from the previous example.
+
+
+2)
+{"NYNN","NNYN","YNNY","NNYN"}
+
+Returns: "NO"
+
+Roads: 0->1, 1->2, 2->0, and 2<->3.
+The king may change 2<->3 either to 2->3, or to 3->2.
+Neither of these changes will help him, as people will still be able to leave town 0 and return back
+via the route 0->1->2->0.
+
+
+3)
+{"NNN","NNN","NNN"}
+
+Returns: "YES"
+
+
+
+4)
+{"NYYYY","YNYYY","YYNYY","YYYNY","YYYYN"}
+
+Returns: "YES"
+
+

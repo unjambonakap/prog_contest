@@ -1,0 +1,33 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.9.27)  22 AUG 2012 23:00
+entering extended mode
+ %&-line parsing enabled.
+**pa.tex
+(./pa.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+
+! LaTeX Error: Environment problem undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \begin{problem}
+                   {Caption}{caption.in}{caption.out}{2 seconds}
+? x
+ 
+Here is how much of TeX's memory you used:
+ 7 strings out of 495061
+ 258 string characters out of 1182621
+ 45108 words of memory out of 3000000
+ 3283 multiletter control sequences out of 15000+50000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 5i,0n,4p,77b,16s stack positions out of 5000i,500n,10000p,200000b,50000s
+No pages of output.
+PDF statistics:
+ 0 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -1,0 +1,61 @@
+PROBLEM STATEMENT
+
+Tom the lazy cat wants to catch some mice that live near him, but he is too lazy to ever move away from his favorite chair.  Fortunately, he has several hats which can be thrown to catch mice.  If there is an uncaught mouse no further than d feet from Tom, he can throw one of his hats and catch that mouse (throwing a hat takes no time).  Tom is a very clever cat, so he never misses, but he must have a rest after each throw and he cannot use the same hat more than once.
+
+
+At time 0, the i-th mouse is pos[i] feet away from Tom, and is running away from Tom at the speed of speed[i] feet per second.  So, after k seconds, the i-th mouse will be (pos[i] + k * speed[i]) feet away from Tom.  
+
+Tom is given n hats, numbered 0 through n-1, and he may throw them in any order.  He must wait rest[i] seconds after throwing hat number i (he cannot throw any more hats during this time).
+
+You are given an int d, the maximum distance a hat can be thrown (this distance is the same for all hats).  Return the maximal number of mice he'll be able to catch.
+
+
+DEFINITION
+Class:LazyCat
+Method:maxMiceCount
+Parameters:vector <int>, vector <int>, int, vector <int>
+Returns:int
+Method signature:int maxMiceCount(vector <int> pos, vector <int> speed, int d, vector <int> rest)
+
+
+CONSTRAINTS
+-pos will contain between 1 and 50 elements, inclusive.
+-speed will contain the same number of elements as pos.
+-d will be between 0 and 1000, inclusive.
+-rest will contain between 1 and 50 elements, inclusive.
+-Each element of pos, speed, and rest will be between 1 and 1000, inclusive.
+
+
+EXAMPLES
+
+0)
+{4, 1, 2}
+{1, 1, 1}
+3
+{3, 2, 1}
+
+Returns: 2
+
+Tom can't catch mouse 0 because it is situated farther than d = 3 feet.
+
+1)
+{5, 5, 5}
+{1, 1, 1}
+5
+{1, 1, 1}
+
+Returns: 1
+
+Tom can only catch one mouse.  After his rest, the other two will be too far away.
+
+
+2)
+{13, 5, 8}
+{10, 10, 10}
+15
+{1, 1, 1}
+
+Returns: 2
+
+He can catch mouse 2, which is 8 feet away at time 0, and after his rest, he can catch mouse 1, which will be 15 feet away at time 1.
+

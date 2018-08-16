@@ -1,0 +1,140 @@
+PROBLEM STATEMENT
+
+The game of Inc is played by 3 players on a rectangular board, made up of an MxN grid of squares.
+Each square is either empty or contains a digit between 1 and 3, inclusive.
+The players take turns making moves on the board, in order, starting with player 1.
+Play continues for a pre-determined number of moves, after which the players' scores are totaled.
+Each player receives one point for each square containing a digit equal to their player number.
+The player with the highest score wins.
+
+
+
+A move consists of a player dividing the squares on the board into two non-empty groups, with a
+single straight horizontal or vertical line.
+The player then selects one of the two groups on either side of the line,
+and either adds 1 to or subtracts 1 from all the digits in that group.
+Whenever 1 is added to 3, the result is wrapped around to 1.
+Similarly, whenever 1 is subtracted from 1, the result is wrapped around to 3.
+
+
+
+Each player makes his or her moves according to the following set of priorities.
+A higher-numbered priority is only used to select among multiple moves that satisfy all lower-numbered priorities.
+
+
+
+Prefer moves that will result in you having more points than the other 2 players at the end of the game.
+Prefer moves that will result in neither of the other 2 players having more points than you at the end of the game.
+Prefer moves that will result in you having as many points as possible at the end of the game.
+Prefer dividing the board with a horizontal line over dividing the board with a vertical line.
+Prefer the group to the left or the top of the dividing line over the group to the right or the bottom.
+Prefer lines to the left or the top over lines to the right or the bottom.
+
+
+
+Assume that all players play optimally, and that they all expect each other to play optimally as well.
+
+
+
+The initial state of the board is given as a vector <string> initial.
+Each character in initial represents one square of the board.
+A '.' (period) represents an empty square, while a digit represents a digit in the corresponding square.
+Earlier elements in initial correspond to the top of the board and later elements correspond to the bottom,
+while earlier characters in each element of initial correspond to the left of the board and later characters correspond to the right.
+The number of turns in the game is given by an int turns.
+An int inc dictates if players add or subtract 1 to the digits they select on their turn.
+A value of -1 means that players must subtract 1 and a value of 1 means that players must add 1.
+
+
+
+Return the final state of the board as a vector <string>, in the same format as the input.
+
+
+DEFINITION
+Class:Inc
+Method:finalBoard
+Parameters:vector <string>, int, int
+Returns:vector <string>
+Method signature:vector <string> finalBoard(vector <string> initialBoard, int inc, int turns)
+
+
+NOTES
+-turns will not necessarily be divisible by 3.
+
+
+CONSTRAINTS
+-initial will contain between 2 and 5 elements, inclusive.
+-Each element of initial will be between 2 and 5 characters long, inclusive.
+-Each element of initial will have the same length.
+-Each element of initial will be either a '.' (period), '1', '2', or '3'.
+-inc will be -1 or 1.
+-turns will be between 1 and 10, inclusive.
+
+
+EXAMPLES
+
+0)
+{ "333",
+  "3.3",
+  "333" }
+1
+1
+
+Returns: {"111", "1.1", "333" }
+
+Only player 1 makes a move, and there are 4 ways he can get 5 points.  Following the given priorities, he chooses to divide the board with a horizontal line one row above the bottom, and increment the 5 digits in the 6 squares above that line.
+
+1)
+{ "....",
+  "3333",
+  "3333",
+  ".33." }
+-1
+3
+
+Returns: {"....", "2222", "2222", ".22." }
+
+Player 1 cannot score any points and selects only the top row, which contains no digits.  This leaves player 2 with the optimal move of selecting all rows but the top.  Player 3 cannot score any points either and selects the top row only, leaving player 2 with all 10 available points.
+
+2)
+{ "111", "111" }
+1
+9
+
+Returns: {"313", "232" }
+
+
+
+3)
+{ "2222", "2222", "2222" }
+-1
+2
+
+Returns: {"3112", "3112", "3112" }
+
+
+
+4)
+{ "231.3",
+  "3.233",
+  "12.12",
+  "3.231",
+  "132.3" }
+1
+10
+
+Returns: {"123.1", "1.333", "12.31", "1.331", "132.2" }
+
+
+
+5)
+{
+"123",
+"123"
+}
+1
+1
+
+Returns: {"131", "131" }
+
+

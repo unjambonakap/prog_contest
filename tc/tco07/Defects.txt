@@ -1,0 +1,91 @@
+PROBLEM STATEMENT
+A rectangular chip has some defects on its perimeter. We want to locate a
+component on the perimeter of the chip as far as possible from the defects.
+Specifically, we want to maximize the sum of the distances from the connector
+to the defects, where the distance between the component and a defect is
+the distance when travelling along the perimeter. (The distance is the shorter
+of the counterclockwise or clockwise distances.)
+
+The width of the chip is w and its height is h. Positions are given using a
+coordinate system in which the corner opposite the corner (0,0) is (w,h).
+Given w and h and double[]s defectw and defecth, return the maximal sum of 
+distances to our component.
+
+
+The i-th elements of defectw and defecth give the coordinates of the i-th 
+defect.
+
+
+
+DEFINITION
+Class:Defects
+Method:maxSum
+Parameters:int, int, vector <double>, vector <double>
+Returns:double
+Method signature:double maxSum(int w, int h, vector <double> defectw, vector <double> defecth)
+
+
+NOTES
+-A return value with either an absolute or relative error of less than 1.0E-9 is considered correct.
+
+
+CONSTRAINTS
+-w and h will be between 1 and 100, inclusive.
+-defectw will have between 1 and 30 elements, inclusive.
+-defecth will have the same number of elements as defectw.
+-Each coordinate pair in defectw and defecth will be on the chip perimeter.
+
+
+EXAMPLES
+
+0)
+1
+1
+{0.0}
+{0.0}
+
+Returns: 2.0
+
+
+
+    The chip has one defect, located in the corner. Locate the component on
+  the opposite corner. Its distance along the perimeter to the defect is 2.
+
+ 
+
+
+1)
+2
+1
+{0,0,2}
+{1,1,0}
+
+Returns: 6.0
+
+
+
+    There are 3 defects located at (0,1), (0,1), and (2,0). We can place the component
+    at (2,0), right on top of one of the defects. Then the sum of the distances 
+    to the defects will be 3+3+0 = 6.
+    If we placed the component elsewhere we could not get a sum of more than 6.
+    For example, if we placed it at (2,1), its sum would be 2+2+1 < 6. 
+
+2)
+75
+20
+{0,0,35,49,75}
+{15,20,0,20,6.2934}
+
+Returns: 277.2934
+
+
+
+3)
+10
+4
+{8, 0}  
+{0, 2}
+
+Returns: 18.0
+
+

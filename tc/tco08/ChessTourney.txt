@@ -1,0 +1,64 @@
+PROBLEM STATEMENT
+
+John is a chess player and is going to compete in the upcoming tournament. When a player loses a game, he immediately leaves the tournament.  Only the player who can win all his games will become the winner.
+
+
+During the tournament John may win some prizes given in a vector <int> winnings. 
+Element 0 of winnings represents the prize John gets for just entering the tournament, and element i of winnings (for i > 0) represents the amount John gets for winning his game in the i-th round. For example, if John wins the first two games and loses the third one, he'll get winnings[0] for entering the tournament, winnings[1] for winning his game in the first round (which grants him a spot in round 2) and winnings[2] for winning his second game and advancing to round 3. Losing in round 3 will give him nothing.
+
+
+You've analyzed the play-off tree and now you know John's chances of advancing through each of the rounds, given in a vector <int> odds. Element i of odds represents the probability (as a percentage) that John will win his game in round (i + 1). Return John's expected winnings in the tournament.
+
+
+DEFINITION
+Class:ChessTourney
+Method:expectedWinning
+Parameters:vector <int>, vector <int>
+Returns:double
+Method signature:double expectedWinning(vector <int> winnings, vector <int> odds)
+
+
+NOTES
+-The returned value must be accurate to within a relative or absolute value of 1E-9.
+
+
+CONSTRAINTS
+-winnings will contain between 2 and 50 elements, inclusive.
+-odds will contain exactly n - 1 elements, where n is the number of elements in winnings.
+-Each element of winnings will be between 0 and 1000, inclusive.
+-Each element of odds will be between 0 and 100, inclusive.
+
+
+EXAMPLES
+
+0)
+{10, 100}
+{100}
+
+Returns: 110.0
+
+John is very good - he definitely wins the only round of the tournament and takes home both prizes.
+
+1)
+{10, 10, 10, 10}
+{50, 50, 50}
+
+Returns: 18.75
+
+John gets the participation prize of 10 dollars with a probability of 100%, the prize for the first round win with a probability of 50%, the second round prize with a probability of 25% and the final prize with a probability of 12.5%.
+
+2)
+{100, 100, 200, 200}
+{100, 0, 100}
+
+Returns: 200.0
+
+
+
+3)
+{100, 100, 200, 400, 800, 1000}
+{100, 50, 25, 10, 5}
+
+Returns: 360.625
+
+Each next round is harder.

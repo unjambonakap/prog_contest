@@ -1,0 +1,61 @@
+PROBLEM STATEMENT
+We have a collection of jobs to run on k processors. Each job requires a certain amount of
+processor time, but is migratable and preemptible -- it can be started on one
+processor, suspended, continued on another processor, etc., as long as the
+total time it gets on processors is sufficient.
+
+How long can we keep all k processors busy? Given k and vector <int> need (the
+processor time needed by each job), return
+the maximum possible time we can keep all k processors busy with optimal scheduling.
+
+
+
+DEFINITION
+Class:BusyTime
+Method:busy
+Parameters:int, vector <int>
+Returns:double
+Method signature:double busy(int k, vector <int> need)
+
+
+NOTES
+-A return value with either an absolute or relative error of less than 1.0E-9 is considered correct.
+
+
+CONSTRAINTS
+-k will be between 1 and 50, inclusive.
+-need will contain between 1 and 50 elements, inclusive.
+-Each element of need will be between 1 and 1,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+3
+{100,75}
+
+Returns: 0.0
+
+With only 2 jobs we can never have all 3 processors busy.
+
+1)
+2
+{2000,100,100}
+
+Returns: 200.0
+
+
+We can run job A on processor 1 and job B on processor 2.  When job B finishes after 100 time units, we can put job C on processor 2 for the next 100 time units.
+But now we only have 1 job that needs to run, so we can't keep both
+   processors busy any longer.
+
+
+2)
+3
+{20,20,21,100}
+
+Returns: 30.5
+
+
+
+We can run job A on processor 1 from time 0 to time 20.  We can run job B on processor 2 from time 10.5 to time 30.5.  We can run job C on processor 2 from time 0 to time 10.5 and then on processor 1 from time 20 to time 30.5.  We can run job D on processor 3 from time 0 to time 100.

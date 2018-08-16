@@ -1,0 +1,97 @@
+PROBLEM STATEMENT
+We are playing a game with some of coins on a rectangular board.
+The board is divided into unit square cells.
+Each cell is either empty, or it contains an obstacle.
+The board is given to you as a vector <string> board.
+The character '#' represents an obstacle and '.' is an empty cell.
+
+
+
+When starting the game, the player places coins into some of the empty cells.
+The number of coins and their positions are chosen by the player.
+The only restriction is that the player may not place two coins into the same cell.
+
+
+
+Next to the board, there are 4 buttons labeled "Left", "Right", "Up", and "Down".
+The game is played by pushing these buttons.
+When the player pushes a button, all coins will try to move one cell in the corresponding direction.
+For each coin, there can be three different outcomes:
+
+If the next cell in the chosen direction contains an obstacle, the coin remains in its current cell.
+If there is no next cell in the chosen direction (i.e., if the coin is already on the corresponding edge of the board), the coin falls off the board.
+In all other cases, the coin moves one cell in the chosen direction. (Note that this includes the case when the destination cell currently contains another coin. In this way it may happen that there will be multiple coins in the same cell.)
+
+
+
+
+The goal of the game is to make some coins (at least one) fall off the board, while some others (at least one) still remain on the board.
+The initial configuration of coins is called good if there is a sequence of buttons that can be pushed to win the game from that configuration.
+Return the number of good initial configurations, modulo 1,000,000,009.
+
+DEFINITION
+Class:CoinsGame
+Method:ways
+Parameters:vector <string>
+Returns:int
+Method signature:int ways(vector <string> board)
+
+
+CONSTRAINTS
+-board will contain between 1 and 40 elements, inclusive.
+-Every element of board will have the same length, and this length will be between 1 and 40, inclusive.
+-Each character in each element of board will be one of '#' and '.'.
+
+
+EXAMPLES
+
+0)
+{".."}
+
+Returns: 1
+
+The only way to win the game on this board is to start by placing a coin on each cell.
+You can then push either of the buttons Left and Right to make one coin fall off.
+
+1)
+{"##.#",
+ ".###",
+ "###.",
+ "#.##"}
+
+Returns: 11
+
+You cannot win the game if you use less than two coins.
+On this board, any configuration with at least two coins can be won (by a single push of some button).
+Hence, the answer is C(4,2) + C(4,3) + C(4,4) = 6 + 4 + 1 = 11.
+
+2)
+{"####",
+ "#..#",
+ "#..#",
+ "####"}
+
+Returns: 0
+
+You cannot win any game on this board, as you cannot make any coin fall off the board.
+
+3)
+{"#.#.#"}
+
+Returns: 0
+
+
+
+4)
+{"........",
+ "........",
+ "........",
+ "........",
+ "........",
+ "........",
+ "........",
+ "........"}
+
+Returns: 688856388
+
+

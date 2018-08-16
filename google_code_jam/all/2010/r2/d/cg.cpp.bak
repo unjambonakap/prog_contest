@@ -1,0 +1,349 @@
+#include "cg.hpp"
+
+inline int count_bit(int n){return (n == 0)?0:1+count_bit(n&(n-1));}
+inline int sqr(int x){return x*x;}
+inline int dist(int x, int y, int a, int b){return sqr(x-a)+sqr(y-b);}
+inline int dist(pii a, pii b){return sqr(a.ST-b.ST)+sqr(a.ND-b.ND);}
+inline bool bit_set(int a, int b){return (a&two(b));}
+
+const double INF=1e20;
+const double EPS=1e-10;
+const double PI=2.*asin(1);
+double Line::angle()const{
+		if (vert)return PI/2;
+		return atan(a);
+}
+
+ostream& operator<<(ostream& o, const Point& a){
+	o<<"(";
+	if (a.inf)
+		cout<<((a.x<0)?"-":"+")<<"inf";
+	else
+		o<<a.x<<", "<<a.y;
+	o<<")"; 
+	return o;
+}
+
+
+
+ostream& operator<<(ostream& o, const Line& a){
+	o<<"Line: ";
+	if (a.vert)
+		o<<"x="<<a.a<<endl;
+	else
+		o<<"y="<<a.a<<"*x+"<<a.b<<endl;
+	if (a.side!=Line::N)
+		o<<"Side: "<<a.side<<endl;
+	return o;
+}
+
+ostream& operator<<(ostream& o, const Segment& a){
+	o<<"Segment: ";
+	if (a.vert)
+		o<<"x="<<a.a<<endl;
+	else
+		o<<"y="<<a.a<<"*x+"<<a.b<<endl;
+	if (a.side!=Line::N)
+		o<<"Side: "<<a.side<<endl;
+
+	o<<"Start "<<a.sp;
+	o<<"End "<<a.ep;
+	return o;
+}
+
+ostream& operator<<(ostream& o, const ConvexPolygon& a){
+	o<<"Polygon:"<<endl<<"Upper envelope: ";
+
+	FE(it, a.upper)
+		o<<it->sp<<" ";
+	if (a.upper.size()>0)
+		o<<a.upper.back().ep;
+	o<<endl;
+	o<<"Lower envelope: ";
+	FE(it, a.lower)
+		o<<it->sp<<" ";
+	if (a.lower.size()>0)
+		o<<a.lower.back().ep;
+	o<<endl;
+	return o;
+
+
+}
+
+Point lineIntersection(Line a, Line b){
+	if (a.vert && b.vert)return Point::Inf();
+	if (b.vert)swap(a, b);
+
+	if (a.vert)
+		return b.eval(a.a);
+
+	if (a.a==b.a)return Point::Inf();
+
+	Point p;
+	p.x=(a.b-b.b)/(b.a-a.a);
+	p.y=a.eval(p.x);
+	return p;
+}
+
+
+
+Point segmentIntersection(const Segment& a, const Segment& b){
+	Point p=lineIntersection(a, b);
+	if (p.x>=a.sp.x && p.x>=b.sp.x && p.x<=a.ep.x && p.x<=b.ep.x)return p;
+	return Point::Inf();
+}
+
+
+ConvexPolygon cpIntersection(const ConvexPolygon& a, const ConvexPolygon& b){
+
+
+	ConvexPolygon c;
+
+	int t;
+	Event e, ne;
+	if (a.empty()||b.empty())return c;
+
+
+	ne.setEnvelope(0, 0, 0, 0);
+	ne.type=0;
+	if (a.sp().inf)ne.p=a.sp(), ne.polygon=0;
+	else if (b.sp().inf)ne.p=b.sp(), ne.polygon=1;
+	else ne.p=min(a.sp(), b.sp()), ne.polygon=(ne.p==b.sp());
+
+	if (ne.polygon)ne.envelope.pa[0]=ne.envelope.pa[1]=1;
+	else ne.envelope.pb[0]=ne.envelope.pb[1]=1;
+
+
+	if (a.sp()==-Point::Inf() && b.sp()==-Point::Inf()){
+				c.setSP(a.sp());
+		printf("<<<<<<<<<<<<<\n");
+		Segment sl, su;
+		if (a.lower.size()>0 && a.upper.size()>0){
+			cout<<a.upper[0].angle()<<endl;
+			cout<<b.upper[0].angle()<<endl;
+			su=(b.upper.size()>0)?max(a.upper[0], b.upper[0]):a.upper[0];
+			sl=(b.lower.size()>0)?min(a.lower[0], b.lower[0]):a.lower[0];
+
+
+			if (su<sl){
+				c.la=sl, c.lb=su;
+			}
+
+		}else if (b.lower.size()>0 && b.upper.size()>0){
+			su=(a.upper.size()>0)?max(a.upper[0], b.upper[0]):b.upper[0];
+			sl=(a.lower.size()>0)?min(a.lower[0], b.lower[0]):b.lower[0];
+			if (su<sl){
+				c.la=sl, c.lb=su;
+			}
+		}
+	}
+	int count=0;
+	while(!a.done(ne.cur.pa[0], ne.cur.pa[1]) && !b.done(ne.cur.pb[0], ne.cur.pb[1])){
+		//	if (++count==9)break;
+
+		e=ne;
+		if (e.p==Point::Inf())break;
+
+		cout<<"On<<<<<<<<<<<<<\n";
+		cout<<e.p;
+		cout<<e.polygon<<endl;
+		cout<<e.type<<endl;
+		vector<Event> el;
+		cout<<endl<<endl<<endl;
+
+
+		if (e.p==-Point::Inf()){
+			if (e.polygon)
+				e.cur.pb[0]=e.cur.pb[1]=0;
+			else
+				e.cur.pa[0]=e.cur.pa[1]=0;
+		}else if (e.type==0){//vertex of a polygon (not an intersection point)
+			if (!e.polygon){
+				if (e.cur.pa[0]==-1){//start point of a
+					e.cur.pa[0]=e.cur.pa[1]=0;
+					if (b.in(e.p, e.cur.pb[0], e.cur.pb[1]))
+						c.setSP(e.p);
+				}else{
+					if (e.envelope.pa[0]){
+						if (b.in(e.p, e.cur.pb[0], e.cur.pb[1]))
+							c.addLowP(e.p, a.lower[e.cur.pa[0]]);
+						++e.cur.pa[0];
+					}else{
+						if (b.in(e.p, e.cur.pb[0], e.cur.pb[1]))
+							c.addSupP(e.p, a.upper[e.cur.pa[1]]);
+						++e.cur.pa[1];
+					}
+
+				}
+
+			}else{
+				if (e.cur.pb[0]==-1){//start point of b polygon
+					e.cur.pb[0]=e.cur.pb[1]=0;
+					if (a.in(e.p, e.cur.pa[0], e.cur.pa[1]))
+						c.setSP(e.p);
+					
+				}else{//point on polygon b
+					if (e.envelope.pb[0]){
+						if (a.in(e.p, e.cur.pa[0], e.cur.pa[1])){
+							c.addLowP(e.p, b.lower[e.cur.pb[0]]);
+						}
+						++e.cur.pb[0];
+					}else{
+						if (a.in(e.p, e.cur.pa[0], e.cur.pa[1]))
+							c.addSupP(e.p, b.upper[e.cur.pb[1]]);
+						++e.cur.pb[1];
+					}
+				}
+			}
+
+
+		}else{//intersection of two lines of the polygons
+			if (e.envelope.pa[0]&&e.envelope.pb[0]){
+				c.addLowP(e.p, min(a.lower[e.cur.pa[0]], b.lower[e.cur.pb[0]]));
+
+			}else if (e.envelope.pa[0]&&e.envelope.pb[1]){
+				if (c.empty())
+					c.setSP(e.p);
+				else{
+					c.addLowP(e.p, a.lower[e.cur.pa[0]]);
+					c.addSupP(e.p, a.upper[e.cur.pa[1]]);
+				}
+
+			}else if (e.envelope.pa[1]&&e.envelope.pb[0]){
+				if (c.empty())
+					c.setSP(e.p);
+				else{
+					c.addLowP(e.p, b.lower[e.cur.pb[0]]);
+					c.addSupP(e.p, b.upper[e.cur.pb[1]]);
+				}
+
+			}else{
+				if (a.upper[e.cur.pa[1]].angle()>b.upper[e.cur.pb[1]].angle())
+					c.addSupP(e.p, a.upper[e.cur.pa[1]]);
+				else
+					c.addSupP(e.p, b.upper[e.cur.pb[1]]);
+			}
+		}
+
+		ne=e;
+
+		int ok[4];
+		memset(ok, 0, sizeof(ok));
+		ne.type=0;
+		if (ne.cur.pa[0]==-1){
+			ne.p=a.sp(), ne.polygon=0;
+			el.pb(ne);
+		}if (ne.cur.pb[0]==-1){
+			ne.p=b.sp(), ne.polygon=1;
+			el.pb(ne);
+		}
+		if (ne.cur.pa[0]>=0 && ne.cur.pa[0]<a.lower.size()){
+			ok[0]=1;
+			ne.p=a.lower[ne.cur.pa[0]].ep;
+			ne.polygon=0, ne.setEnvelope(1, 0, 0, 0);
+			el.pb(ne);
+		}if (ne.cur.pa[1]>=0 && ne.cur.pa[1]<a.upper.size()){
+			ok[1]=1;
+			ne.p=a.upper[ne.cur.pa[1]].ep;
+			ne.polygon=0, ne.setEnvelope(0, 1, 0, 0);
+			el.pb(ne);
+		} if (ne.cur.pb[0]>=0 && ne.cur.pb[0]<b.lower.size()){
+			ok[2]=1;
+			ne.p=b.lower[ne.cur.pb[0]].ep;
+			ne.polygon=1, ne.setEnvelope(0, 0, 1, 0);
+			el.pb(ne);
+		}if (ne.cur.pb[1]>=0 && ne.cur.pb[1]<b.upper.size()){
+			ok[3]=1;
+			ne.p=b.upper[ne.cur.pb[1]].ep;
+			ne.polygon=1, ne.setEnvelope(0, 0, 0, 1);
+			el.pb(ne);
+		}
+
+		ne.type=1;
+		if (ok[0]&&ok[2]){
+			ne.p=segmentIntersection(a.lower[ne.cur.pa[0]], b.lower[ne.cur.pb[0]]);
+			if (e.p<ne.p){
+				ne.setEnvelope(1, 0, 1, 0);
+				el.pb(ne);
+			}
+		}if (ok[0]&&ok[3]){
+			ne.p=segmentIntersection(a.lower[ne.cur.pa[0]], b.upper[ne.cur.pb[1]]);
+			if (e.p<ne.p){
+				ne.setEnvelope(1, 0, 0, 1);
+				el.pb(ne);
+			}
+		}if(ok[1]&&ok[2]){
+
+			cout<<a.upper[ne.cur.pa[1]]<<endl;
+			cout<<b.lower[ne.cur.pb[0]]<<endl;
+			ne.p=segmentIntersection(a.upper[ne.cur.pa[1]], b.lower[ne.cur.pb[0]]);
+			cout<<ne.p<<endl;
+			if (e.p<ne.p){
+				ne.setEnvelope(0, 1, 1, 0);
+				el.pb(ne);
+			}
+		}if(ok[1]&&ok[3]){
+			ne.p=segmentIntersection(a.upper[ne.cur.pa[1]], b.upper[ne.cur.pb[1]]);
+			if (e.p<ne.p){
+				ne.setEnvelope(0, 1, 0, 1);
+				el.pb(ne);
+			}
+		}
+
+		ne=*min_element(ALL(el));
+
+	}
+
+
+	if (a.ep()==Point::Inf() && b.ep()==Point::Inf()){
+		Segment sl, su;
+		if (a.lower.size()>0||b.lower.size()>0){
+			if (a.lower.size()>0&&b.lower.size()>0)
+				sl=max(a.lower.back(), b.lower.back());
+			else
+				sl=(a.lower.size()>0)?a.lower.back():b.lower.back();
+			if ((a.upper.size()==0||sl<a.upper.back())&&(b.upper.size()==0||sl<b.upper.back()))
+				c.addLowP(a.ep(), sl);
+			
+		}
+		if (a.upper.size()>0||b.upper.size()>0){
+			if (a.upper.size()>0&&b.upper.size()>0)
+				su=min(a.upper.back(), b.upper.back());
+			else
+				su=(a.upper.size()>0)?a.upper.back():b.upper.back();
+			if ((a.lower.size()==0||a.lower.back()<su)&&(b.lower.size()==0||b.lower.back()<su))
+				c.addSupP(a.ep(), su);
+		}
+	}
+	return c;
+}
+
+ConvexPolygon procHull(vector<Point> pl){
+	int sgn[]={1, -1};
+	int i, j;
+	vector<double> ang;
+	assert(SZ(pl)>=3);
+	vector<int> hull[2];
+	printf("la\n");
+
+
+	sort(ALL(pl));
+	FOR(i, 1, SZ(pl)-1)
+		ang.pb(Segment(pl[0], pl[i]).angle());
+
+	REP(i, 2){
+		hull[i].pb(0);
+		REP(j, SZ(pl)-1){
+			while(SZ(hull[i])>1 && sgn[i]*ang[hull[i].back()-1]<=sgn[i]*ang[j])hull[i].pop_back();
+			hull[i].pb(j+1);
+		}
+		FE(it, hull[i])
+			cout<<pl[*it]<<endl;
+		cout<<endl<<endl<<endl;
+	}
+	ConvexPolygon c;
+	return c;
+	
+
+}
+

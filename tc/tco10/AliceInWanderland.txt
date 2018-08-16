@@ -1,0 +1,111 @@
+PROBLEM STATEMENT
+Alice has fallen into the rabbit-hole. Now she is in a strange world. 
+
+
+The world is an infinitely large grid on a plane. 
+Alice is in the cell (0, 0) at time 0. 
+Alice sees rabbits wandering. 
+Rabbit i is in the cell (rabbitX[i], rabbitY[i]) at time 0. 
+At time t - 0.5 (t being a positive integer) the rabbit will step one cell 
+according to t-th (1-based) character of the infinite repetition of string moves[i]. 
+'R' means increasing x, 'L' means decreasing x, 'U' means increasing y and 'D' means decreasing y. 
+At each time t (t being a positive integer) 
+Alice will perform a move that consists of two following steps:
+
+	First, she steps to one of her eight neighboring cells or chooses to stay in her current cell. 
+	Then, if there are one or several rabbits in her destination cell, she touches all of them. 
+
+
+Return the minimum possible time for Alice to touch all the rabbits. 
+If this time is strictly greater than 1,000,000,000,000,000 or she can never touch all the rabbits, return -1 instead. 
+
+
+DEFINITION
+Class:AliceInWanderland
+Method:getMinimum
+Parameters:vector <int>, vector <int>, vector <string>
+Returns:long long
+Method signature:long long getMinimum(vector <int> rabbitX, vector <int> rabbitY, vector <string> moves)
+
+
+CONSTRAINTS
+-rabbitX will contain between 1 and 11 elements, inclusive. 
+-rabbitX, rabbitY and moves will contain the same number of elements. 
+-Each element of rabbitX and rabbitY will be between -1,000,000,000 and 1,000,000,000, inclusive. 
+-For each index i, (rabbitX[i], rabbitY[i]) will not be (0, 0). 
+-Each element of moves will contain between 1 and 50 characters, inclusive. 
+-Each character in moves will be either 'R', 'L', 'U' or 'D'. 
+
+
+EXAMPLES
+
+0)
+{ 4 }
+{ 2 }
+{ "ULDR" }
+
+Returns: 3
+
+The rabbit moves (4, 2) -> (4, 3) -> (3, 3) -> (3, 2) -> (4, 2) -> ...
+
+In order to touch the rabbit at time 3, Alice can move as follows: (0, 0) -> (1, 1) -> (2, 2) -> (3, 2).
+
+1)
+{ 10, -20 }
+{ 0, 0 }
+{ "RL", "LULD" }
+
+Returns: 80
+
+Alice should pursue rabbit 0 first in this case. 
+
+
+2)
+{ 30, -40 }
+{ 0, 0 }
+{ "RL", "DLUL" }
+
+Returns: 188
+
+Alice should pursue rabbit 1 first in this case. 
+
+
+3)
+{ 0 }
+{ 1 }
+{ "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU" }
+
+Returns: -1
+
+Alice can never touch the rabbit. 
+
+
+4)
+{ 1000000000, 1000000000, -1000000000, -1000000000, 1000000000, 1000000000, -1000000000, -1000000000, 0, 0, 0}
+{ 0, 0, 0, 0, 0, 0, 0, 0, 1000000000, 1000000000, -1000000000}
+{ "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRU", 
+  "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRD", 
+  "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLU", 
+  "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLD", 
+  "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRUU", 
+  "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRDD", 
+  "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLUU", 
+  "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLDD", 
+  "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUR", 
+  "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUL", 
+  "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDR" }
+
+
+Returns: -1
+
+It will take too much time. 
+
+
+5)
+{ 1, 1 }
+{ 0, 0 }
+{ "L", "U" }
+
+Returns: -1
+
+

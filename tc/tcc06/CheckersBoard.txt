@@ -1,0 +1,117 @@
+PROBLEM STATEMENT
+
+A position is an arrangement of pieces on the checkerboard at a particular time during the game. Given a position, you are to calculate the total number of possible moves that can be made on the next turn.
+
+
+The game of checkers is played by two players on an 8x8 grid with alternating black and white squares (any two squares that share an edge have different colors). The leftmost square of the top row is always black, and the playable surface consists of only the 32 black squares. Each player starts with 12 pieces. The first player's pieces are black, and the second player's pieces are white. Black pieces start from the top part of the board and can only move toward the bottom, while white pieces start from the bottom and only move toward the top. The two players alternate moves.
+
+
+There are two ways you can move a piece: slide it diagonally forward to an adjacent unoccupied black square, or "jump" an opponent's piece.  You can jump an opponent's piece only if it is diagonally adjacent and there is a vacant square directly beyond it in the same direction.  When you perform a jump, your piece will end up in that vacant square, and the opponent's piece will be removed from the board.  Jumping is mandatory, so if there is an opportunity to make a jump, it must be taken.  When multiple jumps are possible, any one of them can be chosen.  As mentioned earlier, both slides and jumps can only be made in the "forward" direction, meaning that black pieces must move toward the bottom of the board and white pieces must move toward the top.
+
+
+You will be given a vector <string> board that contains the current position of a checkers game. The j-th character of the i-th element represents the contents of the square at row i, column j (where row 0 is the topmost row, and column 0 is the leftmost column). A space (' ') represents a vacant square, and 'W' and 'B' represent squares occupied by white and black pieces, respectively. You are to determine the total number of possible moves in this position. You don't know which player has the next turn, so return the sum of all possible moves for both players.
+
+
+DEFINITION
+Class:CheckersBoard
+Method:numMoves
+Parameters:vector <string>
+Returns:int
+Method signature:int numMoves(vector <string> board)
+
+
+NOTES
+-In real checkers multiple jump moves are allowed. We ignore them for the purposes of this problem.
+
+
+CONSTRAINTS
+-board will contain exactly 8 elements.
+-Each element of board will contain exactly 8 characters.
+-Each element of board will contain only 'W', 'B' and ' ' characters.
+-board will contain at least one non-space character.
+-board will contain at most 12 'W' characters and at most 12 'B' characters.
+-All 'W' and 'B' charactes in board will be located at 'black' cells only.
+
+
+EXAMPLES
+
+0)
+{
+"B       ",
+"        ",
+"        ",
+"        ",
+"        ",
+"        ",
+"        ",
+" W      "
+}
+
+
+Returns: 3
+
+The black piece has 1 possible move, and the white piece has a choice of 2 moves.
+
+1)
+{
+"B B     ",
+" W      ",
+"        ",
+"        ",
+"        ",
+"        ",
+"        ",
+"        "
+}
+
+Returns: 2
+
+Each of the black pieces can jump over the white piece. The right black piece has a free cell diagonally down and to the right, but can not move here because jumping is mandatory and can not be passed up to make a non-jumping move.
+
+2)
+{
+"B B B B ",
+" B B B B",
+"B B B B ",
+"        ",
+"        ",
+" W W W W",
+"W W W W ",
+" W W W W"
+}
+
+Returns: 14
+
+The position at the beginning of the game. Black pieces in the first two rows can not move. The leftmost black piece in the third row has one possible move, and the other 3 pieces have 2 possible moves each. The white pieces have symmetrical moves.
+
+3)
+{
+"B B B B ",
+" W W W W",
+"W W W W ",
+"        ",
+"        ",
+"        ",
+"        ",
+"        "
+}
+
+Returns: 0
+
+No possible moves here.
+
+4)
+{
+"    B B ",
+"   B B W",
+"    B W ",
+"     W W",
+"      W ",
+"       W",
+"        ",
+"        "
+}
+
+Returns: 2
+
+

@@ -1,0 +1,57 @@
+\begin{problem}{ASCII Area}{ascii.in}{ascii.out}{2 seconds}
+
+% Author:      Владимир Гуровец  
+% Description: Посчитать площадь многоугольника записанного в ASCII Art используя \ и /
+
+Long time ago, most of PCs were equipped with video cards that worked only in 
+text mode. If the programmer wanted to show a picture on a screen, he had to
+use pseudographics or ASCII art like this:
+
+\begin{center}
+\includegraphics{pics/ascii-1.eps}
+\end{center}
+
+In this problem you are given a polygon, drawn using ASCII art. Your task
+is to calculate its area.
+
+The picture is formed using characters `\texttt{.}', `\texttt{\char`\\}',
+and `\texttt{/}'. Each
+character represents a unit square of the picture. Character `\texttt{.}'
+represents an empty square, character `\texttt{/}' --- a square with a 
+segment from the lower left corner to the upper right corner, and
+character `\texttt{\char`\\}' --- a square with a segment from the upper left corner 
+to the lower right corner.
+
+\begin{center}
+\includegraphics{pics/ascii-2.eps}
+\end{center}
+
+\InputFile
+
+The first line of the input file contains integer numbers $h$ and $w$ 
+($2\le h, w\le 100$) --- height and width of the picture.
+Next $h$ lines contain $w$ characters each --- the picture drawn
+using ASCII art.
+
+It is guaranteed that the picture contains exactly one polygon 
+without self-intersections and self-touches.
+
+\OutputFile
+
+Print to the output file one integer number --- the area of the polygon.
+
+\Example
+
+\begin{example}
+\exmp{
+4 4
+/\char`\\/\char`\\
+\char`\\../
+.\char`\\.\char`\\
+..\char`\\/
+}{
+8
+}%
+\end{example}
+
+\end{problem}

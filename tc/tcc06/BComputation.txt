@@ -1,0 +1,55 @@
+PROBLEM STATEMENT
+You will be given B0, the first element of our sequence.  The following equation must hold for all n > 0: 
+        0  =  B0 + n+1C1B1 + n+1C2B2 + ... + n+1CnBn 
+Here aCb is the standard binomial coefficient (see the notes).  Return the value Bpos in the form "p/q" (quotes for clarity) where p and q are integers with no extra leading zeros and no common factors (other than 1).  The denominator q must always be positive. If the returned value is 0 then return "0/1".
+
+DEFINITION
+Class:BComputation
+Method:getValue
+Parameters:int, int
+Returns:string
+Method signature:string getValue(int B0, int pos)
+
+
+NOTES
+-aCb has value a!/(b!(a-b)!) where a! = a*(a-1)*...*2*1.
+
+
+CONSTRAINTS
+-B0 will be between -100 and 100, inclusive.
+-pos will be between 0 and 15, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+0
+
+Returns: "1/1"
+
+Here we simply return B0.
+
+
+1)
+1
+1
+
+Returns: "-1/2"
+
+Using the given formula, we can compute 
+B1 = -B0/2C1.
+
+2)
+100
+11
+
+Returns: "0/1"
+
+
+
+3)
+92
+12
+
+Returns: "-31786/1365"

@@ -1,0 +1,77 @@
+PROBLEM STATEMENT
+A microbiologist wants us to partition a collection of strings
+into disjoint groups based on common prefixes.
+The desired partition is formed by the following process:
+ 
+    while there are at least 2 strings that have not been assigned to a group:
+        find the longest prefix that appears in at least 2 unassigned strings
+        form a new group consisting of all unassigned strings having that prefix
+    if there is an unassigned string, assign it to its own group
+
+Note that the "longest prefix" in the algorithm above may have length 0.
+ 
+We want to produce a listing of the strings organized by group, with a string
+of '-'s following the members of each group. The '-' string should contain
+one '-' for each character in the common prefix of the group. So a group
+whose common prefix has length 0 should be followed by the string "". As a special
+case, a group that contains just one string is considered to have a common prefix of 
+length 0.
+
+List the groups with the longest common prefix first. Among groups with the
+same length common prefix, list the groups alphabetically. Among strings within a group, 
+list the strings alphabetically.
+Given a vector <string> protein, return a vector <string> that is the desired listing.
+
+
+
+DEFINITION
+Class:Prefixes
+Method:prefixList
+Parameters:vector <string>
+Returns:vector <string>
+Method signature:vector <string> prefixList(vector <string> protein)
+
+
+CONSTRAINTS
+-protein will contain between 1 and 50 elements, inclusive.
+-Each element of protein will contain between 1 and 50 characters, inclusive.
+-Each character in each element of protein will be an uppercase letter ('A'-'Z').
+
+
+EXAMPLES
+
+0)
+{"AAAAA","ABCDE","ABCDE"}
+
+Returns: {"ABCDE", "ABCDE", "-----", "AAAAA", "" }
+
+
+   The 2 identical strings are in a group since they have a common prefix consisting of all 5 letters. "AAAAA" cannot qualify to be in the same group as the other two. Since it is in a group by itself, it is followed by a string with 0 '-'s (an empty string) indicating a common prefix of length 0.
+
+
+1)
+{"ABCDE", "ABCDXY", "ABC", "ABD", "ARX"}
+
+Returns: {"ABCDE", "ABCDXY", "----", "ABC", "ABD", "--", "ARX", "" }
+
+
+The 3 groups have common prefixes "ABCD", "AB", and "". The groups are listed in order of longest prefix first.
+
+2)
+{"XA","AX","XB","A"}
+
+Returns: {"A", "AX", "-", "XA", "XB", "-" }
+
+
+
+    The group with common prefix "A" comes before the group with common
+    prefix "X" because it comes first alphabetically. Similarly, within 
+    each group, the individual strings are ordered alphabetically.
+
+
+3)
+{"XA","AX","YXB","A"}
+
+Returns: {"A", "AX", "-", "XA", "YXB", "" }
+
+

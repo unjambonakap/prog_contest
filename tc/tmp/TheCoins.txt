@@ -1,0 +1,114 @@
+PROBLEM STATEMENT
+John and Brus have n by m chessboard with rows numbered from 1 to n and columns numbered from 1 to m. Some cells may initially contain coins and some may be empty. In a single operation John choses an empty cell (r, c) such that cell (r+dr, c+dc) exists and is also empty, then John will place one coin on the cell (r, c) and Brus will place another one on the cell (r+dr, c+dc). They may perform this operation any number of times.
+You are given ints n, m, dr and dc and vector <int>s row and column. The chessboard initially contains k coins, where k is the number of elements in row. The i-th coin is placed on the cell (row[i], column[i]). Return the maximal number of coins John and Brus can place on the chessboard (excluding those that are initially on the board). For example, if we have an empty 3 by 3 chessboard and dr=dc=1, then John and Brus can first place two coins at (1, 1) and (2, 2), another pair at (1, 2) and (2, 3) and then two more at (2, 1) and (3, 2) for a result of 6.
+
+DEFINITION
+Class:TheCoins
+Method:find
+Parameters:int, int, int, int, vector <int>, vector <int>
+Returns:long long
+Method signature:long long find(int n, int m, int dr, int dc, vector <int> row, vector <int> column)
+
+
+CONSTRAINTS
+-n will be between 1 and 1,000,000,000, inclusive.
+-m will be between 1 and 1,000,000,000, inclusive.
+-dr will be between 1 and 1,000,000,000, inclusive.
+-dc will be between 1 and 1,000,000,000, inclusive.
+-row will contain between 0 and 50 elements, inclusive.
+-column will contain the same number of elements as row.
+-Each element of row will be between 1 and n, inclusive.
+-Each element of column will be between 1 and m, inclusive.
+-All pairs (row[i], column[i]) will be distinct.
+
+
+EXAMPLES
+
+0)
+3
+3
+1
+1
+{}
+{}
+
+Returns: 6
+
+The example from the problem statement.
+
+1)
+5
+4
+2
+1
+{3, 3}
+{2, 3}
+
+Returns: 10
+
+2)
+100
+100
+4
+7
+{}
+{}
+
+Returns: 9520
+
+3)
+2
+2
+1
+1
+{1, 2}
+{2, 1}
+
+Returns: 2
+
+4)
+5
+4
+1
+1
+{2, 4, 3, 5, 2, 2, 5, 4}
+{2, 2, 2, 2, 3, 4, 4, 4}
+
+Returns: 0
+
+5)
+84
+71
+74
+22
+{50, 47, 11, 57, 12, 58, 16, 5, 77, 26, 71, 45, 53, 70, 3, 50, 65,
+ 11, 44, 58, 59, 12, 30, 78, 12, 19, 48, 53, 19, 71, 52, 77, 73, 33,
+ 63, 73, 55, 10, 14, 66, 67, 46, 34, 60, 71, 12, 83, 18}
+{27, 50, 59, 37, 6, 26, 41, 67, 68, 70, 12, 3, 1, 62, 25, 70, 46,
+ 48, 26, 5, 16, 62, 44, 39, 60, 19, 47, 32, 50, 21, 14, 38, 13, 58,
+ 37, 70, 10, 70, 5, 6, 1, 54, 52, 9, 69, 49, 41, 58}
+
+Returns: 970
+
+
+
+6)
+122677
+996231
+41759
+481285
+{25581, 10405, 37052, 85448, 62794, 103890, 75143, 34652, 96573, 107497,
+ 49592, 117281, 4466, 44553, 9760, 62266, 122175, 84237, 86788, 38864, 
+ 83124, 108358, 98854, 103177, 86381, 11519, 61147, 33170, 11043, 17402,
+ 107658, 71673, 102550, 70823, 20568, 81613, 83067, 72136, 34569, 6513,
+ 24505, 112416, 75208, 4463, 86507, 86558, 45844, 53233, 87815, 50610}
+{275695, 51848, 173581, 533376, 882202, 994201, 319894, 128485, 370593,
+ 1655, 185488, 955779, 731743, 729992, 641079, 530134, 332977, 289273,
+ 779908, 528428, 700671, 509104, 364078, 429286, 105101, 851418, 592063,
+ 198998, 745550, 128128, 905177, 806990, 929477, 82009, 432238, 549661,
+ 939922, 740977, 372638, 67868, 525232, 289171, 493261, 178561, 208168,
+ 960711, 584970, 920830, 607658, 270535}
+
+Returns: 80700538590
+
+

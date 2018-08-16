@@ -1,0 +1,114 @@
+PROBLEM STATEMENT
+
+
+We want to construct a stationary crane and place it on a flat roof.
+We will make it by placing beams on top of each other and attaching a weightless
+cable to the end of one of the beams. All the beams have the same
+square cross-section but their lengths vary. Here is a picture
+of a crane (with its load attached to the cable) that could be constructed using 3 beams.
+
+                cccccccc
+                   bbbbbbbbbbb
+         aaaaaaaaaaaaaaaaa    |
+======================        |
+======================overhang|
+==== building=========        |
+======================        |
+======================        |
+======================      LOAD
+======================  
+                      
+
+We have already determined the order of the beams:
+the first beam must
+be placed on the roof, the second beam on top of it, etc. During
+construction we can support the crane, but after construction is complete
+and the load is attached to the cable the resulting crane must not fall apart.
+Specifically, a topmost section of the crane will tip and fall if the horizontal position of
+it center of gravity is to the left or right of the beam (the roof for the entire crane) on which it rests. 
+
+We have chosen our units so that each beam's weight is the same as its
+length. Given a vector <int> beam (the weights or lengths of each beam in order)
+and LOAD, return the maximum overhang that we can achieve. 
+
+
+
+DEFINITION
+Class:Overhang
+Method:hang
+Parameters:vector <int>, int
+Returns:double
+Method signature:double hang(vector <int> beam, int LOAD)
+
+
+NOTES
+-The center of gravity of a mass is the average location of its weight. The center of gravity of a collection of masses can be computed as the weighted average of the centers of gravity of each mass.
+-A return value with either an absolute or relative error of less than 1.0E-9 is considered correct.
+
+
+CONSTRAINTS
+-beam will contain between 1 and 50 elements, inclusive.
+-Each element of beam will be between 1 and 20,000, inclusive.
+-LOAD will be between 0 and 20,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{15}
+0
+
+Returns: 7.5
+
+
+
+   This one-beam crane can't support anything, but at least it might
+   provide some shade.
+
+
+
+1)
+{10}
+40
+
+Returns: 1.0
+
+
+
+   Using a coordinate system in which the edge of the
+   building is at x=0, the beam's center of gravity is at x=-4 
+   and the load's center of gravity is at x=1 so their combined center of gravity is at 
+   x = 10*(-4) + 40*(1) = 0.
+   The crane is balanced at the edge of
+   the building. 
+
+
+2)
+{10, 20, 10}
+10
+
+Returns: 11.0
+
+
+
+   The best crane suspends the weight from the end of the middle beam
+   in this case.
+
+
+3)
+{20,1,1,1,1,1}
+5
+
+Returns: 10.000000000000002
+
+Here your can attach the load to the long beam that is resting directly on the roof, 
+and then counterbalance the load by stacking the short beams as far to the left as
+possible. 
+
+4)
+{1,1,1,1,1,20}
+5
+
+Returns: 8.089514476583442
+
+

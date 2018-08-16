@@ -1,0 +1,78 @@
+PROBLEM STATEMENT
+A standard way of ordering words in a dictionary involves comparison of two words character by character, from left to right, until some two characters disagree. Jim thinks it's pretty boring, so he introduced a more complicated and less predictable scheme.
+
+Given is a vector <string> words that contains N distinct words and each element is a single word. The length of each word is the same -- exactly L characters. To order words according to his scheme, Jim first generates a random permutation p[0], p[1], ..., p[L-1] of integers between 0 and L-1, inclusive. This permutation is generated only once and then considered to be fixed for the rest of the procedure. Using the permutation p, Jim can compare any two words as follows:
+
+
+// returns -1, if A<B, 0, if A=B, and 1, if A>B
+function Compare(Word A, Word B):
+	for i = 0, 1, ..., L-1:
+		a := character at position p[i] (0-based) in A
+		b := character at position p[i] (0-based) in B
+		if (a < b), return -1
+		if (b < a), return 1
+
+	return 0
+
+
+Let Sorted be the list of the given words ordered according to Compare operator defined above. In other words, Compare(Sorted[i], Sorted[j]) = -1, for any i, j, 0 <= i < j < N.
+
+Return a vector <double> that contains N elements and i-th element of the return is the probability that Sorted[0] is the same word as words[i]. Assume that permutation p is chosen uniformly at random.
+
+DEFINITION
+Class:StrangeDictionary2
+Method:getProbabilities
+Parameters:vector <string>
+Returns:vector <double>
+Method signature:vector <double> getProbabilities(vector <string> words)
+
+
+NOTES
+-Each element of the return value must have an absolute or relative error of less than 1e-9.
+
+
+CONSTRAINTS
+-words will contain between 1 and 16 elements, inclusive.
+-Each element of words will contain between 1 and 50 characters, inclusive.
+-All elements of words will contain the same number of characters.
+-Each character in each element of words will be a lowercase letter ('a'-'z').
+-All elements of words will be distinct.
+
+
+EXAMPLES
+
+0)
+{"hardesttestever"}
+
+Returns: {1.0 }
+
+One word will always be at position 0 regardless of the permutation p.
+
+1)
+{"ab", "ba"}
+
+Returns: {0.5, 0.5 }
+
+If p = {0, 1}, then "ab" < "ba". If p = {1, 0}, then "ba" < "ab".
+
+2)
+{"aza", "aab", "bba"}
+
+Returns: {0.3333333333333333, 0.5, 0.16666666666666666 }
+
+
+p		Sorted
+{0,1,2}		aab, aza, bba
+{0,2,1}		aza, aab, bba
+{1,0,2}		aab, bba, aza
+{1,2,0}		aab, bba, aza
+{2,0,1}		aza, bba, aab
+{2,1,0}		bba, aza, aab
+
+
+3)
+{"abababab", "babababa", "acacacac", "cacacaca", "bcbcbcbc", "cbcbcbcb"}
+
+Returns: {0.5, 0.5, 0.0, 0.0, 0.0, 0.0 }
+
+

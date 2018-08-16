@@ -1,0 +1,110 @@
+PROBLEM STATEMENT
+A 2-tree is a tree in which each vertex either has exactly 2 non-empty 
+children (its left and right child),
+or is a leaf (has no children). Each leaf is named with an uppercase letter,
+and each other vertex is named with a lowercase letter.
+
+We want to mutate a given 2-tree by swapping the locations of two of its subtrees.
+For example, below is shown a 2-tree and then its mutation when its 
+subtrees rooted at C and x are swapped.
+      q                      q
+  x       z        ==>    C       z
+ A B    C   g                   x    g
+           R Q                 A B  R Q
+
+ 
+Each 2-tree can be represented by a string consisting of the names of its
+vertices in the order given by a post-order traversal of the tree (see notes). 
+Given tree, the representation of a 2-tree, and the 0-based indices of two of its vertices,
+return the representation of the mutated tree.  If the two subtrees have
+any vertices in common return the 7-character string "OVERLAP". If tree is
+not the representation of any 2-tree, return "BADTREE".
+
+
+
+
+DEFINITION
+Class:MutateTree
+Method:newTree
+Parameters:string, int, int
+Returns:string
+Method signature:string newTree(string tree, int root1, int root2)
+
+
+NOTES
+-A post-order print of a 2-tree rooted at root is defined recursively as follows:if root is not a leaf    post-order print the left subtree    post-order print the right subtreeprint the root's letter. 
+
+
+CONSTRAINTS
+-   tree will contain between 1 and 50 characters, inclusive.
+-   Each character in tree will be a letter ('A'-'Z','a'-'z').
+-   The characters in tree will be distinct.
+-   root1 and root2 will each be between 0 and n-1, inclusive, where n is the number of characters in tree.
+
+
+EXAMPLES
+
+0)
+"ABxCRQgzq"
+3
+2
+
+Returns: "CABxRQgzq"
+
+
+    This is the example above, in which the subtrees rooted at C and x are
+    swapped.
+
+
+
+1)
+"rAB"
+1
+2
+
+Returns: "BADTREE"
+
+
+      The post-order print of every (non-empty) 2-tree starts with a leaf.
+
+
+2)
+"ABxCRQgzq"
+3
+7
+
+Returns: "OVERLAP"
+
+
+     This is the tree shown in the problem. The two indicated subtrees are
+   the ones rooted at C and at z. They overlap since vertex C is in both of
+   them.
+
+
+3)
+"CEGHfdbIa"
+3
+2
+
+Returns: "CEHGfdbIa"
+
+
+
+4)
+"X"
+0
+0
+
+Returns: "OVERLAP"
+
+This tree is a legal 2-tree containing only one leaf. The subtrees are the
+entire tree -- they overlap.
+
+5)
+"IPDqWmSbEa"
+9
+1
+
+Returns: "BADTREE"
+
+

@@ -1,0 +1,79 @@
+PROBLEM STATEMENT
+
+You are given a vector <string> photo containing a photograph of some bacteria.  The bacteria lie in a rectangular grid, and the j-th character of the i-th element of photo represents the content of the cell at row i, column j of the grid.  The '.' character represents empty space and the '*' character represents a part of a bacterium.  
+Two non-empty cells a and b belong to the same bacterium if and only if there exists a chain of cells where the first cell is a, the last cell is b, and each pair of consecutive cells in the chain shares a common side.
+
+
+You are studying a special kind of bacteria called tristripe bacteria.  They have a special property: a tristripe bacterium can be formed by exactly three stripes (horizontal or vertical) that possibly intersect and/or overlap.  All four bacteria in the picture below are tristripe:
+
+{"........................***...",
+ "......*........*.........***..",
+ "...******..................***",
+ "......*.............*.........",
+ ".....**.........******........",
+ ".............................."}
+
+Return the number of tristripes in the photo.
+
+
+DEFINITION
+Class:TristripeBacteria
+Method:howMany
+Parameters:vector <string>
+Returns:int
+Method signature:int howMany(vector <string> photo)
+
+
+CONSTRAINTS
+-photo will contain between 1 and 50 elements, inclusive.
+-Each element of photo will contain between 1 and 50 characters, inclusive.
+-Each element of photo will contain the same number of characters.
+-Each element of photo will contain only the characters '.' and '*'.
+
+
+EXAMPLES
+
+0)
+{"........................***...",
+ "......*........*.........***..",
+ "...******..................***",
+ "......*.............*.........",
+ ".....**.........******........",
+ ".............................."}
+
+Returns: 4
+
+This example is from the statement.
+
+1)
+{".....................*********",
+ "......*..............*********",
+ "...******............*********",
+ "......*.........*...*.........",
+ ".....**.........******........",
+ "....**........................"}
+
+Returns: 2
+
+The leftmost bacterium is not a tristripe.
+
+2)
+{"."}
+
+Returns: 0
+
+
+
+3)
+{"*****************"}
+
+Returns: 1
+
+
+
+4)
+{"*","*","*","*","*","*","*"}
+
+Returns: 1
+
+

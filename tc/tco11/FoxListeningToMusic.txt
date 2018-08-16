@@ -1,0 +1,72 @@
+PROBLEM STATEMENT
+Fox Jiro is going to listen to some music. He has N songs, numbered 0 to N-1, inclusive. The lengths of the songs are given in the vector <int> length, where the i-th element is the length in seconds of song i.
+
+The music player he uses has a shuffle feature. Using this feature, he can listen to the songs in random order. More precisely, first the player chooses one song among all songs with equal probability and plays it. When the song ends, the player chooses the next song in the same fashion and plays it immediately. Note that the player may choose the same song more than once in a row.
+
+You are given an int T. Return a double[] P, where P[i] indicates the probability that the player is playing the i-th song T+0.5 seconds after Jiro starts listening to the music in shuffle mode.
+
+DEFINITION
+Class:FoxListeningToMusic
+Method:getProbabilities
+Parameters:vector <int>, int
+Returns:vector <double>
+Method signature:vector <double> getProbabilities(vector <int> length, int T)
+
+
+NOTES
+-Each element of the returned array must have an absolute or relative error less than 1e-9.
+
+
+CONSTRAINTS
+-length will contain 1 and 50 elements, inclusive.
+-Each element of length will be between 1 and 80,001, inclusive.
+-T will be between 0 and 80,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{1, 2}
+1
+
+Returns: {0.25, 0.75 }
+
+There are three possible scenarios that lead up to time 1.5:
+
+song 0 -> song 0 (with probability 1/4)
+song 0 -> song 1 (with probability 1/4)
+song 1 (with probability 1/2)
+
+
+
+1)
+{1, 10, 100, 1000, 10000}
+0
+
+Returns: {0.2, 0.2, 0.2, 0.2, 0.2 }
+
+
+
+2)
+{5, 8, 4, 7}
+10
+
+Returns: {0.1875, 0.3125, 0.1875, 0.3125 }
+
+
+
+3)
+{10, 1}
+9
+
+Returns: {0.9990234375, 9.765625E-4 }
+
+
+
+4)
+{58, 47, 36, 25, 14, 3}
+100
+
+Returns: {0.32895835374381194, 0.26291497538241776, 0.18463894970453887, 0.1312301113062895, 0.07518634032025856, 0.017071269542683242 }
+
+

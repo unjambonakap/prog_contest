@@ -1,0 +1,90 @@
+PROBLEM STATEMENT
+This problem statement contains superscripts and/or subscripts. These may not display properly outside the applet.
+
+Manao is very curious about bitwise operations. He decided to learn how the bitwise AND works by testing some examples. Manao takes a vector <int> X and a int K and performs the operations described by the following pseudocode:
+
+
+  for i := 1 to K
+    X := process(X)
+	
+  process(list X)
+    list Y = []
+      for i := 0 to length(X) - 1
+        for j := i + 1 to length(X) - 1
+          Y.append(X[i] & X[j])
+    return Y
+
+The function length(X) returns the length of the list X.
+The method Y.append(Z) adds the element Z to the end of the list Y.
+The elements in a list are indexed starting from 0. The lists allow duplicate elements.
+
+Manao faced some problems when his lists grew a little too long. So he is asking for help. He has several queries of the type "After the entire pseudocode is executed, will N occur in X?". You are given a vector <int> queries containing M elements. Return a string of length M. The i-th character in the returned string should be '+' if the number queries[i] will occur in the list X after executing X := process(X) K times, and it should be '-' if queries[i] will not occur in that list.
+
+DEFINITION
+Class:YetAnotherANDProblem
+Method:test
+Parameters:vector <int>, int, vector <int>
+Returns:string
+Method signature:string test(vector <int> X, int K, vector <int> queries)
+
+
+CONSTRAINTS
+-X will contain between 3 and 16 elements, inclusive.
+-Each element of X will be between 1 and 1,000,000,000, inclusive.
+-K will be between 1 and 50, inclusive.
+-queries will contain between 1 and 50 elements, inclusive.
+-Each element of queries will be between 0 and 1,000,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{10, 14, 7}
+1
+{10, 14, 2, 4}
+
+Returns: "+-+-"
+
+Manao's initial list is [10, 14, 7]. He performs the process of taking all pairwise bitwise ANDs of the numbers once. The binary representations of 10, 14 and 7 are "1010", "1110" and "0111" correspondingly. So Manao obtains:
+
+1010 & 1410 = 10102 & 11102 = 10102 = 1010
+1010 & 710 = 10102 & 01112 = 00102 = 210
+1410 & 710 = 11102 & 01112 = 01102 = 610
+
+Thus, the new list contains 10 and 2, but does not contain 14 or 4.
+
+1)
+{30, 29, 27, 23, 15}
+2
+{28, 9, 16, 0, 12}
+
+Returns: "-++-+"
+
+The binary representations of the numbers in X:
+
+11110
+11101
+11011
+10111
+01111
+
+
+Note that 2810 = 111002 was in the list after the first iteration, but does not appear in the final list. 910 (001012), 1610 (100002) and 1210 (011002) occur in the final list, and 0 does not.
+
+2)
+{5, 5, 5, 5, 5}
+50
+{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+Returns: "-----+----"
+
+Remember that duplicates are kept in the list.
+
+3)
+{71258, 1257, 2592588, 2885851, 999928, 123456, 59881, 99999}
+4
+{72, 91, 10, 0, 27, 64, 8}
+
+Returns: "+--+-++"
+
+

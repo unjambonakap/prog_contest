@@ -1,0 +1,59 @@
+PROBLEM STATEMENT
+John and Brus are bored.
+They have n+m common friends.
+n of them are bored and m are not.
+Every hour John and Brus randomly choose two different friends A and B. If there are several possible pairs (A, B), each one has the same probability of being chosen.
+After that, John has a talk with friend A and Brus has a talk with friend B. For each of two chosen friends, if the friend is not
+bored, he becomes bored after the talk.
+
+You have to find the expected time for all the friends to become bored.
+
+
+DEFINITION
+Class:TheBoredomDivOne
+Method:find
+Parameters:int, int
+Returns:double
+Method signature:double find(int n, int m)
+
+
+NOTES
+-The returned value must be accurate to within a relative or absolute value of 1E-9.
+
+
+CONSTRAINTS
+-n will be between 1 and 47, inclusive.
+-m will be between 1 and 47, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+1
+
+Returns: 1.0
+
+There are two friends overall. Since John and Brus always choose different friends for a talk, both friends will be bored after one hour.
+
+1)
+2
+1
+
+Returns: 1.5
+
+Here John and Brus can choose two friends that are already bored, so the expectation is more than 1 hour.
+
+2)
+1
+2
+
+Returns: 2.0
+
+
+
+3)
+4
+7
+
+Returns: 13.831068977298521

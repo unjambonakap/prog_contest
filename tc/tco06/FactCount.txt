@@ -1,0 +1,69 @@
+PROBLEM STATEMENT
+Given a collection of facts, we would like to get rid of as much redundancy as possible.
+The facts involved in this problem are members of a transitive relation between
+uppercase letters. So each fact is a pair of uppercase letters such as AB
+meaning that A is related to B.  A letter may or may not be related to itself,
+but transitivity holds: if A is related to B and B is related to C then we
+can infer that A is related to C.
+
+Create a class FactCount that contains a method minFacts that is given a 
+vector <string> known and that returns the size of the smallest set of facts that
+will allow us to infer everything (and only those things) that can be inferred from the facts
+contained in known. 
+
+Each element of known will contain 1 or more facts separated by a single space. The smallest set of facts may contain facts that can be inferred from
+known but that are not contained in it. 
+
+
+
+DEFINITION
+Class:FactCount
+Method:minFacts
+Parameters:vector <string>
+Returns:int
+Method signature:int minFacts(vector <string> known)
+
+
+CONSTRAINTS
+-known will contain between 1 and 50 elements, inclusive.
+-Each element of known will contain between 2 and 50 characters, inclusive.
+-Each element of known will consist of pairs of uppercase letters ('A'-'Z'), separated by a space (' ').
+
+
+EXAMPLES
+
+0)
+{"AA AA AA AB"}
+
+Returns: 2
+
+
+
+   AA and AB capture all the content of the 4 facts in known.
+
+
+
+
+
+1)
+{"AB AC CA AA BC", "AD"}
+
+Returns: 4
+
+
+
+   AB, CA, BC, and AD allow us to infer both AA (AB, BC, CA gives AA by transitivity)
+   and AC (AB, BC gives AC by transitivity), and there is no smaller subset that
+   allows us to infer all the known facts.
+
+2)
+{"AB BA BC CB"}
+
+Returns: 3
+
+
+
+   The set {AC,BA,CB} allows us to infer exactly the same facts. Note that AC is
+   not a fact contained in known, but these 3 facts allow us to infer exactly the
+   same things that we can infer from the 4 facts contained in known.
+

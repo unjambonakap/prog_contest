@@ -1,0 +1,123 @@
+PROBLEM STATEMENT
+
+There are two buildings opposite each other as in the figure below.
+On the left building, there is a rectangular window, with the lower
+and upper sides given by ylow and yhigh (the y-coordinate
+as shown in the image: starting with 0.0 at the bottom and increasing
+upwards). On the building on the opposite
+side there is also a window, but it is not necessarily rectangular. Its shape
+is a convex polygon, with the x- and y-coordinates (as
+shown in the image: x-coordinate increasing to the back, y-coordinate starting
+with 0.0 at the bottom and increasing upwards) of the corners given by the vector <int>s
+xwindow and ywindow (the i-th corner is at the
+x-coordinate xwindow[i] and at the y-coordinate
+ywindow[i]). Between the two buildings there is an opaque wall of
+height hwall, at a distance of dfrog from the left
+building and dfly from the right building (assume that the wall
+is infinitely thin).
+
+
+
+
+
+A frog lies at some point on the window of the left building, and a
+fly lies at some point on the window of the right building.
+Assuming that the frog and fly are positioned randomly (uniformly) at
+some point on the windows, what is the probability that the frog
+can see the fly (i.e., the line of sight between them does not cross
+the wall)?
+
+
+
+DEFINITION
+Class:FrogAndFly
+Method:visibility
+Parameters:int, int, int, int, int, vector <int>, vector <int>
+Returns:double
+Method signature:double visibility(int hwall, int dfrog, int dfly, int ylow, int yhigh, vector <int> xwindow, vector <int> ywindow)
+
+
+NOTES
+-The return value must be within 1e-9 absolute or relative error of the actual result.
+
+
+CONSTRAINTS
+-hwall will be between 0 and 100, inclusive.
+-dfrog will be between 1 and 100, inclusive.
+-dfly will be between 1 and 100, inclusive.
+-ylow will be between 0 and 100, inclusive.
+-yhigh will be between 0 and 100, inclusive.
+-ylow will be smaller than yhigh.
+-xwindow and ywindow will have between 3 and 50 elements, inclusive.
+-xwindow and ywindow will have the same number of elements.
+-Each element of xwindow will be between 0 and 100, inclusive.
+-Each element of ywindow will be between 0 and 100, inclusive.
+-The polygon defined by the coordinates represented by the elements of xwindow and ywindow will be a convex polygon with non-zero area. There will be no two identical points, and no three points will be collinear.
+
+
+EXAMPLES
+
+0)
+10
+10
+10
+5
+15
+{5, 5, 15, 15}
+{5, 15, 15, 5}
+
+Returns: 0.5
+
+The windows on both sides are rectangular with the lower sides at height 5 and the upper sides at height 15. The wall is exactly in the middle between the buildings and has a height of 10. Due to the symmetric configuration, the probability of the fly being visible by the frog here is exactly 0.5 (50%).
+
+1)
+14
+10
+10
+5
+15
+{5, 5, 15, 15}
+{5, 15, 15, 5}
+
+Returns: 0.02
+
+The same situation as above, just the wall has now a height of 14. If both the fly and the frog are above a height of 13, we have a symmetric configuration again with probability 0.5 of the fly being visible by the frog. If the frog or the fly (or both) is below a height of 13, the fly will not be visible by the frog. The probability of both being above a height of 13 is 0.2 * 0.2 = 0.04, so the total probability is 0.04 * 0.5 = 0.02.
+
+2)
+10
+5
+10
+5
+15
+{10, 20, 15}
+{5, 5, 15}
+
+Returns: 0.4166666666666665
+
+A triangular window.
+
+3)
+0
+1
+20
+10
+100
+{0, 10, 20, 30, 15}
+{20, 10, 10, 20, 40}
+
+Returns: 1.0
+
+The wall has height 0, so even from the lowest point (ylow) the frog can always look at the fly.
+
+4)
+100
+30
+10
+20
+40
+{10, 20, 30, 20}
+{20, 10, 20, 30}
+
+Returns: 0.0
+
+The wall is now too high and hides the whole opposite window, so the frog can never look directly at the fly.

@@ -1,0 +1,71 @@
+PROBLEM STATEMENT
+Fox Jiro and Haruko play a game with two piles of cards: pile A and pile B. Pile A and pile B contain same number of cards. Each card contains a real number between 1.0 and 100.0. Initially, the two players have 0 points. Then they repeat following operations exactly k times:
+
+
+They choose two cards from the piles (one from pile A and another from pile B).
+The choosen cards are removed from the piles. 
+Jiro earns max{a+b, a*b} points and Haruko earns min{a+b, a*b} points (where a and b are the numbers written on the two cards that were removed).
+
+
+You are given a vector <double> pileA, a vector <double> pileB, and an int k. Return the maximal possible value of (Jiro's points) / (Haruko's points).
+
+DEFINITION
+Class:FoxCardGame
+Method:theMaxProportion
+Parameters:vector <double>, vector <double>, int
+Returns:double
+Method signature:double theMaxProportion(vector <double> pileA, vector <double> pileB, int k)
+
+
+NOTES
+-The returned value must have an absolute or relative error less than 1e-9.
+
+
+CONSTRAINTS
+-pileA and pileB will contain between 1 and 50 elements, inclusive.
+-pileA and pileB will contain the same number of elements.
+-Each element of pileA and pileB will be between 1.0 and 100.0, inclusive.
+-k will be between 1 and the number of elements in pileA, inclusive.
+
+
+EXAMPLES
+
+0)
+{1, 2, 3}
+{4, 5, 6}
+2
+
+Returns: 1.7692307692307692
+
+
+Choosing cards with numbers 3 and 6, Jiro earns 3*6 = 18 points and Haruko earns 3+6 = 9 points.
+Choosing cards with numbers 1 and 4, Jiro earns 1+4 = 5 points and Haruko earns 1*4 = 4 points.
+
+So the solution is (18+5) / (9+4) = 1.769230...
+
+1)
+{1.234, 5.678, 9.012, 3.456, 7.89}
+{2.345, 6.789, 9.876, 5.432, 1.012}
+3
+
+Returns: 4.159424420079523
+
+
+
+2)
+{1, 1.1, 1.2, 1.3, 1.4, 1.5}
+{5, 10, 15, 20, 25, 30}
+2
+
+Returns: 1.3972602739726028
+
+
+
+3)
+{85.302, 92.798, 76.813, 37.994, 36.737, 98.659}
+{13.352, 7.3094, 54.761, 8.2706, 63.223, 37.486}
+3
+
+Returns: 33.58603889836175
+
+

@@ -1,0 +1,59 @@
+PROBLEM STATEMENT
+
+You have m workers numbered 1 through m, and you have n tasks that must be completed.  You know which tasks can be performed by each of the workers.  If worker i completes t different tasks, he must be paid cost[i]*t2.  You would like to minimize the total cost of completing all the tasks.
+
+
+You will be given a vector <string> can describing the capabilities of your workers.  The i-th element describes worker i and contains n characters.  The j-th character is 'Y' if the worker can perform the j-th task, and 'N' if he can't.  You will also be given a vector <int> cost.  The i-th element of cost is the cost of worker i (as used in the formula above).  All indices are 1-based.  Return the minimal total cost required to complete all the tasks, or -1 if all the tasks cannot be completed.
+
+
+
+DEFINITION
+Class:JobPlanner
+Method:minimalCost
+Parameters:vector <string>, vector <int>
+Returns:int
+Method signature:int minimalCost(vector <string> can, vector <int> cost)
+
+
+CONSTRAINTS
+-can will contain between 1 and 50 elements, inclusive.
+-All elements of can will contain the same number of characters.
+-Each element of can will contain between 1 and 50 characters, inclusive.
+-Each element of can will contain only 'Y' and 'N' characters.
+-cost will contain the same number of elements as can.
+-Each element of cost will be between 1 and 500,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{"YY","YY"}
+{1,2}
+
+Returns: 3
+
+In this case each worker can perform any task. It is better to give one task to the first worker, and another task to the second worker. The total cost is 1 * 12 + 2 * 12 = 3.
+
+1)
+{"YY","YY"}
+{1,5}
+
+Returns: 4
+
+In this case it is better to give both tasks to the first worker since the second one is too expensive. The total cost is 1 * 22 + 5 * 02 = 4.
+
+2)
+{"YN", "YY"}
+{1, 5}
+
+Returns: 6
+
+In this case the first worker cannot perform the second task, so we need to use the second worker. The total cost is 1 * 12 + 5 * 12 = 6.
+
+3)
+{"YN", "YN"}
+{1, 1}
+
+Returns: -1
+
+In this case the second task cannot be completed at all.

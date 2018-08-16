@@ -1,0 +1,64 @@
+PROBLEM STATEMENT
+Warning: This problem statement contains superscripts and/or subscripts. It may not display properly outside of the applet.
+
+
+Tomek and Wojtek are testing their new revolutionary BitX network transmission technology. It is based on a system of incredibly precise clocks. The transmission protocol uses a single cable and just two different voltages, called high and low. During the transmission of a sequence of bits the signal is high while '1' bits are being transmitted and low while '0' bits are being transmitted. Therefore, during the transmission of a sequence of bits b0, b1, ..., bm - 1 the number of signal changes is equal to the number of indices i between 0 and m - 2, inclusive, such that bi is different from bi + 1.
+
+
+Tomek is going to transmit n elements of the arithmetic sequence a * x + b to Wojtek using BitX. He will transmit the binary representations of numbers a * 1 + b, a * 2 + b, ..., a * n + b sequentially, without any breaks or delimiters between consecutive numbers. For example, if a = 3, b = 5, n = 4, the sequence of bits he will transmit will be 10001011111010001. The number of signal changes will therefore be equal to 8.
+
+
+You are given long longs a, b and n. Return the total number of signal changes during Tomek's transmission.
+
+
+DEFINITION
+Class:SequenceTransmission
+Method:signalChanges
+Parameters:long long, long long, long long
+Returns:long long
+Method signature:long long signalChanges(long long a, long long b, long long n)
+
+
+CONSTRAINTS
+-a will be between 1 and 40,000, inclusive.
+-b will be between 1 and 1018, inclusive.
+-n will be between 1 and 1012, inclusive.
+
+
+EXAMPLES
+
+0)
+3
+5
+4
+
+Returns: 8
+
+This example is from the problem statement.
+
+1)
+1
+576460752303423487
+1
+
+Returns: 1
+
+b consists of only 1s in binary representation.
+
+2)
+1
+1
+10
+
+Returns: 18
+
+The sequence transmitted is (2, 3, 4, 5, 6, 7, 8, 9, 10, 11).
+
+3)
+40000
+1000000000000000000
+1000000000000
+
+Returns: 27066924353831
+
+

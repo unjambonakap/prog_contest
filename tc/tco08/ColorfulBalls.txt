@@ -1,0 +1,76 @@
+PROBLEM STATEMENT
+
+We have a bag that contains N balls of different colors.
+In each turn we pick two balls from the bag, one after another, and paint the second one with the first one's color.
+After the paint dries, we put both balls back into the bag and shuffle its contents.
+
+
+
+You are given a string colors describing the initial colors. More precisely, each character in colors
+corresponds to a single ball. Balls represented by equal characters have the same color.
+
+
+
+Return the expected number of turns until all the balls have the same color.
+
+
+DEFINITION
+Class:ColorfulBalls
+Method:expectedStepCount
+Parameters:string
+Returns:double
+Method signature:double expectedStepCount(string colors)
+
+
+NOTES
+-The returned value must be accurate to within a relative or absolute value of 1E-9.
+
+
+CONSTRAINTS
+-colors will contain between 1 and 24 characters, inclusive.
+-Each character in colors will be an uppercase letter ('A'-'Z').
+
+
+EXAMPLES
+
+0)
+"AB"
+
+Returns: 1.0
+
+In the first turn we will paint one ball with the other's color, and we are done.
+
+1)
+"Q"
+
+Returns: 0.0
+
+If there is just a single ball, all balls already have the same color, and thus the correct answer is zero.
+
+2)
+"AAAAAAA"
+
+Returns: 0.0
+
+All balls already have the same color.
+
+3)
+"ZCZ"
+
+Returns: 3.0
+
+
+
+4)
+"KLM"
+
+Returns: 4.0
+
+After the first turn we are sure to get a situation that's similar to the one in the previous example.
+
+5)
+"AAABB"
+
+Returns: 11.666666666666668
+
+

@@ -1,0 +1,105 @@
+PROBLEM STATEMENT
+
+Percy would like to become the Penguin Emperor. First, he must go on a long journey to prove himself worthy.
+
+
+
+There are several cities in Penguin Empire.
+All the cities lie on a circle around the great mountain.
+The cities are numbered 0 through numCities-1 in the clockwise direction around the mountain.
+
+
+
+Percy lives in city 0 and that is where he will begin his journey. On the first day he will travel to a city adjacent to city 0. On the second day he will travel to another city two cities away from his current city. And so on: for each k, on the k-th day he will travel to a new city k cities away. Each day, Percy can choose a new direction of travel: either clockwise or counter-clockwise around the mountain.
+
+
+
+
+
+
+
+You are given the int numCities representing the number of cities in the Penguin Empire. You are also given a long long daysPassed representing the number of days that have passed since Percy's journey began. Compute and return the number of journeys that take daysPassed days and return home to city 0. Two journeys are considered different if there is some k such that after k days the traveler is in different cities. As the number of journeys can be quite large, please return the result modulo 1,000,000,007.
+
+
+DEFINITION
+Class:PenguinEmperor
+Method:countJourneys
+Parameters:int, long long
+Returns:int
+Method signature:int countJourneys(int numCities, long long daysPassed)
+
+
+CONSTRAINTS
+-numCities will be between 2 and 350, inclusive.
+-daysPassed will be between 1 and 10^18, inclusive.
+
+
+EXAMPLES
+
+0)
+3
+2
+
+Returns: 2
+
+There are two ways to have a Journey that returns home after two days.
+
+0 -> 1 -> 0 where directions are CW-CW
+0 -> 2 -> 0 where directions are CCW-CCW
+
+CW = clockwise
+CCW = counter-clockwise
+
+1)
+4
+3
+
+Returns: 2
+
+There are two ways to have a Journey that returns home after three days.
+
+0 -> 1 -> 3 -> 0 where directions are CW-CW-CCW or CW-CCW-CCW
+0 -> 3 -> 1 -> 0 where directions are CCW-CCW-CW or CWW-CW-CW
+
+CW = clockwise
+CCW = counter-clockwise
+
+2)
+5
+36
+
+Returns: 107374182
+
+
+
+3)
+300
+751
+
+Returns: 413521250
+
+
+
+4)
+300
+750
+
+Returns: 0
+
+
+
+5)
+350
+1000000000000000000
+
+Returns: 667009739
+
+
+
+6)
+5
+7
+
+Returns: 12
+
+

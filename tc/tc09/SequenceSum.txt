@@ -1,0 +1,104 @@
+PROBLEM STATEMENT
+
+Given two sequences X=(X[0], ..., X[N-1]) and Y=(Y[0], ..., Y[M-1]), their pairwise sum is the sequence:
+
+
+X@Y = (X[0]+Y[0], X[0]+Y[1], ..., X[0]+Y[M-1], X[1]+Y[0], X[1]+Y[1], ..., X[N-1]+Y[M-1]).
+
+
+For example, if X=(0,10) and Y=(0,2,1) then X@Y=(0,2,1,10,12,11).
+
+
+Formally, X@Y is a sequence of length NM, where for each i in {0,...,N-1} and for each j in {0,...,M-1} we have (X@Y)[i*M+j] = X[i]+Y[j]. Note that X@Y is not necessarily the same sequence as Y@X.
+
+
+You are given vector <int>s A, B, C, D, E, F, and a vector <string> Z.
+Concatenate the elements of Z to get a space-separated sequence of non-negative integers NEEDLE. Sequence HAYSTACK is defined as follows:
+
+
+HAYSTACK = ((((A @ B) @ C) @ D) @ E) @ F
+
+
+Write a method that will find and return the smallest non-negative integer X such that if we delete the first X elements of the sequence HAYSTACK, then the sequence HAYSTACK will start with the sequence NEEDLE. If there is no such X, return -1 instead.
+
+
+DEFINITION
+Class:SequenceSum
+Method:findSubstring
+Parameters:vector <int>, vector <int>, vector <int>, vector <int>, vector <int>, vector <int>, vector <string>
+Returns:long long
+Method signature:long long findSubstring(vector <int> A, vector <int> B, vector <int> C, vector <int> D, vector <int> E, vector <int> F, vector <string> Z)
+
+
+CONSTRAINTS
+-Each of A, B, C, D, E, and F will contain between 1 and 50 elements, inclusive.
+-Each element in each of A, B, C, D, E, and F will be between 0 and 100,000,000, inclusive.
+-Z will contain between 1 and 50 elements, inclusive.
+-Each element of Z will contain between 0 and 50 characters, inclusive.
+-The concatenation of the elements of Z will be a non-empty sequence of non-negative integers separated by single spaces. There will be no leading or trailing spaces, no integer will have unnecessary leading zeros, and each integer will be between 0 and 600,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{0,10}
+{0,2,1}
+{0}
+{0}
+{0}
+{0}
+{"1 10 12"}
+
+Returns: 2
+
+If Y=(0), then for any X we have X@Y=X. Hence the sequence HAYSTACK in this test case is the sequence (0,2,1,10,12,11) from the problem statement. After we delete the first 2 elements, we get the sequence (1,10,12,11) which starts with (1,10,12).
+
+1)
+{0,10}
+{0,2,1}
+{0}
+{0}
+{0}
+{0}
+{"1 1","0 12"}
+
+Returns: 2
+
+Remember to concatenate the elements of Z before parsing the sequence NEEDLE.
+
+2)
+{1}
+{2}
+{3}
+{4}
+{5}
+{6}
+{"21"}
+
+Returns: 0
+
+
+
+3)
+{1,2}
+{1,2}
+{1,2}
+{1,2}
+{1,2}
+{1,2}
+{"9"}
+
+Returns: 7
+
+In this test case the sequence HAYSTACK starts with 6,7,7,8,7,8,8,9,..., hence we need to delete the first 7 elements.
+
+4)
+{1,2,3,4,5,6}
+{0}
+{0}
+{0,0}
+{0,0}
+{0,0}
+{"3 3 3"}
+
+Returns: 16

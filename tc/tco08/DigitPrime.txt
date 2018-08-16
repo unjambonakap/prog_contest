@@ -1,0 +1,71 @@
+PROBLEM STATEMENT
+
+A number is called 2-digit-prime if using each of its digits at most once, we can make a prime number containing exactly 2 digits (with no leading zeros).  For example, 153 is 2-digit-prime because we can use its digits to make 13, which is a prime number with 2 digits (note that we can also make 53 and 31). Given ints a and b, return the number of 2-digit-prime numbers between a and b, inclusive. See examples for further clarification.
+
+
+DEFINITION
+Class:DigitPrime
+Method:countNumbers
+Parameters:int, int
+Returns:int
+Method signature:int countNumbers(int a, int b)
+
+
+CONSTRAINTS
+-b will be between 10 and 100000, inclusive.
+-a will be between 10 and b, inclusive.
+
+
+EXAMPLES
+
+0)
+11
+20
+
+Returns: 6
+
+2-digit-prime numbers are:
+11 (note that we can use some digit twice if it appears twice in the number), 13, 14 (using its digits we can make 41), 16 (we can make 61), 17 and 19.
+
+1)
+37
+98
+
+Returns: 21
+
+2)
+9003
+9003
+
+Returns: 0
+
+Note that we are looking for 2 digit prime numbers with no leading zeros, so 03 is not considered a 2 digit prime number.
+
+3)
+11
+11111
+
+Returns: 8777
+
+4)
+97463
+100000
+
+Returns: 2436
+
+5)
+33561
+33601
+
+Returns: 40
+
+The only number in this interval that is not 2-digit-prime is 33600.
+
+
+6)
+11000
+11999
+
+Returns: 1000
+
+Each number in this interval is 2-digit-prime.

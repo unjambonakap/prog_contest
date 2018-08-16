@@ -1,0 +1,58 @@
+PROBLEM STATEMENT
+
+A string p is called anti-palindrome if p[i] doesn't equal to p[n - i - 1] for each 0 <= i < (n-1)/2, where n is the length of p. It means that each character (except the middle in the case of a string of odd length) must be different from its symmetric character. For example, "c", "cpp", "java" are anti-palindrome, but "test", "pp" and "weather" are not.
+
+
+You are given a string s. Rearrange its letters in such a way that the resulting string is anti-palindrome. If there are several solutions, return the one that comes earliest alphabetically. If it is impossible to do it, return the empty string.
+
+
+
+DEFINITION
+Class:AntiPalindrome
+Method:rearrange
+Parameters:string
+Returns:string
+Method signature:string rearrange(string s)
+
+
+CONSTRAINTS
+-s will contain between 1 and 50 characters, inclusive.
+-s will contain only lowercase letters ('a'-'z').
+
+
+EXAMPLES
+
+0)
+"test"
+
+Returns: "estt"
+
+
+
+1)
+"aabbcc"
+
+Returns: "aabcbc"
+
+
+
+2)
+"reflectionnoitcelfer"
+
+Returns: "cceeeeffiillnnoorrtt"
+
+
+
+3)
+"hello"
+
+Returns: "ehllo"
+
+
+
+4)
+"www"
+
+Returns: ""
+
+

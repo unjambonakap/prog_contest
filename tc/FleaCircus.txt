@@ -1,0 +1,115 @@
+PROBLEM STATEMENT
+
+The amazing flea circus Nehryzma is in town!
+
+
+The most famous act of this flea circus looks as follows:
+On the table there are N marked spots, labeled 0 through N-1.
+Initially, there is a single flee sitting on each of the spots.
+The fleas have cute little t-shirts with numbers.
+For each i, the flea that starts on the spot number i has the number i on its t-shirt.
+During the act, the fleas jump between the spots according to the rules explained below.
+
+
+The fleas are directed by their trainer, Mr. Kocurisko.
+When practicing for the act, Mr. Kocurisko had drawn N arrows onto the table.
+Each arrow started at a marked spot and ended at a marked spot (possibly the same one).
+For each marked spot, there was exactly one arrow leaving it, and one arrow entering it.
+The fleas then had to jump according to the arrows.
+Each time Mr. Kocurisko clicked his tongue, each flea had to jump from her marked spot X to the marked spot at the end of the arrow that leaves the spot X.
+(Note that it is possible that some fleas just jumped on the spot.)
+Obviously, once all fleas landed, there was again exactly one flea on each of the marked spots, so the process could continue in the same way.
+
+
+Once the fleas mastered the routine, Mr. Kocurisko erased the arrows.
+Now the act looked pretty amazing: each time he clicked the tongue, all fleas jumped seemingly at random, and no two of them ever collided.
+What a wonderful trick!
+
+
+Little Julka came to see the show today.
+However, she was standing at the back of a huge crowd, so she only managed to catch a single glimpse of the act.
+
+
+You are given a vector <string> afterFourClicks.
+Concatenate the elements of afterFourClicks to obtain one long string.
+This string will contain a sequence S, consisting of N nonnegative integers separated by single spaces.
+For each i, the i-th element of S is the number of the flea that was on the marked spot number i after the trainer clicked his tongue four times.
+Count all possible configurations of arrows on the table that correspond to the state described by S.
+In other words, count all possible configurations of fleas after the first click of the tongue (i.e., three clicks before the current one).
+As this number can be huge, return it modulo 1,000,000,009 (10^9 + 9).
+
+
+DEFINITION
+Class:FleaCircus
+Method:countArrangements
+Parameters:vector <string>
+Returns:int
+Method signature:int countArrangements(vector <string> afterFourClicks)
+
+
+NOTES
+-It is possible that for the given input data no valid configuration of arrows exists. In that case the correct return value is obviously 0.
+-Note that the constraints imply that N is at most 652.
+
+
+CONSTRAINTS
+-afterFourClicks will contain between 1 and 50 elements, inclusive.
+-Each element of afterFourClicks will contain between 1 and 50 characters, inclusive.
+-Each character in each element of afterFourClicks will be a digit ('0'-'9') or a space (' ').
+-The string Z obtained by concatenating all elements of afterFourClicks will contain a sequence S of N nonnegative integers, separated by single spaces.
+-The string Z will have no leading spaces and no trailing spaces.
+-The numbers in the string Z will have no unnecessary leading zeroes.
+-All integers in S will be between 0 and N-1, inclusive.
+-All integers in S will be pairwise distinct.
+
+
+EXAMPLES
+
+0)
+{"1 2 0 3"}
+
+Returns: 1
+
+The only possible configuration of arrows: 0->1, 1->2, 2->0, 3->3.
+This is what happens to each of the four fleas:
+
+Flea 0 starts at the spot 0. It jumps to spot 1, then to spot 2, then to spot 0, and finally to spot 1.
+Flea 1 starts at the spot 1. It jumps to spot 2, then to spot 0, then to spot 1, and finally to spot 2.
+Flea 2 starts at the spot 2. It jumps to spot 0, then to spot 1, then to spot 2, and finally to spot 0.
+Flea 3 starts at the spot 3. It makes four jumps on the spot.
+
+
+1)
+{"1 2 ", "0 3"}
+
+Returns: 1
+
+This is exactly the same sequence S as in Example 0.
+
+2)
+{"0 1 2"}
+
+Returns: 4
+
+Either all three fleas jump on the spot, or one of them jumps on the spot and the other two swap places in each turn.
+
+3)
+{"0 1 2 3 5 4"}
+
+Returns: 0
+
+If the fleas jump according to the rules in the problem statement, you cannot see this situation after four jumps.
+
+4)
+{"3 6 7 9 8 2 1", "0 5 1 0 4"}
+
+Returns: 4
+
+
+
+5)
+{"1 0 7 5 6 3 4 2"}
+
+Returns: 48
+
+

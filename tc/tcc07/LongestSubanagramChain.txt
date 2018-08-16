@@ -1,0 +1,66 @@
+PROBLEM STATEMENT
+
+A word A is called an anagram of a word B if it is possible to change the order of letters in A to get the word B. For example, "coder" is an anagram of "decor".
+
+
+A word A is called a subword of a word B if A can be obtained from B by removing some letters (possibly 0) from the beginning of B, and removing some letters (possibly 0) from the end of B.
+For example, "coder" is a subword of "decoder".
+
+
+A word A is called a subanagram of a word B if there is a word C such that C is an anagram of B and A is a subword of C. For example, "coder" is a subanagram of "record" because
+the word "coderr" is an anagram of "record" and contains "coder" as a subword.
+
+
+Let words A and B have the same number of characters. We say that word A dominates word B if for all i, the i-th letter of A is equal to the i-th letter of B or comes after it alphabetically. For example, the word "coder" dominates the word "amber", but doesn't dominate the word "after" (because the 3-rd letter of "coder" is "d" which comes alphabetically before "t" - the 3-rd letter of "after").
+
+
+A sequence of words A0, A1, ..., An-1 of equal length is called a chain if, for all i from 1 to n-1, word Ai dominates word Ai-1.
+
+
+You are given a vector <string> B. Return the maximal value of k where there exists a chain A0, A1, ..., An-1 such that all words in the chain have length k, and for all i, word Ai is a subanagram of word B[i].
+
+
+
+DEFINITION
+Class:LongestSubanagramChain
+Method:getLength
+Parameters:vector <string>
+Returns:int
+Method signature:int getLength(vector <string> B)
+
+
+CONSTRAINTS
+-B will contain between 1 and 50 elements, inclusive.
+-Each element of B will contain between 1 and 50 characters, inclusive.
+-Each element of B will contain only lowercase letters ('a'-'z').
+
+
+EXAMPLES
+
+0)
+{"abaa", "abab", "aaba", "babb"}
+
+Returns: 3
+
+In this example the required chain is, for example, "aaa", "aba", "aba", "bbb".
+
+1)
+{"aa", "bbb", "ccc", "ddd", "eee"}
+
+Returns: 2
+
+Note that elements of B can have different length.
+
+2)
+{"coder", "coding", "topcoder", "program"}
+
+Returns: 4
+
+
+
+3)
+{"b", "a"}
+
+Returns: 0
+
+

@@ -1,0 +1,79 @@
+PROBLEM STATEMENT
+King Dengklek is the first king of the Kingdom of Ducks. The kingdom consists of N cities, conveniently numbered 0 through N-1. The first M cities (i.e., cities 0 through M-1) are restricted cities.
+
+Initially, there are no roads in the kingdom, so no two cities are connected. King Dengklek wants to connect the cities using exactly K bidirectional roads, such that:
+
+
+There is at most one road connecting each pair of cities.
+No road connects a city to itself.
+Each restricted city is connected to exactly two other cities.
+For each pair of cities, there is at least one path (i.e., a sequence of consecutive roads) connecting them.
+
+
+You are given the ints N, M, and K. Return the number of different ways King Dengklek can build the roads, modulo 1,000,000,007. Two ways are different if there is a pair of cities that is connected in one way but not connected in the other way.
+
+DEFINITION
+Class:KingdomAndCities
+Method:howMany
+Parameters:int, int, int
+Returns:int
+Method signature:int howMany(int N, int M, int K)
+
+
+CONSTRAINTS
+-N will be between 1 and 50, inclusive.
+-M will be between 0 and 2, inclusive.
+-M will be less than or equal to N.
+-K will be between 1 and 50, inclusive.
+
+
+EXAMPLES
+
+0)
+3
+0
+3
+
+Returns: 1
+
+Here is the only possible way.
+
+
+
+1)
+4
+1
+4
+
+Returns: 9
+
+Here are the nine possible ways. The restricted city (city 0) is colored blue.
+
+
+
+2)
+5
+2
+11
+
+Returns: 0
+
+There are too many roads to build.
+
+3)
+5
+0
+8
+
+Returns: 45
+
+
+
+4)
+10
+2
+20
+
+Returns: 150810825
+
+

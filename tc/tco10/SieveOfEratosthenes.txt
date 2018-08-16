@@ -1,0 +1,59 @@
+PROBLEM STATEMENT
+
+The Sieve of Erathosthenes is an ancient method used to find all prime numbers between 2 and a given upper bound maxNum, inclusive. It works like this:
+
+
+make a list of all numbers between 2 and maxNum, inclusive
+for x = 2 to maxNum
+   if x is not scratched
+      for y = 2 to maxNum/x
+         if x*y is not scratched, scratch x*y
+      end for
+   end if
+end for
+
+
+In this fashion, every composite number in the range will get scratched while every prime number will remain unscratched.  Return the last number which gets scratched when the Sieve of Eratosthenes is run with the given maxNum.
+
+
+DEFINITION
+Class:SieveOfEratosthenes
+Method:lastScratch
+Parameters:int
+Returns:int
+Method signature:int lastScratch(int maxNum)
+
+
+CONSTRAINTS
+-maxNum will be between 4 and 2000000000 (2*109), inclusive.
+
+
+EXAMPLES
+
+0)
+18
+
+Returns: 15
+
+When x=2, the numbers 4, 6, 8, 10, 12, 14, 16, and 18 are scratched. When x=3, only 9 and 15 are scratched (other multiples like 6 and 12 were already scratched in a previous step). For x=5,7,11,13 and 17, there are no new scratches. Therefore, the answer is 15.
+
+1)
+5
+
+Returns: 4
+
+2, 3 and 5 are all primes, so the only scratched number is 4.
+
+2)
+100
+
+Returns: 91
+
+
+
+3)
+400
+
+Returns: 361
+
+

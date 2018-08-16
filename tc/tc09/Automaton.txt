@@ -1,0 +1,143 @@
+PROBLEM STATEMENT
+
+A finite automaton is a mathematical object that consists of the following components:
+
+
+Alphabet A. This is simply a set of characters.
+Set of states S. One of the states is called starting and some of the states are called accepting.
+Transition function F. For each state i from S and for each character j from A the result of this function is some state F(i, j) from S.
+
+
+For each string composed of alphabet characters, an automaton either accepts or rejects it. This is done as follows. First, the automaton is set to its starting state. Then it subsequently reads all the characters from the given string. For each character c it reads, the automaton's state is changed to F(cur, c), where cur is the automaton's state immediately before reading this character. After all characters are read, the automaton checks its final state. If it is accepting, then the string is accepted, otherwise it is rejected.
+
+
+You are given a vector <string> transitions describing a finite automaton. The number of elements in transitions is the number of states in the automaton.  States are denoted by consecutive uppercase letters starting from 'A'. The first state is the starting state and the last state is the only accepting state. The input alphabet consists of consecutive lowercase letters starting from 'a', and the size of the alphabet is equal to the length of transitions[0].
+
+
+
+The transition function is defined as follows.  From the i-th state (where state 0 is 'A'), the j-th symbol (where symbol 0 is 'a') will lead to the X-th state, where X = transitions[i][j].
+
+
+
+First, the automaton is given an input string of length stringLength consisting entirely of 'a' symbols.  The automaton either accepts or rejects the string.  Then, the following happens modifications times.  One of the symbols in the input string is modified, the automaton is reset to its starting state, and it is then given the new input string, which it either accepts or rejects.
+
+
+
+To generate the sequence of modifications you should generate arrays x and c using the following code:
+
+
+
+int initElements = length(x0);
+int letters = length(transitions[0]);
+
+for (int i = 0; i < initElements; i++) {
+	x[i] = x0[i] mod stringLength;
+	c[i] = c0[i] mod letters;
+}
+
+for (int i = initElements; i < modifications; i++) {
+	x[i] = 0;
+	c[i] = 0;	
+	for (int j = i - initElements; j < i; j++) {
+		x[i] = (x[i] + xa[j - i + initElements] * x[j]) mod stringLength;
+		c[i] = (c[i] + ca[j - i + initElements] * c[j]) mod letters;
+	}
+}
+
+
+
+The i-th element of the array x is the position where the i-th modification occurs. The symbol at position x[i] of the string should be modified to the c[i]-th symbol of the alphabet (where symbol 0 is 'a'). All indices are 0-based.
+
+
+
+Return the number of times the automaton accepts a string.
+
+
+DEFINITION
+Class:Automaton
+Method:numberOfMatchings
+Parameters:vector <string>, int, vector <int>, vector <int>, vector <int>, vector <int>, int
+Returns:int
+Method signature:int numberOfMatchings(vector <string> transitions, int stringLength, vector <int> x0, vector <int> xa, vector <int> c0, vector <int> ca, int modifications)
+
+
+CONSTRAINTS
+-transitions will contain between 1 and 10 elements, inclusive.
+-Each element of transitions will contain between 1 and 10 charactes, inclusive.
+-All elements of transitions will contain the same number of characters.
+-transitions will only contain uppercase letters between 'A' and 'A' + n - 1, inclusive, where n is the number of elements in transitions.
+-stringLength and modifications will each be between 1 and 125000, inclusive.
+-ca will contain between 1 and 50 elements, inclusive.
+-ca will contain at most modifications elements.
+-ca, xa, x0 and c0 will each contain the same number of elements.
+-Each element of ca, xa, x0 and c0 will be between 0 and 10000, inclusive.
+
+
+EXAMPLES
+
+0)
+{"AA"}
+1
+{0, 0, 0, 0, 0}
+{0, 0, 0, 0, 0}
+{1, 0, 1, 0, 1}
+{0, 0, 0, 0, 0}
+5
+
+Returns: 6
+
+An automaton with only one state accepts all strings, so the answer is 6.
+
+
+1)
+{"BA", "AB"}
+1
+{0, 0, 0, 0, 0}
+{0, 0, 0, 0, 0}
+{1, 0, 1, 0, 1}
+{0, 0, 0, 0, 0}
+5
+
+Returns: 3
+
+This automaton has 2 states.  It changes state on the symbol 'a' and does nothing on the symbol 'b', so it only accepts strings containing an odd number of 'a's.  Of the 6 given strings ("a", "b", "a", "b", "a" and "b"), it accepts only 3.
+
+
+2)
+{"BC", "CA", "AB"}
+5
+{0, 1, 2, 3, 4}
+{0, 0, 0, 0, 0}
+{1, 1, 1, 1, 1}
+{0, 0, 0, 0, 0}
+5
+
+Returns: 2
+
+The automaton is consecutively given 6 strings: "aaaaa", "baaaa", "bbaaa", "bbbaa", "bbbba" and "bbbbb". Two of them ("aaaaa" and "bbbaa") are accepted.
+
+3)
+{"ABB", "BAA"}
+2
+{0, 1}
+{1, 1}
+{0, 1}
+{1, 1}
+10
+
+Returns: 5
+
+The automaton is consecutively given 11 strings: "aa", "aa", "ab", "ab", "cb", "ca", "cc", "cc", "cb", "ca", "ba". Five of them ("ab", "ab", "ca", "ca", "ba") are accepted.
+
+4)
+{"BA", "AB"}
+2
+{0, 3, 5}
+{10, 9, 7}
+{1, 2, 4}
+{5, 1, 3}
+2400
+
+Returns: 1601
+
+

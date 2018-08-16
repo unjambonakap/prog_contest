@@ -1,0 +1,107 @@
+PROBLEM STATEMENT
+We are looking at a rectangular map. We just studied the
+map and want to refold it like it was. We can see the foldlines and tell which
+way they were folded. It looks something like this, where
+each X represents a section of the map, and the letter between horizontally or
+vertically adjacent sections tells whether the fold between the sections was up (i.e., the two sections
+were folded so that the 2 visible sides went towards each other) or was down. The interior spaces
+are where horizontal and vertical fold lines cross each other.
+
+   XuXuXdX
+   u u d d
+   XdXuXuX
+
+Each section of the map is the same size rectangle as all the others, and when the
+map is refolded all the sections will be on top of each
+other.  We want to know the minimum number of folds
+required.
+Create a class MapFolder that contains a method minFolds that is given a 
+vector <string> theMap and returns the minimum number of folds required,
+or -1 if it is not possible to refold theMap.
+
+theMap only contains the orientation of the folds. So for the example map, it would
+be  {"uud","uudd","duu"}.
+
+
+
+
+DEFINITION
+Class:MapFolder
+Method:minFolds
+Parameters:vector <string>
+Returns:int
+Method signature:int minFolds(vector <string> theMap)
+
+
+CONSTRAINTS
+-The number of elements in theMap is an odd value between 1 and 49, inclusive.
+-Each character in each element of theMap is 'u' or 'd'.
+-Elements 0, 2, 4, .. all contain exactly k characters, a value between 1 and 49, inclusive.
+-Elements 1, 3, ... all contain exactly k+1 characters.
+
+
+EXAMPLES
+
+0)
+{"uud","uudd","duu"}
+
+Returns: 3
+
+
+
+   We can fold this map in 3 folds as follows:
+    XuXuXdX         XdX
+    u u d d   ==>   d d  ==> XdX  ==> X
+    XdXuXuX         XuX
+
+
+
+
+
+
+
+
+1)
+{"uud","uudu","dud"}
+
+Returns: 4
+
+
+
+   
+    XuXuXdX     XuXuX    XuX     
+    u u d u  => u u d => u u  => XuX =>  X
+    XdXuXdX     XdXuX    XdX 
+
+As shown, we can fold down on the third vertical fold line, then up on the second. Then we fold up on the one horizontal line and finally up on the remaining vertical. Notice that we could not have started by folding up on the second vertical because of the conflict between the leftmost and rightmost fold lines.
+
+
+2)
+{"d"}
+
+Returns: 1
+
+
+
+    XdX  => X
+
+   This map has two sections, so a single fold is all that is needed.
+
+3)
+{"uuuuuuuuuuuuuuuuuuuuu","ududududududududududud","uuuuuuuuuuuuuuuuuuuuu"}
+
+Returns: 22
+
+
+
+
+4)
+{"u", "uu", "u"}
+
+Returns: -1
+
+
+    XuX
+    u u
+    XuX
+Neither the vertical nor the horizontal fold is legal, so we cannot even begin to fold this map.

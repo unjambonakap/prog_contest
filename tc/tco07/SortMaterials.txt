@@ -1,0 +1,70 @@
+PROBLEM STATEMENT
+
+Your shipping company has just delivered some materials to you, and you'd like to find out how many of these materials are useful. All materials are packed into cubical boxes. The information about each box will be given to you in a vector <string> data, with the i-th element representing the i-th box. Each element of data will be formatted as "EDGE QUALITY COLOR" (quotes for clarity), where EDGE and QUALITY are positive integers representing the length of an edge of the box and the quality of the material (higher is better), respectively. COLOR will be a sequence of lowercase letters representing the color of the material.
+
+
+
+A vector <string> requirements will represent the specifications for your project. Each element of requirements will follow one of the following templates (all quotes for clarity only):
+
+"EDGE=X" (where X is a positive integer), which means that you can use only materials from boxes with edge length equal to X.
+"QUALITY=X" (where X is a positive integer), which means that you can use only materials with the quality greater than or equal to X.
+"COLOR=s" (where s is a sequence of lowercase letters), which means that you can use only materials of color s.
+
+
+Given all this information, you are to return the total volume of the materials you can use.
+
+
+DEFINITION
+Class:SortMaterials
+Method:totalVolume
+Parameters:vector <string>, vector <string>
+Returns:int
+Method signature:int totalVolume(vector <string> data, vector <string> requirements)
+
+
+NOTES
+-The volume of a box with edge length of X is equal to X*X*X.
+
+
+CONSTRAINTS
+-data will contain between 1 and 50 elements, inclusive.
+-Each element of data will contain between 5 and 50 characters, inclusive.
+-Each element of data will be formatted as "EDGE QUALITY COLOR" (quotes for clarity), where EDGE and QUALITY are integers between 1 and 99, inclusive, with no leading zeroes, and COLOR is a non-empty sequence of lowercase letters ('a'-'z').
+-requirements will contain between 0 and 50 elements, inclusive.
+-Each element of requirements will contain between 6 and 50 characters, inclusive.
+-Each element of requirements will be formatted as "EDGE=X" (where X is an integer  between 1 and 99, inclusive, with no leading zeroes), "QUALITY=X" (where X is an integer between 1 and 99, inclusive, with no leading zeroes), or "COLOR=s" (where s is a non-empty sequence of lowercase letters ('a'-'z').  All quotes for clarity only.
+
+
+EXAMPLES
+
+0)
+{"1 20 red", "2 30 blue", "10 1 green"}
+{}
+
+Returns: 1009
+
+With no special requirements, you can use all the materials you get. The sum of the volumes is 1*1*1 + 2*2*2 + 10*10*10 = 1009.
+
+1)
+{"1 20 red", "2 30 blue", "10 1 green"}
+{"QUALITY=20"}
+
+Returns: 9
+
+Now you must choose materials with QUALITY of at least 20, so you can not use the third box.
+
+2)
+{"1 20 red", "2 30 blue", "10 1 green", "5 5 red", "5 6 red"}
+{"COLOR=red", "EDGE=5"}
+
+Returns: 250
+
+
+
+3)
+{"1 20 red", "2 30 blue", "10 1 green", "5 5 red", "5 6 red"}
+{"EDGE=1", "EDGE=5"}
+
+Returns: 0
+
+Obviously, no box can have an edge length of 1 and 5 simultaneously.

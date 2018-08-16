@@ -1,0 +1,94 @@
+PROBLEM STATEMENT
+
+Several people play with a 6-sided die and take alternating turns. 
+In each turn the player starts by throwing the die, and the player who throws a '6' wins immediately.
+Obviously, each turn entails a one in six chance of winning. 
+As soon as one player wins, the game ends and all other players lose the game.
+
+
+
+The game is not fair. For example, in a two-player version, the first player is expected to win 6 out of 11 games.
+
+
+
+In our problem playerCount mathematicians decided to play a fair version of the
+game. After a while, they came up with a solution -- they will not take alternating turns. Instead,
+they will find and follow a different sequence of turns that will make the game fair.
+(See notes for a precise definition.)
+
+
+
+For simplicity, assume that the players are assigned the first playerCount letters
+of the alphabet. Then the sequence of turns can be represented as an infinite string 
+of letters. Out of all fair sequences we will be interested in the lexicographically
+smallest one.
+
+
+
+
+You are given an int playerCount, and an int turnNumber.
+Your method should find the lexicographically smallest fair sequence of moves for playerCount
+players, and return a one-character string containing the 
+player that has to play in the turn turnNumber. Turns are numbered starting from 1.
+If there is no fair sequence of moves for playerCount players, return an empty string
+instead.
+
+
+
+DEFINITION
+Class:FairDiceGame
+Method:getPlayer
+Parameters:int, int
+Returns:string
+Method signature:string getPlayer(int playerCount, int turnNumber)
+
+
+NOTES
+-Given two different sequences of turns X and Y, sequence X is lexicographically smaller than Y if and only if at the first place where they differ the character in X is earlier in the alphabet than the one in Y.
+-An infinite sequence of turns S is fair if for any player P and for any number of turns T the following sentence is true: If the players take  turns according to the sequence, then the probability that player P wins in one of the first T turns is at most equal to 1/playerCount.
+
+
+CONSTRAINTS
+-playerCount will be between 2 and 26, inclusive.
+-turnNumber will be between 1 and 20, inclusive.
+
+
+EXAMPLES
+
+0)
+2
+1
+
+Returns: "A"
+
+For two players, there are many fair sequences of turns. In the lexicographically smallest one, the first player must obviously be A.
+
+1)
+2
+2
+
+Returns: "A"
+
+There is at least one fair sequence such that A takes the second turn as well.
+
+2)
+2
+4
+
+Returns: "B"
+
+In the lexicographically smallest fair sequence for two players the player A takes the first three turns, and B takes the fourth one.
+
+3)
+17
+20
+
+Returns: ""
+
+There is no fair sequence of turns for 17 players.
+
+4)
+3
+4
+
+Returns: "B"

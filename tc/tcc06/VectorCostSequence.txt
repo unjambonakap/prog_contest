@@ -1,0 +1,62 @@
+PROBLEM STATEMENT
+Without consulting your data structures textbook, you have coded up a
+homemade Vector class.  At any point in time the vector has a
+capacity, the maximum number of values it can hold, and a
+size, the number of values it currently holds.  Typically,
+adding or removing an element costs 1.  If you attempt to add a value
+to the vector when the size and capacity are equal, the capacity is doubled and then
+the element is added. This incurs a cost of c+1, where c is the
+capacity before the insertion.  If removing an element makes the size
+exactly half (no rounding) of the capacity, then the cost is only 1,
+but the capacity is reduced to the size.  Initially, the capacity is 1
+and the size is 0.  Return the smallest number of additions and
+removals that will produce the cost d.
+
+DEFINITION
+Class:VectorCostSequence
+Method:getSmallest
+Parameters:int
+Returns:int
+Method signature:int getSmallest(int d)
+
+
+CONSTRAINTS
+-d will be between 1 and 1,000,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+
+Returns: 1
+
+Performing a single addition gives a cost of 1.
+
+1)
+2
+
+Returns: 2
+
+Adding an element and then removing it gives a cost of 2.
+
+2)
+6
+
+Returns: 3
+
+We can achieve a cost of 6 with 3 additions.  The first costs 1, the second costs 2 and the last costs 3.
+
+3)
+9
+
+Returns: 5
+
+
+
+4)
+24
+
+Returns: 9
+
+

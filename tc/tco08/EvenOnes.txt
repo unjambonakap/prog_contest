@@ -1,0 +1,70 @@
+PROBLEM STATEMENT
+You are given a rectangular matrix with odd numbers of rows and columns. Each cell of the matrix contains either 0 or 1. In one move, you can select any one row or column of the matrix and replace all 0's with 1's and all 1's with 0's in that row/column. Your aim is to have an even number of 1's in each row and each column.
+The elements of the vector <string> matrix correspond to the rows of the matrix. Return the minimal number of moves needed to achieve your aim, or -1 if it's impossible.
+
+DEFINITION
+Class:EvenOnes
+Method:minOperations
+Parameters:vector <string>
+Returns:int
+Method signature:int minOperations(vector <string> matrix)
+
+
+CONSTRAINTS
+-matrix will contain between 1 and 49 elements, inclusive.
+-Each element of matrix will contain between 1 and 49 characters, inclusive.
+-All elements in matrix will contain the same number of characters.
+-The number of elements in matrix will be odd.
+-The number of characters in each element of matrix will be odd.
+-Each character in each element of matrix will be '0' (zero) or '1' (one).
+
+
+EXAMPLES
+
+0)
+{
+ "111",
+ "011",
+ "001"
+}
+
+Returns: 2
+
+We can first apply the operation to the middle row of the matrix, and then to the middle column.
+
+1)
+{
+  "111",
+  "111",
+  "111",
+  "111",
+  "111"
+}
+
+Returns: 3
+
+We must apply the operations either to all rows or to all columns. As the number of columns is less than the number of rows, we choose the second variant.
+
+2)
+{
+  "00000",
+  "00000",
+  "00000"
+}
+
+Returns: 0
+
+The matrix initially contains an even number of ones in each row and column, so we don't apply any operations.
+
+3)
+{
+  "10101",
+  "01010",
+  "10101",
+  "01010",
+  "10101"
+}
+
+Returns: 5
+
+

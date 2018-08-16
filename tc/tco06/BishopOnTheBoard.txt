@@ -1,0 +1,80 @@
+PROBLEM STATEMENT
+A bishop is a chess piece that can move any number of squares in any diagonal direction (see diagram below).
+
+The chess board has dimensions xSize * ySize, where the top-left corner of the board has coordinates (0, 0), and the bottom-right corner has coordinates (xSize - 1, ySize -1).  The bishop is initially at coordinates (x, y). Find the total number of squares reachable by this bishop in k or less moves. Note, that initial square is always counted as reachable.
+
+
+DEFINITION
+Class:BishopOnTheBoard
+Method:countReachableCells
+Parameters:int, int, int, int, int
+Returns:int
+Method signature:int countReachableCells(int xSize, int ySize, int x, int y, int k)
+
+
+CONSTRAINTS
+-xSize will be between 2 and 50000, inclusive.
+-ySize will be between 2 and 50000, inclusive.
+-x will be between 0 and xSize - 1, inclusive.
+-y will be between 0 and ySize - 1, inclusive.
+-k will be between 1 and 50000, inclusive.
+
+
+EXAMPLES
+
+0)
+8
+8
+0
+0
+2
+
+Returns: 32
+
+Reachable cells are marked by 'X' on the picture: 
+
+
+1)
+8
+4
+0
+0
+2
+
+Returns: 12
+
+Reachable cells are marked by 'X' on the picture: 
+
+
+2)
+2
+2
+0
+0
+1
+
+Returns: 2
+
+Reachable cells are marked by 'X' on the picture: 
+
+
+3)
+11
+5
+0
+1
+2
+
+Returns: 17
+
+Reachable cells are marked by 'X' on the picture: 
+
+
+4)
+278
+17
+37
+11
+5
+
+Returns: 912

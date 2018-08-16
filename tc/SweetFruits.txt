@@ -1,0 +1,89 @@
+PROBLEM STATEMENT
+Beaver Bindu has found N pairwise different fruits.
+Some of the fruits are sweet, others are bitter.
+You are given a vector <int> sweetness.
+The sweetness of the i-th fruit (0-based index) is sweetness[i].
+Different fruits can have the same sweetness.
+A fruit is bitter if its sweetness is -1.
+
+
+Bindu has N-1 pieces of string.
+She can use each of the strings to connect two of the N fruits.
+She wants to use all N-1 strings to connect all N pieces of fruit into a single connected component.
+I.e., once she is done connecting the fruit, she will have an N-vertex tree, each fruit being one of the N vertices.
+
+
+Having such a tree, we can evaluate its total sweetness as follows:
+A fruit on a tree is called truly sweet if it is sweet, and it is connected by a string to some other sweet fruit.
+The total sweetness of a tree is the sum of the sweetness of its truly sweet fruits.
+
+
+You are also given a int maxSweetness.
+Let X be the number of possible trees which have total sweetness at most maxSweetness, inclusive.
+Compute and return the value (X modulo 1,000,000,007).
+
+
+DEFINITION
+Class:SweetFruits
+Method:countTrees
+Parameters:vector <int>, int
+Returns:int
+Method signature:int countTrees(vector <int> sweetness, int maxSweetness)
+
+
+NOTES
+-A tree is an undirected acyclic graph.
+
+
+CONSTRAINTS
+-sweetness will contain between 1 and 40 elements, inclusive.
+-Each element of sweetness will be between -1 and 25,000,000, inclusive.
+-maxSweetness will be between 0 and 1,000,000,000 (10^9), inclusive.
+
+
+EXAMPLES
+
+0)
+{1, 2, -1, 3}
+3
+
+Returns: 3
+
+The following picture shows all 3 trees whose sweetness is at most 3 (truly sweet fruits are painted red).
+
+
+
+
+1)
+{1, 2, -1, 3}
+5
+
+Returns: 7
+
+When maxSweetness = 5, the following 4 additional trees are possible.
+
+
+
+
+2)
+{-1, -1, 2, 5, 5}
+6
+
+Returns: 20
+
+3)
+{2, 6, 8, 4, 1, 10, -1, -1, -1, -1}
+15
+
+Returns: 17024000
+
+4)
+{1078451, -1, 21580110, 8284711, -1, 4202301, 3427559, 8261270, -1, 16176713,
+22915672, 24495540, 19236, 5477666, 12280316, 3305896, 17917887, 564911, 22190488, 21843923,
+23389728, 14641920, 9590140, 12909561, 20405638, 100184, 23336457, 12780498, 18859535, 23180993,
+10278898, 5753075, 21250919, 17563422, 10934412, 22557980, 24895749, 7593671, 10834579, 5606562}
+245243285
+
+Returns: 47225123
+
+

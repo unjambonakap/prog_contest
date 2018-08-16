@@ -1,0 +1,59 @@
+PROBLEM STATEMENT
+Let P be a set of an even number of distinct points on the plane.
+A vector matching V of set P is a set of vectors where each
+vector starts at one point in P and ends at another, and each
+point in P is either the head or tail of exactly one vector in
+the matching.  Thus, there are half as many vectors in V as there
+are points in P.
+
+You are given vector <int>s x and y, where (x[i], y[i]) are the coordinates
+of the i-th point of P. Find a vector matching V for set P such
+that the length of the vector sum of the vectors in V is minimal,
+and return this length.
+
+DEFINITION
+Class:VectorMatching
+Method:minimumLength
+Parameters:vector <int>, vector <int>
+Returns:double
+Method signature:double minimumLength(vector <int> x, vector <int> y)
+
+
+NOTES
+-The sum of two vectors (x1, y1) and (x2, y2) is the vector (x1 + x2, y1 + y2).
+-A return value with either an absolute or relative error of less than 1.0E-9 is considered correct.
+
+
+CONSTRAINTS
+-x will contain between 2 and 20 elements, inclusive.
+-y will contain the same number of elements as x.
+-The number of elements in x will be even.
+-Each element of x and y will be between -100000 and 100000, inclusive.
+-All points will be distinct.
+
+
+EXAMPLES
+
+0)
+{-5, -5, 5, 5}
+{-5, 5, 5, -5}
+
+Returns: 0.0
+
+The optimal matching consists of vectors (-5, -5) -> (-5, 5) and (5, 5) -> (5, -5). It contains two opposite vectors, so their vector sum is the zero vector.
+
+1)
+{-100000, 100000}
+{-100000, 100000}
+
+Returns: 282842.71247461904
+
+
+
+2)
+{26, 65, 78, 92, -60, -27, 42, -86, 92, -41}
+{-76, -83, 38, 22, -42, 85, 46, 98, -47, 38}
+
+Returns: 13.341664064126334
+
+

@@ -1,0 +1,64 @@
+PROBLEM STATEMENT
+
+The postman is at the beginning of a long street, right in front of house number 1. The houses are even numbered on one side of the street and odd numbered on the other. House number 2n is directly across the street from house number 2n-1. Moving to the next or previous house on the same side of the street takes 1 unit of time, and crossing the street takes crossTime units of time.
+
+
+
+The postman has a bag of letters with him and he wonders how much time it will take him to deliver them all. He doesn't care which house he will be in front of at the end of the route; he just wants to know how much time it will take to deliver the letters if he proceeds in the fastest way. The numbers of the houses he has to deliver letters to are given by houseNumbers. How much time will this take him?
+
+
+
+DEFINITION
+Class:Postman
+Method:minTime
+Parameters:vector <string>, int
+Returns:int
+Method signature:int minTime(vector <string> houseNumbers, int crossTime)
+
+
+CONSTRAINTS
+-houseNumbers contains between 1 and 50 elements, inclusive.
+-Each element of houseNumbers has length between 0 and 50, inclusive.
+-Each element of houseNumbers consists of a list of integers separated by single spaces, with no leading or trailing spaces.
+-Each integer described by houseNumbers is between 1 and 999,999,999, inclusive, with no leading zeroes.
+-crossTime is between 1 and 1,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{"1 2 11 12 21 22"}
+2
+
+Returns: 16
+
+Starting at house 1, the optimal route crosses the street, walks to house 12, crosses the street again, walks to house 21, and crosses the street one final time. This results in a total time of 2+5+2+5+2=16.
+
+ 
+
+
+1)
+{"1 2 11 12 21 22"}
+10
+
+Returns: 30
+
+If crossing the street takes so long, it's more efficient to deliver to one side of the street first, cross the street, and then deliver to the other side. This takes 10+10+10=30 time.
+
+
+
+2)
+{"7 6 5 3","8 8 8 8","","35","40 42",""}
+10
+
+Returns: 45
+
+Here's a picture of an optimal route:
+
+
+
+3)
+{"",""}
+1
+
+Returns: 0

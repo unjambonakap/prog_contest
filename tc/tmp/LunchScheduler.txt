@@ -1,0 +1,113 @@
+PROBLEM STATEMENT
+This afternoon, several TopCoder members independently ate lunch at the prestigious TopCoder cafe. They each arrived and left at different times, and nobody returned to the cafe after having left once. Throughout the day, TopCoder waiters noticed that certain members saw each other in the cafe and shook hands. This information was collected in the form of a vector <string> M, where M[i][j] is '1' if member i and member j were seen to shake hands. Otherwise, M[i][j] is '0'. Clearly, if M[i][j] is '1', then members i and j must have been at the cafe at overlapping times. On the other hand, certain TopCoder members do not know each other, so they might not have shaken hands even if they were at the cafe at overlapping times. Given this information, TopCoder is interested in estimating the largest number of people who were in the cafe at one time.
+
+Create a class LunchScheduler that contains a method getOverlap, which is given a vector <string> M, as described above. It should return an int, specifying the largest integer k such that at least k members must have been in the cafe together at one time.
+
+Suppose, for example,
+
+   M = {"0110", 
+        "1010", 
+        "1100", 
+        "0000"}.
+
+Then, two possible lunch schedules are shown below.
+
+
+   Member | Time period          Member | Time period
+   -------+-----------------     -------+-----------------
+      1   | ***************         1   |   *******
+      2   |  ***************        2   |       *******
+      3   |    ***********          3   |      ***
+      4   |   ******                4   |            *****
+
+
+Here, the *'s indicate the time periods during which each member was in the cafe. As can easily be checked, both schedules are consistent with M. The leftmost schedule has four members in the cafe at one time, but this is not necessary, as can be seen from the fact that the rightmost schedule never has more than three people together at once. It turns out that any other valid schedule will also have at least three members in the cafe at one time, so the correct value for k is 3 in this case.
+
+DEFINITION
+Class:LunchScheduler
+Method:getOverlap
+Parameters:vector <string>
+Returns:int
+Method signature:int getOverlap(vector <string> M)
+
+
+CONSTRAINTS
+-M will contain between 2 and 9 elements inclusive.
+-If M contains exactly n elements, then each element of M will contain will contain exactly n characters.
+-Every character in M is either '0' or '1'.
+-Character i in element j of M will be equal to character j in element i of M for all i and j.
+-Character i in element i of M will be '0' for all i.
+
+
+EXAMPLES
+
+0)
+{"0110", 
+ "1010", 
+ "1100", 
+ "0000"}
+
+Returns: 3
+
+This is the example from the problem statement.
+
+1)
+{"011111",
+ "101111",
+ "110111",
+ "111011",
+ "111101",
+ "111110"}
+
+Returns: 6
+
+Here, every member shook every other member's hand.
+Consider the earliest time period in which a member left the cafe. Nobody can leave before that, by definition, and nobody can arrive after that, or they would not have been able to shake the leaving member's hand. Thus, all six members must have been at the cafe during that time period.
+
+2)
+{"01000000",
+ "10000000",
+ "00000000",
+ "00000000",
+ "00000000",
+ "00000000",
+ "00000001",
+ "00000010"}
+
+Returns: 2
+
+At least two people must be in the cafe simultaneously when the first two members shake hands. As shown below, it is also not necessary for three people to be in the cafe simultaneously.
+
+   Member | Time period     
+   -------+----------------
+      1   | **
+      2   |  **
+      3   |     *
+      4   |       *
+      5   |         *
+      6   |           *
+      7   |             **
+      8   |              **
+
+
+3)
+{"011011010",
+ "101000111",
+ "110010110",
+ "000001101",
+ "101001000",
+ "100110101",
+ "011101010",
+ "111000100",
+ "010101000"}
+
+Returns: 5
+
+4)
+{"000",
+ "000",
+ "000"}
+
+Returns: 1
+
+Even with no handshakes, each person had to be in the cafe at some time.

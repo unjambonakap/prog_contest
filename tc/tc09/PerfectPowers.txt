@@ -1,0 +1,62 @@
+PROBLEM STATEMENT
+A number is called a perfect power if it can be written in the form m^k, where m and k are positive integers, and k > 1.
+Given two positive integers A and B, find the two perfect powers between A and B, inclusive, that are closest to each other, and return the absolute difference between them. If less than two perfect powers exist in the interval, return -1 instead.
+
+DEFINITION
+Class:PerfectPowers
+Method:nearestCouple
+Parameters:long long, long long
+Returns:long long
+Method signature:long long nearestCouple(long long A, long long B)
+
+
+NOTES
+-1 is a perfect power.
+
+
+CONSTRAINTS
+-A will be between 1 and 10^18, inclusive.
+-B will be between A+1 and 10^18, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+4
+
+Returns: 3
+
+1 and 4 are the first pair of perfect powers.
+
+1)
+8
+9
+
+Returns: 1
+
+8 and 9 are the closest pair of perfect powers.
+
+2)
+10
+15
+
+Returns: -1
+
+No pair of perfect powers is present in the interval.
+
+3)
+1
+1000000000000000000
+
+Returns: 1
+
+This is the largest possible range, and 8 and 9 are the closest pair of perfect powers.
+
+4)
+80000
+90000
+
+Returns: 80
+
+

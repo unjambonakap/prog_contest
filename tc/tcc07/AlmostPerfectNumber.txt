@@ -1,0 +1,56 @@
+PROBLEM STATEMENT
+
+An integer x is called a proper divisor of an integer y if x is a divisor of y and 1 <= x < y.
+
+
+Let us denote as s(a) the sum of all proper divisors of a.
+An integer a is called almost perfect by k if |a-s(a)| <= k.
+
+
+You are given ints left, right and k. Return the number of integers between left and right, inclusive, that are almost perfect by k.
+
+
+
+DEFINITION
+Class:AlmostPerfectNumber
+Method:count
+Parameters:int, int, int
+Returns:int
+Method signature:int count(int left, int right, int k)
+
+
+CONSTRAINTS
+-left will be between 2 and 1000, inclusive.
+-right will be between left and 1000, inclusive.
+-k will be between 0 and 1000, inclusive.
+
+
+EXAMPLES
+
+0)
+2
+10
+1
+
+Returns: 4
+
+The following numbers between 2 and 10 are almost perfect by 1: 2 (s(2) = 1), 4 (s(4) = 3),
+6 (s(6) = 6) and 8 (s(8) = 7).
+
+1)
+5
+5
+5
+
+Returns: 1
+
+
+
+2)
+11
+20
+50
+
+Returns: 10
+
+

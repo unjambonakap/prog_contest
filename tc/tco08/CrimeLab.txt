@@ -1,0 +1,154 @@
+PROBLEM STATEMENT
+
+You are a forensic technician examining a fragment of a hundred-dollar
+bill that was found at a crime scene. There may be a match between this
+target fragment and several candidate fragments that were brought in
+by detectives.
+
+
+Each fragment is described by a 7-by-7 square of characters. The square
+is flattened into a string by concatenating its rows from
+top to bottom. For example, the fragment
+
+
+    XXXXXXX
+    .XXXXXX
+    .XX.XXX
+    .XX.X.X
+    .X..X..
+    ....X..
+    .......
+
+
+is flattened into the string
+
+
+    XXXXXXX.XXXXXX.XX.XXX.XX.X.X.X..X......X.........
+
+
+while the fragment
+
+
+    .XXXXXX
+    .....XX
+    ....XXX
+    ..XXXXX
+    ......X
+    ...XXXX
+    ....XXX
+
+
+is flattened into the following.
+
+
+    .XXXXXX.....XX....XXX..XXXXX......X...XXXX....XXX
+
+
+A fragment contains 7 horizontal or vertical consecutive sequences of 'X' characters
+that all begin at the same edge of the square, which can be the top,
+right, bottom, or left edge, depending on the orientation of the
+fragment. If a fragment has top orientation, then in each column, a
+consecutive sequence of between 1 and 6 'X' characters, inclusive, begins at the
+top edge and extends toward the bottom. Similar constraints apply to a
+fragment of right, bottom, or left orientation. For example, the two fragments presented above
+have top and right orientations.
+
+
+A pair of fragments are said to match if they can be fitted together,
+possibly after rotation and/or reflection, to make a solid 7-by-7 square
+of 'X' characters without overlap. For instance, the two fragments shown
+above are matched in this way. To see this, rotate the second fragment 90 degrees clockwise
+and reflect it to obtain:
+
+
+    .......
+    X......
+    X..X...
+    X..X.X.
+    X.XX.XX
+    XXXX.XX
+    XXXXXXX
+
+
+Now these 2 fragments can be fitted together.
+
+
+    XXXXXXX     .......     XXXXXXX
+    .XXXXXX     X......     XXXXXXX
+    .XX.XXX     X..X...     XXXXXXX
+    .XX.X.X  +  X..X.X.  =  XXXXXXX
+    .X..X..     X.XX.XX     XXXXXXX
+    ....X..     XXXX.XX     XXXXXXX
+    .......     XXXXXXX     XXXXXXX
+
+
+You are given a string targetFragment representing the target fragment and a vector <string>
+candidateFragments each element of which represents one of the candidate fragments.
+If the target fragment fails to match any of the candidate fragments,
+return the error code -1. If there are several matches, return
+-2. Otherwise, return the zero-based index of the unique candidate
+fragment that matches the target fragment.
+
+
+DEFINITION
+Class:CrimeLab
+Method:matchFragment
+Parameters:string, vector <string>
+Returns:int
+Method signature:int matchFragment(string targetFragment, vector <string> candidateFragments)
+
+
+CONSTRAINTS
+-candidateFragments will contain between 1 and 50 elements, inclusive.
+-Each element of candidateFragments will satisfy the same constraints as targetFragment.
+-targetFragment will contain exactly 49 characters.
+-Each character in targetFragment will be either 'X' or '.'.
+-When formed into a 7-by-7 square, targetFragment will make a fragment of top, right, bottom, or left orientation, as described in the problem statement.
+
+
+EXAMPLES
+
+0)
+"XXXXXXX.XXXXXX.XX.XXX.XX.X.X.X..X......X........."
+{"XXX....XX.....XXX....XXX....XXXXXX.X......XXXX...",
+ ".XXXXXX.....XX....XXX..XXXXX......X...XXXX....XXX",
+ ".......X...X..X..XX..X..XX.XX..XX.XXX.XX.XXXXXXXX"}
+
+Returns: 1
+
+The example shown in the problem statement.
+
+1)
+"XXXXXXX.XXXXXX.XX.XXX.XX.X.X.X..X......X........."
+{"XXX....XX.....XXX....XXX....XXXXXX.X......XXXX...",
+ ".XXXXXX.....XX....XXX..XXXXX.....XX...XXXX....XXX",
+ "XXXXXXX.XXXXXX.XX.XXX.XX.X.X.X..X................",
+ ".......X...X..X..XX..X..XX.XX..XX.XXX.XX.XXXXXXXX"}
+
+Returns: -1
+
+The target fragment doesn't match any of the candidate fragments.
+
+2)
+"XXXXXXX.XXXXXX.XX.XXX.XX.X.X.X..X......X........."
+{"XXX....XX.....XXX....XXX....XXXXXX.X......XXXX...",
+ ".XXXXXX.....XX....XXX..XXXXX......X...XXXX....XXX",
+ ".......X...X..X..XX..X..XX.XX..XX.XXX.XX.XXXXXXXX",
+ "XXX....XXXX...X......XXXXX..XXX....XX.....XXXXXX."}
+
+Returns: -2
+
+The target fragment matches two of the candidate fragments.
+
+3)
+"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.XXXXXX......."
+{".........................................XXXXXXXX"}
+
+Returns: 0
+
+4)
+"XXXX...X......XXX....XXXX...X......XX.....XXX...."
+{"XXXXXXXXXXXXXXXXXXXXX.XXXX.X.X..X.X.X..X.........",
+ "...XXXX...XXXX.XXXXXX....XXX..XXXXX....XXX.XXXXXX"}
+
+Returns: -1

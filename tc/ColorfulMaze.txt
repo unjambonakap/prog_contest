@@ -1,0 +1,138 @@
+PROBLEM STATEMENT
+You have just entered the Colorful Maze. 
+You are given the layout of the maze in the vector <string> maze, 
+where the j-th character of the i-th element is the cell at row i, column j. 
+The following types of cells exist in the maze: 
+
+	'#' - Wall.  You cannot enter these cells. 
+	'.' - Empty cell.  You can walk freely into these cells. 
+	'A'-'G' - Empty cell with a colored floor.  Each of 'A'-'G' represents a different color. You can walk into these cells. 
+	'$' - Entrance.  This is the cell in which you start. 
+	'!' - Exit.  This is the cell you must reach to finish the maze. 
+
+Colored floors with certain colors are dangerous, but you don't know upfront which colors are dangerous. 
+You only know the probability of each color being dangerous. 
+You are given a vector <int> trap, where the first element is the percent probability of color 'A' being dangerous, 
+the second element is the percent probability of color 'B' being dangerous, and so on. 
+When you step into a cell with a dangerous color, you get damaged by a trap. 
+If you get damaged twice, you die. 
+
+When you're inside the maze, you can only move in the four cardinal directions. 
+You cannot move diagonally. 
+Return the probability that you can finish the maze without dying, assuming that you walk according to a strategy that maximizes this probability.
+See examples for further clarification.
+
+DEFINITION
+Class:ColorfulMaze
+Method:getProbability
+Parameters:vector <string>, vector <int>
+Returns:double
+Method signature:double getProbability(vector <string> maze, vector <int> trap)
+
+
+NOTES
+-The returned value must have an absolute or relative error less than 1e-9. 
+
+
+CONSTRAINTS
+-maze will contain between 1 and 50 elements, inclusive. 
+-Each element of maze will contain between 1 and 50 characters, inclusive. 
+-Each element of maze will contain the same number of characters. 
+-Each character in maze will be one of '#', '.', 'A', 'B', 'C', 'D', 'E', 'F', 'G', '$', and '!'.
+-maze will contain exactly one '$' and exactly one '!'.
+-trap will contain exactly 7 elements. 
+-Each element of trap will be between 0 and 100, inclusive. 
+
+
+EXAMPLES
+
+0)
+{ ".$.",
+  "A#B",
+  "A#B",
+  ".!." }
+{ 50, 40, 0, 0, 0, 0, 0 }
+
+Returns: 0.8
+
+First, go left one cell, and then down one cell into the 'A'. 
+One of two things might happen with equal probability: 
+
+	You get damaged.  This means all cells with color 'A' are dangerous, so you should go back and try going through the 'B' zone instead (which might also be dangerous). 
+	You do not get damaged.  This means all cells with color 'A' are safe, so you can continue through the 'A' zone and get to the exit. 
+
+The probability of reaching the exit is 0.5 * 0.6 (the first case) + 0.5 (the second case) = 0.8. 
+The probability is the same if you try 'B' first. 
+
+
+1)
+{ ".$.",
+  "A#B",
+  "A#C",
+  ".!." }
+{ 20, 70, 40, 0, 0, 0, 0 }
+
+Returns: 0.86
+
+If you try 'A' first: 
+
+	You get damaged.  You should go back and try going through the 'B' and 'C' zone. 
+	You do not get damaged.  You can continue through the 'A' zone. 
+
+The probability is 0.2 * 0.3 * 0.6 (the first case) + 0.8 (the second case) = 0.836. 
+If you try 'B' first: 
+
+	You get damaged.  You can choose either going back to try 'A' or going ahead to try 'C'. Going through the 'A' zone is safer. 
+	You do not get damaged.  Whether 'C' is dangerous or not, you can go through 'C' and get to the exit. 
+
+The probability is 0.7 * 0.8 (the first case) + 0.3 (the second case) = 0.86. 
+You see that trying 'B' first is a better choice.
+
+2)
+{ "$A#",
+  ".#.",
+  "#B!" }
+{ 10, 10, 10, 10, 10, 10, 10 }
+
+Returns: 0.0
+
+No matter how you walk, you cannot reach the exit, so you should return 0. 
+
+
+3)
+{ "$A..",
+  "##.A",
+  "..B!" }
+{ 50, 50, 0, 0, 0, 0, 0 }
+
+Returns: 0.75
+
+
+
+4)
+{ "$C..",
+  "##.A",
+  "..B!" }
+{ 50, 50, 100, 0, 0, 0, 0 }
+
+Returns: 0.5
+
+
+
+5)
+{ ".$.D.E.F.G.!." }
+{ 10, 20, 30, 40, 50, 60, 70 }
+
+Returns: 0.23400000000000004
+
+6)
+{ "CC...AA",
+  "C##.##A",
+  "!.E.E.$",
+  "D##.##B",
+  "DD...BB" }
+{ 90, 90, 25, 50, 75, 0, 0 }
+
+Returns: 0.8125
+
+

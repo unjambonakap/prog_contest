@@ -1,0 +1,51 @@
+PROBLEM STATEMENT
+You've been asked to evaluate the performance of a card shuffler for a casino.  Unfortunately, the first thing you notice when examining it is that its shuffling algorithm is not very good.  For a deck of length N, it simply chooses x and y uniformly between 0 and N-1, inclusive, and then swaps the cards at those indices.  (If x and y are the same, nothing happens.)  It repeats this N times.
+
+Prove to the casino that it needs a better algorithm or, at the very least, more swaps.  Given a permutation of cards (represented by integers from 1 to N), determine the relative probability of permutation being chosen after N swaps, compared to a properly random shuffle.  (In other words, return the probability of permutation being chosen, multiplied by N factorial.)
+
+DEFINITION
+Class:PermutationBias
+Method:relativeProbability
+Parameters:vector <int>
+Returns:double
+Method signature:double relativeProbability(vector <int> permutation)
+
+
+NOTES
+-The return value must have an absolute or relative error less than 1e-9.
+
+
+CONSTRAINTS
+-permutation will contain between 1 and 35 elements, inclusive.
+-permutation will contain each number from 1 to N exactly once, where N is the number of elements in permutation.
+
+
+EXAMPLES
+
+0)
+{2,1}
+
+Returns: 1.0
+
+50% of the "swaps" will be useless.  So the probability of 0 real swaps is 25%, 1 is 50%, and 2 (equivalent to 0) is 25%.  On a 2-element array, the shuffle is uniformly random.
+
+1)
+{2,1,3}
+
+Returns: 1.037037037037037
+
+The shuffle favors this permutation slightly.
+
+2)
+{1,2,3,4,5,6,7,8,9,10}
+
+Returns: 60.173086681768936
+
+The chance of nothing happening at all is much higher than it should be!
+
+3)
+{16,17,10,4,8,18,12,2,3,9,14,15,13,19,5,11,7,6,20,1}
+
+Returns: 1.7716122730889852
+
+

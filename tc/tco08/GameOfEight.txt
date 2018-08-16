@@ -1,0 +1,65 @@
+PROBLEM STATEMENT
+In "The Game of Eight", you are given a 3x3 board containing 8 squares labelled 1 through 8, and one empty space.  The initial state of the board is given in the vector <string> board, where '.' represents the empty space.  In each turn, you pick any square which is horizontally or vertically adjacent to an empty space and move it to the empty space (see example 0 for clarification).
+
+Your goal is to arrange the squares so the board looks like this:
+
+
+{"123",
+ "456",
+ "78."}
+
+
+Return the minimum number of moves necessary to achieve this goal, or -1 if it's impossible.
+
+
+
+
+DEFINITION
+Class:GameOfEight
+Method:fewestMoves
+Parameters:vector <string>
+Returns:int
+Method signature:int fewestMoves(vector <string> board)
+
+
+CONSTRAINTS
+-board will contain exactly 3 elements.
+-Each element of board will contain exactly 3 characters.
+-Each character of each element of board will be a digit ('1' - '8') or a dot ('.').
+-Each number between 1 and 8 will appear exactly once on the board.
+
+
+EXAMPLES
+
+0)
+{"123",
+ "485",
+ "76."}
+
+Returns: 4
+
+The optimal solution is the following:
+
+
+123       123       123       123       123
+485  -->  485  -->  4.5  -->  45.  -->  456
+76.       7.6       786       786       78.
+
+
+1)
+{"123",
+ "456",
+ "78."}
+
+Returns: 0
+
+The game is already completed.
+
+2)
+{".23",
+ "456",
+ "781"}
+
+Returns: -1
+
+

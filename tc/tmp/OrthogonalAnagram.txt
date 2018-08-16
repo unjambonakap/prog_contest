@@ -1,0 +1,51 @@
+PROBLEM STATEMENT
+An anagram of a string is a string containing precisely the same letters, possibly in different order. For example, "porter", "report", and "eoprrt" are all anagrams of the string "porter" (and of each other). The string "potter" is not their anagram, as the numbers of "t"s and "r"s differ.
+Strings S and T are orthogonal if they are of the same length and differ in each position. For instance, the strings "card" and "dear" are orthogonal. The strings "perk" and "card" are not orthogonal, because their third letters are the same.
+You are given a string S. Your method should return the lexicographically smallest anagram of S that is orthogonal to S. If no such string exists, return an empty string.
+
+DEFINITION
+Class:OrthogonalAnagram
+Method:solve
+Parameters:string
+Returns:string
+Method signature:string solve(string S)
+
+
+NOTES
+-Given two distinct strings of equal length, the lexicographically smaller one is the one with a smaller character in the first position where they differ.
+
+
+CONSTRAINTS
+-S will contain between 1 and 50 characters, inclusive.
+-Each character of S will be a lowercase letter ('a'-'z').
+
+
+EXAMPLES
+
+0)
+"dcba"
+
+Returns: "abcd"
+
+
+
+1)
+"edcba"
+
+Returns: "abdce"
+
+The two lexicographically smallest anagrams are "abcde" and "abced". Neither of these is orthogonal to S: they all share the same third letter ("c").
+
+2)
+"aaaaa"
+
+Returns: ""
+
+Here it is clearly impossible to create an orthogonal anagram.
+
+3)
+"abba"
+
+Returns: "baab"
+
+

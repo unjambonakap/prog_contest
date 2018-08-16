@@ -1,0 +1,55 @@
+PROBLEM STATEMENT
+
+A binary string s is called "repeating free" if no proper prefix equals a proper suffix of the same lengh. A substring is called "proper" if it differs from the whole string. For example, strings "0101011", "10", "10111100" are repeating free, but the string "01101011" is not. 
+
+
+Return the k-th string among all repeating free strings with length n in lexicographical order (k is a 0-based index). Return an empty string if it doesn't exist.
+
+
+DEFINITION
+Class:RepeatingFreeStrings
+Method:kthString
+Parameters:int, int
+Returns:string
+Method signature:string kthString(int n, int k)
+
+
+CONSTRAINTS
+-n will be between 1 and 50, inclusive.
+-k will be between 0 and 2000000000, inclusive.
+
+
+EXAMPLES
+
+0)
+2
+0
+
+Returns: "01"
+
+All repeating free strings of length 2 are "01" and "10".
+
+1)
+2
+1
+
+Returns: "10"
+
+
+
+2)
+3
+2
+
+Returns: "100"
+
+All repeating strings of length 3 are "001", "011", "100", "110".
+
+
+3)
+5
+2
+
+Returns: "00101"
+
+

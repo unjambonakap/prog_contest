@@ -1,0 +1,131 @@
+PROBLEM STATEMENT
+
+Today is Fox Ciel's birthday.
+She organized a party for her and her three best friends.
+The friends brought a large rectangular cake.
+The icing on the top of the cake divides it into a grid of n times m square cells.
+The cell in the top left corner has coordinates (1,1).
+The cell in the top right corner has coordinates (n,1).
+The cell in the bottom right corner has coordinates (n,m).
+
+
+
+Seven of the cells contain something interesting:
+
+
+There is a candle at (x[0],y[0]).
+There are three cherries: at (x[1],y[1]), at (x[2],y[2]), and at (x[3],y[3]).
+There are three strawberries: at (x[4],y[4]), at (x[5],y[5]), and at (x[6],y[6]).
+
+
+
+Fox wants to divide the cake into four parts: one for her and one for each of her friends.
+Each of the four parts must consist of some of the cells, and each cell must belong to exactly one of the four parts.
+Fox has to receive a part containing the candle.
+Each of the three friends has to receive a part containing one cherry and one strawberry.
+Each of the four parts must be 4-connected.
+(See Notes for a formal definition.)
+
+
+
+Note that the parts may have very strange shapes.
+It is even possible that some of the parts will contain holes.
+Of course, on the original cake the holes have to contain other parts of the cake, as shown in the picture below.
+
+
+
+
+
+You are given the ints n and m (the dimensions of the cake) and the vector <int>s x and y (the coordinates of the seven items).
+Return "Yes" (quotes for clarity) if Fox Ciel can divide the cake in the required way, and "No" otherwise.
+
+
+DEFINITION
+Class:FoxAndCake
+Method:ableToDivide
+Parameters:int, int, vector <int>, vector <int>
+Returns:string
+Method signature:string ableToDivide(int n, int m, vector <int> x, vector <int> y)
+
+
+NOTES
+-A part P of the cake is called 4-connected if for any two cells A, B in P there is a sequence of cells such that all the cells in the sequence belong to P, the first cell in the sequence is A, the last cell is B, and each pair of consecutive cells shares a common edge.
+-The constraints guarantee that the cake will always have at least 7 cells.
+
+
+CONSTRAINTS
+-n will be between 1 and 1,000,000,000, inclusive.
+-m will be between 1 and 1,000,000,000, inclusive.
+-x will contain exactly 7 elements.
+-y will contain exactly 7 elements.
+-Each element in x will be between 1 and n, inclusive.
+-Each element in y will be between 1 and m, inclusive.
+-The 7 cells described by x and y will be pairwise distinct. That is, if i != j, then (x[i] != x[j] or y[i] != y[j]).
+
+
+EXAMPLES
+
+0)
+2
+4
+{1,1,1,1,2,2,2}
+{1,2,3,4,2,3,4}
+
+Returns: "Yes"
+
+The cake looks like this ('#' denotes candle, 'C' denote cherry and 'S' denotes strawberry):
+
+#CCC
+.SSS
+
+We can divide the cake into the following 4 parts:
+
+0123
+0123
+
+'0' denotes the part for Fox Ciel, and digits '1' to '3' denote parts for her 3 friends.
+
+1)
+2
+4
+{1,1,2,1,2,1,2}
+{1,2,2,3,3,4,4}
+
+Returns: "No"
+
+This time the cake looks like this:
+
+#CCS
+.CSS
+
+There is no valid division.
+
+2)
+6
+6
+{1,1,3,4,3,4,5}
+{2,6,4,5,5,4,2}
+
+Returns: "Yes"
+
+This is the case in the problem statement.
+
+3)
+999999999
+999999999
+{500000000,1,1,1,999999999,999999999,999999999}
+{500000000,1,2,3,999999997,999999998,999999999}
+
+Returns: "Yes"
+
+The cake can be very large.
+
+4)
+1000000000
+1000000000
+{500000000,1,1,2,999999998,999999999,999999999}
+{500000000,1,2,1,999999999,999999998,999999999}
+
+Returns: "No"
+
+

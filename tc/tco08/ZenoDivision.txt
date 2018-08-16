@@ -1,0 +1,102 @@
+PROBLEM STATEMENT
+
+You and a friend are sharing a piece of cake.  First you eat half of the piece, and then your friend eats half of what remains.  You continue in this fashion until the two of you have finished the cake (after an infinite number of iterations).  If you write the sum of the fractions each of you eat like this:
+
+
+    you     him
+    -----   -----
+    1/2   + 1/4   +
+    1/8   + 1/16  +
+    1/32  + 1/64  +
+    1/128 + 1/256 +
+    ...
+
+
+with each fraction you eat in the first column and each fraction your friend eats in the second column, you can clearly see that you eat twice as much cake as your friend does, because in each row the fraction you eat is twice the fraction your friend eats.  Since the total amount of cake is 1, you therefore have eaten 2/3 of the cake and your friend has eaten 1/3.
+
+
+If, instead of simply taking turns eating half of the remaining cake, you and your friend repeat a different pattern, you can each get a different total amount.  For example, if you repeat the pattern "you, him, you", you will end up eating 5/7 and your friend will end up eating 2/7.  This can be seen by writing the fractions as such:
+
+
+
+    you     him     you
+    -----   -----   -----
+    1/2   + 1/4   + 1/8   +
+    1/16  + 1/32  + 1/64  +
+    1/128 + 1/256 + 1/512 +
+    ...
+
+
+The first and third fraction in each row sum to 5/2 of the middle fraction, so you each eat cake in the ratio of 5 to 2.  Therefore, you end up eating 5/7 of the whole.
+
+
+Given a fraction a/b, determine the shortest pattern of taking half of the remaining cake that can be repeated infinitely such that you will get a/b of the piece of cake.
+Return the pattern as a string, made up of the characters '*' (indicating that you take the next half) or '-' (indicating that your friend takes the next half).
+If it is impossible to achieve with a pattern of length 60 or smaller, return "impossible" (quotes for clarity only).
+
+
+
+
+DEFINITION
+Class:ZenoDivision
+Method:cycle
+Parameters:string, string
+Returns:string
+Method signature:string cycle(string a, string b)
+
+
+CONSTRAINTS
+-b will contain only digits, and will represent a number between 1 and 2^63-1, inclusive, with no unnecessary leading zeros.
+-a will contain only digits, and will represent a number between 0 and b, inclusive, with no unnecessary leading zeros.
+-The integers represented by a and b will not have any common factors (the fraction a/b will be in reduced form).
+
+
+EXAMPLES
+
+0)
+"2"
+"3"
+
+Returns: "*-"
+
+This is the first example in the problem statement.
+
+1)
+"5"
+"7"
+
+Returns: "*-*"
+
+This is the second example in the problem statement.
+
+2)
+"0"
+"1"
+
+Returns: "-"
+
+
+
+3)
+"5"
+"9"
+
+Returns: "*---**"
+
+
+
+4)
+"1"
+"2"
+
+Returns: "impossible"
+
+There is no way for you to each have half of the piece of cake.
+
+5)
+"76861433640456464"
+"76861433640456465"
+
+Returns: "********************************************************----"
+
+

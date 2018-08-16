@@ -1,0 +1,146 @@
+\begin{problem}{Eve}{eve.in}{eve.out}{2 seconds}
+
+% Original idea : Mikhail Dvorkin
+% Text          : Mikhail Dvorkin
+% Tests         : 
+
+Mitochondrial DNA %(mtDNA)
+is the Deoxyribonucleic acid molecule that is contained in mitochondria
+within cells of an organism.
+
+Mitochondrial DNA is normally passed to a child exclusively from its mother.
+Because of this fact, it is possible to speak of ``Mitochondrial Eve'' which refers to
+the most recent common matrilineal ancestor of the entire population. 
+Matrilineal ancestry is traced through female line: mother, grandmother, etc.
+
+Mitochondrial Eve of the Earth's human population is estimated to
+have lived around $200\,000$ years ago, most likely in the East Africa.
+
+In this problem, we consider a certain population of the same biological species (eukaryotic and anisogamous).
+The population has been observed for a period of time, and all births and deaths
+were clearly recorded.
+For some of the individuals within the population, their mitochondrial DNA was sequenced. 
+It is assumed that each individual in the observed population received its mitochondrial DNA
+from its mother without any mutations.
+
+Your task is to find out,
+whether all individuals currently alive have the same mitochondrial DNA.
+
+\InputFile
+
+The first line of the input file contains integer $n$ ($1 \le n \le 100\,000$),
+the number of individuals that were alive at the beginning of the observation period.
+IDs of these individuals are integers from 1 to $n$.
+
+Next $n$ lines contain one character each. The $i$-th of these lines describes
+the sex of the individual with ID $i$. `\texttt{M}' stands for male, `\texttt{F}' stands for female.
+
+The next line contains integer $m$ ($0 \le m \le 100\,000$), the total number of
+births and deaths that happened during the observation period.
+
+Next $m$ lines contain description of birth and death events, listed in
+chronological order.
+
+A birth event is described by three space-separated tokens: the ID of the father,
+the ID of the mother, and a character that describes the sex of the child
+(`\texttt{M}' for male, `\texttt{F}' for female).
+The ID given to the offspring is the smallest positive integer that hasn't been used
+as an ID by this point of time.
+
+A death event is described by a single negative integer, whose absolute value equals
+the ID of the individual that died.
+
+The next line contains integer $k$ ($0 \le k \le n + m$),
+the number of sequenced mitochondrial DNAs.
+
+Each of the next $k$ lines contains two space-separated integers,
+the ID of the individual whose mitochondrial DNA has been sequenced, and
+the unique identifier of the mitochondrial DNA of that individual.
+Unique identifiers of two mitochondrial DNAs are the same if and only if
+the corresponding sequenced mitochondrial DNAs are the same.
+All unique identifiers of the mitochondrial DNAs are integers from $1$ to $10^9$.
+
+All the data given in the input file is consistent and non-contradictory.
+Each individual's mitochondrial DNA was sequenced at most once.
+At least one individual was alive at the end of the observation period.
+
+\OutputFile
+
+The output file must contain a single word:
+\begin{shortitems}
+\item \texttt{YES} -- if it can be derived that all the individuals that are alive at
+the end of the experiment have the same mitochondrial DNA;
+\item \texttt{NO} -- if it can be derived that some of the individuals that are alive at
+the end of the experiment have different mitochondrial DNA;
+\item \texttt{POSSIBLY} -- if none of the cases above takes place.
+\end{shortitems}
+
+\Example
+
+\begin{example}
+\exmp{
+4
+M
+F
+M
+F
+12
+3 4 F
+1 2 M
+1 2 M
+3 4 F
+-3
+-2
+-4
+-1
+6 5 M
+7 5 F
+-7
+-6
+0
+}{
+YES
+}%
+\exmp{
+3
+F
+F
+M
+3
+3 2 M
+3 1 F
+-3
+2
+4 100500
+5 100500
+}{
+YES
+}%
+\exmp{
+3
+M
+F
+M
+2
+1 2 M
+3 2 F
+0
+}{
+POSSIBLY
+}%
+\exmp{
+2
+M
+F
+2
+1 2 M
+-2
+2
+1 2011
+2 2012
+}{
+NO
+}%
+\end{example}
+
+\end{problem}

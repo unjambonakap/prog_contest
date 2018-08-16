@@ -1,0 +1,64 @@
+PROBLEM STATEMENT
+
+Scientists have discovered a text in some ancient language. The text is written using two types of hieroglyphs. We will denote the hieroglyphs of the first type with uppercase letters ('A'-'Z'), and the hieroglyphs of the second type with lowercase letters ('a'-'z'). The types of hieroglyphs in the text alternate, meaning that every pair of adjacent hieroglyphs have different types. For example, "AaAbBaAcCaAa" is a valid example of the text, but "ACbD" is not.
+
+
+Scientists have a hypothesis that the text they have found is a sequence of words. Each word in this language consists of a pair of hieroglyphs of different types. For example, "Aa", "bB", "bC" are valid examples of words.
+
+
+Words in text can overlap, so, for example, "AaAbB" can be viewed as the sequence of words ("Aa", "aA", "bB").
+
+
+Now scientists want to know the minimal possible number of different words the text can contain. For example, the text "AaAbBaAcCaAa" can be interpreted as the sequence of words ("Aa", "aA", "bB", "aA", "cC", "aA", "Aa"), which uses only four different words: "Aa", "aA", "bB", "cC".
+
+
+You are given a vector <string> t. 
+The text is the concatenation of all the elements of t.
+Return the minimal number of different words that the text can contain.
+
+
+DEFINITION
+Class:AncientLanguage
+Method:minWords
+Parameters:vector <string>
+Returns:int
+Method signature:int minWords(vector <string> t)
+
+
+CONSTRAINTS
+-t will contain between 1 and 50 elements, inclusive.
+-Each element of t will contain between 1 and 50 characters, inclusive.
+-Each element of t will contain only letters ('A'-'Z', 'a'-'z').
+-The total number of characters in t will be between 2 and 2500, inclusive.
+-In the concatenation of all elements of t, letters will alternate between uppercase and lowercase.
+
+
+EXAMPLES
+
+0)
+{"AaAbBaAcCaAa"}
+
+Returns: 4
+
+An example from the problem statement.
+
+1)
+{"AbAb"}
+
+Returns: 1
+
+The first letter in the text can be uppercase.
+
+2)
+{"aBaB"}
+
+Returns: 1
+
+The first letter in the text can be lowercase.
+
+3)
+{"AaB", "b"}
+
+Returns: 2
+
+You must concatenate all elements of t before processing.

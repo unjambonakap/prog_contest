@@ -1,0 +1,81 @@
+PROBLEM STATEMENT
+We must determine whether or not a certain type of container can withstand a pressure
+of 100.0, and if not determine as closely as possible the "critcal pressure", 
+the greatest pressure that it can withstand. (We know that it can withstand a pressure
+of 0.0.)
+
+We can run multiple tests. Each test can test only a single pressure on
+a single container, and the result of a test is either that the container survived
+or was destroyed. If it survived it can be used in successive tests.
+
+We must develop a testing protocol that uses no more than numTests 
+tests and destroys no more than numDestroyed containers. The testing must
+determine whether or not the container can withstand 100.0, and if it cannot it
+must also estimate
+the critical pressure as accurately as possible.
+Given numTests and 
+numDestroyed return the minimum absolute error we can guarantee in our estimate 
+of critical pressure.
+
+
+
+DEFINITION
+Class:Destruction
+Method:minError
+Parameters:int, int
+Returns:double
+Method signature:double minError(int numTests, int numDestroyed)
+
+
+NOTES
+-A return value with either an absolute or relative error of less than 1.0E-9 is considered correct.
+
+
+CONSTRAINTS
+-numTests will be between 1 and 50, inclusive.
+-numDestroyed will be between 1 and numTests, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+1
+
+Returns: 50.0
+
+
+    If the one test is at a pressure lower than 100.0 and the container survives, 
+we won't know whether
+or not the container can survive pressures greater than 100. So the one test
+must be at a pressure of 100.0. If the container does not survive the test, then
+we can estimate the critical pressure at 50.0, with a possible error of +- 50.0.
+
+
+
+
+
+
+1)
+3
+1
+
+Returns: 16.666666666666664
+
+
+First test pressure = 33.3333333. If the test container is destroyed, the estimate
+is 16.66666667 with an error of +-16.6666667.
+ 
+If the container survives the first test, we can run a second test  at 66.666667. 
+If the container is destroyed, our estimate is 50.0. Otherwise we run our last test at
+100.0 to determine whether to estimate 83.33333 or to report that these
+containers can survive more than 100.0.
+
+
+2)
+20
+3
+
+Returns: 0.03703703703704745
+
+

@@ -1,0 +1,61 @@
+PROBLEM STATEMENT
+There is a square on a plane with (0,0) as its lower left and (2^N+2, 2^N+2) as its upper right corner. It is known that K distinct points have to be painted. Each of them should be strictly inside the square and should have integral coordinates. The first point to be painted is always (1,1). For each of the next points, the one from which the Euclidean distance to the closest already painted point is maximum should be chosen. In case of ties, the leftmost point should be painted. If there are still several possibilities, the lowermost point is chosen. Return vector <int> with exactly two elements, the X and Y coordinates of the K-th point to be painted.
+
+DEFINITION
+Class:DistantPoints
+Method:getKth
+Parameters:int, int
+Returns:vector <int>
+Method signature:vector <int> getKth(int N, int K)
+
+
+NOTES
+-The Euclidean distance between two points (x1,y1) and (x2,y2) is equal to the square root of (x1-x2)^2+(y1-y2)^2.
+
+
+CONSTRAINTS
+-N will be between 2 and 10, inclusive.
+-K will be between 1 and the amount of points inside the square with side length 2^N+2, inclusive.
+
+
+EXAMPLES
+
+0)
+4
+2
+
+Returns: {17, 17 }
+
+The square stretches from (0,0) to (18,18). After you paint (1,1), the farthest point within the square is (17,17).
+
+1)
+4
+3
+
+Returns: {1, 17 }
+
+Now there are two candidates. Both upper-left and bottom-right points within the square are equally distant from the already painted two, so we choose the leftmost one.
+
+2)
+4
+5
+
+Returns: {9, 9 }
+
+After you paint all the corners, the best choice is the center of the square.
+
+3)
+3
+14
+
+Returns: {1, 3 }
+
+
+
+4)
+5
+1089
+
+Returns: {33, 32 }
+
+

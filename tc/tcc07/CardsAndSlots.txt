@@ -1,0 +1,56 @@
+PROBLEM STATEMENT
+
+You have n cards. Each card has some integer value, and some letter written on it. You also have n slots in a row. Each slot has some required value.
+
+
+You must place the cards in the slots such that each slot contains a card with a value greater than or equal to the required value of that slot.  You must order the cards such that the string formed by reading the letters on the cards from left to right comes as early as possible lexicographically while not violating the first rule.
+
+
+You are given a vector <int> values and a string letters, the i-th elements of which are the value and letter, respectively, of the i-th card.  You are also given a vector <int> required, the i-th element of which is the required value of the i-th slot.  The slots are ordered from left to right.  Place the cards into the slots as described above and return the resulting string.  If there is no valid way to fill the slots, return an empty string instead.
+
+
+DEFINITION
+Class:CardsAndSlots
+Method:firstValid
+Parameters:vector <int>, string, vector <int>
+Returns:string
+Method signature:string firstValid(vector <int> values, string letters, vector <int> required)
+
+
+CONSTRAINTS
+-values will contain between 1 and 50 elements, inclusive.
+-Each element of values will be between 1 and 1000, inclusive.
+-letters will contain exactly n characters, where n is the number of elements in values.
+-letters will contain only uppercase letters ('A'-'Z').
+-required will contain the same number of elements as values.
+-Each element of required will be between 1 and 1000, inclusive.
+
+
+EXAMPLES
+
+0)
+{1, 2, 3}
+"ABC"
+{2, 2, 1}
+
+Returns: "BCA"
+
+
+
+1)
+{1, 2, 3, 4, 5}
+"BBBAA"
+{1, 1, 1, 1, 5}
+
+Returns: "ABBBA"
+
+Note that there can be equal letters on different cards.
+
+2)
+{1, 1}
+"AA"
+{2, 2}
+
+Returns: ""
+
+No card fits any slot.

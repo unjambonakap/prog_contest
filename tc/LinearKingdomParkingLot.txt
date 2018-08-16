@@ -1,0 +1,69 @@
+PROBLEM STATEMENT
+NOTE: This problem statement contains images that may not display properly if viewed outside of the applet.
+
+
+Gogo runs a parking lot in Linear Kingdom. This parking lot consists of consecutive cells spanning infinitely from left to right. There's only one entrance to the parking lot and it's located at an arbitrary cell. Below is a picture portraying a possible layout for his parking lot.
+
+
+
+Note that the arrow in the image above is pointing to the entrance cell.
+
+
+Today, N cars (numbered 0..N-1 by their order of arrival) are going to be parked in his parking lot. Initially, the parking lot is empty (that is, all cells are empty). Then, starting with car 0, the cars will arrive one at a time. Gogo will park each car as it arrives in an empty cell that is reachable from the entrance through a series of empty cells. Gogo will choose the cells in such a way that there will always be a reachable cell for all N cars.
+
+
+After all the cars are parked, they will exit the parking lot in the order given in vector <int> exitOrder. The car numbered exitOrder[0] is the first car to exit, the car numbered exitOrder[1] is the next one, and so on. For a car to exit the parking lot, Gogo must drive some other cars (or none at all) out of the parking lot first until it is possible to reach the entrance from the corresponding cell. After the car gets out, Gogo must return all the cars he drove out back into the parking lot in any order and not necessarily back to their original positions. In order for Gogo to drive a car out of the parking lot, he must borrow the key from its owner. Once he has borrowed a key, he can then drive that car out and back in an arbitrary number of times. Note that the car that is about to exit the parking lot will not be driven by Gogo but by its owner.
+
+
+Return the minimum number of keys Gogo will need to borrow so that there exists a way to park all the cars and to let them exit later with the method described above. Assume that exitOrder is known to Gogo before the cars even start to arrive.
+
+DEFINITION
+Class:LinearKingdomParkingLot
+Method:borrowKeys
+Parameters:vector <int>
+Returns:int
+Method signature:int borrowKeys(vector <int> exitOrder)
+
+
+CONSTRAINTS
+-exitOrder will contain between 2 and 50 elements, inclusive.
+-Each element of exitOrder will be between 0 and N-1, inclusive, where N is the number of elements in exitOrder.
+-All elements of exitOrder will be distinct.
+
+
+EXAMPLES
+
+0)
+{4,1,0,2,3}
+
+Returns: 1
+
+Let us number the cells ..., -4, -3, -2, -1, 0, 1, 2, 3, 4, ..., where cell 0 is the entrance cell. One of the optimal configurations is achieved by parking car 0 at cell -3, car 1 at cell -2, car 2 at cell 3, car 3 at cell 2, and car 4 at cell -1. This configuration corresponds to the picture above, and Gogo will only need to borrow the key for car 3.
+
+1)
+{0,1}
+
+Returns: 0
+
+Sometimes, it is not necessary to borrow any key.
+
+2)
+{1,0,3,2,4}
+
+Returns: 1
+
+
+
+3)
+{4,0,2,1,5,3}
+
+Returns: 2
+
+
+
+4)
+{0,2,4,1,3}
+
+Returns: 2
+
+

@@ -1,0 +1,55 @@
+PROBLEM STATEMENT
+We want to be able to express a fraction as a sum of two fractions that have small denominators.
+Specifically, given a fraction a/b, we want to find fractions c/d and e/f such that
+    a/b = c/d + e/f,  where d and f are positive    
+    max(d,f) is as small as possible
+    
+Create a class FracSum that contains a method decompose that is given a and b and that returns
+the smallest value for max(d,f).
+
+
+DEFINITION
+Class:FracSum
+Method:decompose
+Parameters:int, int
+Returns:int
+Method signature:int decompose(int a, int b)
+
+
+CONSTRAINTS
+-a and b will each be between 1 and 2,000,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+14
+10
+
+Returns: 5
+
+
+
+      14/10 = 0/1 + 7/5  is one way to keep the denominators less than or equal to 5.
+
+
+
+1)
+1
+60
+
+Returns: 12
+
+
+
+       1/60 = -2/5 + 5/12 
+
+2)
+8
+90
+
+Returns: 9
+
+
+
+      8/90 = -4/5 + 8/9

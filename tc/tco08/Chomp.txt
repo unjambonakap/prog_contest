@@ -1,0 +1,60 @@
+PROBLEM STATEMENT
+The game Chomp starts with a grid 3 cells high and N cells wide.
+Two players take turns selecting a remaining cell in the grid, and
+chomping (removing) all the cells to the right and above the selected cell
+(including the chosen one).  The player who chomps the lower-leftmost
+cell loses the game.  Here is a sample of two moves in the game:
+
+
+3 XX                          XX                    
+2 XXXX    => chomp(4,1) =>    XXX  => chomp(1,2) => 
+1 XXXXX                       XXX                      XXX
+  12345                       12345                    12345 
+
+
+Determine which player wins if each player plays
+optimally, and how many total (for both players combined) turns it
+takes (the last move is the losing move).  The player who will win
+when playing optimally plays to win as quickly as possible, while the
+player who is destined to lose plays to make the game last as long as
+possible.  If player 1 will win, return the total number of moves required.  Otherwise, return the negation of the number of moves required.
+
+DEFINITION
+Class:Chomp
+Method:moves
+Parameters:int
+Returns:int
+Method signature:int moves(int N)
+
+
+CONSTRAINTS
+-N will be between 1 and 100, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+
+Returns: 2
+
+The optimal game is simple:
+
+ X      .      .
+ X  =>  .  =>  .
+ X      X      .
+
+
+1)
+2
+
+Returns: 6
+
+
+
+2)
+4
+
+Returns: 8
+
+

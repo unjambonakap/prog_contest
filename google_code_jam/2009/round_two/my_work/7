@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <iostream>
+#include <vector>
+
+#include <cmath>
+
+using namespace std;
+#define MAX_S 50
+#define REP(i,n) for(i = 0;i < n; i ++)
+int n, t, k
+
+int charts[110][30];
+int relation[110][110];
+int visited[110];
+int end_point[110];
+
+
+int solve(){
+
+}
+
+int main(){
+	int i, j, l;
+	double ret;
+
+	scanf("%d", &t);
+
+	for(i = 0; i < t; i++){
+		scanf("%d %d", &n, &k);
+		REP(j, n){
+			REP(l, k)
+			scanf("%d", &charts[j][l]);
+
+			memset(relation[i], 0, 110 * sizeof(int));
+
+
+			REP(l, j){
+
+
+			}
+		}
+
+		memset(end_point, 0, sizeof(end_point));
+
+		ret = solve();
+		
+		printf("Case #%d: %.6lf\n", i + 1, ret);
+
+	}
+
+}

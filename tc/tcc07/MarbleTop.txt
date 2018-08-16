@@ -1,0 +1,64 @@
+PROBLEM STATEMENT
+We install marble countertops. The marble comes in a standard width but varying
+lengths. It is very difficult to cut the marble -- we have a special machine 
+that cuts
+a length of marble into two pieces, one of which must be exactly k feet long. A piece
+that is no bigger than k cannot be cut.
+
+vector <int> stock contains the lengths of marble that we have on hand, and vector <int> 
+orders contains the lengths that our customers have ordered. Given k, stock,
+and orders, return the minimum number of cuts
+needed to satisfy all our customers. If it is not possible, return -1.
+
+
+
+
+DEFINITION
+Class:MarbleTop
+Method:minCuts
+Parameters:int, vector <int>, vector <int>
+Returns:int
+Method signature:int minCuts(int k, vector <int> stock, vector <int> orders)
+
+
+CONSTRAINTS
+-k will be between 1 and 40, inclusive.
+-stock and orders will each contain between 1 and 50 elements, inclusive.
+-Each element of stock and of orders will be between 1 and 40, inclusive.
+
+
+EXAMPLES
+
+0)
+5
+{5,3,11}
+{10,3,5}
+
+Returns: -1
+
+    There is no way to deliver a piece of length 10. The only sizes we could
+  deliver are 11,6,5,3,1.
+
+
+1)
+5
+{5,3,11}
+{6,6,5}
+
+Returns: -1
+
+
+    We can deliver one length of 6 and a length of 5 but not the second 6.
+
+2)
+1
+{7,6,2,1}
+{3,1,1,1,1,1,1}
+
+Returns: 4
+
+
+    Cut the 6 into a 5 and 1, cut the 5 into a 4 and 1, cut the 4 into a 3 and 1.
+    Now we have 7, 3, 2, and four 1's. Cut the 2 and we have (in addition to
+    the 7) a 3 and 6 1's as needed. 
+ 

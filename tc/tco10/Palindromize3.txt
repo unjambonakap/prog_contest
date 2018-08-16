@@ -1,0 +1,51 @@
+PROBLEM STATEMENT
+
+A palindrome is a string that reads the same from left to right as it does from right to left.  You have a string s that you want to turn into a palindrome.  You can replace individual letters in the string, but you cannot add or remove any letters.  To replace a letter, you point at it with the mouse and then press the letter that you want to replace it with on the keyboard.  You are using a borrowed computer, so out of courtesy, you want to achieve your goal using as few key presses as possible.  If there are multiple ways to do this, you then want to minimize the number of keys that have your fingerprint on them (i.e., the number of keys that have been pressed at least once).  If there are still multiple ways to do this, you will choose the resulting string that comes earliest lexicographically.  Return the resulting palindrome.
+
+
+DEFINITION
+Class:Palindromize3
+Method:getPalindrome
+Parameters:string
+Returns:string
+Method signature:string getPalindrome(string s)
+
+
+NOTES
+-A string comes earlier lexicographically than another one of the same length if and only if it has a character closer to the beginning of the alphabet in the first position at which they differ.
+
+
+CONSTRAINTS
+-s will contain between 1 and 30 characters, inclusive.
+-Each character of s will be a lowercase letter ('a'-'z').
+
+
+EXAMPLES
+
+0)
+"aszsbsz"
+
+Returns: "zszszsz"
+
+We can turn this into a palindrome with just two key presses.  There are several ways to do this.  For example, you could replace the first 'z' with 'b' and the second 'z' with 'a' to get "asbsbsa".  However, the best way to do it is to replace both 'a' and 'b' with 'z' because it minimizes the number of fingerprints left on the keyboard.
+
+1)
+"ababab"
+
+Returns: "aaaaaa"
+
+We could either turn all a's to b's or all b's to a's with exactly 3 key presses and leaving your fingerprint on 1 key. Changing to a's gives the lexicographically earliest solution.
+
+2)
+"topcoderopen"
+
+Returns: "nepooeeoopen"
+
+
+
+3)
+"dfiuwifuqwieubaoiewhroiahw"
+
+Returns: "wfiiwifueiieuueiieufiwiifw"
+
+

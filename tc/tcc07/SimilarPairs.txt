@@ -1,0 +1,61 @@
+PROBLEM STATEMENT
+
+You are given a vector <string> text.  Concatenate all the elements to make one string.  A pair of non-empty two non-overlapping substrings of equal length (A, B) is called k-similar if there are no more than k positions where A and B have different characters. Return the number of distinct strings that belong to at least one such pair.
+
+
+DEFINITION
+Class:SimilarPairs
+Method:howManyElements
+Parameters:vector <string>, int
+Returns:int
+Method signature:int howManyElements(vector <string> text, int k)
+
+
+CONSTRAINTS
+-text will contain between 1 and 50 elements, inclusive.
+-Each element of text will contain between 1 and 50 characters, inclusive.
+-Each element of text will contain only lowercase letters ('a'..'z').
+-k will be between 0 and 2500, inclusive.
+
+
+EXAMPLES
+
+0)
+{"abacd"}
+1
+
+Returns: 6
+
+The following strings each belong to at least one similar pair: "a", "b", "c", "d", "ab", "ac".
+
+1)
+{"aaaa"}
+0
+
+Returns: 2
+
+
+
+2)
+{"abcdefgh"}
+2
+
+Returns: 15
+
+
+
+3)
+{"a", "ab", "abc"}
+0
+
+Returns: 3
+
+
+
+4)
+{"abacd"}
+0
+
+Returns: 1
+
+

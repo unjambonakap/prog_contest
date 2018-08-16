@@ -1,0 +1,97 @@
+PROBLEM STATEMENT
+A power series takes the form: 
+  f(x) =  a0 + a1x + a2x2 + a3x3 + ...
+
+If we had another power series
+  g(x) =  b0 + b1x + b2x2 + b3x3 + ...
+
+then we compute the product as follows:
+  f(x)g(x) = a0b0 + (a0b1 + a1b0)x + (a0b2 + a1b1 + a2b0)x2 + ...
+More formally, we have 
+   ck = sum (i = 0 to k) aibk-i
+
+where ck is a coefficient of the power series for the product.
+
+Given the series f(x) you must determine g(x) such that f(x)g(x) = 1 + 0x + 0x2 + ... 
+The first few a-values will be given in a vector <int> start.  The remaining a-values will be an infinitely repeating sequence of the terms in repeat.  For example, if start = { 1, 2 } and repeat = { 3, 4, 5 } then the resulting power series is 
+    1 + 2x + 3x2 + 4x3 + 5x4 + 3x5 + 4x6 + 5x7 + ...
+
+You will return the first n terms of g(x) as a vector <string> where the first element is b0, the second is b1 and so forth.  Each bi should be given in the form "p/q" where p and q are integers with no common factors (other than 1), and q is positive.  If bi equals 0, then use the string "0/1".  Neither p nor q should have extra leading zeros, and if p is negative, it should have a single leading '-'.
+
+DEFINITION
+Class:CauchyProduct
+Method:findInverse
+Parameters:vector <int>, vector <int>, int
+Returns:vector <string>
+Method signature:vector <string> findInverse(vector <int> start, vector <int> repeat, int n)
+
+
+CONSTRAINTS
+-start will contain between 1 and 50 elements, inclusive.
+-repeat will contain between 1 and 50 elements, inclusive.
+-Each element of start will be between -20 and 20, inclusive.
+-Each element of repeat will be between -20 and 20, inclusive.
+-Element 0 of start will not be 0.
+-n will be between 1 and 1000, inclusive.
+-Each integer in each element of the return value will be between -100000 and 100000, inclusive.
+
+
+EXAMPLES
+
+0)
+{1}	
+{1}
+5
+
+Returns: {"1/1", "-1/1", "0/1", "0/1", "0/1" }
+
+
+
+1)
+{1}
+{2}
+5
+
+Returns: {"1/1", "-2/1", "2/1", "-2/1", "2/1" }
+
+
+
+2)
+{1,2}
+{3,4,5}
+20
+
+Returns: {"1/1", "-2/1", "1/1", "0/1", "0/1", "3/1", "-9/1", "9/1", "0/1", "-9/1", "18/1", "-36/1", "45/1", "-9/1", "-63/1", "126/1", "-171/1", "180/1", "-36/1", "-333/1" }
+
+
+
+3)
+{1,2}	
+{3,4,5}
+35
+
+Returns: {"1/1", "-2/1", "1/1", "0/1", "0/1", "3/1", "-9/1", "9/1", "0/1", "-9/1", "18/1", "-36/1", "45/1", "-9/1", "-63/1", "126/1", "-171/1", "180/1", "-36/1", "-333/1", "747/1", "-927/1", "720/1", "99/1", "-1818/1", "3960/1", "-4923/1", "3123/1", "2097/1", "-10674/1", "20457/1", "-24552/1", "13464/1", "17379/1", "-62865/1" }
+
+
+
+4)
+{2,3,4}
+{5,6,7}
+5
+
+Returns: {"1/2", "-3/4", "1/8", "1/16", "1/32" }
+
+
+
+5)
+{-19,14,-8,-2,-19,12,-4}
+{-6,-6,2,14,-5,-18,17,-8,8,
+ -16,-2,-12,11,16,-12,-17,5,
+  1,11,11,0,10,-14,8,1,4,
+ -8,1,-16,16,19,-4,18,4,
+ -11,-15,9,4,-8,10,-5,-9,9,-9,16,10}
+3
+
+Returns: {"-1/19", "-14/361", "-44/6859" }
+
+

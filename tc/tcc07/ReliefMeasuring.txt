@@ -1,0 +1,86 @@
+PROBLEM STATEMENT
+
+The relief of an area near Alone Hill was measured using an old machine which might be inaccurate.  
+The area  has a rectangular form, and it was split into a rectangular grid containing n rows and m columns of equal squares.
+
+The results are given as a vector <string> heights, where the j-th character of the i-th element is '1' (one) if the height of the point at the center of the square at row i, column j is greater than some constant value, and '0' (zero) otherwise.
+heights contains exactly n elements, each element of which contains exactly m characters.
+
+A cell is a neighbour of another cell if they share the side.
+
+The measured area has one special property: if point A is the center of some cell and point B is the center of the neighbour cell and point A is closer to the hill peak than point B, then 
+the height of A is greater or equal than the height of B.
+
+Distance is measured using the euclidian distance along the horizontal plane.  In other words, the distance between point (xa,ya) and point (xb,yb) is equal to sqrt((xa-xb)^2+(ya-yb)^2).  It is known that one of the given measurements was taken at the peak of the hill, i.e., the hill coincides with the center of one of the squares.
+
+
+Using that property, you can tell whether or not the given results might be accurate.  For example, the relief map on the left might be accurate while the one on the right is definitely not:
+
+{"0100",    {"01010",
+ "1110",      "10101",
+ "0110",      "01010",
+ "0110"}      "10101"}
+
+
+
+Return the minimal number of characters you must replace in heights to make the results possibly accurate.  If it is already possible that the results are accurate, return 0.
+
+
+
+DEFINITION
+Class:ReliefMeasuring
+Method:minValuesToFix
+Parameters:vector <string>
+Returns:int
+Method signature:int minValuesToFix(vector <string> heights)
+
+
+CONSTRAINTS
+-heights will contain between 1 and 25 elements, inclusive.
+-Each element of heights will contain between 1 and 25 characters, inclusive.
+-Each element of heights will contain the same number of characters as others.
+-Each element of heights will contain only '0' and '1' characters.
+
+
+EXAMPLES
+
+0)
+{"0100","1110","0110","0110"}
+
+
+Returns: 0
+
+This is the example from the statement.
+
+1)
+{"101"}
+
+Returns: 1
+
+Replace the middle character.
+
+2)
+{"101", "010", "101"}
+
+Returns: 3
+
+
+
+3)
+{"0010",
+ "0101",
+ "0010"}
+
+Returns: 1
+
+
+
+4)
+{"1010",
+ "0101",
+ "1010",
+ "0101"}
+
+Returns: 5
+
+

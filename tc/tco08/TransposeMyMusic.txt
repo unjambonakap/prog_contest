@@ -1,0 +1,90 @@
+PROBLEM STATEMENT
+You are a guitar player, and you have a lot of sheet music that you want to play. Unfortunately, you are not a very good singer, so you can only sing music that is played in a certain key. Therefore, you want to transpose your sheet music, so you can play it in a key that you can sing in.
+
+In this problem, we will consider 24 different chords. The following 12 are the base ones:
+A, A#, B, C, C#, D, D#, E, F, F#, G, G#
+
+The other 12 chords are the same ones, but then with an 'm' concatenated to the end. They are called minor. So Am, A#m, Bm, etc.
+
+As you can see, certain chords have a '#', called "sharp". Every "sharp"-chord, can be replaced by its corresponding "flat"-chord (written by adding a 'b' to the end of the next higher chord). So for example C# and Db are the same chords. Let's write the chords again, this time using the "flat"-notation:
+A, Bb, B, C, Db, D, Eb, E, F, Gb, G, Ab
+
+As you can see the chords wrap around, so after Ab comes A, Bb, etc. The minor chords in "flat"-notation are Am, Bbm, Bm, etc.
+
+Sheet music consists of a row of chords optionally separated by vertical bars. A certain piece of sheet music may look like this:
+G D Am | G D C | G D Am | G D C
+
+Here you see 4 groups of 3 chords, separated by vertical bars. The key of a song is always the first chord (so "G" in this case). The key of the song determines if we use the "sharp"-notation, or the "flat"-notation. Keys where you use the "flat"-notation are:
+Bb, Bbm, Db, Dbm, Eb, Ebm, F, Fm, Gb, Gbm, Ab, Abm
+
+With all other keys, you should use the "sharp"-notation.
+
+The difference between 2 chords is defined as the number of positions between the first and the second one. For example, the difference between B and E is 5, while the difference between Db and A# is -3 (or 9, because the chords wrap around).
+
+You will be given a vector <string> sheetMusic. Concatenate all elements of sheetMusic to get the whole music piece. You will also be given a string newKey, the key to which you have to transpose the sheet music. To transpose the music, first take the difference between the key of the original song and newKey. Let's call this value diff. Then, replace each chord in the original sheet music with the chord diff positions after it. If newKey is one of the chords that use "flat"-notation, then all tranposed chords should use the "flat"-notation. Otherwise, all chords in the output should use the "sharp"-notation. All minor chords must remain minor and non-minor chords must remain non-minor. The first chord of the original song and newKey will either both be minor or both be non-minor. The first chord of the original song and newKey will be either both in minor or both not in minor.
+
+Return a string containing the sheetMusic transposed to newKey. The output should use the exact same notation as the input (same number of bars between chords and 1 space between 2 adjacent chords or bars). Please note that sheetMusic may not necessarily obey the rules for "flat" and "sharp" notations, but your return value must use the proper notation. See examples for clarification.
+
+
+DEFINITION
+Class:TransposeMyMusic
+Method:transposeMusic
+Parameters:vector <string>, string
+Returns:string
+Method signature:string transposeMusic(vector <string> sheetMusic, string newKey)
+
+
+CONSTRAINTS
+-sheetMusic will contain between 1 and 50 elements, inclusive.
+-Each element of sheetMusic will contain between 1 and 50 characters, inclusive.
+-The valid chords are the chords described in the statement, and each of those in minor (so Am, A#m, Bbm, Bm, etc.).
+-newKey will be a valid chord.
+-The concatenation of sheetMusic will be a space-separated list of valid chords and vertical bars ('|') , and there will be exactly one space (' ') between 2 elements (quotes for clarity only).
+-The concatenation of sheetMusic will not contain leading or trailing spaces or vertical bars.
+-sheetMusic will contain at least 1 chord.
+-The first chord of the original song and newKey will either both be minor or both be non-minor.
+
+
+EXAMPLES
+
+0)
+{"G D Am | G D C | G D Am | G D C"}
+"F"
+
+Returns: "F C Gm | F C Bb | F C Gm | F C Bb"
+
+The example from the problem statement.
+
+1)
+{"A Bb B C Db D Eb E F Gb G Ab"}
+"A"
+
+Returns: "A A# B C C# D D# E F F# G G#"
+
+The original sheet music is in the key of A, but it does not use the "sharp"-notation like it should.  The return value must be in the right notation.
+
+2)
+{"C G Am F | C G F C Dm C | C G A",
+"m F | G F C Dm C | Am F G ",
+"F C Dm C"}
+"F#"
+
+Returns: "F# C# D#m B | F# C# B F# G#m F# | F# C# D#m B | C# B F# G#m F# | D#m B C# B F# G#m F#"
+
+
+
+3)
+{"A# | | | Bb"}
+"G#"
+
+Returns: "G# | | | G#"
+
+Note that there might be multiple vertical bars in a row (but they have to be separated by spaces) and we can have "flat"-notation as well as "sharp"-notation in 1 piece of sheet music.
+
+4)
+{"Gm C Gm | Eb D C Gm | Gm C Gm"}
+"Dbm"
+
+Returns: "Dbm Gb Dbm | A Ab Gb Dbm | Dbm Gb Dbm"
+
+

@@ -1,0 +1,65 @@
+PROBLEM STATEMENT
+Depicted below is the Fibonacci sequence:
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+
+
+As you can see, each value from 2 on is the sum of the previous two values. Given the 0-based index of a Fibonacci number and an int M, return the index-th Fibonacci number modulo M.
+
+
+DEFINITION
+Class:BigFibonacci
+Method:fibNumber
+Parameters:string, int
+Returns:int
+Method signature:int fibNumber(string index, int M)
+
+
+CONSTRAINTS
+-index will be an integer between 0 and 1015, inclusive, with no extra leading zeroes.
+-M will be between 1 and 1000000 (106).
+
+
+EXAMPLES
+
+0)
+"7"
+10
+
+Returns: 3
+
+1)
+"5"
+1
+
+Returns: 0
+
+2)
+"0"
+23
+
+Returns: 0
+
+3)
+"17"
+2
+
+Returns: 1
+
+4)
+"54"
+341890
+
+Returns: 177022
+
+F54 = 86267571272.
+86267571272 % 341890 = 177022.
+
+
+5)
+"300"
+77531
+
+Returns: 0
+
+F300 = 222232244629420445529739893461909967206666939096499764990979600.

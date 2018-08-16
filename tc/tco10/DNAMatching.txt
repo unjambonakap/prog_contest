@@ -1,0 +1,45 @@
+PROBLEM STATEMENT
+
+
+A DNA sequence is a sequence of bases, where each base is represented with one of four characters 'A', 'C', 'G' or 'T'.  Two DNA sequences are equivalent if one is the reverse complementary of the other.  The reverse complementary of a sequence s is the sequence that results from reading s backwards and replacing each base with its complementary.  'A' and 'T' are complementary of each other, and 'C' and 'G' are complementary of each other.  For example, if the sequence is "ACGTA", reading it backwards would be "ATGCA", and then replacing each base with its complementary would be "TACGT".  So, "TACGT" is the reverse complementary of "ACGTA", meaning that the two sequences are equivalent.
+
+You are given a list of distinct DNA sequences in the vector <string> dna.  Return the number of sequences in the largest possible subset of dna that contains no pairs of equivalent DNA sequences.
+
+
+DEFINITION
+Class:DNAMatching
+Method:getMaxSize
+Parameters:vector <string>
+Returns:int
+Method signature:int getMaxSize(vector <string> dna)
+
+
+CONSTRAINTS
+-dna will contain between 1 and 50 elements, inclusive.
+-Each element of dna will contain between 1 and 50 characters, inclusive.
+-Each character of each element of dna will be one of 'A', 'C', 'T', 'G'.
+-No two elements of dna will be equal.
+
+
+EXAMPLES
+
+0)
+{"ACGCGCGTA", "GTCGATGCA", "ACGTAGCT", "TACGCGCGT"}
+
+Returns: 3
+
+Sequences 0 and 3 (0-based) are reverse complementaries of each other, so we can only choose one of those. Sequences 1 and 2 (0-based) do not have equivalent ones, so we can freely choose them too, getting a subset of size 3.
+
+1)
+{"A","C","T","G"}
+
+Returns: 2
+
+Since each character is paired with another one, we can only choose one sequence for each pair, getting a total of 2.
+
+2)
+{"ATTA", "ATCG", "CGAT", "ATCGCGAT", "CCCGGG"}
+
+Returns: 4
+
+Watch out for sequences that are the reverse complementary of themselves.

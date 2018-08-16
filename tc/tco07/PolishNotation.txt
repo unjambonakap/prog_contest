@@ -1,0 +1,91 @@
+PROBLEM STATEMENT
+
+Prefix notation (also known as Polish notation in reference to the nationality of its inventor, Jan Lukasiewicz) is a notation where operators are placed before their arguments (and arguments themselves are also expressions in prefix notation). 
+Since the arity of arithmetic operations is fixed, an expression written in prefix notation is always unambiguous, and parenthesizing the expression is unnecessary. For example:
+
+
+
+ Our usual (infix) notation        Prefix notation
+ 2 + 3                             + 2 3
+ 3 + 2                             + 3 2
+ 4 * (-2 + 3)                      * 4 + -2 3
+ (22 + 3) * (55 - 4)               * + 22 3 - 55 4
+ 1 + 2 + 3 + 44 + (-5)             + + + + 1 2 3 44 -5
+ 1 + (2 + (3 + (44 + (-5))))       + 1 + 2 + 3 + 44 -5
+
+
+As you can see from the table, any arithmetic expression can be written unambiguously in prefix notation. Since operators and numbers are separated by spaces, we are always able to distinguish a 2-digit number and a sequence of two 1-digit numbers, as well as distinguish between unary and binary minuses.
+
+
+More formally, any valid expression in prefix notation can be described by the following rules:
+
+Any integer number is a valid expression.
+If S and Q are valid expressions, then "+ S Q", "* S Q", "- S Q" and "/ S Q" are valid expressions (all quotes are for clarity only).
+
+
+
+You've got an expression written in prefix notation and you'd like to read it.
+Unfortunately, all the spaces were removed, possibly making it impossible to determine what the original expression was.  For example, "--456" could have originally been "- - 4 5 6", "- -4 56" or "- -45 6".  You are to return the number of different valid original prefix notation expressions that could have resulted in the given expression.  Note that both positive and negative numbers in the original expression may contain leading zeroes.  Unary minuses in the original expression are allowed, but there can be at most one unary minus in a number (so, "12" and "-34" are valid numbers, but "--11" and "----22" are not).  Also, the original expression cannot contain any unary pluses.  See examples for further clarification.
+
+
+DEFINITION
+Class:PolishNotation
+Method:waysToDecode
+Parameters:string
+Returns:long long
+Method signature:long long waysToDecode(string expression)
+
+
+CONSTRAINTS
+-expression will contain between 1 and 50 characters, inclusive.
+-expression will contain only '+', '-', '/', '*' characters and digits ('0' - '9').
+
+
+EXAMPLES
+
+0)
+"01234567890123456789"
+
+Returns: 1
+
+This string is already a valid expression in prefix notation, and the only way to keep it valid is to not add any spaces.
+
+1)
+"+1234567"
+
+Returns: 6
+
+We must put a space after '+' to split the operator and its operands. We need one more space to split the two operands, and it can be put right after '1', '2', '3', '4', '5' or '6'.
+
+2)
+"23/33"
+
+Returns: 0
+
+This string can not be transformed into a valid expression.
+
+3)
+"/-010"
+
+Returns: 3
+
+The three ways to transform this into a valid expression are (all quotes for clarity):
+
+"/ -0 10" (the minus is unary)
+"/ -01 0" (the minus is unary)
+"/ - 0 1 0" (the minus is binary)
+
+
+4)
+"-*123"
+
+Returns: 1
+
+Here the minus is followed by another operation, so it must be binary.
+
+5)
+"--1"
+
+Returns: 0
+
+

@@ -1,0 +1,54 @@
+PROBLEM STATEMENT
+A binary power bishop is at point (0, 0) and wants to get to point (finishX, finishY). In one move, the bishop can go from point (x, y) to any one of the following points: (x + 2k, y + 2k), (x + 2k, y - 2k), (x - 2k, y + 2k), (x - 2k, y - 2k), where k is any non-negative integer. The only restriction on the bishop's moves is that all of them must have distinct values of k.
+
+Return a vector <string> describing the path of the bishop from (0, 0) to (finishX, finishY) that contains the minimum possible number of moves.  The elements of the return should describe all the points visited by the bishop, in order, including the start and end points.  Each element should describe a single point (x, y) in the format "x,y" (quotes for clarity).  If there are multiple possible return values, return the one that comes first lexicographically.  If it is impossible to reach the finish point, return an empty vector <string> instead.
+
+DEFINITION
+Class:BinaryPowerBishop
+Method:getPath
+Parameters:int, int
+Returns:vector <string>
+Method signature:vector <string> getPath(int finishX, int finishY)
+
+
+NOTES
+-A vector <string> A comes before a string B lexicographically if A has a lexicographically smaller string at the first index at which they differ. A string A comes before a string B lexicographically if A is a proper prefix of B, or if A has a smaller character at the first position where the strings differ. When comparing the characters, refer to the following list of characters in ascending order: ',', '-', '0', '1', ..., '9'.
+
+
+CONSTRAINTS
+-finishX and finishY will each be between 1 and 100000000, inclusive.
+
+
+EXAMPLES
+
+0)
+16
+16
+
+Returns: {"0,0", "16,16" }
+
+Only one move is needed.
+
+1)
+8
+24
+
+Returns: {"0,0", "-8,8", "8,24" }
+
+Here two moves is enough. Note that the bishop can visit points with negative coordinates.
+
+2)
+11
+22
+
+Returns: { }
+
+If the bishop moves from (x1, y1) to (x2, y2), the parities of the sums x1+y1 and x2+y2 are the same.  Therefore, the bishop can't visit any point (x, y) with an odd sum x+y.
+
+3)
+123
+321
+
+Returns: {"0,0", "-128,128", "-112,112", "-104,104", "-100,100", "-102,98", "-101,97", "-133,65", "123,321" }
+
+

@@ -1,0 +1,76 @@
+PROBLEM STATEMENT
+
+Election day is coming in everyone's favorite country, Absurdistan. 
+The elections consist of three steps.
+
+
+This week anyone can register a political party.
+The country is divided into districts. The next week each party will be able to register a candidate in each of the districts.
+After that week there is the election day. Each district contains at least one eligible voter. 
+By law, each of the eligible voters has to vote for one of the candidates who are registered in their district.
+The candidate who receives the most votes is elected to represent the district in the national parliament. 
+In case of a tie nobody is elected from that district. 
+
+
+
+A party is considered to win the elections if the number of elected candidates belonging to the party is strictly greater than the total number of elected candidates belonging to all other parties.
+
+
+You have just founded a new party. It will have a candidate in each of the districts.
+
+
+You are given a vector <int> districts containing the number of eligible voters in each district.
+Compute and return the smallest total number X such that if X people vote for your party you are sure to win the elections.
+
+
+DEFINITION
+Class:EvaluatingElections
+Method:evaluate
+Parameters:vector <int>
+Returns:int
+Method signature:int evaluate(vector <int> districts)
+
+
+CONSTRAINTS
+-districts will contain between 1 and 50 elements, inclusive.
+-Each element in districts will be between 1 and 999, inclusive.
+
+
+EXAMPLES
+
+0)
+{47}
+
+Returns: 24
+
+You need to win this district, and with 24 votes you can be sure that you'll win it.
+
+1)
+{9,9}
+
+Returns: 14
+
+Imagine the following scenario in which your party gets a total of 13 votes: In district #1 your party gets all 9 votes, in district #2 you get 4 votes and one of the other parties gets 5. In that case your party would not win the elections. On the other hand, with 14 votes you are sure to win both districts.
+
+2)
+{1,1,1,1,1,1}
+
+Returns: 4
+
+You need to win more than a half, i.e., at least four of these six districts.
+
+3)
+{2,2,2,2,2,2}
+
+Returns: 7
+
+Clearly, 6 votes are not enough: for example, if you get one vote in each region, there will be six ties and nobody will get elected. With 7 votes for your party there are several ways how these can be distributed. We can easily check that in each of them you are sure to win the elections.
+
+For example, you can get both votes in two of the regions and a single vote in three other regions. In that case, you won in two regions, and you forced a tie in three other regions, leaving at most one region for some other party.
+
+4)
+{8,10,12}
+
+Returns: 21
+
+With 21 votes for your party you are almost sure to win in at least two regions, and thereby to win the elections. The only case when this does not happen is the case when you get all 12 votes in the largest region and half of the votes in each of the other two. But in this case you won one region and no opponent can win any other region, which still means you win the elections.

@@ -1,0 +1,90 @@
+PROBLEM STATEMENT
+
+A man is moving on a raft near a village.  The raft is travelling at a constant speed raftSpeed on a river that coincides with the X axis.  The man can leave the raft, visit some sites in the village, and return back to the raft. The man leaves the raft as many times as he wants. During this entire time, the raft will continue to move at its original constant speed.  The man can run with speed runSpeed, where runSpeed is greater than raftSpeed.  He wants to visit at least K different sites. The raft starts infinitely to the left, passes the village, and moves infinitely to the right.
+
+
+You will be given two vector <int>s x and y containing the coordinates of all the sites in the village.  The i-th site is located at (x[i], y[i]).  
+
+Return the minimal time the man must spend outside the raft to visit at least K different sites and return to the raft.
+You should neglect the sizes of the raft, the man, and the sites; assume they are all points.
+
+
+
+DEFINITION
+Class:Rafting
+Method:minRunningTime
+Parameters:int, int, vector <int>, vector <int>, int
+Returns:double
+Method signature:double minRunningTime(int raftSpeed, int runSpeed, vector <int> x, vector <int> y, int K)
+
+
+NOTES
+-The returned value must be accurate to within a relative or absolute value of 1E-9.
+
+
+CONSTRAINTS
+-raftSpeed will be between 1 and 50, inclusive.
+-runSpeed will be between raftSpeed+1 and 50, inclusive.
+-x will contain between 1 and 6 elements, inclusive.
+-y will contain exactly n elements, where n is the number of elements in x.
+-Each element of x will be between -50 and 50, inclusive.
+-Each element of y will be between 1 and 50, inclusive.
+-K will be between 1 and n, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+50
+{0}
+{1}
+1
+
+Returns: 0.04000800240080029
+
+The man can run very fast, so he should leave the raft near point (0, 0) and return near this point too.
+
+1)
+1
+50
+{0, 0}
+{1, 1}
+2
+
+Returns: 0.04000800240080029
+
+The sites can coincide.
+
+2)
+1
+2
+{0}
+{1}
+1
+
+Returns: 1.1547005383792515
+
+The man should leave the raft near the point (-sqrt(3) / 3, 0) and come back near the point (+sqrt(3) / 3, 0).
+
+3)
+1
+50
+{10, -10}
+{1, 1}
+2
+
+Returns: 0.08001600480160058
+
+The man should leave the raft twice to visit two sites separately.
+
+4)
+4
+21
+{6, -1, 4, 6, 7, 1}
+{1, 5, 3, 2, 5, 2}
+6
+
+Returns: 0.9517633779247896
+
+

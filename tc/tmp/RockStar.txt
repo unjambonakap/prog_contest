@@ -1,0 +1,71 @@
+PROBLEM STATEMENT
+Inspired by the Dire Straits song, "Money for Nothing", you have decided to become a rock star. After a lengthy recording session, you have acquired:
+
+   a total of ff songs that start fast and end fast,
+   a total of fs songs that start fast and end slow,
+   a total of sf songs that start slow and end fast, and
+   a total of ss songs that start slow and end slow.
+
+It remains only to determine which of these songs should go on your first album, and in what order they should appear. Of course, no song can appear on the album more than once.
+
+Unfortunately, your record company has placed several restrictions on your album:
+
+  1. A song that ends fast may only be immediately followed by a song that starts fast.
+  2. A song that ends slow may only be immediately followed by a song that starts slow.
+  3. If you have at least one song that starts fast, then the first song on the album must start fast. Otherwise, this restriction can be ignored.
+
+At this stage in your artistic career, you must do what your record company has ordered, but you do want to place as many songs as possible on the album.
+
+Given ints ff, fs, sf, and ss, representing the quantities described above, return the maximum number of songs that can be placed on a single album without violating the record company's restrictions.
+
+
+DEFINITION
+Class:RockStar
+Method:getNumSongs
+Parameters:int, int, int, int
+Returns:int
+Method signature:int getNumSongs(int ff, int fs, int sf, int ss)
+
+
+CONSTRAINTS
+-ff, fs, sf, and ss will each be between 0 and 1000 inclusive.
+-At least one of ff, fs, sf or ss will be greater than 0.
+
+
+EXAMPLES
+
+0)
+100
+0
+0
+200
+
+Returns: 100
+
+You must begin the album with one of your fast songs by the 3rd restriction. By the 1st restriction, each subsequent song must also now start fast.
+
+1)
+0
+0
+20
+200
+
+Returns: 201
+
+Since you do not have any songs that start fast, you may begin the album with a song that starts slow. You can use 201 songs by first using the 200 songs that start slow and end slow, then finishing the album with one song that starts slow and ends fast.
+
+2)
+1
+2
+1
+1
+
+Returns: 5
+
+3)
+192
+279
+971
+249
+
+Returns: 999

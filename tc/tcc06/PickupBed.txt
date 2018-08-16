@@ -1,0 +1,91 @@
+PROBLEM STATEMENT
+We have a number of 4-foot long pipes that have regular octagonal cross-sections of
+various sizes.
+We want to place them in a pickup truck which is 4 feet wide, with the length of
+each pipe extending across the width of the truck. Each pipe must  
+rest with one of its 8 sides flat on the truck's bed. The front and
+back sides of the
+truck are higher than the pipes, so each pipe must fit entirely inside the truck.
+How long will the truck have to be to hold them all?
+
+
+  |                                    |
+  |                                    | 
+  |                   x x x x          |             
+  |                 x         x        |         
+  |               x             x      |          
+  |     x x x   x                 x    |        
+  |   x       x x                 x    |   
+  | x           x                 x    | 
+  | x           x                 x x  |
+  | x           x x             x     x| 
+  |   x       x     x         x x     x|   
+  |     x x x         x x x x     x x  |     
+  |-------------------------------------
+        <--- length of truck --->              
+
+
+Create a class PickupBed that contains a method length that is given a vector <int> ht
+and returns the minimum length of truck that can hold all the pipes.
+The i-th element of ht gives the height of a pipe when it is resting on one of
+its sides. 
+
+
+
+DEFINITION
+Class:PickupBed
+Method:length
+Parameters:vector <int>
+Returns:double
+Method signature:double length(vector <int> ht)
+
+
+NOTES
+-A return value with either an absolute or relative error of less than 1.0E-9 is considered correct.
+
+
+CONSTRAINTS
+-ht contains between 1 and 8 elements, inclusive.
+-Each element of ht is between 1 and 1000, inclusive.
+
+
+EXAMPLES
+
+0)
+{5,5,5}
+
+Returns: 15.0
+
+
+
+   The pipes will lie with their perpendicular sides against each other. Each
+   one will require the full 5 units of the truck's length.
+
+
+
+1)
+ {17}
+
+Returns: 17.0
+
+
+
+2)
+{10,1,1}
+
+Returns: 10.0
+
+
+
+   We can put the big one between the 2 little ones. The little ones can fit entirely
+   in the area under the slanted sides of the big one.
+
+
+3)
+{10,2,2}
+
+
+Returns: 10.97056274847714
+
+
+

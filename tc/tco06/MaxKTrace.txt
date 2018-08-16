@@ -1,0 +1,84 @@
+PROBLEM STATEMENT
+The digit in element i character j of mat will correspond to
+the value in row i column j of an N x N matrix. Choosing k rows
+and k columns determines a k x k
+submatrix of mat.  To compute the
+trace of such a submatrix S, first extract S
+from mat and reindex the rows and columns maintaining the
+original order.  Add together all values along the main diagonal of the reindexed matrix (values with the same reindexed row and column).
+Return the largest trace considering all possible k x k submatrices.
+
+
+DEFINITION
+Class:MaxKTrace
+Method:getLargest
+Parameters:vector <string>, int
+Returns:int
+Method signature:int getLargest(vector <string> mat, int k)
+
+
+CONSTRAINTS
+-mat will contain between 1 and 50 elements, inclusive.
+-Each element of mat will contain exactly N digits ('0'-'9'), where N is the number of elements in mat.
+-k will be between 1 and N, inclusive, where N is the number of elements in mat.
+
+
+EXAMPLES
+
+0)
+{
+"123",
+"456",
+"789"
+}
+3
+
+Returns: 15
+
+There is only 1 possible 3 x 3 submatrix, so we simply return 1+5+9.
+
+1)
+{
+"12",
+"93"
+}
+1
+
+Returns: 9
+
+Any entry can be used as the 1x1 submatrix, so we choose the 9.
+
+2)
+{
+"12689",
+"55555",
+"55555",
+"55555",
+"55555"
+}
+3
+
+Returns: 16
+
+The best we can do here is 6+5+5 = 16.
+
+3)
+{
+"494599520389852", 
+"303896953907791", 
+"287493604901139", 
+"149554299340006", 
+"893640109028429", 
+"564962730433253", 
+"075854577852319", 
+"453201529585621", 
+"950489162577436",
+"630040569640126", 
+"415141646262027", 
+"837673828874883", 
+"785041862021729", 
+"850806584119109", 
+"217671590991247"}
+5
+
+Returns: 45

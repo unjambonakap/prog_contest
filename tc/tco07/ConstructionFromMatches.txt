@@ -1,0 +1,80 @@
+PROBLEM STATEMENT
+There is a shop in your city, in which matches of different integer thicknesses from 1 to N, inclusive, are sold. All matches in the shop have the same length. The (i-1)-th element of cost is the cost of one match with thickness i.
+You wish to buy some matches and use them to construct a 2xM rectangle. For example, if M=5, then the rectangle will look as follows (characters '|' and '-' correspond to matches):
+
+ _ _ _ _ _
+| | | | | |
+ _ _ _ _ _
+| | | | | |
+ _ _ _ _ _
+
+You are given two int[]s, top and bottom, each containing exactly M elements. top and bottom contain the required thicknesses of the squares in the top and bottom rows of the rectangle, respectively, from left to right.  The thickness of a square is the sum of the thicknesses of its four sides. Return the minimum total cost of matches needed to construct the required rectangle, or -1 if it's not possible.
+
+DEFINITION
+Class:ConstructionFromMatches
+Method:minimumCost
+Parameters:vector <int>, vector <int>, vector <int>
+Returns:int
+Method signature:int minimumCost(vector <int> cost, vector <int> top, vector <int> bottom)
+
+
+CONSTRAINTS
+-cost will contain between 1 and 12 elements, inclusive.
+-Each element of cost will be between 1 and 100000, inclusive.
+-Elements of cost will be in strictly ascending order.
+-top will contain between 1 and 50 elements, inclusive.
+-bottom will contain the same number of elements as top.
+-Each element of top and bottom will be between 4 and 48, inclusive.
+
+
+EXAMPLES
+
+0)
+{1, 2}
+{7}
+{5}
+
+Returns: 10
+
+The cheapest solution contains 3 matches of thickness 2 and 4 matches of thickness 1. It may look as follows (each digit d denotes a single match of thickness d):
+
+ 1
+2 2
+ 2
+1 1
+ 1
+
+
+1)
+{1}
+{5}
+{5}
+
+Returns: -1
+
+Obviously we can't get a square with thickness 5 using only matches of thickness 1.
+
+2)
+{1, 5, 9}
+{7, 10}
+{8, 9}
+
+Returns: 56
+
+One of the optimal solutions looks as follows (each digit d denotes a single match of thickness d):
+
+ 1 3
+1 3 1
+ 2 3
+1 3 1
+ 2 2
+
+
+3)
+{1, 3, 4, 7, 9}
+{13, 14, 13, 11, 9, 7, 11, 8, 8, 10}
+{18, 14, 17, 10, 8, 4, 8, 13, 14, 13}
+
+Returns: 194
+
+

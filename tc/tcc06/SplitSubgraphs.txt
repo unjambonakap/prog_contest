@@ -1,0 +1,70 @@
+PROBLEM STATEMENT
+A graph is called split if the vertices can be partioned into two non-empty sets A and B such that no two distinct vertices in A are adjacent, and all pairs of distinct vertices in B are adjacent.  Considering all possible ways of removing 0 or more nodes from the given graph, return how many of the resulting subgraphs are split.  Two subgraphs are considered distinct if the sets of removed nodes are distinct.  Character i in element j of graph is '1' if nodes i and j are adjacent, and '0' if not.
+
+DEFINITION
+Class:SplitSubgraphs
+Method:howMany
+Parameters:vector <string>
+Returns:int
+Method signature:int howMany(vector <string> graph)
+
+
+CONSTRAINTS
+-graph will contain between 1 and 20 elements, inclusive.
+-Each character in graph will be '0' or '1'.
+-Each element of graph will contain exactly N characters, where N is the number of elements in graph.
+-Character i of element i of graph will always be '0'.
+-Character i of element j of graph will equal character j of element i.
+
+
+EXAMPLES
+
+0)
+{"011",
+ "101",
+ "110"
+}
+
+Returns: 4
+
+Every subgraph with at least 2 vertices is split.
+
+1)
+{"0"}
+
+Returns: 0
+
+Note that A and B must both be non-empty.
+
+2)
+{"0000",
+ "0000",
+ "0001",
+ "0010"
+}
+
+Returns: 11
+
+
+
+3)
+{"0100",
+ "1000",
+ "0001",
+ "0010"
+}
+
+Returns: 10
+
+
+
+4)
+{"01100",
+ "10110",
+ "11001",
+ "01001",
+ "00110"}
+
+Returns: 24
+
+

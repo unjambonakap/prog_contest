@@ -1,0 +1,69 @@
+PROBLEM STATEMENT
+We are given a collection of integers and a positive number, maxJump. We are interested
+in different ways of arranging 
+all the integers from the collection into a "satisfactory sequence". A sequence is satisfactory
+if it
+has the property that
+the absolute value of the difference between adjacent values is always less than 
+or equal to maxJump.
+
+Create a class Coherency that contains a method starters that is given a vector <int> 
+collection and positive number maxJump. It returns the number of distinct values from
+collection that could be the starting value in a satisfactory sequence.
+
+ 
+
+
+DEFINITION
+Class:Coherency
+Method:starters
+Parameters:vector <int>, int
+Returns:int
+Method signature:int starters(vector <int> collection, int maxJump)
+
+
+CONSTRAINTS
+-collection will contain between 1 and 50 elements, inclusive.
+-Each element in collection will be between -1,000,000,000 and 1,000,000,000, inclusive.
+-maxJump will be between 0 and 1,000,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+ {8,1,1,1,1}
+6
+
+Returns: 0
+
+
+
+   However the values are arranged there must be a jump of 7.
+
+
+
+1)
+{8,1,1,1,1}
+7
+
+Returns: 2
+
+
+
+   Any arrangement of these values has a maximum jump of 7. So we could
+   start a satisfactory sequence with either a 1 or with the 8.
+
+
+2)
+{6,1,11,5,7,1}
+4
+
+Returns: 2
+
+
+
+   (1,1,5,6,7,11)  is a satisfactory sequence starting with 1. 
+   (11,7,6,5,1,1} is a satisfactory sequence starting with 11.
+   There is no satisfactory sequence that starts with any of the other values, so there
+   are 2 distinct possible starting values.
+

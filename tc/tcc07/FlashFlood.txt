@@ -1,0 +1,106 @@
+PROBLEM STATEMENT
+The creek bed is dry. We are given the elevation of the creek bed every 50
+feet horizontally along its course, west to east. Our town is located in a valley
+just to the east of the last elevation. It has just started raining at a
+rate of r inches per hour over the entire creek bed. (This means that in a volume
+with straight sides and a flat bottom the water level would rise r inches per hour.)
+ 
+We can treat this as a 2-dimensional problem by approximating the creek as 
+having a constant width. We will assume that the creek bed is made up of linear segments between
+the known elevations. We will also treat the water as flowing instantaneously.
+
+Given r, and a vector <int> ht giving the elevations (in feet) in order from west to
+east, return the number of hours before the water starts flooding the town.
+
+
+
+DEFINITION
+Class:FlashFlood
+Method:hours
+Parameters:int, vector <int>
+Returns:double
+Method signature:double hours(int r, vector <int> ht)
+
+
+NOTES
+-The conversion between feet and inches is 12 inches = 1 foot.
+-A return value with either an absolute or relative error of less than 1.0E-9 is considered correct.
+
+
+CONSTRAINTS
+-    r will be between 1 and 100, inclusive.
+-    ht will contain between 2 and 50 elements, inclusive.
+-    Each element of ht will be between 0 and 5000, inclusive.
+-    The elements of ht will have distinct values.
+-    At least one element of ht will be greater than its last element.
+
+
+EXAMPLES
+
+0)
+7
+{150,140}
+
+Returns: 0.0
+
+
+
+    All the rain that falls in the creek bed immediately flows into town.
+
+
+
+1)
+7
+{160,140,150}
+
+Returns: 6.428571428571427
+
+
+          160     
+         /  \         
+        /    \       
+              \^^^^^^^^^150 
+               \^^^^^^^/
+                \^^^^/      (Town)
+                 140   
+      -----+------+------+------
+ 
+
+
+The water will build up in a triangular region until its height reaches 150.
+The picture shows the water at the crucial moment.
+The horizontal width of the triangle is (25+50) and its altitude is 10 so its
+area is 75*10/2 = 375. All the
+rain that falls on the 100 foot long creek bed goes into this region, so every
+hour the area of water increases by 100*(7/12) square feet. So the region
+will be full and start flooding the town in 375 / (700/12) = 45/7 hours.
+
+2)
+12
+{110,170,175,155,160,140,150}
+
+Returns: 2.6562500000000018
+
+
+
+          175                 
+         /  \         
+        /     \                
+               \         160  
+                \     /     \   
+                 155         \   
+                              \       150
+                               \    /     
+                               140        (town)
+      -----+------+------+------+------+----- 
+     
+
+
+Before the easternmost triangular region fills up, the triangular region just
+to its west will fill up. So flooding will begin when the water level is
+150 in the easternmost region and 160 in the region to its west. The rain falling
+on the first 100 feet of creek (not shown in the picture) fortunately drains the 
+other way, but all the rain
+on the remaining 200 foot long creek bed will contribute. So we calculate
+area/rain = [(62.5*5)/2 + (75*10)/2 ] / (200 * 12 / 12) 
+

@@ -1,0 +1,95 @@
+PROBLEM STATEMENT
+Soundex is a phonetic algorithm, meaning that it indexes words by their pronunciation (in English). The algorithm transforms an input string of letters into a code of the form Cddd, where C is an uppercase letter and each d character represents a digit between 0 and 6, inclusive.
+
+The variant of Soundex we will be using works as follows:
+
+Remember the first letter of the input string.
+Remove all H and W characters.
+Replace each letter in the word with its phonetic code, given in the following table:
+   A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+   0 1 2 3 0 1 2 - 0 2 2 4 5 5 0 1 2 6 2 3 0 1 - 2 0 2
+
+Compress runs consisting of the same digit, leaving only one occurrence.
+Remove all occurrences of the digit zero.
+Truncate the result or pad it with zeros from the right so that the resulting code is exactly four characters long (for example, the string 123456 would be truncated to 1234, while the string 43 would be padded with zeros to form 4300).
+Replace the first digit by the letter remembered in the first step.
+
+
+
+For example, let's run through the algorithm with the word SOMEWHERE:
+
+We remember the letter S as we will need to restore it later.
+Removing the H and W characters yields SOMEERE.
+Replacing letters with their phonetic codes results in 2050060.
+Compressing groups of consecutive codes gives 205060.
+Removing all zeros, we get 256.
+Padding the result with a single zero gives 2560.
+Restoring the first letter gives the final S560.
+
+
+
+Find the number of distinct words of length length, consisting only of letters of the English alphabet, for which the above algorithm yields the given Soundex code soundex.
+
+DEFINITION
+Class:InverseSoundex
+Method:howMany
+Parameters:string, int
+Returns:long long
+Method signature:long long howMany(string soundex, int length)
+
+
+NOTES
+-The result will fit in a 64-bit signed integer.
+
+
+CONSTRAINTS
+-soundex will contain exactly 4 characters, and will be of the form Cddd, where C is an uppercase character and each d character represents a digit between 0 and 6, inclusive.
+-length will be between 1 and 15, inclusive.
+
+
+EXAMPLES
+
+0)
+"M146"
+4
+
+Returns: 4
+
+The four strings are MBLR, MFLR, MPLR and MVLR.
+
+
+1)
+"B253"
+5
+
+Returns: 2048
+
+The digits 2, 5 and 3 can represent 8 * 2 * 2 = 32 combinations of letters. A vowel (including Y), H or W may be included after any character for a total of 8 * 4 * 32 = 1024 strings. Some of the codes may be repeated, such as in the string BCGMD, where C and G have the same code. There are 512 such strings. Also, if the first four letters give the B253 Soundex, then any letter appended to those four letters will not change the Soundex. We can append 16 letters to get strings we have not yet counted, getting 32 * 16 = 512 more strings.
+
+2)
+"B255"
+5
+
+Returns: 192
+
+There must now be a vowel between the two 5 digits, which significantly brings down the answer.
+
+3)
+"E000"
+2
+
+Returns: 26
+
+A string consisting of the letter E followed by any letter has a Soundex of E000.
+
+4)
+"K405"
+7
+
+Returns: 0
+
+5)
+"R464"
+5
+
+Returns: 53

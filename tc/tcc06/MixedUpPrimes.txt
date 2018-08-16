@@ -1,0 +1,64 @@
+PROBLEM STATEMENT
+Using the operators '+', '-', '/', '*', and parentheses as many times as you wish, find expressions for the smallest and largest primes that use each element of values exactly once.  A prime is an integer greater than 1 with no divisors except 1 and itself.  Return a vector <int> with exactly two elements, where the first element is the smallest prime you can make, and the second is the largest.  If no primes can be constructed, return an empty vector <int>.
+
+DEFINITION
+Class:MixedUpPrimes
+Method:findPrimes
+Parameters:vector <int>
+Returns:vector <int>
+Method signature:vector <int> findPrimes(vector <int> values)
+
+
+NOTES
+-The division operator truncates its results.  For example, 8/5 = 1.
+-The given numbers cannot be concatenated.  For example, 8 and 5 cannot be combined to form 85.
+
+
+CONSTRAINTS
+-values will contain between 1 and 6 elements, inclusive.
+-Each element of values will be between 1 and 30, inclusive.
+
+
+EXAMPLES
+
+0)
+{1,2}
+
+Returns: {2, 3 }
+
+We get 2 using 2*1.  We get 3 using 2+1.
+
+1)
+{1,2,3}
+
+Returns: {2, 7 }
+
+Here we use 3-2+1=2 and 3*2+1 = 7.
+
+2)
+{1,2,3,4,5,6}
+
+Returns: {2, 719 }
+
+
+
+3)
+{2,3,5,7,11,13}
+
+Returns: {2, 15017 }
+
+
+
+4)
+{2,2,2,2,2,2}
+
+Returns: {2, 17 }
+
+
+
+5)
+{8}
+
+Returns: { }
+
+

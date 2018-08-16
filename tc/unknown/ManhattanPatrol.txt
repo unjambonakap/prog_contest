@@ -1,0 +1,108 @@
+PROBLEM STATEMENT
+NOTE: This problem statement contains subscripts that may not display properly if viewed outside of the applet.
+
+Manhattan can be represented as an infinite two-dimensional plane with a Cartesian coordinate system. Manhattan is crossed by horizontal and vertical streets parallel to the axes. Each point with integer coordinates lies on the intersection of two streets.
+
+Manao is in charge of the Manhattan Police Department. He is currently investigating patrol routes. There are N control intersections numbered from 0 to N-1 in Manhattan. A patrol route is a pair {A, B} of control intersections. When a squad is completing a patrol route, it moves only along the streets and takes the shortest path from A to B. When there are multiple shortest paths from A to B, the squad can take any of them. Two paths intersect if there is an intersection that belongs to both of them. Two patrol routes intersect if no matter which paths the squads completing them choose, these paths intersect.
+
+You are given ints AX, BX, MX, AY, BY, MY. The X-coordinates of the intersections are computed as follows:
+
+X0 = BX
+Xi = (AX * Xi-1 + BX) mod MX for 0 &lt i &lt N
+
+Y-coordinates are computed correspondingly using AY, BY, MY. The X-coordinates will be pairwise distinct, as will be the Y-coordinates.
+
+We treat routes {A, B} and {B, A} as the same. Consider the pairs of routes {{A, B}, {C, D}} such that all points A, B, C and D are distinct. Return the number of such pairs which intersect.
+
+
+DEFINITION
+Class:ManhattanPatrol
+Method:countIntersections
+Parameters:int, int, int, int, int, int, int
+Returns:long long
+Method signature:long long countIntersections(int N, int AX, int BX, int MX, int AY, int BY, int MY)
+
+
+CONSTRAINTS
+-N will be between 4 and 500, inclusive.
+-MX will be between 4 and 40000, inclusive.
+-AX will be between 1 and MX-1, inclusive.
+-BX will be between 1 and MX-1, inclusive.
+-MY will be between 4 and 40000, inclusive.
+-AY will be between 1 and MY-1, inclusive.
+-BY will be between 1 and MY-1, inclusive.
+-All elements in the sequence of X-coordinates generated according to the statement will be distinct.
+-All elements in the sequence of Y-coordinates generated according to the statement will be distinct.
+
+
+EXAMPLES
+
+0)
+4
+1
+2
+11
+2
+2
+13
+
+Returns: 1
+
+The control intersections are:
+0: (2, 2)
+1: (4, 6)
+2: (6, 1)
+3: (8, 4)
+Routes {0, 3} and {1, 2} intersect.
+
+1)
+7
+1
+2
+11
+2
+2
+13
+
+Returns: 2
+
+This case has the same seed as the previous one, but contains three more control intersections. In addition to {0, 3} - {1, 2}, routes {0, 3} and {2, 6} also intersect.
+
+2)
+6
+1
+2
+7
+1
+1
+6
+
+Returns: 5
+
+
+
+3)
+7
+1
+1
+11
+13
+1
+16
+
+Returns: 0
+
+
+
+4)
+20
+6
+1
+211
+13
+11
+186
+
+Returns: 862
+
+

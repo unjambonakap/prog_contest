@@ -1,0 +1,75 @@
+PROBLEM STATEMENT
+
+You are given a polygon (possibly non-convex) with edges parallel to the coordinate axes.  The polygon is non-self-intersecting, meaning that no two of its edges share any common points, with the exception of vertices, each of which is shared between exactly two adjacent edges.
+
+
+Consider all points with integer coordinates inside the polygon (including the points on its border). Sort all of them lexicographically (first, by x-coordinate, then by y-coordinate). You will be asked to return the coordinates of some points in this list.
+ 
+
+You are given vector <int>s x and y, the i-th elements of which are the x and y coordinates, respectively, of the i-th vertex of the polygon in a counterclockwise traversal. You are also given a vector <string> k, each element of which is the index of a point in the sorted list.
+
+Return a vector <string>, the i-th element of which is the k[i]-th point with integer coordinates inside the polygon (1-based).
+
+Format each returned element as "x-coordinate y-coordinate" (quotes for clarity only, separate x and y coordinates with one space). 
+For each i, if there are less than k[i] points, the corresponding element in the return value must be an empty string.
+
+
+
+DEFINITION
+Class:Polygon
+Method:getKthPoint
+Parameters:vector <int>, vector <int>, vector <string>
+Returns:vector <string>
+Method signature:vector <string> getKthPoint(vector <int> x, vector <int> y, vector <string> k)
+
+
+CONSTRAINTS
+-x will contain between 4 and 50 elements, inclusive.
+-y will contain the same number of elements as x.
+-Each element of x will be between 0 and 10^9, inclusive.
+-Each element of y will be between 0 and 10^9, inclusive.
+-x and y will describe a counterclockwise traversal of vertices in a polygon. 
+-The polygon described by x and y will have edges parallel to coordinate axes.
+-The polygon described by x and y will be non-self-intersecting.
+-All vertices of the polygon will be distinct.
+-k will contain between 1 and 50 elements, inclusive.
+-Each element of k will be an integer between 1 and 10^18, inclusive, with no leading zeroes.
+
+
+EXAMPLES
+
+0)
+{0, 2, 2, 0}
+{0, 0, 2, 2}
+{"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+
+Returns: {"0 0", "0 1", "0 2", "1 0", "1 1", "1 2", "2 0", "2 1", "2 2" }
+
+These are all points that belong to a 2x2 square.
+
+1)
+{0,1,2,2,0}
+{0,0,0,1,1}
+{"1","6","2","3","5","4","7"}
+
+Returns: {"0 0", "2 1", "0 1", "1 0", "2 0", "1 1", "" }
+
+Note that there can be two consecutive parallel edges. Also note that k need not be sorted.
+
+2)
+{0, 5, 5, 3, 3, 4, 4, 3, 3, 0, 0, 1, 1, 0}
+{0, 0, 1, 1, 2, 2, 5, 5, 4, 4, 3, 3, 1, 1}
+{"1","4","6","7","12","15","20","25","28","29"}
+
+Returns: {"0 0", "0 4", "1 1", "1 2", "2 2", "3 0", "3 5", "4 4", "5 1", "" }
+
+
+
+3)
+{0,0,1,1}
+{1,0,0,1}
+{"1","2","3","4"}
+
+Returns: {"0 0", "0 1", "1 0", "1 1" }
+
+Note that the first edge can be vertical.

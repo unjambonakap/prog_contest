@@ -1,0 +1,61 @@
+PROBLEM STATEMENT
+You have recently gained access to the badge printing machine used by TopCoder to print name badges for their tournaments.  Each badge produced by the machine contains the handle of a TopCoder member, and you can print any number of badges for each handle from a predefined list.  You decide to play a game using the machine. Given an arbitrary sentence, you want to spell it using only name badges that you print with the machine in some optimal way.
+
+The rules of the game are as follows.  First, you remove all spaces and punctuation from the sentence.  Then, you try to spell out the resulting string by printing out name badges  and arranging them in a single row.  Each badge you use must contain a handle which is a contiguous substring of the string.  Badges can touch but not overlap.  Letters in the string which are not represented by the badges are considered "uncovered".
+
+For example, consider the case where only the following TopCoder members exist: {"E", "HE", "L"}.  If you want to spell the sentence "HELLO", you might try to do it by printing out one "E" badge and two "L" badges.  However, "H" and "O" would then be uncovered, and you wouldn't be able to add an "HE" badge because it would overlap with the "E".  A better way would be to print out one "HE" badge and two "L" badges.  Then, only the "O" would be uncovered.
+
+You want to create the best possible arrangement of badges, so you've come up with the following scoring system.  Define A as the length of the longest contiguous sequence of letters covered with the badges, and B as the number of letters that are uncovered. If all letters are uncovered, A is equal to 0. The score of the arrangement is A^2-B.
+
+You are given a vector <string> parts.  Concatenate the elements of parts to obtain the original sentence (with spaces and punctuation already removed).  The handles on your name badges are given to you in the vector <string> badges.  Return the maximal possible score you can obtain using the given badges.
+
+DEFINITION
+Class:HandlesSpelling
+Method:spellIt
+Parameters:vector <string>, vector <string>
+Returns:int
+Method signature:int spellIt(vector <string> parts, vector <string> badges)
+
+
+CONSTRAINTS
+-parts will contain between 1 and 20 elements, inclusive.
+-Each element of parts will contain between 1 and 50 characters, inclusive.
+-badges will contain between 1 and 50 elements, inclusive.
+-Each element of badges will contain between 1 and 50 characters, inclusive.
+-parts and badges will contain only uppercase letters ('A'-'Z').
+-All elements of badges will be distinct.
+
+
+EXAMPLES
+
+0)
+{"HELLO"}
+{"E","HE","L"}
+
+Returns: 15
+
+Example from the problem statement.
+
+1)
+{"ALGORITHM","QUALIFICATION","ROUND","TWO"}
+{"AL", "CAT", "GOR", "IFI", "ION", "ROUND", "T"}
+
+Returns: 282
+
+The optimal spelling is "AL"-"GOR"-I-"T"-HMQU-"AL"-"IFI"-"CAT"-"ION"-"ROUND"-"T"-WO. In this spelling, A=17 and B=7.
+
+2)
+{"GOOD","LUCK"}
+{"GOODLUCKBJ","G","L"}
+
+Returns: -5
+
+The handle used has to be a proper substring of the sentence spelled, and not vice versa. In this case at most one letter in a row can be covered with badges, and 6 letters are left uncovered, so the total score is negative.
+
+3)
+{"ANDDOHAVEFUN"}
+{"HAV"}
+
+Returns: 0
+
+

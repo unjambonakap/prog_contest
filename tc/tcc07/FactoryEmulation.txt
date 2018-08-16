@@ -1,0 +1,73 @@
+PROBLEM STATEMENT
+You are playing a factory simulator. The rules are pretty easy. Initially, at time 0, your factory's productivity is equal to 1. During each second, you can either increase productivity by one or produce productivity units of goods. 
+
+You will be given a vector <string> orders, each element of which represents a single order you can potentially fill.  Each element is formatted as "time goods income" (quotes for clarity). 
+
+If you have at least goods units of goods at exactly time seconds, you can exchange those goods for income dollars.  You must fulfill the order exactly at its given time - it is no longer valid after that time. 
+
+Each order can be satisfied only once. Several orders may have the same time. Return the maximum number of dollars you can earn.
+
+
+
+DEFINITION
+Class:FactoryEmulation
+Method:maxIncome
+Parameters:vector <string>
+Returns:long long
+Method signature:long long maxIncome(vector <string> orders)
+
+
+CONSTRAINTS
+-orders will contain between 1 and 15 elements, inclusive.
+-Each element of orders will be in the form "time goods income" (quotes for clarity).
+-Each time will represent an integer between 1 and 10^5, inclusive, with no leading zeroes.
+-Each goods and income will represent an integer between 1 and 10^9, inclusive, with no leading zeroes.
+
+
+EXAMPLES
+
+0)
+{"1 1 1", "2 2 2"}
+
+Returns: 2
+
+We can satisfy only one order. The second order can be satisfied either by producing 1 unit of goods in both units of time or by increasing productivity to 2 in the first unit of time and producing 2 units of goods after that.
+
+1)
+{"5 1 8", "7 15 3"}
+
+Returns: 11
+
+We can satisfy both orders using the following strategy:
+
+Increase productivity during seconds 0, 1 and 2. It will become equal to 4.
+Produce 4 units of goods during seconds 3 and 4, for a total of 8 units of goods.
+Satisfy the first order at second 5. 7 units of goods will remain.
+Produce 4 units of goods during seconds 5 and 6, for a total of 8 additional units of goods.
+Satisfy the second order at time 7.
+
+
+
+2)
+{"5 1 8", "7 16 3"}
+
+Returns: 8
+
+It is impossible to satisfy both orders.
+
+3)
+{"12 39 19", "18 50 13"}
+
+Returns: 19
+
+4)
+{"40 264 318", "88 1660 1120", "54 28 39", "64 348 134", "90 286 3000"}
+
+Returns: 4159
+
+5)
+{"30 926 11"}
+
+Returns: 0
+
+

@@ -1,0 +1,100 @@
+PROBLEM STATEMENT
+We have a circular track on which a number of loaded cars are located. Each 
+car has its own specified unloading position along the track.  The cars can be
+moved in either direction along the track, but cannot pass each other.
+
+We want to make a worklist, specifying the order in which the cars should be
+moved. The order of cars in the worklist must allow each car to be moved just
+once all the way to its unloading position. How many different orders will 
+allow this?
+
+The cars are each named with a lowercase letter, and their destinations with
+the same letter but in uppercase. The positions of the cars and of their 
+destinations are given by a sequence of letters that is regarded as circular by
+wrapping around the ends. So, for example,  "BACacb" describes a situation in
+which going clockwise around the track we encounter B, A, C, a, c, b, and then 
+return back to B.  Here
+there are 3 different orders in which the cars can be moved to their
+destinations: a then c then b, a then b then c, or b then a then c.
+
+Given the
+original positions of the cars and destinations in a string circle, 
+return the number of different orders in which the 
+cars can be moved. If there are more than 2,000,000,000 orders return -1.
+If no order is possible, your method should return 0.
+
+
+
+DEFINITION
+Class:CircleCount
+Method:countOrder
+Parameters:string
+Returns:int
+Method signature:int countOrder(string circle)
+
+
+CONSTRAINTS
+-circle will contain between 2 and 50 characters, inclusive.
+-Each character will be a letter ('a'-'z', 'A'-'Z').
+-No character will appear more than once in circle.
+-If a letter appears in circle, it will appear both in uppercase and in lowercase.
+
+
+EXAMPLES
+
+0)
+"BACacb"
+
+Returns: 3
+
+
+
+   This is the example given above.
+
+
+
+
+
+
+1)
+"ABCacb"
+
+Returns: 0
+
+
+ 
+   We cannot move c first. If we move a first, then we can never move b to B, but 
+   if we move b first we can never move a to A.
+
+
+2)
+"xX"
+
+Returns: 1
+
+
+
+   We must move car x. We could move it to its destination either in a clockwise
+   or a counterclockwise direction but there is only one order for choosing
+   the cars to move.
+
+
+3)
+"ABCabc"
+
+Returns: 2
+
+
+
+   The possibilities are 1) a then b then c, or 2) c then b then a (moving the cars in the other direction).
+
+
+4)
+"AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPp"
+
+Returns: -1
+
+
+
+   These 16 cars can be move in any order, so there are 16! orders which is
+   greater than 2,000,000,000

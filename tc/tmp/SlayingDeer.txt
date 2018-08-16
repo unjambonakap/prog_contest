@@ -1,0 +1,62 @@
+PROBLEM STATEMENT
+Although TopCoder member Running Wild is a vegetarian, he has recently decided that he would eat venison if he could catch a deer himself. Before committing too much time and effort to this endeavor, Running Wild would like to estimate his chances at success. To do this, he assumes that he will run at a constant speed of A meters per minute without ever getting tired. Similarly, a deer will run at a constant speed of B meters per minute, but after every 30 minutes of running, it must stop and rest for 15 minutes. Finally, Running Wild also assumes that he will begin at a given distance of C meters behind the deer, and that they will always be running in the same fixed direction.
+
+Create a class SlayingDeer that contains a method getTime, which is given an int A, an int B, and an int C, representing the quantities described above. The method should return the number of minutes (rounded up) it will take for Running Wild to catch the deer. If Running Wild will never catch the deer, the method should return -1.
+
+DEFINITION
+Class:SlayingDeer
+Method:getTime
+Parameters:int, int, int
+Returns:int
+Method signature:int getTime(int A, int B, int C)
+
+
+NOTES
+-If Running Wild and the deer are at precisely the same position, then Running Wild is considered to have caught the deer.
+
+
+CONSTRAINTS
+-A and B will be between 1 and 1000 inclusive.
+-C will be between 1 and 100000 inclusive.
+
+
+EXAMPLES
+
+0)
+5
+4
+20
+
+Returns: 20
+
+Running Wild gains one meter per minute over the first 20 minutes before catching the deer.
+
+1)
+5
+4
+47
+
+Returns: 34
+
+As in the previous example, Running Wild will gain 1 meter per minute for the first 30 minutes. Then, however, the deer stops and rests. Running Wild gains 5 meters per minute while the deer is resting. Note that the answer is rounded up.
+
+2)
+10
+17
+1
+
+Returns: -1
+
+3)
+133
+198
+7515
+
+Returns: 7515
+
+4)
+1
+1000
+15819
+
+Returns: -1

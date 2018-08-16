@@ -1,0 +1,42 @@
+\begin{problem}{Bad divisor}{divisor.in}{divisor.out}{2 seconds}
+
+% Author:      Гергий Корнеев    
+% Description: Оптимальным образом заменить надпись на E-Int дисплее
+
+Little Petya really hates some number $z$. He defines the score of an integer as the number of time $z$ divides such integer.
+More formally, the score of $x$ is the largest integer $y$ for which $z^y$ divides $x$.
+
+Today little Petya is on the top-left cell (coordinates $(1,1)$) of a grid with $r$ rows and $c$ columns and a number is inside each cell.
+He can only move either down and to the right without ever going outside the grid. He keeps moving until he reaches the bottom-right cell (coordinates $(r,c)$) of the grid.
+When he finishes, he is given as number the product of every integer he has been on during his epic journey.
+Help him find the minimum score possible of the number given to him.
+
+
+\InputFile
+
+On the first line, the 3 integers $r,c$ and $z$ has described in the statement.
+Each of the next $r$ lines contains $c$ integers.
+The $j-th$ integer $a_{ij}$ of the $i-th$ line corresponds to the cell $(i,j)$ of the grid.
+
+
+The constraints are as follows:
+$1\le r,c \le 2000$,\\ 
+$1\le z \le 50000$,\\ 
+$1\le a_{ij} \le 10^18$,\\ 
+
+\OutputFile
+
+Print a single integer, the minimum score achievable for little Petya.
+If the answer is not defined (goes to infinity), print "-1".
+
+\Example
+
+\begin{examplewide}
+\exmp{
+0 1 12
+}{
+ans
+}%
+\end{examplewide}
+
+\end{problem}

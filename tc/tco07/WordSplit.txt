@@ -1,0 +1,56 @@
+PROBLEM STATEMENT
+Given a string of lowercase letters, I want to split it up into pieces so that
+the letters in each piece are distinct. I want to form as few pieces as possible.
+Given theString return a vector <string> containing the pieces sorted alphabetically.
+
+If more than one way of splitting is minimal, return the sorted sequence of pieces
+that is first lexicographically. That means that the first element in the sequence that differs is
+earlier alphabetically. 
+
+
+
+DEFINITION
+Class:WordSplit
+Method:pieces
+Parameters:string
+Returns:vector <string>
+Method signature:vector <string> pieces(string theString)
+
+
+CONSTRAINTS
+-theString will contain between 1 and 50 characters, inclusive.
+-Each character in theString will be a lowercase letter ('a'-'z').
+
+
+EXAMPLES
+
+0)
+"facetiously"
+
+Returns: {"facetiously" }
+
+
+
+   No splits are required since all the letters are distinct.
+
+
+
+
+1)
+"aaaaa"
+
+Returns: {"a", "a", "a", "a", "a" }
+
+
+   This is the only legal split.
+   
+
+2)
+"aba"
+
+Returns: {"a", "ab" }
+
+
+
+   We need one split to separate the 'a's. Our choices are a/ba or ab/a.  
+   We return the one whose pieces form the earlier sequence lexicographically.

@@ -1,0 +1,53 @@
+(defun runC (stem)
+  (with-open-file (inf (format nil "~A.in" stem) :direction :input)
+    (with-open-file (out (format nil "~A.out" stem) :direction :output :if-exists :supersede)
+      (loop for i from 1 to (read inf)  do
+	   (format out "Case #~A: ~A~%" i (solveC inf))))))
+
+(defparameter *pi* 3.141592653589)
+
+(defun solveC (inf)
+  (let* ((f (coerce (read inf) 'double-float))
+ 	 (bigr (coerce (read inf) 'double-float))
+	 (th (coerce (Read inf) 'double-float))
+	 (ir (- bigr th))
+	 (irf (- ir f))
+	 (r (coerce (read inf) 'double-float))
+	 (g (coerce (read inf) 'double-float))
+	 (a 0.0))
+;    (format t "~A ~A ~A ~A ~A ~A~%" f bigr th r g irf)
+    (loop for x from 0 
+	  for sx = (+ r f (* x (+ (* 2 r) g)))
+	  for bx = (+ sx (- g (* 2 f)))
+	 while (and (< sx ir) (> bx sx)) do
+	 (loop for y from 0 
+	    for sx = (+ r f (* x (+ (* 2 r) g)))
+	    for bx = (+ sx (- g (* 2 f)))
+	    for sy = (+ r f (* y (+ (* 2 r) g)))
+	    for by = (+ sy (- g (* 2 f)))
+	    while (ptin sx sy irf) do
+;	      (format t "~A ~A ~A ~A ~A ~A~%" x y sx sy bx by)
+	      (if (ptin bx sy irf)
+		  (let ((nsy (min by (sqrt (- (* irf irf) (* bx bx))))))
+		    (incf a (* (- nsy sy) (- bx sx)))
+		    (setf sy nsy))
+		(setf bx (sqrt (- (* irf irf) (* sy sy)))))
+	      (if (ptin sx by irf)
+		  (let ((nsx (min bx (sqrt (- (* irf irf) (* by by))))))
+		    (incf a (* (- nsx sx) (- by sy)))
+		    (setf sx nsx))
+		(setf by (sqrt (- (* irf irf) (* sx sx)))))
+;	      (format t "~A ~A ~A ~A ~A ~A ~A~%" x y sx sy bx by a)
+	      
+ 	      (let ((a1 (atan (/ by (+ sx .00000000000000000001))))
+		    (a2 (atan (/ sy (+ bx .00000000000000000001)))))
+;		(format t "~A ~A ~A ~A ~A ~A~%" sx sy bx by a1 a2)
+		(assert (<= a2 a1))
+		(incf a (/ (* irf irf (- a1 a2)) 2)))
+	      (decf a (* .5 sx (- by sy)))
+	      (decf a (* .5 sy (- bx sx)))
+	      ))
+    (format nil "~F" (- 1 (/ a (* *pi* bigr bigr .25))))))
+
+(defun ptin (x y r)
+  (< (+ (* x x) (* y y)) (* r r)))

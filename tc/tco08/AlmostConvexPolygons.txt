@@ -1,0 +1,64 @@
+PROBLEM STATEMENT
+A polygon is a figure on a plane bounded by a closed polyline with no self-intersections.  A diagonal is a line segment that connects two non-adjacent vertices and lies completely inside the polygon.  Every diagonal divides the polygon into two other polygons.
+
+A polygon is called convex if every line segment that connects two non-adjacent vertices is a diagonal.  A polygon is called almost convex if it is convex or if there exists a diagonal that divides it into two convex polygons.
+
+You are given a set of points.  The coordinates of the i-th point are (x[i], y[i]).  Return the number of distinct almost convex polygons whose vertices all belong to the given set.
+
+DEFINITION
+Class:AlmostConvexPolygons
+Method:count
+Parameters:vector <int>, vector <int>
+Returns:int
+Method signature:int count(vector <int> x, vector <int> y)
+
+
+NOTES
+-The answer will always fit in 32-bit signed integer.
+
+
+CONSTRAINTS
+-x will contain between 3 and 15 elements, inclusive.
+-y will contain the same number of elements as x.
+-Each element of x and y will be between -100 and 100, inclusive.
+-No three points from the given set will lie on the same straight line.
+
+
+EXAMPLES
+
+0)
+{-2,2,-2,2}
+{-2,-2,2,2}
+
+Returns: 5
+
+We can construct 4 triangles and 1 square. All these polygons are convex and therefore are almost convex.
+
+1)
+{-2,2,-2,2,3}
+{-2,-2,2,2,0}
+
+Returns: 16
+
+Point (3, 0) is added to example 0. Now we can construct 10 triangles, 5 quadrangles and 1 pentagon. All of them are still convex.
+
+2)
+{-2,2,-2,2,0}
+{-2,-2,2,2,1}
+
+Returns: 22
+
+Point (0, 1) is added to example 0. We can construct 10 triangles, 9 quadrangles and 4 pentagons. All of them are almost convex except one pentagon (-2,-2) - (0,1) - (2,-2) - (2,2) - (-2,2) - (-2,-2).
+
+3)
+{0,5,0,2,1}
+{0,0,5,1,2}
+
+Returns: 26
+
+Here there are 10 triangles, 13 almost convex quadrangles and 3 almost convex pentagons:
+
+(0,0) - (2,1) - (5,0) - (0,5) - (1,2) - (0,0);
+(0,0) - (5,0) - (0,5) - (1,2) - (2,1) - (0,0);
+(0,0) - (1,2) - (2,1) - (5,0) - (0,5) - (0,0).
+

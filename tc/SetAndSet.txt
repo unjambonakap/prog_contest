@@ -1,0 +1,74 @@
+PROBLEM STATEMENT
+Let A be a sequence of non-negative integers.
+We want to color each element of A either red or blue according to the following rules:
+
+ At least one element is red.
+ At least one element is blue.
+ The bitwise AND of all red elements is equal to the bitwise AND of all blue elements.
+
+
+You are given the sequence A as a vector <int> A.
+Return the number of valid colorings.
+
+
+DEFINITION
+Class:SetAndSet
+Method:countandset
+Parameters:vector <int>
+Returns:long long
+Method signature:long long countandset(vector <int> A)
+
+
+NOTES
+-AND is a binary operation, performed on two numbers in binary notation. First, the shorter number is prepended with leading zeroes until both numbers have the same number of digits (in binary). Then, the result is calculated as follows: for each position where both numbers have 1 in their binary representations, the result also has 1. It has 0 in all other positions.
+-For example 42 AND 7 is performed as follows. First, the numbers are converted to binary: 42 is 101010 and 7 is 111. Then the shorter number is prepended with leading zeros until both numbers have the same number of digits. This means 7 becomes 000111. Then 101010 AND 000111 = 000010 (the result has ones only in the positions where both numbers have ones). Then the result can be converted back to decimal notation. In this case 000010 = 2, so 42 AND 7 = 2.
+-One of the ways to calculate the AND of more than two numbers X[0], X[1], ..., X[N-1] is "X[0] AND (X[1] AND (... AND X[N-1]))..))". Since the function is commutative and associative, you can also express it as "X[0] AND X[1] AND ... AND X[N-1]" and group the operands in any way you like.
+
+
+CONSTRAINTS
+-A will contain between 1 and 50 elements, inclusive.
+-Each element of A will be between 0 and 1,048,575, inclusive.
+
+
+EXAMPLES
+
+0)
+{1,2}
+
+Returns: 0
+
+There's no valid coloring.
+
+1)
+{1,2,3,4}
+
+Returns: 2
+
+There are two valid colorings:
+
+Color 1 red, color 2 red, color 3 blue, and color 4 blue.
+Color 1 blue, color 2 blue, color 3 red, and color 4 red.
+
+In both cases, the bitwise AND of all red elements and the bitwise AND of all blue elements are 0.
+
+
+2)
+{1,2,3,4,5}
+
+Returns: 8
+
+
+
+3)
+{6,6,6}
+
+Returns: 6
+
+
+
+4)
+{13,10,4,15,4,8,4,2,4,14,0}
+
+Returns: 1728
+
+

@@ -1,0 +1,194 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <queue>
+#include <string>
+#include <math.h>
+
+#define REP(i,n) for(i = 0; i < (n); i++)
+#define REPV(i, n) for (i = (n) - 1; i >= 0; i--)
+
+#define FOR(i, a, b) for(i = (a); i < (b); i++)
+#define FORV(i, a, b) for(i = (b) - 1; i >= (a); i--)
+#define MAX(a,b) (((a) < (b)) ? (b) : (a))
+#define MIN(a,b) (((a) < (b)) ? (a) : (b))
+
+using namespace std;
+
+class data{
+	public:
+		data(){};
+		data(string _a, int _id){ a = _a, id = _id; }
+		bool operator<(data &d)const { return this->a < d.a; }
+		bool operator>(data &d)const { return this->a < d.a; }
+		bool operator==(data &d)const { return this->a == d.a; }
+
+		int id;
+		string a;
+};
+bool operator<(const data &d, const data &e) { return d.a < e.a; }
+
+
+
+#define MAX_N 64
+#define MAX_LEN 256
+#define MAX_BUF 2048
+
+char list_w[MAX_N][MAX_LEN];
+data list[MAX_N];
+int cost[MAX_N];
+int n, n_best;
+
+long long conflict[MAX_N], best;
+
+
+char isAlpha(char c){
+	c |= 0x20;//convertit c de uppercase a lowercase (c codé sur 1 octet, le 5ème bit diffère pour uppercase/lowercase, cf table ASCII)
+	return c >= 'a' && c <= 'z';
+}
+
+char isNum(char c){
+	return c >= '0' && c <= '9';
+}
+char isAlNum(char c){
+	return isNum(c) || isAlpha(c) || c == '_';
+}
+
+
+
+
+void purge(FILE *f){
+	int c;
+	while( (c = getc(f) != '\n') && c != EOF && c != 1);//on lit jusqu'à la fin de ligne (flush input buffer)
+}
+
+int readString(char *s, int l, FILE *f){
+	//fonction pour lire proprement une chaine au clavier
+	char *a;
+
+	if ((a = fgets(s, l, f)) == NULL)//copie l'input dans la chaine de caractère s
+		return -1;
+
+
+	while(*a != '\0' && *a != '\n')//on recherche le dernier caractère rentrée: '\0' ou '\n'
+		a ++;
+
+
+	if (*a == '\0')//on a rentré plus de caractère que la chaine peut en contenir => il faut lire les caractères restants pour que les saisies suivantes soient correctes
+		purge(f);
+	else
+		*a = '\0';// équivalent à chomp
+
+	return 0;
+}
+char *nextWord(char *s){
+	int blank = 0;
+
+	//recupere l'addresse du prochaine mot ou NUL/ si c'est le dernier mot
+
+
+	while(*s != '\0'){//tant qu'on a pas parcouru toute la chaine de caractère
+
+		if (blank == 0 && isAlNum(*s) == 0) blank = 1;//s est à la fin du mot actuel (premier caractère non alphanumérique)
+		else if (blank == 1 && isAlNum(*s) == 1) return s;//on attend le prochain caractère alnum qui représente le début du prochain mot
+		s++;
+
+	}
+	return NULL;
+
+}
+
+
+void solve(){
+	long long i, j, k, l, n_req, n_l;
+	n_best = -1;
+
+	n_l = 1;
+	REPV(i, n_l << n){
+
+		k = 0;
+		n_req = 0;
+
+		REP(j, n)
+			if (i & (1 << (n - j - 1)))
+				++n_req, k |= 1 << list[j].id;
+		
+		
+
+
+		REP(j, n){
+			if (i & (1 << (n - j - 1)))
+				continue;
+
+			if (conflict[list[j].id] & (~k))
+				break;
+		}
+		if (j != n)
+			continue;
+
+		if (n_best == -1 || n_req < n_best)
+			n_best = n_req, best = i;
+
+	}
+// Case #13: brake chain finger picture window
+
+}
+
+int main(){
+
+	int i, j, k, x;
+	char buf[MAX_BUF], *s, *a;
+
+	scanf("%d\n", &x);
+	REP(i, x){
+
+		if (readString(buf, MAX_BUF - 1, stdin))
+			exit(0);
+
+		s = buf;
+		n = 0;
+		while(a = nextWord(s)){
+			strncpy(list_w[n], s, (int)(a - s - 1));
+			list_w[n][a - s - 1] = '\0';
+
+			list[n].a = list_w[n];
+			list[n].id = n;
+			s = a;
+			++n;
+		}
+		strcpy(list_w[n], s);
+
+		list[n].a = list_w[n];
+		list[n].id = n;
+		++n;
+		sort(list, list + n);
+
+
+		REP(j, n - 1)
+			scanf("%d", cost + j);
+		scanf("%d\n", cost + j);
+
+
+
+		REP(j, n){
+			conflict[j] = 0;
+			REP(k, j)
+				if (cost[k] > cost[j])
+					conflict[j] |= 1 << k;
+		}
+		solve();
+
+		printf("Case #%d:", i + 1);
+		REP(j, n)
+			if (best & (1 << (n - j - 1)))
+				cout << " " << list[j].a;
+		cout << endl;
+
+	}
+
+
+}
+

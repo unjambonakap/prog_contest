@@ -1,0 +1,64 @@
+PROBLEM STATEMENT
+
+The problem statement contains images best viewed in the applet. 
+
+
+Triominoes is a game similar to dominoes.  The game pieces are equilateral triangles with a number between 0 and 6, inclusive, in each vertex.  When pieces are played, each pair of vertices from different triangles that touch each other must contain the same number.
+
+An important part of the game is making regular hexagons, each consisting of six pieces.  In each hexagon, six vertices from six triangles meet at the center, and those six vertices contain the same number.  At each vertex of the hexagon, two vertices from adjacent triangles touch each other, and those two vertices contain the same number.
+
+You will be given a vector <string> pieces containing a set of triomino pieces and you must return the number of different hexagons that can be formed with that set.  Each element of pieces will be formatted "XYZ" (quotes for clarity) where X, Y and Z are the numbers in the vertices of a single piece in clockwise order.  Pieces can be rotated but not flipped.  For example, pieces "123" and "312" are the same, but they are different from "321".  Two hexagons are considered the same if one can be rotated to look exactly like the other.  See examples for further clarification.
+
+
+DEFINITION
+Class:Triominoes
+Method:countHexagons
+Parameters:vector <string>
+Returns:int
+Method signature:int countHexagons(vector <string> pieces)
+
+
+CONSTRAINTS
+-pieces will contain between 1 and 50 elements, inclusive.
+-Each element of pieces will contain exactly 3 characters.
+-Each character of each element of pieces will be a digit between '0' and '6', inclusive.
+-No two elements of pieces will represent the same piece.
+
+
+EXAMPLES
+
+0)
+{"613","153","354","443","663","634"}
+
+Returns: 1
+
+
+
+1)
+{"000","111","222","333","444","555","666"}
+
+Returns: 0
+
+There's no way to make two pieces fit in this case, and therefore, there is no possible way to construct a hexagon.
+
+2)
+{"062","026","063","036","064","046"}
+
+Returns: 4
+
+Note that it is possible to build more than 1 hexagon with the same set of 6 pieces.
+
+3)
+{"420","302","601","064","660","353","540","031","622","242",
+ "112","265","424","044","004","200","421","602","445","123"}
+
+Returns: 6
+
+
+
+4)
+{"111","112","125","154","143","113"}
+
+Returns: 1
+
+Don't count rotated triples more than once!

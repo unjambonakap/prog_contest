@@ -1,0 +1,62 @@
+PROBLEM STATEMENT
+
+Consider the permutation a=(a[0], a[1], ..., a[n-1]) of integers from 0 to n-1, inclusive.  Its inverse permutation is b=(b[0], b[1], ..., b[n-1]), where b[a[i]]=i.  For example, the inverse permutation of (2, 0, 3, 1, 4) is (1, 3, 0, 2, 4).
+
+
+We say that permutation a is k-slope if its inversion permutation b has exactly k positions i, such that b[i] > b[i+1].  For example, permutation (2, 0, 3, 1, 4) is 1-slope because its inverse, (1, 3, 0, 2, 4), has exactly one such position (at i=1: 3 > 0).
+
+
+You are given ints n, k and f.  Return the number of k-slope permutations of numbers from 0 to n-1, inclusive, such that a[0]=f.
+
+
+DEFINITION
+Class:KSlopePermutation
+Method:getCount
+Parameters:int, int, int
+Returns:long long
+Method signature:long long getCount(int n, int k, int f)
+
+
+CONSTRAINTS
+-n will be between 1 and 20, inclusive.
+-k will be between 0 and n-1, inclusive.
+-f will be between 0 and n-1, inclusive.
+
+
+EXAMPLES
+
+0)
+4
+1
+0
+
+Returns: 4
+
+The permutations are (0, 1, 3, 2), (0, 2, 1, 3), (0, 2, 3, 1) and (0, 3, 1, 2).
+
+1)
+2
+1
+0
+
+Returns: 0
+
+For n = 2, the only permutation that starts with 0 is (0, 1) which is 0-slope.
+
+2)
+3
+0
+1
+
+Returns: 0
+
+The only 0-slope permutation is (0, 1, 2).
+
+3)
+7
+3
+2
+
+Returns: 330
+
+

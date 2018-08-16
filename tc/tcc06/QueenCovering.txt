@@ -1,0 +1,97 @@
+PROBLEM STATEMENT
+You are given an 8 x 8 chessboard, and you must place the minimum possible number of queens onto the board such that all cells are under attack from at least one queen, and no queens attack each other.  Some of the cells on the board are destroyed.  A queen cannot be placed on a destroyed cell, and destroyed cells don't need to be under attack.  A queen attacks a cell if it is in the same row, same column, or same diagonal as that cell (even if there are destroyed cells between them).  Rows are labelled from 1 to 8 and columns from 'A' to 'H'.
+
+You are given a vector <string> board, where the jth character of the ith element represents the cell at row i, column j.  A '.' denotes an empty cell, and a '#' denotes a destroyed cell.  A solution is represented by a string which concatenates the positions of the queens.  Each queen will be represented by two characters rc, where r is the row label and c is the column label.  For example, if the solution contains one queen at row 1, column H and another at row 5, column C, it can be represented as "1H5C" or "5C1H". If there are several solutions which use the minimal number of queens, return the one that comes first lexicographically.
+
+DEFINITION
+Class:QueenCovering
+Method:getPlacement
+Parameters:vector <string>
+Returns:string
+Method signature:string getPlacement(vector <string> board)
+
+
+CONSTRAINTS
+-board will have exactly 8 elements.
+-Each element of board will contain exactly 8 characters.
+-Each character of board will be either '.' or '#'.
+
+
+EXAMPLES
+
+0)
+{
+  "........",
+  "..######",
+  ".#.#####",
+  ".##.####",
+  ".###.###",
+  ".####.##",
+  ".#####.#",
+  "........"}
+
+Returns: "1A8B"
+
+We place one queen on the first row and the first column, and another queen on the last row and on the second column.
+
+1)
+{
+ "#......#",
+ ".#......",
+ "..#...#.",
+ "........",
+ "..#.....",
+ "..#..#..",
+ "#.......",
+ "#...###."}
+
+Returns: "1B2D3A4C5E"
+
+
+
+2)
+{
+ "........",
+ "........",
+ "........",
+ "........",
+ "........",
+ "........",
+ "........",
+ "........"}
+
+Returns: "1A2C3E4B5D"
+
+
+
+3)
+{
+  "..##.##.",
+  ".###..##",
+  "##..###.",
+  "#..#...#",
+  ".#.##.#.",
+  "#...##..",
+  "#..#####",
+  "..#..#.#"}
+
+Returns: "1A4C5H6B"
+
+
+
+4)
+{
+  "########",
+  "########",
+  "########",
+  "########",
+  "########",
+  "########",
+  "########",
+  "########"
+}
+
+
+Returns: ""
+
+

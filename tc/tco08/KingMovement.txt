@@ -1,0 +1,98 @@
+PROBLEM STATEMENT
+
+There is a single king on a 8x8 chessboard.  He is initially situated on the cell described by startPosition.  This string consists of two characters: a letter followed by a digit.  The letter represents the column and the digit represents the row.  Columns are enumerated by the letters 'A' through 'H' (from left to right) and rows are enumerated by the digits '1' through '8' (from bottom to top).  For example, the left-bottom corner of the board is A1, and the cell to its right is B1.
+
+
+The king performs a series of moves that are given in the vector <string> moves. Each element has the form:
+
+
+'R' - one cell to the right
+'L' - one cell to the left
+'B' - one cell to the down
+'T' - one cell to the up
+'RT' - move diagonally one cell up and to the right
+'LT' - move diagonally one cell up and to the left
+'RB' - move diagonally one cell down and to the right
+'LB' - move diagonally one cell down and to the left
+
+
+There is a single stone on the board.  It is initially situated on the cell described by stonePosition. 
+If the king makes a move and lands in the same cell as the stone (see the picture), he will shift the stone by one cell in the same direction as his move.  If a move would result in either the king or the stone landing outside of the board, he will skip that move.
+
+
+
+Determine the final positions of the king and the stone after the moves.  The return value should be a String containing the king's position, followed by a comma, followed by the stone's position.  Each position should be in the same format as startPosition and stonePosition.
+
+
+DEFINITION
+Class:KingMovement
+Method:finalPosition
+Parameters:string, string, vector <string>
+Returns:string
+Method signature:string finalPosition(string startPosition, string stonePosition, vector <string> moves)
+
+
+CONSTRAINTS
+-startPosition and stonePosition will each be formatted as "XY" (quotes for clarity), where X is a letter between 'A' and 'H', inclusive, and Y is a digit between '1' and '8', inclusive.
+-startPosition and stonePosition will be different.
+-moves will contain between 1 and 50 elements, inclusive.
+-Each element of moves will be from the set {"L", "R", "T", "B", "RT", "LT", "RB", "LB"}.
+
+
+EXAMPLES
+
+0)
+"A1"
+"H8"
+{"T"}
+
+Returns: "A2,H8"
+
+The king moves one cell up.
+
+1)
+"A1"
+"A2"
+{"T"}
+
+Returns: "A2,A3"
+
+The king moves one cell up and lands in the same cell as the stone.  He moves the stone one cell up, which is the same direction as his move.
+
+2)
+"A1"
+"A2"
+{"T", "R"}
+
+Returns: "B2,A3"
+
+
+
+3)
+"A1"
+"A2"
+{"B", "L", "LB", "RB", "LT"}
+
+Returns: "A1,A2"
+
+All these moves are ignored.
+
+4)
+"A8"
+"B7"
+{"RB", "RB", "RB", "RB", "RB", "RB", 
+ "RB", "RB", "RB", "RB", "RB", "RB", 
+ "RB", "RB", "RB", "RB", "RB", "RB"}
+
+Returns: "G2,H1"
+
+
+
+5)
+"C1"
+"B1"
+{"L", "T", "LB"}
+
+Returns: "B2,A1"
+
+After the first move the king lands on cell B1 and shifts the stone to A1. The king ends the second move in cell B2, and he skips the third move because it requires moving the stone out of the board.

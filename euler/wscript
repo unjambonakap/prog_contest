@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+from chdrft.waf.opa import WafBuilder
+
+x = WafBuilder(globals())
+x.register_libs(x.libs.Common_N,
+                x.libs.MathAdv_N,
+                x.libs.MathCommon_N,
+                x.libs.MathGame_N,
+                x.libs.Crypto_N,
+                x.libs.OR_N,
+                x.libs.Algo_N,)
+
+x.auto()
+x.setup()

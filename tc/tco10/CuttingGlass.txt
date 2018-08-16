@@ -1,0 +1,84 @@
+PROBLEM STATEMENT
+
+You have a machine that cuts glass panes using a robotic arm with a diamond point at the end. 
+
+
+The input to the machine is a rectangular piece of glass with width W and height H.
+The machine has a coordinate system with point (0,0) in one corner of the glass pane and (W,H) in the opposite corner.
+In the beginning, the diamond point is positioned at (startx,starty).
+Then the machine executes a given program.
+
+
+
+The program is given as a vector <string> program. Concatenate the elements of program to get one long string that describes the program. Each character in the program describes one movement of the diamond point: 'L' decreases its x-coordinate, 'R' increases its x-coordinate, 'U' decreases its y-coordinate and 'D' increases its y-coordinate by 1.
+During all movements, the diamond point cuts the glass.
+
+
+
+Once the cutting is over, the glass may fall apart into multiple pieces. Compute and return their count.
+
+
+DEFINITION
+Class:CuttingGlass
+Method:pieces
+Parameters:int, int, int, int, vector <string>
+Returns:int
+Method signature:int pieces(int W, int H, int startx, int starty, vector <string> program)
+
+
+CONSTRAINTS
+-W will be between 1 and 1000, inclusive.
+-H will be between 1 and 1000, inclusive.
+-startx will be between 0 and W, inclusive.
+-starty will be between 0 and H, inclusive.
+-program will contain between 1 and 50 elements, inclusive.
+-Each element of program will contain between 1 and 50 characters, inclusive.
+-Each character in each element of program will be one of 'L', 'R', 'U', and 'D'.
+-The program will be such that the diamond point never leaves the glass pane, but it may touch the boundary and even cut along the boundary.
+
+
+EXAMPLES
+
+0)
+100
+100
+50
+50
+{"ULDR"}
+
+Returns: 2
+
+This program cuts out a small square piece from a large plate.
+
+1)
+10
+10
+3
+4
+{"UDUDUDUDUDU"}
+
+Returns: 1
+
+After this program is executed, there will be a short cut on the glass pane, but it will still be in one piece.
+
+2)
+3
+3
+0
+0
+{"RDDDUUU","RDDDUUU","R","DLLLRRR","DLLL"}
+
+Returns: 9
+
+This program cuts a 3x3 glass pane into nine separate 1x1 squares.
+
+3)
+5
+3
+5
+3
+{"LULLULLU"}
+
+Returns: 2
+
+

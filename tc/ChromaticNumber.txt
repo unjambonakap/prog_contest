@@ -1,0 +1,89 @@
+PROBLEM STATEMENT
+Fox Ciel has an undirected simple graph with N vertices. This graph has a special property: the degree of each vertex is at least N-3.
+
+
+Ciel wants to color the vertices of this graph. If there is an edge between vertex u and vertex v, she must use different colors for u and v.
+
+
+You are given a vector <string> graph. The vertices of the graph are labeled 0, 1, 2, and so on. If the j-th character of the i-th element of graph is 'Y', there is an edge between vertex i and vertex j. If the j-th character of the i-th element of graph is 'N', there is no edge between vertex i and vertex j. Return the minimal number of colors required to color this graph.
+
+DEFINITION
+Class:ChromaticNumber
+Method:minColors
+Parameters:vector <string>
+Returns:int
+Method signature:int minColors(vector <string> graph)
+
+
+NOTES
+-A graph is called simple if there are no self-loops and each pair of vertices is connected by at most one direct edge.
+-The degree of vertex v is the number of vertices that are adjacent to v.
+-The constraint "the degree of each vertex is at least N-3" is also satisfied for any simple graph with N=1 or N=2.
+
+
+CONSTRAINTS
+-graph will contain between 1 and 50 elements, inclusive.
+-Each element of graph will contain exactly N characters, where N is the number of elements in graph.
+-Each character in each element of graph will be either 'Y' or 'N'.
+-For all i, the i-th character of the i-th element of graph will be 'N'.
+-For all i and j, the i-th character of the j-th element of graph will be equal to the j-th character of the i-th element of graph.
+-Each element of graph will contain at least N-3 'Y', where N is the number of elements in graph.
+
+
+EXAMPLES
+
+0)
+{"N"}
+
+Returns: 1
+
+This graph contains only one vertex, so Ciel can color this graph with one color.
+
+
+
+
+1)
+{"NYY",
+ "YNN",
+ "YNN"}
+
+Returns: 2
+
+Ciel can color this graph with two colors as follows.
+
+
+
+
+2)
+{"NYNN",
+ "YNNN",
+ "NNNY",
+ "NNYN"}
+
+Returns: 2
+
+
+
+3)
+{"NYNY",
+ "YNYY",
+ "NYNN",
+ "YYNN"}
+
+Returns: 3
+
+
+
+4)
+{"NYYYYYYY",
+ "YNYYYYYY",
+ "YYNYYYYY",
+ "YYYNYYYY",
+ "YYYYNYYY",
+ "YYYYYNYY",
+ "YYYYYYNY",
+ "YYYYYYYN"}
+
+Returns: 8
+
+

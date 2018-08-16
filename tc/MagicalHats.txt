@@ -1,0 +1,136 @@
+PROBLEM STATEMENT
+A magician has challenged you to a game of wits. First he shows you some coins. Different coins may have different values. Next he takes some hats and hides all the coins inside the hats, in such a way that no two coins are hidden in the same hat. Finally, he places each of the hats with their respective coin onto some cell of a checkerboard. Now he has given you some guesses. In each guess you may ask the magician to reveal the contents of one of the hats. 
+
+After you make your guess, but before he reveals the contents of a hat, the magician may magically reshuffle all coins that are still hidden. That is, he can use a magic spell to redistribute the coins among all hats that still were not revealed, including the hat you just selected. After reshuffling, each hat must again contain at most one coin. 
+
+After you make a guess and the magician reshuffles the hidden coins, the hat you selected is flipped upside down (and remains in this state until the end of the game). If it contained a coin, the coin remains in the hat, but it is now visible and the magician cannot move it in the future. If it did not contain a coin, the magician can't ever put a coin into this hat anymore. 
+
+Furthermore, the magician has given you one more set of guarantees.
+At any moment in the game, the following constraints will all be satisfied:
+
+For each row, the number of hats in the row plus the number of coins in the row will be an even number.
+For each column, the number of hats in the column plus the number of coins in the column will be an even number.
+
+
+You are given a vector <string> board representing the checkerboard. The j-th character of the i-th element of board is 'H' when there is a hat at row i column j of the checkerboard and '.' otherwise. You are also given an vector <int> coins representing the different coins that are hidden under hats. You are also given an int numGuesses representing the number of guesses that you get.
+
+At the end of the game you get to keep all the coins that were revealed while playing. Your goal is to maximize the total value of the coins you get. The magician's goal is to minimize the total value of the coins you get. If it is not possible to hide all the coins in coins under the hats on the given board while meeting all the constraints above, return -1. Otherwise, return the total value of coins you'll get, assuming both you and the magician play optimally.
+
+DEFINITION
+Class:MagicalHats
+Method:findMaximumReward
+Parameters:vector <string>, vector <int>, int
+Returns:int
+Method signature:int findMaximumReward(vector <string> board, vector <int> coins, int numGuesses)
+
+
+CONSTRAINTS
+-board will contain between 1 and 13 elements, inclusive.
+-Each element of board will contain between 1 and 13 characters, inclusive.
+-Each element of board will contain the same number of characters.
+-Each character of each element of board will be either 'H' or '.'.
+-board will contain at most 13 occurrences of the character 'H'.
+-coins will contains between 1 and 13 elements, inclusive.
+-Each element of coins will be between 1 and 10,000, inclusive.
+-There will always be at least as many 'H' characters in board as elements in coins.
+-numGuesses will be between 1 and the number of 'H' characters in board, inclusive.
+
+
+EXAMPLES
+
+0)
+{"H"}
+{1}
+1
+
+Returns: 1
+
+One guess for one hat. The reward is just the contents of the hat.
+
+1)
+{"HHH",
+ "H.H",
+ "HH."}
+{9}
+1
+
+Returns: 9
+
+The only position the 9 coin can possibly be in is the top left corner.
+
+2)
+{"HH",
+ "HH"}
+{1,2,3,4}
+3
+
+Returns: 6
+
+The magician manages to always give you the worst possible reward regardless of how you guess.
+
+3)
+{"HHH",
+ "HHH",
+ "H.H"}
+{13,13,13,13}
+2
+
+Returns: 13
+
+
+
+4)
+{"HHH",
+ "HHH",
+ "H.H"}
+{13,13,13,13}
+3
+
+Returns: 26
+
+
+
+5)
+{"H.H.",
+ ".H.H",
+ "H.H."}
+{17}
+6
+
+Returns: -1
+
+
+
+6)
+{"HHH",
+ "H.H",
+ "HHH",
+ "H.H",
+ "HHH"}
+{33,337,1007,2403,5601,6003,9999}
+5
+
+Returns: 1377
+
+
+
+7)
+{".............",
+ ".............",
+ ".............",
+ ".............",
+ ".............",
+ ".............",
+ ".....H.H.....",
+ "......H......",
+ ".....H.H.....",
+ ".............",
+ ".............",
+ ".............",
+ "............."}
+{22}
+3
+
+Returns: 22
+
+

@@ -1,0 +1,49 @@
+PROBLEM STATEMENT
+You are given a sequence 1, 2, .., N. M times, you pick two adjacently located numbers in the sequence and swap them. Return the number of different final sequences that can be obtained modulo 1,000,000,009.
+
+DEFINITION
+Class:SequencePermutation
+Method:determineConfigurations
+Parameters:int, int
+Returns:int
+Method signature:int determineConfigurations(int N, int M)
+
+
+CONSTRAINTS
+-N will be between 2 and 2000, inclusive.
+-M will be between 0 and 2000, inclusive.
+
+
+EXAMPLES
+
+0)
+3
+1
+
+Returns: 2
+
+The possible resulting sequences are (1,3,2) and (2,1,3).
+
+1)
+3
+0
+
+Returns: 1
+
+The only possible resulting sequence without swapping any of the elements is the original sequence, that is, (1,2,3).
+
+2)
+3
+3
+
+Returns: 3
+
+
+
+3)
+33
+1803
+
+Returns: 620284697
+
+Watch out for integer overflow!

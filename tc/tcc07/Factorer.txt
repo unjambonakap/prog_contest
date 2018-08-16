@@ -1,0 +1,86 @@
+PROBLEM STATEMENT
+A second degree polynomial ax^2 + bx + c can sometimes be
+factored into two first degree polynomials with integer coefficients.
+We want to produce the factorization as a string in the following
+format:
+    (<coef>x<sign><num>)(<opneg><coef>x<sign><num>) 
+where 
+    '(' ')' and 'x' are literal 
+    <coef> is either empty or is a positive integer greater than 1. 
+    <num> is a positive integer
+    <sign> is a sign character, either '+' or '-'
+    <opneg> is an optional '-' character
+
+Neither <coef> nor <num> can be expressed with leading zeroes.
+
+Given a, b, and c, return the factorization as a string. If no factorization
+is possible, return the 4 uppercase letters "NONE". If more than one
+factorization is possible, choose the one with the largest
+coefficient of x in the first factor. If more than one is still possible,
+choose the one whose first factor is bigger when evaluated at x=0.
+
+
+
+DEFINITION
+Class:Factorer
+Method:factor
+Parameters:int, int, int
+Returns:string
+Method signature:string factor(int a, int b, int c)
+
+
+CONSTRAINTS
+-a, b, and c will each be between -1,000,000,000 and 1,000,000,000, inclusive.
+-Neither a nor c will be 0.
+
+
+EXAMPLES
+
+0)
+1
+0
+-1
+
+Returns: "(x+1)(x-1)"
+
+
+This factorization of x^2-1 is preferred to "(x-1)(x+1)" by the second tie breaker.
+
+
+
+1)
+-4
+4
+-1
+
+Returns: "(2x-1)(-2x+1)"
+
+
+-4x^2 + 4x -1 = (2x-1)(-2x+1)
+
+2)
+-4
+4
+5
+
+Returns: "NONE"
+
+
+
+3)
+1
+-3
+2
+
+Returns: "(x-1)(x-2)"
+
+"(x-1)(x-2)" is preferred to "(x-2)(x-1)" by the second tie-breaking rule (since -1 is greater than -2).
+
+4)
+-20
+0
+20
+
+Returns: "(20x+20)(-x+1)"
+
+

@@ -1,0 +1,76 @@
+PROBLEM STATEMENT
+Dick and Jane are playing a simple game with darts and a board displaying a grid of squares, represented by the vector <string> board.  Each square contains a number from 0 to 9.  They each take turns (starting with Dick) tossing a dart at the board.  They earn as many points as the number they hit, or 0 points if they miss the board.  After each has thrown darts times, the player with the most points wins.  If the points end up tied, a fair coin is flipped to determine the winner.
+
+Dick and Jane are equally skilled players, but they are not perfect.  If they are aiming at a particular grid square, they actually have a uniform chance of hitting any number in the 3x3 block surrounding it.  (They will never aim at a grid square on the edge of the board, since missing is counterproductive.)
+
+Both players play to maximize their odds of winning.  Calculate the chance that Jane will win.  Since the game is fair and the players are equally skilled, this shouldn't be too hard... right?
+
+DEFINITION
+Class:PerfectlyFairGame
+Method:winChance
+Parameters:vector <string>, int
+Returns:double
+Method signature:double winChance(vector <string> board, int darts)
+
+
+NOTES
+-The returned value must be accurate to within a relative or absolute value of 1E-9.
+
+
+CONSTRAINTS
+-board will contain between 3 and 20 elements, inclusive.
+-Each character in board will be a digit between '0' and '9', inclusive.
+-Each element of board will contain between 3 and 20 digits, inclusive.
+-Each element of board will contain the same number of digits.
+-darts will be between 1 and 20, inclusive.
+
+
+EXAMPLES
+
+0)
+{"123","456","789"}
+10
+
+Returns: 0.5
+
+The odds are even, of course.
+
+1)
+{"55555","55555","55555","55555","55555"}
+20
+
+Returns: 0.5
+
+Everyone scores 5 points each throw.  Still even.  Duh.
+
+2)
+{"0909","9090","0909","9090"}
+20
+
+Returns: 0.5
+
+Yawn.  Still even.  Have you moved on to the Medium yet?
+
+3)
+{"888","808","888","000","000","999","999"}
+1
+
+Returns: 0.537037037037037
+
+Still ev- ... wait a second.  That can't be right, can it?
+
+4)
+{"29368","65609","67539","57982","71709"}
+5
+
+Returns: 0.5440401329247544
+
+admins: Hi, could you please fix the 250's example output?
+
+5)
+{"4225271513","8352579454","1582795371","3365182453","7374843700","3262631490","5261771017","5124728129","1537793032","1147236439"}
+20
+
+Returns: 0.5055321764007881
+
+Sigh.

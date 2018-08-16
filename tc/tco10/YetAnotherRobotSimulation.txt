@@ -1,0 +1,74 @@
+PROBLEM STATEMENT
+Manao has constructed a robot which can move on a plane and has a remote control device. The only instructions the robot understands are "UP", "DOWN", "LEFT" and "RIGHT". If (x, y) is the robot's current location, then after receiving an "UP" instruction, it will move to (x, y+1). Similarly, after receiving "DOWN", "LEFT" and "RIGHT" instructions, it will move to (x, y-1), (x-1, y) and (x+1, y), correspondingly. Unfortunately, it seems that the robot's receiving device sometimes malfunctions. When an instruction is sent to the robot, there is a 1/2 probability that it receives an instruction and performs it, and there is a 1/2 probability that its receiving device malfunctions, in which case the robot will remain in its current position.
+
+The robot is initially located in (0,0). You are given a set of points on the plane. The coordinates of the i-th point are (locationsX[i], locationsY[i]). Manao wants to get his robot in one of these locations. In order to do it, he will choose a fixed sequence containing exactly L instructions and will send all of them, in order, to the robot (some of the instructions might be performed by the robot and some might be ignored due to the malfunction). The quality of a sequence is defined as the probability that the robot finishes in one of the given locations after Manao sends the entire sequence of instructions. Return the maximum possible quality of a sequence of length L.
+
+DEFINITION
+Class:YetAnotherRobotSimulation
+Method:getMaximumProbability
+Parameters:int, vector <int>, vector <int>
+Returns:double
+Method signature:double getMaximumProbability(int L, vector <int> locationsX, vector <int> locationsY)
+
+
+NOTES
+-The returned value must have an absolute or relative error less than 1e-9.
+-You can assume that when Manao sends an instruction to the robot, whether its receiving device will malfunction or not does not depend on the robot's behaviour for each of the previously sent instructions.
+
+
+CONSTRAINTS
+-L will be between 1 and 50, inclusive.
+-locationsX will contain between 1 and 50 elements, inclusive.
+-Each element of locationsX will be between -100 and 100, inclusive.
+-locationsY will contain the same number of elements as locationsX.
+-Each element of locationsY will be between -100 and 100, inclusive.
+-Points (locationsX[i], locationsY[i]) will be distinct.
+
+
+EXAMPLES
+
+0)
+3
+{1,2,2}
+{1,1,0}
+
+Returns: 0.5
+
+One of the optimal sequences is {"UP","RIGHT","RIGHT"}. If the robot's receiving device malfunctions at the first instruction, then the remaining two instructions should surely be performed in order to reach location 2. The probability of this case is 1/8. On the other hand, if the first instruction is successfully accomplished, only failing both of the remaining instructions will get the robot nowhere, which means a 3/8 success chance. Summing these up, we obtain 1/2.
+
+
+1)
+5
+{0,0,0,0}
+{0,1,2,3}
+
+Returns: 0.9375
+
+A possible strategy is pushing "UP" four times and "DOWN" once.
+
+2)
+1
+{0}
+{0}
+
+Returns: 0.5
+
+Sometimes malfunctioning is desirable.
+
+3)
+8
+{2,3,3}
+{1,1,0}
+
+Returns: 0.41015625
+
+
+
+4)
+36
+{6,7,12,-21,5,5,2,4}
+{4,5,-2,4,5,12,5,7} 
+
+Returns: 0.1323284485260956
+
+

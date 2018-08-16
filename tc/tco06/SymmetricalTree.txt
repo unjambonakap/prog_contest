@@ -1,0 +1,70 @@
+PROBLEM STATEMENT
+Consider the following code, which traverses a tree and prints a sequence of characters: 
+
+    bypass(Node v) {
+        for i=0..size(v.children)-1 {
+            write('1');
+            bypass(v.children[i]);
+            write('0');
+        }
+    }
+
+
+Starting from the root this code will generate a string of 0's and 1's that fully describes a tree. 
+For example, "1101100110011000" will represent the tree in the following picture (nodes are marked in the order of traversal).
+
+
+
+
+
+A tree is called symmetrical if, after reversing the order of children for all nodes, the string representation of the tree is not changed. For example, the tree in the picture is not symmetrical because the string representation changes to "1110011001100100" after the order of children is reversed for all nodes.
+
+
+You will be given a string tree. You are to make it symmetrical by removing some nodes and changing the order of children for some nodes. You can remove a node only if all its children are removed too. You should return tree after making it symmetrical. If there are multiple ways to make tree symmetrical, you should minimize the number of removed nodes.  If two or more solutions still remain, return the one that comes first lexicographically.
+
+
+
+DEFINITION
+Class:SymmetricalTree
+Method:makeSymmetrical
+Parameters:string
+Returns:string
+Method signature:string makeSymmetrical(string tree)
+
+
+CONSTRAINTS
+-tree will contain between 1 and 40 characters, inclusive. 
+-tree will only contain the digits '0' and '1'.
+-tree will represent a valid tree.
+
+
+EXAMPLES
+
+0)
+"1101100110011000"
+
+Returns: "11011001100100"
+
+This is the example from the problem statement.  We should remove the 9th node (see picture).
+
+1)
+"10101100"
+
+Returns: "10110010"
+
+We can make the tree symmetrical by using only rearrangements.
+
+2)
+"1011100100"
+
+Returns: "110100"
+
+3)
+"101101100110101000"
+
+Returns: "11011010100100"
+
+4)
+"11010010110110010101100010110100"
+
+Returns: "10110100110110010110010011010010"

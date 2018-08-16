@@ -1,0 +1,72 @@
+PROBLEM STATEMENT
+Scientists recently received the following transmission from outer space: "000023 * 000011 = 002093". While many rejoiced at this sure sign of intelligent alien life, others pointed out that any such alien life could not be too intelligent since 23 * 11 actually equals 253, not 2093. Not to be put off, the scientists noticed that the equation could easily be corrected by changing the second to last digit in 000011 to a 9. Based on this, they have hypothesized that the message was initially correct, but that it was corrupted during its lengthy transmission to Earth.
+
+Numerous other messages have been received since then, always of the form "a * b = c", where a, b, c are six digit numbers (possibly including leading zeros). Scientists believe the aliens are ignoring overflow, so that c is only intended to represent the last six digits of a * b. Given this, most of the messages have been correct, but a few do have mistakes, and the scientists wonder how well these mistakes can be explained by data corruption. To answer this, they want you to create a class AlienMultiplication that contains the method getCorrections, which takes an int a, an int b, and an int c, representing the quantities described above. The method should return the minimum number of digits that need to be replaced in a, b and c before the last six digits of a * b are given by c. Here, individual digits may be replaced with different digits, but they may not be added or deleted. 
+
+DEFINITION
+Class:AlienMultiplication
+Method:getCorrections
+Parameters:int, int, int
+Returns:int
+Method signature:int getCorrections(int a, int b, int c)
+
+
+NOTES
+-a, b and c should always be interpreted as having precisely six digits, possibly including leading zeros. Thus, there are always a total of eighteen digits that may be changed, six in each of a, b, and c.
+
+
+CONSTRAINTS
+-a, b, and c will each be between 0 and 999,999 inclusive.
+
+
+EXAMPLES
+
+0)
+23
+11
+2093
+
+Returns: 1
+
+This is the example from the problem statement.
+
+1)
+1538
+951234
+997892
+
+Returns: 0
+
+Since c is only required to equal the last six digits of a * b, this equation is already correct.
+
+2)
+153
+7
+71
+
+Returns: 1
+
+Since c is always interpreted as a six digit number, this equation can be corrected by changing c from 000071 to 001071.
+
+3)
+421368
+512357
+862812
+
+Returns: 4
+
+This can be corrected by changing b to 512312 and c to 882816.
+
+4)
+0
+0
+987654
+
+Returns: 5
+
+5)
+999999
+999999
+1
+
+Returns: 0

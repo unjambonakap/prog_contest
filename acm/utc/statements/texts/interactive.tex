@@ -1,0 +1,60 @@
+\begin{problem}{Interactive Permutation Guessing}{standard input}{standard output}{2 seconds}
+
+% Original idea : Mikhail Dvorkin
+% Text          : Mikhail Dvorkin
+% Tests         : Mikhail Dvorkin
+
+There is a permutation $a$ of size $n$ that you have to guess interactively.
+
+You are allowed to make queries of the following kind. You output any permutation $b$ of size $n$.
+The information given back to you is the length of the longest common subsequence of
+permutations $a$ and $b$.
+
+\Interaction
+
+First, your program must read from the standard input one line with integer $n$,
+the size of the permutation you have to guess.
+
+Your program must then write to the standard output one line with a permutation
+and wait for a line in the standard input with a response, then write next query and read next
+response, and so on until you know $a$.
+
+Once you receive response $n$ (which means you've found $a$), you're done and
+your program must exit.
+
+\InputFile
+
+The first line of the standard input contains integer $n$, the size of the permutation
+($1 \le n \le 40$).
+
+Each of the next lines of the standard input contains response to your query~--- the length
+of the longest common subsequence of the permutation queried by you and the permutation $a$.
+
+\OutputFile
+
+Each line of the standard output should contain a space-separated list of integers
+that form a permutation you're querying.
+
+Your can make at most $5n^2$ queries.
+
+You must flush the standard output after printing each line. You must not print any lines
+after you receive the response $n$, just exit.
+
+\Example
+
+\begin{example}
+\exmp{
+4
+3
+2
+2
+4
+}{
+1 2 3 4
+1 3 4 2
+4 1 2 3
+3 1 2 4
+}%
+\end{example}
+
+\end{problem}

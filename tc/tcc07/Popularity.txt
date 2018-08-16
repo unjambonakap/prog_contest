@@ -1,0 +1,55 @@
+PROBLEM STATEMENT
+My friends have accepted an invitation to my party. I need to sort them into
+"popularity order" which means that  
+the ones with more popular first names
+are earlier on the list. In case of ties, I'll list the ones who replied
+earlier to my invitation earlier in my popularity order. (The popularity of
+a first name is equal to how many of my friends have the same first name.)
+
+I have a vector <string> reply that lists the names in order of their reply. The k-th
+element is the k-th one who replied to the invitation. Each name is given as the first name, followed by a single space, followed by the last name, all in uppercase letters.
+Given reply return a vector <string> containing the names from reply in the desired order.
+
+
+
+DEFINITION
+Class:Popularity
+Method:sort
+Parameters:vector <string>
+Returns:vector <string>
+Method signature:vector <string> sort(vector <string> reply)
+
+
+CONSTRAINTS
+-reply will contain between 1 and 50 elements, inclusive.
+-Each element of reply will contain between 3 and 50 characters, inclusive.
+-Each element of reply will contain only uppercase letters ('A'-'Z') and exactly one space, neither leading nor trailing.
+
+
+EXAMPLES
+
+0)
+{"DON XI","EAGER TOPLEASE","BJ SMITH","BJ JONES","BJ BJ","DON SMITH","EAGER SMITH"} 
+
+Returns: {"BJ SMITH", "BJ JONES", "BJ BJ", "DON XI", "EAGER TOPLEASE", "DON SMITH", "EAGER SMITH" }
+
+
+    "BJ" is the most popular name with 3 occurrences as a first name. "EAGER" and
+    "DON are tied with 2 occurrences each. Within the 3 occurrence names they are listed
+    in the same order as they replied. This is followed by the 2 occurrence names
+    in the same order as they replied.
+
+
+1)
+{"BOB JONES", "BOB ADAMS", "BOBBY ADAMS", "BOB ADAMS"}
+
+Returns: {"BOB JONES", "BOB ADAMS", "BOB ADAMS", "BOBBY ADAMS" }
+
+BOB is more popular than BOBBY. Note that I have two friends with the same name and they must both appear in the popularity order.
+
+2)
+{"FRED EVANS","AL BAKER","CAL ADAMS","ED FARMER","AL ADAMS","CAL DETROIT"}
+
+Returns: {"AL BAKER", "CAL ADAMS", "AL ADAMS", "CAL DETROIT", "FRED EVANS", "ED FARMER" }
+
+AL and CAL are tied for most popular with ED and FRED tied at a lower popularity level. So the AL's and CAL's are listed first in the same order as they appear in reply, followed by ED and FRED, also in their original order.

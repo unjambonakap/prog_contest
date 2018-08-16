@@ -1,0 +1,50 @@
+PROBLEM STATEMENT
+A K-shrook is a fairy chess piece that can move horizontally in both directions for at most K squares. Here is an illustration of 2-shrook possible moves:
+
+
+
+Two K-shrooks attack each other if one of them can reach the other shrook's square in one move. You are given a board with H rows and W columns. Find out the number of ways to place an arbitrary positive amount of K-shrooks on this board so that no two of them attack each other. Return this number modulo 100003.
+
+
+DEFINITION
+Class:ShrooksOnTheBoard
+Method:count
+Parameters:int, int, int
+Returns:int
+Method signature:int count(int K, int H, int W)
+
+
+CONSTRAINTS
+-K will be between 1 and 1,000,000,000, inclusive.
+-H will be between 1 and 1,000,000,000, inclusive.
+-W will be between 1 and 1,000,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+1
+3
+
+Returns: 4
+
+The possible placements are "S..", ".S.", "..S" and "S.S".
+
+1)
+1
+2
+2
+
+Returns: 8
+
+There can not be more than 1 shrook in a row.
+
+2)
+3
+4
+9
+
+Returns: 56963
+
+

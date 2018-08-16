@@ -1,0 +1,109 @@
+#!/usr/bin/perl -w
+use strict;
+
+my %primeHash;
+sub setPrimeList{
+	my $l = shift;
+	my ($i,$root,$prime,$a);
+
+	$i = 1;
+	$root = 1;
+	$primeHash{2} = 1;
+
+	for($a=3;$a <=$l;$a+=2){
+		$prime = 1;
+
+		$root ++ if ($root * $root < $a);
+		for ($i = 3;$i <= $root; $i += 2){
+			if ($a % $i == 0){
+				$prime = 0;
+				last;
+			}
+		}
+		$primeHash{$a} = 1 if ($prime == 1);
+	}
+
+}
+sub isPrime{
+	return (defined $primeHash{$_[0]})?1:0;
+
+}
+
+sub solve{
+	my($a,$b,$p) = @_;
+
+	my ($set,$start,$end,$e,$tSet,$l,$destSet,$found);
+	$start = $p;
+	$end = $b-$a;
+	
+	$set = [];
+
+	for($a..$b){
+		push @$set, [$_];
+	}
+	print "$a $b\n";
+
+	for ($start..$end){
+		next if (isPrime($_) == 0);
+
+		$tSet = [];
+		undef $destSet;
+
+		for $e(@$set){
+			$found = 0;
+			for $l(@$e){
+				if ($l % $_ == 0){
+					$found = 1;
+					if (not defined $destSet){
+						$destSet = $e;
+						push @$tSet, $e;
+					}else{
+						push @$destSet, @$e;
+					}
+					last;
+				}
+
+			}
+			push @$tSet, $e if ($found == 0);
+
+		}
+		$set = $tSet;
+	}
+
+
+	return $#$set+1;
+
+
+
+}
+
+
+my ($n,$p,$a,$b,$s);
+
+$n = <>;
+chomp $n;
+
+
+setPrimeList(1000000);
+for (1..$n){
+	$s = <>;
+	chomp $s;
+
+	($a,$b,$p) = split(" ",$s);
+	print "Case #$_: ",solve($a,$b,$p),"\n";
+
+
+	
+
+
+}
+
+
+
+
+
+
+
+
+
+

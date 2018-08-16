@@ -1,0 +1,71 @@
+PROBLEM STATEMENT
+
+A long straight road goes from city A to city B.  There are several radio stations along the road, and their ranges are described by the vector <int>s left and right.  The i-th radio station can be heard at any point on the road between left[i] and right[i] kilometers from city A, inclusive.
+
+
+A segment of the road is called entertaining if at least k radio stations can be heard at all points on the segment.  Return the length of the longest entertaining segment of the road.  If there is no such segment, return 0.
+
+
+DEFINITION
+Class:EntertainingSegment
+Method:longestEntertainingSegment
+Parameters:vector <int>, vector <int>, int
+Returns:int
+Method signature:int longestEntertainingSegment(vector <int> left, vector <int> right, int k)
+
+
+CONSTRAINTS
+-left will contain between 1 and 50 elements, inclusive.
+-left and right will contain the same number of elements.
+-Each element of left will be between 1 and 1000000000 (109), inclusive.
+-Each element of right will be between 1 and 1000000000 (109), inclusive.
+-Each element of left will be strictly less than the corresponding element of right.
+-k will be between 1 and 50, inclusive.
+
+
+EXAMPLES
+
+0)
+{1, 4, 3, 7}
+{5, 8, 7, 10}
+2
+
+Returns: 5
+
+The longest entertaining segment here is from 3 to 8.
+
+1)
+{1}
+{1000000000}
+1
+
+Returns: 999999999
+
+
+
+2)
+{1, 3}
+{3, 5}
+2
+
+Returns: 0
+
+There is no entertaining segment here.
+
+3)
+{1,1,4,4}
+{2,2,6,6}
+2
+
+Returns: 2
+
+The ranges of radio stations can coincide.
+
+4)
+{1}
+{2}
+2
+
+Returns: 0
+
+There are not enough radio stations to form an entertaining segment.

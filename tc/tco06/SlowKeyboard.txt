@@ -1,0 +1,51 @@
+PROBLEM STATEMENT
+
+During a quest game, you need to open a door. The door has a keyboard and a small screen with 4 digit places. The door will open only if the digits shown on the screen are equal to the minutes and seconds of the correct time. Unfortunately, the keyboard is very slow, so it takes 1 second to press a key and 2 seconds to move to a different key. For example, pressing "0000" will take 4 seconds, and pressing "1212" will take 10 seconds (4 seconds for pressing keys and 3*2 = 6 seconds for moving to other keys).
+
+
+You will be given the current time as "MM:SS". If the screen shows nothing when you start, return the minimum time needed to open the door.
+
+
+DEFINITION
+Class:SlowKeyboard
+Method:enterTime
+Parameters:string
+Returns:int
+Method signature:int enterTime(string time)
+
+
+NOTES
+-Seconds and minutes increase like a normal clock, so "00:00" will be the time one second after "59:59".
+
+
+CONSTRAINTS
+-time will be formatted as "MM:SS", where MM and SS are two-digit numbers between 00 and 59, inclusive.
+
+
+EXAMPLES
+
+0)
+"59:56"
+
+Returns: 4
+
+The time will be "00:00" in 4 seconds, which is enough time to type "00:00".
+
+1)
+"59:59"
+
+Returns: 6
+
+Type "00:05" to open the door in 6 seconds.
+
+2)
+"33:12"
+
+Returns: 8
+
+3)
+"16:35"
+
+Returns: 9
+
+The best choice is to type 1644 (takes 8 seconds) and wait 1 second.

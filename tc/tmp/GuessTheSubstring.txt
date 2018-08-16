@@ -1,0 +1,63 @@
+PROBLEM STATEMENT
+You are given a vector <string> pieces. Concatenate its elements to obtain a string S of length N.
+I will pick a non-empty substring of S uniformly at random. That is, each of the N*(N+1)/2 non-empty substrings is equally likely to be picked.
+It is then your goal to guess the substring using arbitrary yes/no questions. You just need to guess the sequence of letters I picked, not the precise occurrence I picked.
+Find an optimal strategy for this game. Your method must return the smallest possible expected number of questions.
+
+DEFINITION
+Class:GuessTheSubstring
+Method:solve
+Parameters:vector <string>
+Returns:double
+Method signature:double solve(vector <string> pieces)
+
+
+NOTES
+-The returned value must have an absolute or relative error less than 1e-9.
+-As soon as you know the correct substring T, you announce "The substring is T.". This announcement ends the game. The announcement does not count as a question.
+
+
+CONSTRAINTS
+-pieces will contain between 1 and 50 elements, inclusive.
+-Each element of pieces will contain between 1 and 50 characters, inclusive.
+-Each character in each element of pieces will be a lowercase letter ('a'-'z').
+
+
+EXAMPLES
+
+0)
+{"abc"}
+
+Returns: 2.6666666666666665
+
+There are six possible substrings, all equally likely: "a", "b", "c", "ab", "bc", and "abc".
+One optimal strategy:
+
+First question: Does the string contain the letter "b"?
+Second question if the answer was NO: Is it the string "a"?
+Second question if the answer was YES: Is its length 2?
+
+
+If the first answer was NO, after the second question we know the substring. If the answers were YES and NO, we are left with "b" or "abc". If the answers were YES and YES, we are left with "ab" or "bc". In either case, one more question is necessary and sufficient.
+
+
+1)
+{"a","bc"}
+
+Returns: 2.6666666666666665
+
+When you concatenate the elements of pieces, you'll get the same string as in Example #0.
+
+2)
+{"aa"}
+
+Returns: 1.0
+
+There are just two distinct substrings, we can guess the correct one after one good question.
+
+3)
+{"a","a","a","a","a"}
+
+Returns: 2.1999999999999997
+
+Now there are five distinct substrings. Note that their probabilities of being chosen are distinct. For instance, "a" is five times as likely to be picked as "aaaaa".

@@ -1,0 +1,90 @@
+PROBLEM STATEMENT
+There are some deer in the zoo.
+Each deer has two antlers.
+You are given vector <int>s antler1 and antler2.
+These two vector <int>s will contain the same number of elements.
+For each index i, antler1[i] and antler2[i] are the weights of the two antlers of one of the deer.
+
+
+You are also given an int capacity.
+A deer is unbalanced if the weight difference between his antlers is strictly more than capacity.
+
+
+You decided to perform some operations on the deer. 
+Your goal is to make all deer balanced.
+In each operation, you can choose some two antlers (each on a different deer) and swap them.
+
+
+Return the minimal number of operations required to make all deer balanced.
+If this is impossible, return -1 instead.
+
+DEFINITION
+Class:AntlerSwapping
+Method:getmin
+Parameters:vector <int>, vector <int>, int
+Returns:int
+Method signature:int getmin(vector <int> antler1, vector <int> antler2, int capacity)
+
+
+CONSTRAINTS
+-antler1 and antler2 will contain the same number of elements.
+-antler1 and antler2 will contain between 1 and 16 elements, inclusive.
+-Each element of antler1 and antler2 will be between 1 and 1,000,000, inclusive.
+-capacity will be between 0 and 1,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{3, 2, 2}
+{3, 5, 5}
+0
+
+Returns: 1
+
+There are three deer in the zoo.
+As capacity=0, a deer is only balanced if he has two antlers of exactly equal weight.
+Currently, deer 0 is balanced and the other two are not.
+We can fix that in a single operation.
+For example, we can swap deer 1's antler 1 and deer 2's antler 2.
+After this operation, deer 1 will have two antlers that weigh 5 each, and deer 2 will have two antlers that weigh 2 each.
+
+1)
+{4, 2, 6, 4, 8, 5, 2, 3}
+{3, 4, 5, 2, 8, 5, 7, 6}
+1
+
+Returns: 2
+
+One of the optimal ways is as follows:
+
+Swap deer 1's antler with weight 2 and deer 3's antler with weight 4.
+Swap deer 6's antler with weight 7 and deer 7's antler with weight 3.
+
+
+2)
+{12, 34, 56, 78}
+{1234, 2345, 3456, 4567}
+100
+
+Returns: -1
+
+If it is impossible to achieve the goal, return -1.
+
+3)
+{47, 58, 2013}
+{49, 55, 2013}
+3
+
+Returns: 0
+
+
+
+4)
+{4, 1, 7, 5, 7, 8, 2, 1, 3, 1, 7, 5, 9, 4, 9, 1}
+{10, 6, 5, 3, 1, 8, 4, 4, 4, 7, 1, 4, 6, 5, 10, 10}
+1
+
+Returns: 7
+
+

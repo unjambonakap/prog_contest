@@ -1,0 +1,60 @@
+PROBLEM STATEMENT
+You have k objects divided evenly into num
+piles. Unfortunately, some of the digits of k may have been erased
+(replaced with 'X's in the input).
+Return the number of possible values that k could have been.
+
+
+DEFINITION
+Class:DigitFiller
+Method:howMany
+Parameters:string, int
+Returns:long long
+Method signature:long long howMany(string k, int num)
+
+
+CONSTRAINTS
+-k will contain between 2 and 18 characters inclusive.
+-Each character in k will be a digit ('0'-'9') or 'X'.
+-Character 0 of k will be a positive digit ('1'-'9').
+-num will be between 1 and 10000 inclusive.
+-The return value will be at least 1.
+
+
+EXAMPLES
+
+0)
+"8X"
+9
+
+Returns: 1
+
+Since the objects are divided evenly into 9 piles, 81 is the only possible solution.
+
+1)
+"1XX"
+10
+
+Returns: 10
+
+Here there are 10 possible values k could have been.
+
+2)
+"14"
+7
+
+Returns: 1
+
+None of the digits are missing.
+
+3)
+"9999999999999X"
+3
+
+Returns: 4
+
+4)
+"23X34XX24XX34X"
+17
+
+Returns: 58823

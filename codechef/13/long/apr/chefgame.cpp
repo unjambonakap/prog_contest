@@ -1,0 +1,119 @@
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include <numeric>
+#include <utility>
+#include <sstream>
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <cstring>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <cassert>
+#include <climits>
+//#include <ext/hash_map>
+
+
+using namespace std;
+using namespace __gnu_cxx;
+
+
+
+#define REP(i,n) for(int i = 0; i < int(n); ++i)
+#define REPV(i, n) for (int i = (n) - 1; (int)i >= 0; --i)
+#define FOR(i, a, b) for(int i = (int)(a); i < (int)(b); ++i)
+
+#define FE(i,t) for (__typeof((t).begin())i=(t).begin();i!=(t).end();++i)
+#define FEV(i,t) for (__typeof((t).rbegin())i=(t).rbegin();i!=(t).rend();++i)
+
+#define two(x) (1LL << (x))
+#define ALL(a) (a).begin(), (a).end()
+
+
+#define pb push_back
+#define ST first
+#define ND second
+#define MP(x,y) make_pair(x, y)
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef unsigned int uint;
+typedef pair<int,int> pii;
+typedef vector<int> vi;
+typedef vector<string> vs;
+
+template<class T> void checkmin(T &a, T b){if (b<a)a=b;}
+template<class T> void checkmax(T &a, T b){if (b>a)a=b;}
+template<class T> void out(T t[], int n){REP(i, n)cout<<t[i]<<" "; cout<<endl;}
+template<class T> void out(vector<T> t, int n=-1){for (int i=0; i<(n==-1?t.size():n); ++i) cout<<t[i]<<" "; cout<<endl;}
+inline int count_bit(int n){return (n==0)?0:1+count_bit(n&(n-1));}
+inline int low_bit(int n){return (n^n-1)&n;}
+inline int ctz(int n){return (n==0?-1:ctz(n>>1)+1);}
+int toInt(string s){int a; istringstream(s)>>a; return a;}
+string toStr(int a){ostringstream os; os<<a; return os.str();}
+
+
+const int mod=747474747;
+const int maxn=6669;
+
+
+int in[maxn];
+ll c[maxn];
+
+int pos[maxn][5];
+int n;
+ll d[maxn][maxn];
+
+ll sqr(int a){return 1ll*a*a;}
+
+
+int main(){
+    int tn;
+
+    int gen=0;
+    if (gen) tn=1;
+    else cin>>tn;
+
+    REP(ti,tn){
+        int nd;
+
+        memset(in,0,sizeof(in));
+        if (gen){
+            n=6666; nd=5;
+            REP(i,n) REP(j,nd) pos[i][j]=rand()%(int)1e8;
+        }else{
+            scanf(" %d%d",&n,&nd);
+            REP(i,n) REP(j,nd) scanf(" %d",pos[i]+j);
+        }
+
+        REP(i,n) REP(j,n){
+            ll v=0;
+            REP(k,nd) v+=sqr(pos[i][k]-pos[j][k]);
+            d[i][j]=v;
+        }
+        int res=1;
+        in[0]=1;
+
+        REP(i,n) c[i]=d[i][0];
+        REP(u,n-1){
+            int best=-1;
+            REP(j,n) if (!in[j] && (best==-1 || c[best]<c[j])) best=j;
+            if (!c[best]) break;
+            res=c[best]%mod*res%mod;
+            in[best]=1;
+            REP(j,n) if (!in[j] && c[j]<d[best][j]) c[j]=d[best][j];
+        }
+
+        printf("%d\n",res);
+    }
+    return 0;
+}
+

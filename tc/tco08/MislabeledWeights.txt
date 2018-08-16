@@ -1,0 +1,55 @@
+PROBLEM STATEMENT
+You are given a balance scale to weigh some items.  Unfortunately the weights you use as counterbalances are not accurate.  Some of them may be marked incorrectly - either 1 gram too heavy or one gram too light. (Some may be marked correctly.)
+
+You are given a vector <int> weights representing the set of weights you have. The i-th of your weights is marked by weights[i] grams. The subset of your weights is called good if it's possible that all the real weights in it sum exactly to testWeight. Find the good subset with the minimum possible number of weights and return the number of weights in it. If there is no good subset of weights, your method should return -1.
+
+DEFINITION
+Class:MislabeledWeights
+Method:fewest
+Parameters:vector <int>, int
+Returns:int
+Method signature:int fewest(vector <int> weights, int testWeight)
+
+
+NOTES
+-A weight labeled '1 gram' (represented as the integer 1 in the vector <int> of weights) can only be 1 or 2 grams.  All other weights can be plus or minus 1 gram of their actual labeled weight.
+-There may be duplicates in the weights but you may only use each element at most once.
+
+
+CONSTRAINTS
+-weights will contain between 1 and 10 elements, inclusive.
+-Each element of weights will be between 1 and 1000, inclusive.
+-testWeight will be between 1 and 10000, inclusive.
+
+
+EXAMPLES
+
+0)
+{1,1,1}
+6
+
+Returns: 3
+
+The subset of all weights is the only good one. If all the real weights are 2 grams, then they sum up to 6 grams.
+
+1)
+{1,1,1}
+7
+
+Returns: -1
+
+Even if each weight was actually 2 grams, there would still be no way for them to sum to 7 grams.
+
+2)
+{1,2,3,4,5}
+7
+
+Returns: 2
+
+There are many good subsets. For example, {1, 5} (1 + 6 = 7 or 2 + 5 = 7), or {3, 4} (3 + 4 = 7 or 4 + 3 = 7), or {3, 5} (3 + 4 = 7 or 2 + 5 = 7), or other variants. In any case, the fewest number of weights in a good subset is 2.
+
+3)
+{1,2,3,4,5,6,7,8,9,10}
+50
+
+Returns: 6

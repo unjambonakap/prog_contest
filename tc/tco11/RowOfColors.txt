@@ -1,0 +1,63 @@
+PROBLEM STATEMENT
+George has a grid of w columns and h rows. He plans to color each cell of the grid using one of k different available colors. There are some rules he plans to follow:
+The top-most row must contain at least one cell of each of the k colors.
+Every pair of cells of the same color must be connected. Two cells are connected if there is a path between them that consists of cells that share a common edge and are of the same color.
+
+Find the number of different valid ways to color the top-most row. Two ways to color the top-most row are different if and only if at least one of the cells in the top-most row has a different color. For each different coloring of the top-most row, there may be many valid ways to color the rest of the grid, but we will only count that coloring exactly once. Since the result may be very big, return the number of ways modulo 1000000007.
+
+
+DEFINITION
+Class:RowOfColors
+Method:countWays
+Parameters:int, int, int
+Returns:int
+Method signature:int countWays(int w, int h, int k)
+
+
+CONSTRAINTS
+-w, h and k will each be between 1 and 300, inclusive.
+
+
+EXAMPLES
+
+0)
+4
+1
+2
+
+Returns: 6
+
+There is only one row in the grid. The 6 different ways to color the grid with 2 different colors such that the cells of each color are connected are: "AAAB", "AABB", "ABBB", "BBBA", "BBAA" and "BAAA".
+
+
+1)
+4
+3
+2
+
+Returns: 12
+
+This time "ABAA", "AABA", "ABBA", "BABB", "BBAB" and "BAAB" are new valid ways to color the top-most row in the grid. The following are some of the grid colorings that allow those top rows:
+
+    ABAA  AABA  ABBA  BABB  BBAB  BAAB  
+    ABBA  AAAA  ABAA  BABB  BAAB  BBBB
+    AAAA  AAAA  AAAA  BBBB  BBBB  BBBB
+
+
+2)
+4
+4
+10
+
+Returns: 0
+
+It is impossible to use each of the 10 different colors on the 4 cells in the top row.
+
+3)
+14
+28
+14
+
+Returns: 178290591
+
+

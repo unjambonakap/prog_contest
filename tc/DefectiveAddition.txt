@@ -1,0 +1,78 @@
+PROBLEM STATEMENT
+Cucumber Boy is very young.  He is too young for base 10, so he does all his calculations in base 2.  Additionally, he did not learn to add yet. When adding two numbers, he always forgets to do the carries, he just adds each digit independently. As you probably guessed already, the result of his calculation is in fact the bitwise xor of the two input numbers. For example, for Cucumber Boy 1+1 is 0, 1+2 is 3, 2+3 is 1, and 4+7 is 3. (All the numbers in this example are in base 10.)
+
+Cucumber Boy has a sequence of cards.  Each card contains a positive integer. You are given a vector <int> cards containing those integers.
+
+You are also given a int n. Cucumber Boy wants to choose a sequence of integers b with the following properties:
+
+For each i, the integer b[i] is greater than or equal to 0.
+For each i, the integer b[i] is less than or equal to cards[i].
+The "Cucumber Boy sum" (i.e., the bitwise xor) of all elements of the sequence b is equal to n.
+
+
+Return the number of such sequences, modulo 1,000,000,007.
+
+DEFINITION
+Class:DefectiveAddition
+Method:count
+Parameters:vector <int>, int
+Returns:int
+Method signature:int count(vector <int> cards, int n)
+
+
+CONSTRAINTS
+-cards will contain between 1 and 50 elements, inclusive.
+-Each element of cards will be between 1 and 1,000,000,000, inclusive.
+-n will be between 1 and 1,000,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{2,3}
+2
+
+Returns: 3
+
+Cucumber Boy can choose 12 different sequences: b[0] can be between 0 and 2, inclusive, and b[1] can be between 0 and 3, inclusive.
+Out of those 12 sequences, 3 have the required "Cucumber Boy sum": 0+2 = 2, 1+3 = 2, and 2+0 = 2.
+
+1)
+{1,2,3}
+1
+
+Returns: 6
+
+The six good sequences are (0,0,1), (0,1,0), (0,2,3), (1,0,0), (1,1,1), and (1,2,2).
+
+2)
+{4, 5, 7, 11}
+6
+
+Returns: 240
+
+
+
+3)
+{1,2,3,4,5,6,7,8,9,10}
+15
+
+Returns: 1965600
+
+
+
+4)
+{1,2,3,4,5,6,7,8,9,10}
+16
+
+Returns: 0
+
+
+
+5)
+{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+1
+
+Returns: 949480669
+
+

@@ -1,0 +1,79 @@
+PROBLEM STATEMENT
+The banking method is sometimes used to
+calculate the amortized cost of a process. In our system, every time a
+value is written to memory, it will cost 1 dollar. We are going to use
+this system to study the behavior of a dynamic array. The array starts
+empty with some initial capacity. If an item is added to the array, a
+memory write occurs, and the cost is 1 dollar. If the item added
+doesn't fit in the array, a new array is allocated which is twice the
+size of the previous array. All of the elements from the old array
+must be copied over, costing 1 dollar for each element copied. Then the
+new item must be added, costing another dollar.  
+For example, if 3 adds occur to an array with initial
+capacity 1:
+
+Action     Capacity      Size      Cost Incurred
+-------------------------------------------------
+Start      capacity = 1  size = 0  (empty)
+Add        capacity = 1  size = 1  (cost = 1)
+Add        Doesn't fit
+ -allocate capacity = 2  size = 0  (empty)
+ -copy     capacity = 2  size = 1  (cost = 1)
+ -add      capacity = 2  size = 2  (cost = 1)
+Add        Doesn't fit
+ -allocate capacity = 4  size = 0  (empty)
+ -copy     capacity = 4  size = 2  (cost = 2)
+ -add      capacity = 4  size = 3  (cost = 1)
+
+So the total cost is 1+1+1+2+1 = 6.  
+
+Given the initial capacity of the empty array, and the number of adds that occur, return
+the cost.
+
+
+DEFINITION
+Class:BankingArray
+Method:addCost
+Parameters:int, int
+Returns:int
+Method signature:int addCost(int initialCapacity, int numAdds)
+
+
+CONSTRAINTS
+-initialCapacity is between 1 and 1000, inclusive.
+-numAdds is between 0 and 500000000, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+3
+
+Returns: 6
+
+From the problem statement.
+
+1)
+3
+3
+
+Returns: 3
+
+All of the items fit in the array.
+
+2)
+1
+500000000
+
+Returns: 1036870911
+
+Many adds.
+
+3)
+1
+0
+
+Returns: 0
+
+No adds.

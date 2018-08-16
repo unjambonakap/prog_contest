@@ -1,0 +1,42 @@
+\begin{problem}{Dictionary Size}{dictionary.in}{dictionary.out}{2 seconds}
+
+% Author:      Александр Кленин  
+% Description: Посчитать к-во слов составленных из начал и концов по данному словарю
+
+The government of Disleksik Piple's Ripublyc had decided to improve literacy level of its citizens.
+To this end, the government issued a decree with a full list of dictionary words.
+
+The rules for construction of new words were also greatly simplified:
+an \emph{approved word} must either be a dictionary word or consist of two parts,
+where the first part must be a dictionary word or its non-empty prefix,
+and the second part~--— a dictionary word or its non-empty suffix.
+
+The Institute of Language Simplification has assigned you the task to count
+the number of different approved words that can be constructed from the given dictionary.
+
+\InputFile
+The first line of the input file contains the number of dictionary words $n$ 
+($1 \le n \le 10\,000$). The following $n$ lines contain dictionary words, one word per line.
+Dictionary words are composed of lowercase Latin letters and are at least 1 and at most 40 letters in length.
+
+The Institute of Language Simplification did not necessary do a good job of cleaning the input
+data, so their list may contain duplicates.
+
+\OutputFile
+
+The output file must contain a single integer~--— the number of different approved words.
+
+\Example
+
+\begin{example}
+\exmp{
+3
+abc
+def
+abef
+}{
+60
+}%
+\end{example}
+
+\end{problem}

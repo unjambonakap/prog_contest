@@ -1,0 +1,72 @@
+PROBLEM STATEMENT
+
+A subsequence of a string s is a string that can be obtained by erasing zero or more characters from s.  For example, "aacb", "c", "", and "abacaba" are subsequences of "abacaba", but "bbc" is not.
+
+
+Common subsequences of strings s1 and s2 are strings that are subsequences of both s1 and s2.
+
+
+A string s1 is called a cyclic shift of string s if s1 can be obtained by removing zero or more characters from the beginning of string s and appending them to the end of string s in the same order. For example, strings "abcde", "bcdea" and "eabcd" are cyclic shifts of string "abcde", but "cdeba" is not.
+ 
+
+You are given two vector <string>s a and b. 
+Construct a string A by concatenating all the elements of a, and construct a string B by concatening all the elements of b.
+
+
+Consider all common subsequences for all pairs (x, y), where x is any cyclic shift of string A, and y is any cyclic shift of string B.  There are length(A) * length(B) such pairs. Find the common subsequence among all of these that comes last alphabetically, and return the last
+suffixLength characters of that subsequence. If the subsequence contains less than suffixLength characters, then return the whole subsequence.
+
+
+
+DEFINITION
+Class:CommonSubsequence
+Method:maxLex
+Parameters:vector <string>, vector <string>, int
+Returns:string
+Method signature:string maxLex(vector <string> a, vector <string> b, int suffixLength)
+
+
+CONSTRAINTS
+-a and b will each contain between 1 and 50 elements, inclusive.
+-Each element of a and b will contain between 1 and 50 characters, inclusive.
+-Each element of a and b will contain only characters with ASCII value between 35 and 126, inclusive.
+-suffixLength will be between 1 and 100, inclusive.
+
+
+EXAMPLES
+
+0)
+{"baab"}
+{"aaabb"}
+10
+
+Returns: "bbaa"
+
+The answer is the one of the common subsequences for the pair ("bbaa", "bbaaa").
+
+1)
+{"a", "cb"}
+{"bc", "a"}
+100
+
+Returns: "cb"
+
+The answer is one of the common subsequences for the pair ("acb", "cab") (there exist more such pairs).
+
+2)
+{"xzzzzzzzzzzzzzzzzzzx"}
+{"xxxxzzzzzzzzzzz"}
+10
+
+Returns: "zzzzzzzzxx"
+
+
+
+3)
+{"ichhbca", "aghafbbgbaehi"}
+{"jdhccgeiaaijbddh"}
+6
+
+Returns: "iihhge"
+
+

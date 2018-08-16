@@ -1,0 +1,86 @@
+PROBLEM STATEMENT
+You are in a chat room that supports nickname tab-completion.  Suppose
+the input buffer now contains the string s and you decide to use the
+completion facility.  The first time you press tab you will be shown
+the lexicographically first element of names that has s as a
+prefix.  Pressing tab again will give the lexicographically second,
+and so forth.  Once the possible options are exhausted the tab key
+will do nothing.  Having found a completion that suits you, you may
+either press enter to complete the word you are typing, or continue
+typing characters into the input buffer.  If you decide to type
+characters, they will be appended to the current completion.  Your goal
+is to type the word w, followed by the enter key, using as few
+keystrokes as possible.  Each character and each tab key count as single
+keystrokes.  By interchanging character typing and tab completion
+sequences as many times as you like, return the fewest number of
+keystrokes required.
+
+
+DEFINITION
+Class:CheapestTabComplete
+Method:getFewest
+Parameters:vector <string>, string
+Returns:int
+Method signature:int getFewest(vector <string> names, string w)
+
+
+NOTES
+-If the buffer is empty, then every element of names is a possible completion for the buffer.
+-The only allowed keystrokes are letters, tabs, and enter.
+
+
+CONSTRAINTS
+-names will contain between 0 and 50 elements, inclusive.
+-Each element of names will contain between 1 and 50 lowercase letters ('a'-'z'), inclusive.
+-w will contain between 1 and 50 lowercase letters ('a'-'z'), inclusive.
+
+
+EXAMPLES
+
+0)
+{}
+"myname"
+
+Returns: 7
+
+Since tab is useless, we type in the 6 letters of myname and then press enter.
+
+1)
+{"myn","myname"}
+"myname"
+
+Returns: 3
+
+Here we press tab twice, and then enter.
+
+2)
+{"abc","ab","abcd","frankies","frank","a","a"}
+"frankie"
+
+Returns: 5
+
+Here we type 'f', then tab, then 'i', 'e', and finally enter.
+
+3)
+{"a","a","f","f","fr","fr","fra","fra","fran","fran","frank","frank"}
+"frankie"
+
+Returns: 8
+
+Due to the weird set of names, tab is of no use.
+
+4)
+{"a","a","bcde","bcde","bcde","bcdefghij"}
+"bcdefghijk"
+
+Returns: 6
+
+
+
+5)
+{"aaaa","aaaa","aaaa","aaaa","aaaa"}
+"aaaaaaaaaaaaaaaaaaaaaaa"
+
+Returns: 21
+
+

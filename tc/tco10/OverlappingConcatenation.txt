@@ -1,0 +1,65 @@
+PROBLEM STATEMENT
+An overlapping concatenation of an ordered pair of strings (A, B) is a string S such that A is a prefix of S and B is a suffix of S. A shortest overlapping concatenation (SOC) of (A, B) is an overlapping concatenation whose length is as small as possible. For example, if A is "cabab" and B is "ababc", the shortest overlapping concatenation is "cababc" (all quotes for clarity). You are given two strings A and B, in which some of the characters are known and some are unknown. Each character in A and B will be a lowercase letter ('a' - 'z') if it is known or '*' if it is unknown.
+
+Assuming that each unknown character will be selected uniformly at random from the characters contained in alphabet, return the expected length of the shortest overlapping concatenation of A and B.
+
+DEFINITION
+Class:OverlappingConcatenation
+Method:shortestExpected
+Parameters:string, string, string
+Returns:double
+Method signature:double shortestExpected(string A, string B, string alphabet)
+
+
+CONSTRAINTS
+-alphabet will contain between 1 and 26 lowercase letters ('a' - 'z'), inclusive.
+-The characters in alphabet will be distinct.
+-A and B will contain between 1 and 32 characters, inclusive.
+-A and B will contain the same number of characters.
+-Each character in A and B will either be contained in alphabet or it will be '*'.
+
+
+EXAMPLES
+
+0)
+"aa*aa"
+"a*aaa"
+"ab"
+
+Returns: 7.0
+
+The 4 equal-probability possibilities for the shortest overlapping concatenation (SOC) are as follows:
+A     | B     | SOC
+aaaaa | aaaaa | aaaaa
+aabaa | aaaaa | aabaaaaa
+aaaaa | abaaa | aaaaabaaa
+aabaa | abaaa | aabaaa
+
+The result is therefore (5 + 8 + 9 + 6) / 4 = 7.
+
+1)
+"**"
+"**"
+"ab"
+
+Returns: 3.125
+
+There are 16 possibilities for A and B. Of these, 4 give a SOC of length 2; 6 give a SOC of length 3; and 6 give a SOC of length 4. The answer is therefore (4*2 + 6*3 + 6*4) / 16 = 3.125.
+
+2)
+"**a*cd"
+"cde***"
+"abcdefghijklmnopqrstuvwxyz"
+
+Returns: 10.0
+
+It makes no difference what the unknown characters are; the SOC is always the same length.
+
+3)
+"h*phz*"
+"hzph*p"
+"zph"
+
+Returns: 10.555555555555557
+
+

@@ -1,0 +1,100 @@
+PROBLEM STATEMENT
+
+Quicksort is one of the most well-known sorting algorithms. On average it makes O(N log(N))
+element comparisons, although in the worst case the number of comparisons is O(n2). The critical
+part in Quicksort is the selection of the pivot element. If one knows the details of a specific Quicksort
+implementation, it is generally possible to exploit this and create an input sequence which will cause
+that implementation to perform badly. This can for instance be used by malicious users to cause time-outs in
+critical system components that rely too much on the efficiency of Quicksort.
+
+
+Given the details of a specific Quicksort algorithm (pseudocode below), your task is to generate a sequence
+of n distinct integers between 1 and n, inclusive, that causes this Quicksort to reach the largest nesting
+depth (see examples for further clarifications).
+
+
+
+ function quicksort(list q)
+     var list less, greater
+     if length(q) <= 1  
+         return q  
+     select a pivot value pivot from q
+     for each x in q
+         if x < pivot then add x to less
+         if x > pivot then add x to greater
+     return concatenate(quicksort(less), [pivot], quicksort(greater))
+
+
+
+The pivot element selected in the pseudocode will be the median of three elements in q. The relative position of these three elements
+will be given by the input parameter positions, containing three integers between 0 and 999, inclusive. If the number
+of elements in q is k, the position (0-indexed) for the three elements that will be considered as pivot
+elements will thus be (k * positions[x]) / 1000 (rounded down) for each x between 0 and 2, inclusive. The most common pivot
+selection method is to take the median of the first, the middle and the last element, which would correspond to positions = {0, 500, 999}.
+
+
+
+Create a class WorstCaseQuicksort containing the method worstInput which takes as input an int n
+and a vector <int> positions and returns a vector <int> with n distinct integers between 1 and n,
+inclusive, so that the largest nesting depth is reached. Since there are many such vector <int>s, return the
+one that comes first lexicographically (see notes).
+
+
+
+DEFINITION
+Class:WorstCaseQuicksort
+Method:worstInput
+Parameters:int, vector <int>
+Returns:vector <int>
+Method signature:vector <int> worstInput(int n, vector <int> positions)
+
+
+NOTES
+-The relative order of the elements in the lists less and greater in the pseudocode are the same as that in q.
+-A vector <int> A is lexicographically before a vector <int> B if there exists an integer i such that A[i] < B[i] and A[j] = B[j] for all j < i.
+
+
+CONSTRAINTS
+-n will be between 1 and 1000, inclusive.
+-positions will contain exactly 3 elements.
+-Each element in positions will be between 0 and 999, inclusive.
+
+
+EXAMPLES
+
+0)
+5
+{0,500,999}
+
+Returns: {1, 2, 3, 4, 5 }
+
+Any array with 5 elements where the median of the first, middle and last element is used to pick the pivot element will cause a maximum nesting depth of 3 levels, so we return the lexicographically first sequence.
+
+1)
+8
+{500, 500, 500}
+
+Returns: {1, 3, 5, 7, 8, 6, 4, 2 }
+
+With these values, the middle element (rounded up when there is an odd number of elements) will always be the pivot element. Knowing this, we can create a sequence requiring 8 nesting levels.
+
+2)
+10
+{800, 100, 400}
+
+Returns: {1, 2, 5, 7, 9, 3, 6, 8, 10, 4 }
+
+
+The top node in the picture below shows the lexicographically first array that causes the maximum recursion depth of 6 levels.
+
+
+
+
+
+3)
+30
+{800,150,800}
+
+Returns: {1, 2, 3, 4, 6, 7, 8, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 30, 25, 20, 15, 10, 5 }
+
+

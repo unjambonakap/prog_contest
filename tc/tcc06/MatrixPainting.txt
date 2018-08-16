@@ -1,0 +1,100 @@
+PROBLEM STATEMENT
+There is a matrix with 9 rows and 9 columns. Each cell of the matrix is either black or white. With a single repaint operation, you can repaint all the cells in a single row or column black if the row or column already contains at least 5 black cells.  Your goal is to make all the cells in the matrix black using a minimal number of repaint operations.
+You will be given a vector <string> matrix, where the jth character of the ith element represents the cell at row i, column j.  Black cells will be written as '1' (one), and white cells will be written as '0' (zero).  Return the minimal number of repaint operations required to make all the cells black, or -1 if this is impossible.
+
+
+DEFINITION
+Class:MatrixPainting
+Method:countRepaints
+Parameters:vector <string>
+Returns:int
+Method signature:int countRepaints(vector <string> matrix)
+
+
+CONSTRAINTS
+-matrix will contain exactly 9 elements.
+-Each element of matrix will contain exactly 9 characters.
+-Each element of matrix will consist of '0' and '1' characters only.
+
+
+EXAMPLES
+
+0)
+{"001111111",
+ "011111111",
+ "011111111",
+ "011111111",
+ "011111111",
+ "101111111",
+ "101111111",
+ "101111111",
+ "101111111"}
+
+
+Returns: 3
+
+First, you should repaint the first row. After that, you can repaint the first and the second column.
+
+1)
+{"011111111",
+ "101111111",
+ "110111111",
+ "111011111",
+ "111101111",
+ "111110111",
+ "111111011",
+ "111111101",
+ "111111110"}
+
+
+Returns: 9
+
+Each white cell must be repainted separately.
+
+2)
+{"000000001",
+ "000000011",
+ "000000111",
+ "000001111",
+ "000011111",
+ "000011110",
+ "000011100",
+ "000011000",
+ "000010000"}
+
+
+Returns: 14
+
+After repainting the 5 rightmost columns, you will be able to repaint the rows.
+
+3)
+{"000000001",
+ "000000011",
+ "000000111",
+ "000001111",
+ "000011111",
+ "000011110",
+ "000011100",
+ "000011000",
+ "000000000"}
+
+
+Returns: -1
+
+
+
+4)
+{"011111111",
+ "010001001",
+ "111111101",
+ "011111111",
+ "101010100",
+ "011111111",
+ "111111101",
+ "111011101",
+ "011111111"}
+
+
+Returns: 5
+
+

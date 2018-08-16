@@ -1,0 +1,138 @@
+PROBLEM STATEMENT
+
+NOTE: This problem contains images that may not be displayed properly if viewed outside the contest applet.
+
+
+
+You will be given the layout of a rectangular room as a vector <string> room,
+where each character corresponds to a 1 meter by 1 meter square area of the room.
+A '.' (period) indicates an empty square, a '#' indicates a post that covers the square
+and extends from the floor to the ceiling, and a '*' (asterik) indicates a light source
+at the center of the square.
+There will be exactly 1 light source in the room.
+
+
+
+The source will illuminate any point on the floor in an empty square
+if a straight line from to that point from the light source does not intersect any post.
+All other points in empty squares are in shadow.
+Given room, compute the area of the floor (in square meters) that is in shadow.
+
+
+
+For example, consider the following room layout:
+
+
+
+
+  { ".*#...",
+    "......",
+    ".#...#",
+    ".....#",
+    ".....#" }
+
+
+
+The post below the light casts a shadow of 5.0 square meters,
+and the shadow cast by the post to the right of the light has an area of 8.5
+square meters, as shown in the figure below.
+Therefore, 13.5 is the correct answer.
+
+
+
+
+
+
+
+
+DEFINITION
+Class:ShadowArea
+Method:area
+Parameters:vector <string>
+Returns:double
+Method signature:double area(vector <string> room)
+
+
+NOTES
+-The returned value must be accurate to within a relative or absolute value of 1e-9.
+
+
+CONSTRAINTS
+-room will contain between 1 and 50 elements, inclusive.
+-Each element of room will have the same length, between 1 and 50, inclusive.
+-room will contain only the characters '#', '.' (period), and '*'.
+-Exactly one characer in room will be a '*'.
+
+
+EXAMPLES
+
+0)
+{ ".*#...",
+  "......",
+  ".#...#",
+  ".....#",
+  ".....#" }
+
+Returns: 13.5
+
+This is the example from the problem statement.
+
+1)
+{ "..............................",
+  "..............................",
+  "..........#...................",
+  ".........#*#..................",
+  "..........#...................",
+  "..............................",
+  "..............................",
+  "..............................",
+  "..............................",
+  ".............................." }
+
+
+Returns: 295.0
+
+A 30x10 room with every square in shadow, exept for the 4 squares with posts and the 1 square with the light.
+
+2)
+{ ".#....*",
+  "##.....",
+  "#......" }
+
+
+Returns: 1.166666666666666
+
+
+
+3)
+{ "..........",
+  "..........",
+  "..........",
+  "###..#####",
+  "..........",
+  "*........." }
+
+
+Returns: 29.27777777777778
+
+
+
+4)
+{ "...........",
+  "...........",
+  "......#....",
+  "........#..",
+  "..........#",
+  "..........*" }
+
+
+Returns: 25.43333333333333
+
+
+
+5)
+{ "*" }
+
+Returns: 0.0
+
+

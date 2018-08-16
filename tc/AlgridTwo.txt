@@ -1,0 +1,89 @@
+PROBLEM STATEMENT
+Algrid2 is a program that uses a single grid with cells colored white or black as input and returns a new one as output. The grid has H rows and W columns. The topmost row is row 0, the bottommost row is row H-1, the leftmost column is column 0 and the rightmost column is column W-1. The cell at row i, column j can be denoted as (i,j). The program works by evaluating pairs of contiguous cells and making decisions depending on their contents. The following pseudo-code describes how the program works:
+
+
+For i = 0 to H-2:
+    For j = 0 to W-2:
+        //Get the current colors of cells (i,j) and (i,j+1)
+        A = Color(i,j) , B = Color(i,j+1)
+
+        If (A,B) == (White, White) Then:
+             Do nothing.
+        EndIf
+        If (A,B) == (Black, White) Then: 
+             Repaint cells (i+1,j) and (i+1,j+1) Black.
+        EndIf
+        If (A,B) == (White, Black) Then:
+             Repaint cells (i+1,j) and (i+1,j+1) White.
+        EndIf
+        if (A,B) == (Black, Black) Then:
+             Swap the colors in cells (i+1,j) and (i+1,j+1).
+        EndIf
+    EndFor
+EndFor
+
+
+You will be given a possible output for the program as a vector <string> output. The j-th character in the i-th element of output represents the color of cell (i,j) where 'W' represents white and 'B' represents black. Count the total number of input grids that can generate this output. Two input grids are different if there is at least one cell in which the colors are different. Since the result may be very large, return it modulo 1000000007.
+
+DEFINITION
+Class:AlgridTwo
+Method:makeProgram
+Parameters:vector <string>
+Returns:int
+Method signature:int makeProgram(vector <string> output)
+
+
+CONSTRAINTS
+-output will contain between 2 and 50 elements, inclusive.
+-Each element of output will contain between 2 and 50 characters, inclusive.
+-All elements of output will have the same length.
+-Each element of output will only contain 'W' or 'B' characters.
+
+
+EXAMPLES
+
+0)
+{"BB",
+ "WB"}
+
+Returns: 1
+
+The only way to generate that output following the rules described is:
+
+BB
+BW
+
+
+1)
+{"BBWBBB",
+ "WBWBBW"}
+
+Returns: 8
+
+There are 8 ways in total:
+
+BBWBBB BBWBBB BBWBBB BBWBBB
+BWWWBB WWWBBB BWBBBB WWWWBB
+
+BBWBBB BBWBBB BBWBBB BBWBBB
+WWBBBB BWBWBB WWBWBB BWWBBB
+
+
+
+2)
+{"BWBWBW",
+ "WWWWWW",
+ "WBBWBW"}
+
+Returns: 0
+
+
+
+3)
+{"WWBWBWBWBWBWBWBW",
+ "BWBWBWBWBWBWBWBB",
+ "BWBWBWBWBWBWBWBW"}
+
+Returns: 73741817
+
+

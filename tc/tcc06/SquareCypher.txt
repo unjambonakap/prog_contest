@@ -1,0 +1,50 @@
+PROBLEM STATEMENT
+
+Square cypher is very simple and easy to decrypt. It encrypts a message s=s0s1...sn-1 in the following way: all characters situated on square positions (0, 1, 4, 9, 16...) are moved to the front of the message.  The relative order of the moved characters remains the same. For example, the message "thisisacontest" will be encrypted as "thinissacotest".
+
+
+You are given a string cryptogram. Decrypt it and return the result.
+
+
+DEFINITION
+Class:SquareCypher
+Method:decrypt
+Parameters:string
+Returns:string
+Method signature:string decrypt(string cryptogram)
+
+
+CONSTRAINTS
+-cryptogram will contain between 1 and 50 characters, inclusive.
+-cryptogram will contain only lowercase letters ('a'..'z').
+
+
+EXAMPLES
+
+0)
+"thinissacotest"
+
+Returns: "thisisacontest"
+
+This test is from the statement.
+
+1)
+"thisisacontest"
+
+Returns: "thisiaconstest"
+
+
+
+2)
+"heoll"
+
+Returns: "hello"
+
+Only the letter 'o' was moved.
+
+3)
+"test"
+
+Returns: "test"
+
+Obviously, short messages (not longer than 4 characters) are not change after the encryption.

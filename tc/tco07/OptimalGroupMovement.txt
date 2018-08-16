@@ -1,0 +1,54 @@
+PROBLEM STATEMENT
+NOTE: This problem statement contains superscripts that may not display properly if viewed outside of the applet.
+There is a horizontal row of N squares, each of which either contains a counter or is empty.  A set of counters in this row is called a group if it meets all of the following requirements:
+
+They form a contiguous part of the row.
+The square immediately to the left of the leftmost counter in the set is empty, or the leftmost counter in the set is in the leftmost square of the row.
+The square immediately to the right of the rightmost counter in the set is empty, or the rightmost counter in the set is in the rightmost square of the row.
+
+In one move, we can take any group and simultaneously move all of its counters one square to the right (only if the rightmost counter in the group is not in the rightmost square of the row), or one square to the left (if the leftmost counter in the group is not in the leftmost square of the row).  The cost of such a move is C2, where C is the number of counters in the group.
+You will be given a string board that represents the initial row from left to right.  Each character of board represents the content of a single square and is either uppercase 'X' (counter) or '.' (empty).  Your goal is to have all the counters in the row form exactly one group.  Return the minimum possible total cost required to achieve this.
+
+DEFINITION
+Class:OptimalGroupMovement
+Method:minimumCost
+Parameters:string
+Returns:int
+Method signature:int minimumCost(string board)
+
+
+CONSTRAINTS
+-board will contain between 1 and 50 characters, inclusive.
+-Each character of board will be '.' or 'X'.
+-At least one character of board will be 'X'.
+
+
+EXAMPLES
+
+0)
+".XXX.XXXX."
+
+Returns: 9
+
+Initially, there are two groups of counters: a group of 3 on the left side and a group of 4 on the right side.  To form a single group, we can move the group of 3 one square to the right (at a cost of 9), or move the group of 4 one square to the left (at a cost of 16).  The first option is cheaper.
+
+1)
+"X"
+
+Returns: 0
+
+Here we already have one group of 1 counter.
+
+2)
+"XXXXX...X..X.X"
+
+Returns: 14
+
+The leftmost group is large, so we don't move it. We move the other three groups to the left.
+
+3)
+".X.X.X..X.X.X.......XX..X.X..X"
+
+Returns: 70
+
+

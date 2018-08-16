@@ -1,0 +1,95 @@
+PROBLEM STATEMENT
+Your favorite online game operates on two types of currency - jingles and ringles.  They are obtained from different sources, and players can trade them in an exchange market.  Each individual trade is the result of an agreement between two people - a seller who wants to sell 1 jingle and a buyer who wants to buy it for an agreed upon integer price of X ringles.  Each trade is executed as follows:
+
+The buyer pays X ringles to the seller.
+
+The seller pays 1 jingle to the buyer.
+
+The seller pays a tax of floor((X * tax) / 100) ringles to the game host.  The buyer pays no taxes.
+
+
+You have a lot of ringles and no jingles, and you want to perform several trades to make a profit.  The exchange market is described as two sets of offers.  Offers from buyers are given in the vector <int> buyOffers, where each element is the price that some buyer is willing to pay for 1 jingle.  Offers from sellers are given in the vector <int> sellOffers, where each element is the price some seller wants to receive for 1 jingle.  You are also given the tax rate tax.
+
+Return the maximum profit in ringles you can get after accepting some of these offers and paying the applicable taxes.  Note that you can accept as many offers from sellers as you wish, but you can only accept offers from buyers if you already have enough jingles to sell.  If you can't make a positive profit, return 0.
+
+DEFINITION
+Class:JingleRingle
+Method:profit
+Parameters:vector <int>, vector <int>, int
+Returns:int
+Method signature:int profit(vector <int> buyOffers, vector <int> sellOffers, int tax)
+
+
+NOTES
+-floor(X) is the largest integer which is less than or equal to X.
+-Assume that you have enough ringles to accept all offers from sellers.
+
+
+CONSTRAINTS
+-buyOffers and sellOffers will each contain between 0 and 50 elements, inclusive.
+-Each element of buyOffers and sellOffers will be between 100 and 10000, inclusive.
+-tax will be between 0 and 20, inclusive.
+
+
+EXAMPLES
+
+0)
+{1000, 1024}
+{990, 1011}
+0
+
+Returns: 34
+
+You can accept offer 0 from sellOffers and buy 1 jingle for 990 ringles, and then accept offer 1 from buyOffers and sell this jingle for 1024 ringles. There are no taxes here, so your profit is 34 ringles.
+
+1)
+{1000, 1001, 1002}
+{980, 981, 982}
+2
+
+Returns: 2
+
+Accepting any of buyOffers makes you pay 20 ringles in taxes. If you accept offer 0 from sellOffers and offer 2 from buyOffers, you can get a profit of 2 ringles.
+
+2)
+{100, 120, 140}
+{150, 170, 200}
+15
+
+Returns: 0
+
+All offers from sellOffers are higher than offers from buyOffers, so no profitable trades can be done.
+
+3)
+{}
+{}
+20
+
+Returns: 0
+
+There are no offers.
+
+4)
+{1692, 3281, 862}
+{2701, 2819, 2582, 1918, 638, 601, 1128, 2760, 1949, 3074,
+  615, 2221, 1691, 3226, 1351, 1329, 556, 1060, 898, 1080,
+ 2494, 2379, 3148, 737, 1412, 3290, 1594, 1314, 959, 3192,
+ 1326, 932, 1103, 937, 1670, 2017, 1403, 1282, 2949, 2940,
+ 2557, 940, 2561, 1248, 2385, 541, 2382, 1309, 831}
+4
+
+Returns: 3905
+
+You can accept all offers from buyOffers.
+
+5)
+{5016, 7212, 7613, 1590, 2942, 5155, 5898, 8113, 2001, 2348,
+  671, 5167, 7524, 2467, 4294, 3628, 4480, 5872, 5230, 3732,
+ 4637, 6419, 1431, 6335, 1652, 3005, 2125, 2193, 2183, 5856,
+ 1795, 5441, 2079, 7114, 2290, 4025, 5943, 1695}
+{2407, 5602, 1350}
+3
+
+Returns: 13195
+
+

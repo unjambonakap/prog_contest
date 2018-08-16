@@ -1,0 +1,630 @@
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include <numeric>
+#include <utility>
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <cstring>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <cassert>
+#include <climits>
+//#include <ext/hash_map>
+
+
+using namespace std;
+using namespace __gnu_cxx;
+
+
+
+#define REP(i,n) for(i = 0; i < (n); i++)
+#define REPC(i,n,c) for(i = 0; (i < (n)) && (c); i++)
+
+#define REPV(i, n) for (i = (n) - 1; i >= 0; i--)
+#define REPVC(i, n, c) for (i = (n) - 1; (i >= 0) && (c); i--)
+#define FOR(i, a, b) for(i = (a); i <= (b); i++)
+#define FORC(i, a, b, c) for(i = (a); (i <= (b)) && (c); i++)
+#define FORV(i, a, b) for(i = (a); i >= (b); i--)
+#define FORVC(i, a, b, c) for(i = (a); (i >= (b)) && (c); i--)
+
+#define FE(i,t) for (typeof((t).begin())i=(t).begin();i!=(t).end();i++)
+#define FEV(i,t) for (typeof((t).rbegin())i=(t).rbegin();i!=(t).rend();i++)
+
+#define MAX(a,b) (((a) < (b)) ? (b) : (a))
+#define MIN(a,b) (((a) < (b)) ? (a) : (b))
+#define SZ(a) (int((a).size()))
+#define two(x) (1 << (x))
+#define twoll(x) (1LL << (x))
+#define ALL(a) (a).begin(), (a).end()
+#define CLR(a) (a).clear()
+#define SWAP(a,b,c) (c=a, a=b, b=c)
+
+#define SQR(x) (pow((x),2))
+#define DIST(x,y) (SQR(x)+SQR(y))
+#define MDIST(x,y,a,b) (abs((a)-(x))+abs((b)-(y)))
+
+#define CMP(x,y) ((fabs((x)-(y)) < EPS) ? 0 : ((x) < (y)) ? -1 : 1)
+
+#define pb push_back
+#define PF push_front
+#define ST first
+#define ND second
+#define MP(x,y) make_pair(x, y)
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int,int> pii;
+typedef vector<int> vi;
+typedef vector<string> vs;
+typedef queue<int> qi;
+
+inline int count_bit(int n){return (n == 0)?0:1+count_bit(n&(n-1));}
+inline int sqr(int x){return x*x;}
+inline int dist(int x, int y, int a, int b){return sqr(x-a)+sqr(y-b);}
+inline int dist(pii a, pii b){return sqr(a.ST-b.ST)+sqr(a.ND-b.ND);}
+inline bool bit_set(int a, int b){return (a&two(b));}
+
+const double INF=1e20;
+const double EPS=1e-10;
+const double PI=2.*asin(1);
+
+struct Point{
+	static Point Inf(){return Point(1, 0, true);}
+	Point(double x=0., double y=0., bool inf=false):x(x), y(y), inf(inf){if (inf)x=(x==0)?1:x/abs(x);}
+	bool operator<(const Point& p)const{
+		if (inf){
+			if (p.inf)
+				return x<p.x;
+			return x<0;
+		}
+		return x<p.x||(x==p.x&&y<p.y);
+		
+	}
+	bool operator<=(const Point& p)const{
+		if (inf){
+			if (p.inf)
+				return !(x>0 && p.x<0);
+			return x<0;
+		}
+		return x<=p.x;
+	}
+	bool operator==(const Point& p)const{
+		if (inf || p.inf)return inf==p.inf && x==p.x;
+		return p.x==x&&p.y==y;
+	}
+	bool operator!=(const Point& p)const{return !(*this==p);}
+	Point operator-()const{return Point(-x, -y, inf);}
+	Point& operator=(const Point& p){inf=p.inf, x=p.x, y=p.y; return *this;}
+
+	bool inf;
+	double x, y;
+};
+
+ostream& operator<<(ostream& o, const Point& a){
+	o<<"(";
+	if (a.inf)
+		cout<<((a.x<0)?"-":"+")<<"inf";
+	else
+		o<<a.x<<", "<<a.y;
+	o<<")"; 
+	return o;
+}
+
+struct Line{
+	static const int N=0, D=-1, U=1;
+	static Line Vert(int a){return Line(a, 0, true);}
+	Line(double a=0, double b=0, bool vert=false, int side=N):a(a), b(b), vert(vert), side(side){}
+	double eval(double x)const{
+		assert(!vert);
+		return a*x+b;
+	}
+
+	double angle()const{
+		if (vert)return PI/2;
+		return atan(a);
+	}
+
+	bool operator<(const Line& l)const{return angle()<l.angle();}
+
+	double a, b;//y=ax+b
+	bool vert;//x=a
+	int side;
+};
+
+
+
+struct Segment:public Line{
+	Segment(const Line& d=Line(), const Point& sp=Point::Inf(), const Point& ep=Point::Inf()):Line(d), sp(sp), ep(ep){}
+	Segment(const Point& sp, const Point& ep):sp(sp), ep(ep){
+		if (sp.x==ep.x)
+			vert=1, a=sp.x;
+		else
+			a=(ep.y-sp.y)/(ep.x-sp.x), b=sp.y-sp.x*a;
+	}
+
+	Point sp, ep;
+};
+
+
+struct ConvexPolygon{
+	bool in(const Point& p, int li, int ui)const{
+		if (SZ(lower)>0){
+			if (li<0 || li>=SZ(lower))return false;
+			if (lower[li].eval(p.x)>p.y)return false;
+		}
+		if (SZ(upper)>0){
+			if (upper[ui].eval(p.x)<p.y)return false;
+			if (ui<0 || ui>=SZ(upper))return false;
+		}
+		//cout<<p<<endl;
+		//cout<<"<<<<<<<<<<"<<upper[ui].eval(p.x)<<"=>"<<lower[li].eval(p.x)<<endl;
+		return true;
+	}
+
+	bool done(int li, int ui)const{return li>=SZ(lower)&&ui>=SZ(upper);}
+
+	Point nextPoint(int li, int ui)const{
+		if (li==-1 || ui==-1)return sp();
+		Point p;
+		if (li<SZ(lower))
+			p=lower[li].ep;
+		if (ui<SZ(lower))
+			p=min(p, upper[ui].ep);
+		return p;
+
+	}
+
+	void addLowP(const Point& p, const Segment& s){
+		Point a=(lower.size()==0)?actl:lower.back().ep;
+		lower.pb(Segment(s, a, p));
+		actl=p;
+	}
+	void addLowP(const Point& p){addLowP(p, Segment(lastLowP(), p));}
+
+	void addSupP(const Point& p, const Segment& s){
+		if (upper.size()==0)
+			upper.pb(Segment(s, actu, p));
+		else
+			upper.pb(Segment(s, upper.back().ep, p));
+		actu=p;
+	}
+	void addSupP(const Point& p){ addSupP(p, Segment(lastSupP(), p)); }
+	void setSP(const Point& p){actl=actu=p;}
+
+	bool empty()const{return lower.size()==0 && upper.size()==0;}
+	Point lastLowP()const{return actl;}
+	Point lastSupP()const{return actu;}
+
+	Point sp()const{ return (lower.size()>0)?lower[0].sp:upper[0].sp; }//assert not empty
+	Point ep()const{ return (lower.size()>0)?lower.back().ep:upper.back().ep; }//assert not empty
+
+	vector<Segment> lower, upper;
+	Point actl, actu;
+	Line la, lb;
+};
+
+struct Circle{
+	double r;
+	Point c;
+};
+
+
+
+
+
+ostream& operator<<(ostream& o, const Line& a){
+	o<<"Line: ";
+	if (a.vert)
+		o<<"x="<<a.a<<endl;
+	else
+		o<<"y="<<a.a<<"*x+"<<a.b<<endl;
+	if (a.side!=Line::N)
+		o<<"Side: "<<a.side<<endl;
+	return o;
+}
+
+ostream& operator<<(ostream& o, const Segment& a){
+	o<<"Segment: ";
+	if (a.vert)
+		o<<"x="<<a.a<<endl;
+	else
+		o<<"y="<<a.a<<"*x+"<<a.b<<endl;
+	if (a.side!=Line::N)
+		o<<"Side: "<<a.side<<endl;
+
+	o<<"Start "<<a.sp;
+	o<<"End "<<a.ep;
+	return o;
+}
+
+ostream& operator<<(ostream& o, const ConvexPolygon& a){
+	o<<"Polygon:"<<endl<<"Upper envelope: ";
+
+	FE(it, a.upper)
+		o<<it->sp<<" ";
+	if (a.upper.size()>0)
+		o<<a.upper.back().ep;
+	o<<endl;
+	o<<"Lower envelope: ";
+	FE(it, a.lower)
+		o<<it->sp<<" ";
+	if (a.lower.size()>0)
+		o<<a.lower.back().ep;
+	o<<endl;
+	return o;
+
+
+}
+
+Point lineIntersection(Line a, Line b){
+	if (a.vert && b.vert)return Point::Inf();
+	if (b.vert)swap(a, b);
+
+	if (a.vert)
+		return b.eval(a.a);
+
+	if (a.a==b.a)return Point::Inf();
+
+	Point p;
+	p.x=(a.b-b.b)/(b.a-a.a);
+	p.y=a.eval(p.x);
+	return p;
+}
+
+
+
+Point segmentIntersection(const Segment& a, const Segment& b){
+	Point p=lineIntersection(a, b);
+	if (p.x>=a.sp.x && p.x>=b.sp.x && p.x<=a.ep.x && p.x<=b.ep.x)return p;
+	return Point::Inf();
+}
+
+
+
+struct State{ 
+	State(int la=-1, int ua=-1, int lb=-1, int ub=-1){ pa[0]=la, pa[1]=ua, pb[0]=lb, pb[1]=ub;}
+	State& operator=(const State& s){
+		memcpy(pa, s.pa, 2*sizeof(int));
+		memcpy(pb, s.pb, 2*sizeof(int));
+		return *this;
+	}
+	State getNs(int a, int b){
+		State s;
+		s=*this;
+		if (a==0)
+			++s.pa[b];
+		else
+			++s.pb[b];
+		return s;
+	}
+	int pa[2], pb[2];
+};
+
+struct Event{
+	int type;//0=> polygon point, 1=>intersection point
+	State cur;
+	Point p;
+	State envelope;
+	bool polygon;
+
+	void setEnvelope(int a, int b, int c, int d){envelope.pa[0]=a, envelope.pa[1]=b, envelope.pb[0]=c, envelope.pb[1]=d;}
+	bool operator<(const Event& e){return p<e.p;}
+};
+
+ConvexPolygon cpIntersection(const ConvexPolygon& a, const ConvexPolygon& b){
+
+
+	ConvexPolygon c;
+
+	int t;
+	Event e, ne;
+	if (a.empty()||b.empty())return c;
+
+
+	ne.setEnvelope(0, 0, 0, 0);
+	ne.type=0;
+	if (a.sp().inf)ne.p=a.sp(), ne.polygon=0;
+	else if (b.sp().inf)ne.p=b.sp(), ne.polygon=1;
+	else ne.p=min(a.sp(), b.sp()), ne.polygon=(ne.p==b.sp());
+
+	if (ne.polygon)ne.envelope.pa[0]=ne.envelope.pa[1]=1;
+	else ne.envelope.pb[0]=ne.envelope.pb[1]=1;
+
+
+	if (a.sp()==-Point::Inf() && b.sp()==-Point::Inf()){
+				c.setSP(a.sp());
+		printf("<<<<<<<<<<<<<\n");
+		Segment sl, su;
+		if (a.lower.size()>0 && a.upper.size()>0){
+			cout<<a.upper[0].angle()<<endl;
+			cout<<b.upper[0].angle()<<endl;
+			su=(b.upper.size()>0)?max(a.upper[0], b.upper[0]):a.upper[0];
+			sl=(b.lower.size()>0)?min(a.lower[0], b.lower[0]):a.lower[0];
+
+
+			if (su<sl){
+				c.la=sl, c.lb=su;
+			}
+
+		}else if (b.lower.size()>0 && b.upper.size()>0){
+			su=(a.upper.size()>0)?max(a.upper[0], b.upper[0]):b.upper[0];
+			sl=(a.lower.size()>0)?min(a.lower[0], b.lower[0]):b.lower[0];
+			if (su<sl){
+				c.la=sl, c.lb=su;
+			}
+		}
+	}
+	int count=0;
+	while(!a.done(ne.cur.pa[0], ne.cur.pa[1]) && !b.done(ne.cur.pb[0], ne.cur.pb[1])){
+		//	if (++count==9)break;
+
+		e=ne;
+		if (e.p==Point::Inf())break;
+
+		cout<<"On<<<<<<<<<<<<<\n";
+		cout<<e.p;
+		cout<<e.polygon<<endl;
+		cout<<e.type<<endl;
+		vector<Event> el;
+		cout<<endl<<endl<<endl;
+
+
+		if (e.p==-Point::Inf()){
+			if (e.polygon)
+				e.cur.pb[0]=e.cur.pb[1]=0;
+			else
+				e.cur.pa[0]=e.cur.pa[1]=0;
+		}else if (e.type==0){//vertex of a polygon (not an intersection point)
+			if (!e.polygon){
+				if (e.cur.pa[0]==-1){//start point of a
+					e.cur.pa[0]=e.cur.pa[1]=0;
+					if (b.in(e.p, e.cur.pb[0], e.cur.pb[1]))
+						c.setSP(e.p);
+				}else{
+					if (e.envelope.pa[0]){
+						if (b.in(e.p, e.cur.pb[0], e.cur.pb[1]))
+							c.addLowP(e.p, a.lower[e.cur.pa[0]]);
+						++e.cur.pa[0];
+					}else{
+						if (b.in(e.p, e.cur.pb[0], e.cur.pb[1]))
+							c.addSupP(e.p, a.upper[e.cur.pa[1]]);
+						++e.cur.pa[1];
+					}
+
+				}
+
+			}else{
+				if (e.cur.pb[0]==-1){//start point of b polygon
+					e.cur.pb[0]=e.cur.pb[1]=0;
+					if (a.in(e.p, e.cur.pa[0], e.cur.pa[1]))
+						c.setSP(e.p);
+					
+				}else{//point on polygon b
+					if (e.envelope.pb[0]){
+						if (a.in(e.p, e.cur.pa[0], e.cur.pa[1])){
+							c.addLowP(e.p, b.lower[e.cur.pb[0]]);
+						}
+						++e.cur.pb[0];
+					}else{
+						if (a.in(e.p, e.cur.pa[0], e.cur.pa[1]))
+							c.addSupP(e.p, b.upper[e.cur.pb[1]]);
+						++e.cur.pb[1];
+					}
+				}
+			}
+
+
+		}else{//intersection of two lines of the polygons
+			if (e.envelope.pa[0]&&e.envelope.pb[0]){
+				c.addLowP(e.p, min(a.lower[e.cur.pa[0]], b.lower[e.cur.pb[0]]));
+
+			}else if (e.envelope.pa[0]&&e.envelope.pb[1]){
+				if (c.empty())
+					c.setSP(e.p);
+				else{
+					c.addLowP(e.p, a.lower[e.cur.pa[0]]);
+					c.addSupP(e.p, a.upper[e.cur.pa[1]]);
+				}
+
+			}else if (e.envelope.pa[1]&&e.envelope.pb[0]){
+				if (c.empty())
+					c.setSP(e.p);
+				else{
+					c.addLowP(e.p, b.lower[e.cur.pb[0]]);
+					c.addSupP(e.p, b.upper[e.cur.pb[1]]);
+				}
+
+			}else{
+				if (a.upper[e.cur.pa[1]].angle()>b.upper[e.cur.pb[1]].angle())
+					c.addSupP(e.p, a.upper[e.cur.pa[1]]);
+				else
+					c.addSupP(e.p, b.upper[e.cur.pb[1]]);
+			}
+		}
+
+		ne=e;
+
+		int ok[4];
+		memset(ok, 0, sizeof(ok));
+		ne.type=0;
+		if (ne.cur.pa[0]==-1){
+			ne.p=a.sp(), ne.polygon=0;
+			el.pb(ne);
+		}if (ne.cur.pb[0]==-1){
+			ne.p=b.sp(), ne.polygon=1;
+			el.pb(ne);
+		}
+		if (ne.cur.pa[0]>=0 && ne.cur.pa[0]<a.lower.size()){
+			ok[0]=1;
+			ne.p=a.lower[ne.cur.pa[0]].ep;
+			ne.polygon=0, ne.setEnvelope(1, 0, 0, 0);
+			el.pb(ne);
+		}if (ne.cur.pa[1]>=0 && ne.cur.pa[1]<a.upper.size()){
+			ok[1]=1;
+			ne.p=a.upper[ne.cur.pa[1]].ep;
+			ne.polygon=0, ne.setEnvelope(0, 1, 0, 0);
+			el.pb(ne);
+		} if (ne.cur.pb[0]>=0 && ne.cur.pb[0]<b.lower.size()){
+			ok[2]=1;
+			ne.p=b.lower[ne.cur.pb[0]].ep;
+			ne.polygon=1, ne.setEnvelope(0, 0, 1, 0);
+			el.pb(ne);
+		}if (ne.cur.pb[1]>=0 && ne.cur.pb[1]<b.upper.size()){
+			ok[3]=1;
+			ne.p=b.upper[ne.cur.pb[1]].ep;
+			ne.polygon=1, ne.setEnvelope(0, 0, 0, 1);
+			el.pb(ne);
+		}
+
+		ne.type=1;
+		if (ok[0]&&ok[2]){
+			ne.p=segmentIntersection(a.lower[ne.cur.pa[0]], b.lower[ne.cur.pb[0]]);
+			if (e.p<ne.p){
+				ne.setEnvelope(1, 0, 1, 0);
+				el.pb(ne);
+			}
+		}if (ok[0]&&ok[3]){
+			ne.p=segmentIntersection(a.lower[ne.cur.pa[0]], b.upper[ne.cur.pb[1]]);
+			if (e.p<ne.p){
+				ne.setEnvelope(1, 0, 0, 1);
+				el.pb(ne);
+			}
+		}if(ok[1]&&ok[2]){
+
+			cout<<a.upper[ne.cur.pa[1]]<<endl;
+			cout<<b.lower[ne.cur.pb[0]]<<endl;
+			ne.p=segmentIntersection(a.upper[ne.cur.pa[1]], b.lower[ne.cur.pb[0]]);
+			cout<<ne.p<<endl;
+			if (e.p<ne.p){
+				ne.setEnvelope(0, 1, 1, 0);
+				el.pb(ne);
+			}
+		}if(ok[1]&&ok[3]){
+			ne.p=segmentIntersection(a.upper[ne.cur.pa[1]], b.upper[ne.cur.pb[1]]);
+			if (e.p<ne.p){
+				ne.setEnvelope(0, 1, 0, 1);
+				el.pb(ne);
+			}
+		}
+
+		ne=*min_element(ALL(el));
+
+	}
+
+
+	if (a.ep()==Point::Inf() && b.ep()==Point::Inf()){
+		Segment sl, su;
+		if (a.lower.size()>0||b.lower.size()>0){
+			if (a.lower.size()>0&&b.lower.size()>0)
+				sl=max(a.lower.back(), b.lower.back());
+			else
+				sl=(a.lower.size()>0)?a.lower.back():b.lower.back();
+			if ((a.upper.size()==0||sl<a.upper.back())&&(b.upper.size()==0||sl<b.upper.back()))
+				c.addLowP(a.ep(), sl);
+			
+		}
+		if (a.upper.size()>0||b.upper.size()>0){
+			if (a.upper.size()>0&&b.upper.size()>0)
+				su=min(a.upper.back(), b.upper.back());
+			else
+				su=(a.upper.size()>0)?a.upper.back():b.upper.back();
+			if ((a.lower.size()==0||a.lower.back()<su)&&(b.lower.size()==0||b.lower.back()<su))
+				c.addSupP(a.ep(), su);
+		}
+	}
+	return c;
+}
+
+
+int n, m; 
+vector<pii> pl, ql;
+vector<vi> lq;
+
+double solve(int tt){
+	int i, j, k, id;
+	double a;
+	Point p;
+
+	if (SZ(lq[tt])<2)return 0.;
+
+	printf("\n");
+	REP(i, SZ(lq[tt])){
+		id=lq[tt][i];
+		p=Point(ql[tt].ST+double(pl[id].ST-ql[tt].ST)/sqrt(dist(pl[id], ql[tt]))*EPS, ql[tt].ND+double(pl[id].ND-ql[tt].ND)/sqrt(dist(pl[id], ql[tt]))*EPS);
+		//printf("<<<%lf %lf\n", p.x, p.y);
+
+		REP(j, SZ(lq[tt]))
+			if (j!=i){
+			}
+
+	}
+	printf("\n");
+	return 0.;
+
+}
+
+
+int main(){
+
+	int t, T;
+	int i, j, k, md;
+	pii a;
+
+	//Line xa(1, 3), xb(5, 4);
+	//cout<<lineIntersection(xa, xb)<<endl;
+	ConvexPolygon ca, cb;
+	ca.setSP(-Point::Inf()); cb.setSP(-Point::Inf());
+	ca.addSupP(Point::Inf(), Segment(Line(1/2., 0), -Point::Inf(), Point::Inf()));
+	cb.addSupP(Point::Inf(), Segment(Line(-1, -1), -Point::Inf(), Point::Inf()));
+
+	cout<<ca;
+	cout<<cb;
+	cout<<cpIntersection(ca, cb)<<endl;
+
+
+
+	return 0;
+	cin>>T;
+	REP(t, T){
+		cin>>n>>m;
+		pl.clear(), ql.clear();
+		REP(i, n)
+			cin>>a.ST>>a.ND, pl.pb(a);
+
+		REP(i, m)
+			cin>>a.ST>>a.ND, ql.pb(a);
+
+
+
+
+		lq=vector<vi>(m);
+		REP(i, n){
+			k=-1, md=INT_MAX;
+			REP(j, m)
+				if (k==-1 || md>dist(pl[i], ql[j]))
+					k=j, md=dist(pl[i], ql[j]);
+			lq[k].pb(i);
+		}
+		printf("Case #%d:", t+1);
+
+		REP(i, m)
+			printf(" %lf", solve(i));
+		printf("\n");
+	}
+
+
+	return EXIT_SUCCESS;
+}
+
+
+
+

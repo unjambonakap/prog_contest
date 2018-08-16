@@ -1,0 +1,96 @@
+PROBLEM STATEMENT
+Toastman lives on a two-dimensional grid.
+His home has coordinates (0, 0).
+Toastman wants to visit Toastwoman who lives on the same grid at integer coordinates (x, y).
+Toastman only moves by jumping, and he can only stand on points with integer coordinates.
+
+
+The length of a jump is the Euclidean distance between its endpoints.
+Toastman can only make jumps of length less than or equal to sqrt(d).
+In other words, he can jump from (x1, y1) to (x2, y2) in a single jump if and only if both points are lattice points and (x1-x2)^2 + (y1-y2)^2 <= d.
+
+
+You are given three vector <int>s x, y, and d.
+These three vector <int>s will all have the same number of elements.
+For each valid index i, the ints x[i], y[i], and d[i] represent a single query:
+"What is the smallest number of jumps Toastman needs to reach Toastwoman, given that she lives at (x[i], y[i]) and that the squared length of his jumps is limited by d[i]?"
+
+
+Return a vector <int> with the same number of elements as the inputs.
+For each i, element i of the return value should be the answer to query i.
+
+DEFINITION
+Class:ToastJumping
+Method:minJumps
+Parameters:vector <int>, vector <int>, vector <int>
+Returns:vector <int>
+Method signature:vector <int> minJumps(vector <int> x, vector <int> y, vector <int> d)
+
+
+CONSTRAINTS
+-x, y, and d will contain between 1 and 50 elements, inclusive.
+-x, y, and d will contain the same number of elements.
+-Each element of x will be between -1,000,000,000 and 1,000,000,000, inclusive.
+-Each element of y will be between -1,000,000,000 and 1,000,000,000, inclusive.
+-Each element of d will be between 1 and 1,000,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{47}
+{58}
+{1}
+
+Returns: {105 }
+
+In each jump Toastman can only change one of his coordinates by 1. Thus, at least 47+58 jumps are necessary.
+
+1)
+{20}
+{13}
+{100}
+
+Returns: {3 }
+
+(0, 0) -> (7, 5) -> (14, 9) -> (20, 13)
+
+2)
+{0}
+{0}
+{2013}
+
+Returns: {0 }
+
+You don't need any jumps.
+
+3)
+{0,-2,-2, 2, 3, 0,-1}
+{1,-2, 2,-2, 0,-3, 3}
+{9, 9, 9, 9, 9, 9, 9}
+
+Returns: {1, 1, 1, 1, 1, 1, 2 }
+
+For each of the first six queries Toastwoman can be reached from (0, 0) in a single jump.
+For the last query we need at least two jumps, because (-1)^2 + 3^2 is more than 9.
+
+4)
+{350094485, -59465703, 301650813, 493497124, 726872905, 728267881, 646284847, 247277405, -610114152, -889290604,
+942942587, 398138767, -449746422, -815547018, -829157569, 833322540, 126734904, 642504299, 15840780, -725479124,
+170953687, 670642216, -41561340, 442656888, -509135940, 984522614, -666655105, 765945012, 489992336, -679507993,
+55244759, -111992636, -442185089, -231578176, 816151888, -249812294, 22847214, 701440128, -264429700, 601876063,
+766907868, -345564217, -958423916, -860946990, 166179838, -10540111, 818188469, 66695025, -1000000000, 1000000000}
+{-759562847, 388579111, 948590301, -186468629, -908936551, 552174777, 408310326, 729590393, -108146720, -894682139,
+330007066, 15158681, 947447563, -135733158, 680334342, -638116658, -902688173, 762933096, 671635881, -894934498,
+14012652, 49602780, 133690020, 579701461, -595752346, -842633248, -615003008, -428962476, 362158131, -723942678,
+369521718, -844246119, 679476307, -876167056, 24375289, 209090170, 352850339, 289958815, 965142477, 264287292,
+603563104, -918128812, -224982821, 695043550, -440442508, 826842852, -204344031, 69798816, 1000000000, -1000000000}
+{1, 3306, 11, 22196, 117523, 261753, 801826904, 9055519, 15349382, 10861,
+76203, 11, 70437828, 32442, 473, 1496362, 1, 33265, 70636254, 8749345,
+14160290, 2425, 33, 441909, 132481883, 5768, 409, 1137, 602, 59565889,
+2283279, 9, 43, 499176, 74, 963886, 1010, 6, 194, 1093,
+88, 79702, 2026016, 9079687, 191187, 17475, 4230, 7, 1, 1000000000}
+
+Returns: {1109657332, 6850833, 316196767, 3543540, 3395225, 1786395, 26998, 256001, 158156, 12135869, 3622518, 132712923, 124963, 4592709, 50316398, 858059, 1029423077, 5471023, 79936, 389492, 45583, 13686576, 26738004, 1097436, 68086, 17076224, 45773505, 26144700, 25063250, 128649, 247277, 300080813, 128652694, 1282832, 102018986, 331854, 11382269, 350720064, 74241729, 20110130, 106868942, 3475282, 691664, 367210, 1076863, 6263961, 12976696, 45497947, 2000000000, 44722 }
+
+

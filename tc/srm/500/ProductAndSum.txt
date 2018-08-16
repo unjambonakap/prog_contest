@@ -1,0 +1,75 @@
+PROBLEM STATEMENT
+NOTE: This problem statement contains superscripts that may not display properly if viewed outside of the applet.
+
+
+A positive integer is called nice if the sum of its digits is equal to S and the product of its digits is equal to 2p2 * 3p3 * 5p5 * 7p7. Return the sum of all nice integers, modulo 500,500,573.
+
+DEFINITION
+Class:ProductAndSum
+Method:getSum
+Parameters:int, int, int, int, int
+Returns:int
+Method signature:int getSum(int p2, int p3, int p5, int p7, int S)
+
+
+CONSTRAINTS
+-p2, p3, p5 and p7 will each be between 0 and 100, inclusive.
+-S will be between 1 and 2,500, inclusive.
+
+
+EXAMPLES
+
+0)
+2
+0
+0
+0
+4
+
+Returns: 26
+
+There are two nice integers: 22 and 4. Their sum is 26.
+
+1)
+0
+0
+0
+0
+10
+
+Returns: 110109965
+
+A single nice integer is 1,111,111,111.
+
+2)
+2
+0
+0
+0
+5
+
+Returns: 610
+
+41 + 14 + 221 + 212 + 122 = 610.
+
+3)
+1
+1
+1
+1
+10
+
+Returns: 0
+
+There are no nice integers in this case.
+
+4)
+5
+5
+5
+5
+100
+
+Returns: 61610122
+
+

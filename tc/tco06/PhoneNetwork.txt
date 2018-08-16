@@ -1,0 +1,73 @@
+PROBLEM STATEMENT
+
+We want to build a new phone network between numPoints points. A number of possible cables is available to construct the network. Each of the cables connects two of the points and has an associated quality and cost. We want to select a number of these cables such that:
+
+
+
+1) All the points are connected to each other, either directly or via other points.
+
+
+
+and
+
+
+
+2) The quality/cost ratio (i.e., the sum of the qualities divided by the sum of the costs) is as high as possible.
+
+
+
+What is the best achievable ratio? If it is impossible to connect all the points, return -1.
+
+
+
+The available cables are described by a vector <string> cables. Each element of cables consists of four integers separated by single spaces. The first two integers describe the two points connected by the cable. The third integer describes the quality of the cable and the fourth integer describes its cost.
+
+
+DEFINITION
+Class:PhoneNetwork
+Method:bestQuality
+Parameters:int, vector <string>
+Returns:double
+Method signature:double bestQuality(int numPoints, vector <string> cables)
+
+
+NOTES
+-Your return must have relative or absolute error less than 1e-9.
+
+
+CONSTRAINTS
+-numPoints is between 2 and 50, inclusive.
+-cables has between 0 and 50 elements, inclusive.
+-Each element of cables has length between 0 and 50, inclusive.
+-Each element of cables consists of four integers with no leading zeroes, separated by single spaces.
+-The first two integers of each element of cables are between 1 and numPoints, inclusive.
+-The first two integers of each element of cables are not equal.
+-The third and fourth integers of each element of cables are between 1 and 100,000, inclusive.
+
+
+EXAMPLES
+
+0)
+4
+{"1 2 6 5","2 3 3 4","3 4 5 2","4 1 3 3"}
+
+Returns: 1.4
+
+By taking cables 1, 2 and 4, we obtain a quality/cost ratio of (6+5+3)/(5+2+3) = 1.4.
+
+1)
+5
+{"1 2 6 5","2 3 3 4","3 4 5 2","4 1 3 3"}
+
+Returns: -1.0
+
+It's impossible to connect point 5 to the others.
+
+2)
+4
+{"1 2 1 10","2 3 3 3","2 4 3 2","3 4 3 1","3 4 2 1"}
+
+Returns: 0.7058823529411765
+
+The cable needed to connect point 1 to the rest is so bad that it pays off to use all the other cables, including the two different cables connecting points 3 and 4.
+

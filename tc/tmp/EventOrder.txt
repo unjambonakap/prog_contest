@@ -1,0 +1,67 @@
+PROBLEM STATEMENT
+
+We are given a set of events. Each of the events is unique. Some events are long, each of these may take any positive amount of time. Different long events may take different amounts of time. The other events are instant, each of these happens instantly at some moment in time.
+
+
+We want to arrange the events into a schedule. We do not care about exact times when the events take place, we only consider their relative order. For example, given long events A and B and an instant event C, one of the possible schedules looks as follows:
+
+
+Event A starts.
+Event B starts.
+Event B ends and at the same time event C happens.
+Event A ends.
+
+
+
+You are given an int longEvents and an int instantEvents. 
+Let X be the total number of distinct schedules with exactly longEvents long and instantEvents instant events.
+Your method should return the value (X modulo 1,000,000,009).
+
+
+DEFINITION
+Class:EventOrder
+Method:getCount
+Parameters:int, int
+Returns:int
+Method signature:int getCount(int longEvents, int instantEvents)
+
+
+CONSTRAINTS
+-longEvents will be between 0 and 1000, inclusive.
+-instantEvents will be between 0 and 1000, inclusive.
+-At least one of longEvents and instantEvents will be positive.
+
+
+EXAMPLES
+
+0)
+0
+2
+
+Returns: 3
+
+If we label the events A and B, then the three schedules are "A before B", "both at the same time", and "A after B".
+
+1)
+1
+1
+
+Returns: 5
+
+If we label the long event A and the instant event B, then the five schedules are "B before A starts", "B when A starts", "B during A", "B when A ends", and "B after A".
+
+2)
+2
+0
+
+Returns: 13
+
+There are 6 schedules in which no two endpoints of events coincide, 2 schedules when one event starts when the other one ends, 2 schedules with the same beginning and different end, 2 with same end and different beginning, and 1 when the events start and end at the same time.
+
+3)
+0
+4
+
+Returns: 75
+
+

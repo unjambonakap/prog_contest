@@ -1,0 +1,69 @@
+PROBLEM STATEMENT
+The least common multiple (lcm) of a set of positive integers is the smallest
+integer that is divisible by each member of the set. It is frequently desirable 
+to have a collection of numbers whose lcm is large. 
+
+We want to manufacture parts in a greater variety of sizes -- specifically
+our goal is to offer sizes whose lcm is greater than or equal
+to targetLcm. But every new size s that we manufacture costs us s
+dollars to tool up to produce.
+
+The vector <int> sizes contains all the sizes we are currently producing. The string targetLcm 
+represents an integer with no leading zeroes.  Return the minimum cost of offering additional 
+sizes that will let us achieve our goal.
+
+
+
+DEFINITION
+Class:ToolingUp
+Method:cost
+Parameters:string, vector <int>
+Returns:int
+Method signature:int cost(string targetLcm, vector <int> sizes)
+
+
+CONSTRAINTS
+-targetLcm will contain only digits ('0' - '9').
+-targetLcm will represent an integer between 1 and 1015, inclusive.
+-targetLcm will not contain leading zeroes.
+-sizes will contain between 1 and 50 elements, inclusive.
+-Each element of sizes will be between 1 and 1000, inclusive.
+
+
+EXAMPLES
+
+0)
+"193"
+{82,13,100}
+
+Returns: 0
+
+Our existing sizes already have a big enough lcm.
+
+
+
+
+1)
+"1000000"
+{100,92,77}
+
+Returns: 9
+
+We can produce a single new size of 9 to get an lcm greater than 1,000,000. (We could also achieve our goal by adding the two sizes 3 and 8, but that would cost 11.)
+
+
+2)
+"999999"
+{124,600,7,8}
+
+Returns: 11
+
+
+
+3)
+"123456789123"
+{31,1,1,6}
+
+Returns: 120
+
+

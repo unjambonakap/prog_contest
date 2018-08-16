@@ -1,0 +1,51 @@
+PROBLEM STATEMENT
+Johnny is playing a simple game with a set of colored stones and a circular board with squares laid out in a track around the edge, some of which are marked. To start with, he places some stones of different colors on the board in different unmarked squares and marks the starting position of each stone. He then picks some number from allowedMoves and advances some stone that number of squares clockwise around the board. If the square that the stone lands in is unmarked, then he leaves the stone there and marks the square. If the square was the starting position of that particular stone, then he removes the stone from the board. Otherwise, if the square had previously been marked, the move is invalid and he returns the stone to its position before he moved it at the beginning of this turn. He then repeats this process. The board is considered complete once all the squares are marked and all the stones have been removed (having moved at least once, then returned to their starting positions). To make the game more interesting, some of the squares on the board are marked before he starts the game and these squares are given in a string markedSquares, in which a marked square is denoted 'X' and an unmarked square '.'. The squares are given in clockwise order. Note that since the board is circular, the first element of markedSquares is adjacent to the last element. Return the minimum number of stones that Johnny would need to place on the board in order to complete the game, or -1 if it is impossible to complete the board.
+
+DEFINITION
+Class:YetAnotherStonesGame
+Method:fewestStones
+Parameters:vector <int>, string
+Returns:int
+Method signature:int fewestStones(vector <int> allowedMoves, string markedSquares)
+
+
+CONSTRAINTS
+-markedSquares will contain between 6 and 50 characters, inclusive.
+-Each character in markedSquares will be uppercase 'X' or '.'.
+-markedSquares will contain at least 1 '.' character.
+-allowedMoves will contain between 1 and 6 elements, inclusive.
+-Each element of allowedMoves will be between 1 and 6, inclusive.
+-The elements of allowedMoves will be distinct.
+
+
+EXAMPLES
+
+0)
+{4}
+"............"
+
+Returns: 4
+
+There is only one move allowed in this case. Any stone will advance once around the board and return to its starting point. 4 stones placed in consecutive squares will therefore complete the board.
+
+1)
+{4}
+"............."
+
+Returns: 1
+
+With the board an extra square long, a single stone will advance 4 times around the board and return to its starting position.
+
+2)
+{2,3}
+"..X..XX.X...XX"
+
+Returns: -1
+
+There is no way to complete this board.
+
+3)
+{5,3,6}
+"....X...X.X.X..........X..X.....XXX....X....XXX"
+
+Returns: 3

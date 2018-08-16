@@ -1,0 +1,78 @@
+PROBLEM STATEMENT
+You have a collection of cards. Each card contains a single non-negative integer. The integers written on the cards are not necessarily distinct. You are given a vector<long long> number. Each element of number is a number written on one of the cards.
+
+You may perform the following operation as many times as you want:
+
+Choose two distinct cards. Let the numbers written on them be A and B, respectively.
+Erase the number A and replace it with the number (A xor B). The number on the other card will remain unchanged (i.e., it will still be B).
+
+Your goal is to maximize the sum of numbers written on your cards. Return the largest possible value of this sum.
+
+DEFINITION
+Class:XorAndSum
+Method:maxSum
+Parameters:vector<long long>
+Returns:long long
+Method signature:long long maxSum(vector<long long> number)
+
+
+NOTES
+-The operator "xor" in the problem statement is the bitwise xor operation. For example, we have 9 xor 3 = 10, because 9 in binary is 1001, 3 in binary is 0011, and their bitwise xor is 1010 in binary, which is 10 in decimal.
+
+
+CONSTRAINTS
+-number will contain between 1 and 50 elements, inclusive.
+-Each element in number will be between 0 and 1,000,000,000,000,000 (10^15), inclusive.
+
+
+EXAMPLES
+
+0)
+{1,0}
+
+Returns: 2
+
+One optimal solution is: change 0 into (1 xor 0) = 1. Then the sum will be 1+1 = 2.
+
+
+1)
+{1,2,3}
+
+Returns: 8
+
+One optimal solution is: change 1 to (2 xor 1) = 3. Then the sum will be 3 + 2 + 3 = 8.
+
+2)
+{0,0,0,0,0,0,0,0,0,0}
+
+Returns: 0
+
+We can't get any number other than 0.
+
+3)
+{2,3,5,7,11,13,17,19}
+
+Returns: 233
+
+
+
+4)
+{123456789012345, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+
+Returns: 1234567890123450
+
+
+
+5)
+{627,674,281,272,289,877,62,122,603,189,615}
+
+Returns: 10742
+
+
+
+6)
+{557}
+
+Returns: 557
+
+

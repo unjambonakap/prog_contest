@@ -1,0 +1,71 @@
+PROBLEM STATEMENT
+John and Brus think 4 and 7 are lucky numbers. They think 11, the sum of 4 and 7, is a very lucky number. They decided to make a multiple of 11.
+
+
+They went to a shop and bought N pieces of strings of digits. You are given vector <string> pieces containing N elements. The i-th element of pieces is the string of digits written on the i-th piece they bought. They want to make a multiple of 11 by concatenating all N pieces. The pieces are painted with different colors, so it's possible to distinguish two pieces even if they contain the same strings of digits. There are exactly N! ways to concatenate the pieces. How many of them are divisible by 11? Return this number modulo 1,000,000,007.
+
+DEFINITION
+Class:ElevenMultiples
+Method:countMultiples
+Parameters:vector <string>
+Returns:int
+Method signature:int countMultiples(vector <string> pieces)
+
+
+CONSTRAINTS
+-pieces will contain between 1 and 50 elements, inclusive.
+-Each element of pieces will contain between 1 and 50 characters, inclusive.
+-Each character in pieces will be a digit ('0'-'9').
+-No element of pieces will start with zero ('0').
+
+
+EXAMPLES
+
+0)
+{"58", "2012", "123"}
+
+Returns: 2
+
+There are 6 ways to concatenate the pieces: "582012123", "581232012", "201258123", "201212358", "123582012", and "123201258". Only "582012123" and "201258123" are divisible by 11.
+
+1)
+{"1", "1111", "1", "11"}
+
+Returns: 24
+
+There are 24 ways to concatenate the pieces. Even though all of them result in the same number "11111111", they are considered distinct. This number is divisible by 11.
+
+2)
+{"43925486943738659795389387498953274"}
+
+Returns: 1
+
+This big number is divisible by 11.
+
+3)
+{"983", "4654", "98", "3269", "861", "30981"}
+
+Returns: 96
+
+
+
+4)
+{"193", "8819", "40676", "97625892", "5719", "45515667", "32598836", "70559374", "38756", "724",
+"93391", "942068", "506", "901150", "874", "895567", "7560480", "7427691", "799450", "85127"}
+
+Returns: 537147821
+
+
+
+5)
+{"687045939630", "997856158148599044", "2014910234712225061", "9658113323175370226", "1584118137",
+"67925153345598920", "6960366756", "863413844386808834", "799302243562410012", "44481835751",
+"8004606814733183", "19623906615609", "23859998326058162", "461385591582", "9261878982390119",
+"1569373294276", "318106951168934", "65389049931", "12791173342", "507877942026",
+"3947173045690", "472425746178910", "524552931853595", "40771812249667850232", "563988469071932",
+"28147819070", "797007158858587", "5716177008624223", "387565700495309324", "4716621063133318"}
+
+
+Returns: 814880650
+
+

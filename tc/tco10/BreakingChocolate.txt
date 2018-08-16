@@ -1,0 +1,92 @@
+PROBLEM STATEMENT
+
+You have a large rectangular piece of chocolate. As usual, the piece of chocolate is divided into squares.
+The piece you have is W squares wide and H squares tall.
+For the purpose of this problem the squares will be numbered from (1,1) in the upper left corner to (W,H) in the lower right corner of the chocolate.
+
+
+
+You can break the chocolate into smaller rectangular pieces. In each step, you can take one of the pieces you have, select one of the lines between the squares (either a horizontal or a vertical one) and break the piece into two new pieces along the line.
+
+
+
+A few of the cells are special. Their coordinates are given as vector <int>s sx and sy: for each i, the square at (sx[i],sy[i]) is special.
+
+
+
+You want to eat all special squares and no other squares. Before you can do this, you have to break the chocolate into several pieces in such a way that each piece either consists of special squares only, or it consists of non-special squares only.
+
+
+
+Compute and return the minimum number of steps needed in order to break the chocolate correctly.
+
+
+DEFINITION
+Class:BreakingChocolate
+Method:minSteps
+Parameters:int, int, vector <int>, vector <int>
+Returns:int
+Method signature:int minSteps(int W, int H, vector <int> sx, vector <int> sy)
+
+
+CONSTRAINTS
+-W will be between 1 and 1,000,000,000, inclusive.
+-H will be between 1 and 1,000,000,000, inclusive.
+-sx will have between 1 and 40 elements, inclusive.
+-sy will have the same number of elements as sx.
+-Each element in sx will be between 1 and W, inclusive.
+-Each element in sy will be between 1 and H, inclusive.
+-No two squares described by sx and sy will be equal.
+
+
+EXAMPLES
+
+0)
+3
+3
+{2}
+{2}
+
+Returns: 4
+
+You want the middle square of a 3 x 3 piece of chocolate. Clearly you need to break it at least four times: once for each edge of the square.
+
+1)
+2
+2
+{1,2}
+{2,1}
+
+Returns: 3
+
+You want two opposite corners of a 2 x 2 chocolate. To obtain them, break the chocolate in half, and then break each of the halves in half again.
+
+2)
+10
+10
+{1}
+{1}
+
+Returns: 2
+
+If the desired square is in the corner, fewer steps are necessary.
+
+3)
+10
+10
+{3,5,6}
+{5,5,5}
+
+Returns: 6
+
+In this case all the squares you want are in the same row. One optimal strategy is to start by separating this row from the others (in 2 steps) and then to separate the good squares from the bad ones (in 4 steps).
+
+4)
+3
+3
+{1,1,1,2,2,3,3,3}
+{1,2,3,1,3,1,2,3}
+
+Returns: 4
+
+In this example we want all the squares except for the middle one. This situation is solved in the same way as Example #0.

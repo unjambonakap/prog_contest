@@ -1,0 +1,54 @@
+PROBLEM STATEMENT
+We call a string a square if it is a concatenation of two equal non-empty strings.  All string comparisons in this problem are case sensitive.  For example, "aa", "ABAB", and "abcabc" are squares, but "a", "aaa", "ABCabc", and "abcab" are not.
+
+Given a string s, return the number of distinct squares that appear as contiguous substrings of s. For example, in "aaabccabccCC", you can find the squares "aa", "abccabcc", "cc", and "CC", so you would return 4. The squares "aa" and "cc" each appear twice in the string, but they're only counted once because we're only interested in distinct squares.
+
+DEFINITION
+Class:StringSquares
+Method:count
+Parameters:string
+Returns:int
+Method signature:int count(string s)
+
+
+CONSTRAINTS
+-s will contain between 0 and 50 characters, inclusive.
+-s will contain only letters ('a'-'z', 'A'-'Z').
+
+
+EXAMPLES
+
+0)
+"aaabccabccCC"
+
+Returns: 4
+
+The example in the problem statement.
+
+1)
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+
+Returns: 21
+
+
+
+2)
+"cc"
+
+Returns: 1
+
+
+
+3)
+"B"
+
+Returns: 0
+
+
+
+4)
+"ABCDABCDabcdabcdABCDABCDabcdabcd"
+
+Returns: 3
+
+

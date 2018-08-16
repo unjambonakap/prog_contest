@@ -1,0 +1,132 @@
+PROBLEM STATEMENT
+
+The New York Stock Exchange is open for 390 minutes a day, from 9:30am until 4:00pm.
+During this time, you can buy and sell shares of companies listed on the exchange.
+Given a graph of how the share prices of two companies fluctuate in one day,
+calculate the highest amount of money you could possibly earn.
+
+
+
+You begin the day with $1000.
+At any time, you can buy shares of either company at a cost of the number of shares you are buying times the current share price.
+Similarly, at any time you can sell shares you own of either company for a price of the number of shares you are selling times the current share price.
+You are not limited to buying or selling whole numbers of shares.
+You may never spend more money than you have, nor may you sell more shares than you own.
+Assume you pay no fees or commission on any purchase or sale.
+
+
+
+The share price for a company will be given as a pair of vector <int>s,
+the first giving a list of times, and the second giving the corresponding share price at each of those times.
+The times will always be in ascending order, the first time will always be 0, and the last time will always be 390.
+To compute the stock price between two adjacent times in the arrays, linearly interpolate between
+the two prices.
+The times and prices of the first stock ("stock A") are given by timeA and priceA,
+and the times and prices of the second stock ("stock B") are given by timeB and priceB.
+
+
+
+For example, given the following input arrays:
+
+
+
+    timeA  = { 0,  60, 150, 270, 390 }
+    priceA = { 60, 80, 40,  40,  60 }
+    timeB  = { 0,  180, 300, 390 }
+    priceB = { 40, 20,  70,  80 }
+
+
+
+stock A is shown in red and stock B is shown in blue in the figure below.
+
+
+
+
+
+
+
+
+In this example, you would make the most money by spending your entire $1000 to buy 16 2/3 shares of stock A for $60 each at time 0.
+One hour later at time 60, you should sell all your shares at $80 each, receiving 1333 1/3 dollars.
+You would hold on to your money until time 180, and then spend it all on 66 2/3 shares of stock B.
+At time 300, you would sell these shares for $70 each (4666 2/3 dollars) and immediately buy as many shares of stock A as you can afford.
+The price of stock A at time 300 is $45 (1/4 of the way between $40 and $60), so you can afford 103 19/27 shares.
+You would then sell these at the end of the day for $60, for a total of 6222 2/9 dollars,
+giving you earnings of about $5222.22 over your initial $1000.
+
+
+DEFINITION
+Class:DayTrader
+Method:earnings
+Parameters:vector <int>, vector <int>, vector <int>, vector <int>
+Returns:double
+Method signature:double earnings(vector <int> timeA, vector <int> priceA, vector <int> timeB, vector <int> priceB)
+
+
+NOTES
+-Your return value must have an absolute or relative error less than 1e-9.
+
+
+CONSTRAINTS
+-timeA, priceA, timeB, and priceB will each contain between 2 and 50 elements, inclusive.
+-timeA and priceA will contain the same number of elements.
+-timeB and priceB will contain the same number of elements.
+-The first element of timeA and timeB will be 0.
+-The last element of timeA and timeB will be 390.
+-The elements of timeA and timeB will be strictly ascending.
+-Each element of priceA and priceB will be between 10 and 100, inclusive.
+
+
+EXAMPLES
+
+0)
+{ 0, 390 }
+{ 25, 50 }
+{ 0, 390 }
+{ 10, 30 }
+
+Returns: 2000.0
+
+Stock A doubles in value throughout the day, while stock B triples.  If you buy stock B at time 0 and sell at time 390, you can earn $2000.
+
+1)
+{ 0, 50, 390 }
+{ 80, 65, 20 }
+{ 0, 310, 390 }
+{ 12, 12, 11 }
+
+Returns: 0.0
+
+Neither stock ever goes up in value, so you cannot earn any money today.
+
+2)
+{ 0, 60, 150, 270, 390 }
+{ 60, 80, 40, 40, 60 }
+{ 0, 180, 300, 390 }
+{ 40, 20, 70, 80 }
+
+Returns: 5222.222222222223
+
+This is the example from the problem statement.
+
+3)
+{ 0, 390 }
+
+{ 10, 20 }
+{ 0, 100, 101, 390 }
+{ 100, 10, 100, 10 }
+
+Returns: 18959.266802443988
+
+
+
+
+4)
+{0, 100, 200, 300, 390 } 
+{ 10, 11, 14, 19, 26 }
+{ 0, 50, 150, 250, 350, 390 }
+{ 10, 10, 12, 16, 22, 29 }
+
+Returns: 2403.157552083335
+
+

@@ -1,0 +1,68 @@
+PROBLEM STATEMENT
+
+A medieval city consists of square blocks, each of equal size, situated on a grid.  The blocks form a connected figure with no holes.  An example of such a city is shown in the picture below.
+
+
+
+The red line shows the boundary of the city.  Each block has a danger value that is assigned as follows.  Blocks that have the city boundary as a side are called 0-dangerous. Blocks that are adjacent to 0-dangerous blocks and have not yet been assigned a danger value are called 1-dangerous.
+Two blocks are considered adjacent if they share a side.  Blocks that are adjacent to 1-dangerous blocks and have not yet been assigned a danger value are called 2-dangerous blocks, and so on.  In the picture above, all 0-dangerous and 1-dangerous blocks are colored dark gray.
+
+
+We can represent a city as a string of letters 'R', 'L', 'U', 'D' (right, left, up, down) describing a walk along its boundary in the clockwise or counter-clockwise direction.  Each letter represents the length of a single block's side.  Multiple consecutive equal letters can be written using a simple compression method.  An integer K that immediately follows a letter means that the letter is repeated K times.  For example, the city in the picture above can be described by the string "LUUR7D4RDLDDDL7UURU2UU".  Obviously there can be multiple strings that describe the same city.
+
+
+You are given a vector <string> boundary and an int dangerBound.  Concatenate all the elements of boundary to get the string description of a city.  Return the number of i-dangerous blocks in the city where i <= dangerBound.
+
+
+DEFINITION
+Class:MedievalCity
+Method:getDangerousBlocks
+Parameters:vector <string>, int
+Returns:int
+Method signature:int getDangerousBlocks(vector <string> boundary, int dangerBound)
+
+
+CONSTRAINTS
+-boundary will contain between 1 and 50 elements, inclusive.
+-Each element of boundary will contain between 1 and 50 characters, inclusive.
+-The 0-th element of boundary will start with a letter.
+-Each element of boundary will contain only the letters 'R', 'L', 'U', 'D', and digits ('0'-'9').
+-Each sequences of digits in the concatenation of all the elements of boundary will be an integer without leading zeroes between 1 and 50, inclusive.
+-boundary will describe a correct closed boundary that does not touch or intersect itself.
+-dangerBound will be between 0 and 10, inclusive.
+
+
+EXAMPLES
+
+0)
+{"LURD"}
+0
+
+Returns: 1
+
+This city contains only a single square block.
+
+1)
+{"LUUR7D4RDLDDDL7UURU2UU"}
+1
+
+Returns: 44
+
+The example from the problem statement.
+
+
+2)
+{"L50U50R50D50"}
+10
+
+Returns: 1716
+
+
+
+3)
+{"L50U50U50U50U50R50D50D50D50D50"}
+7
+
+Returns: 3744
+
+

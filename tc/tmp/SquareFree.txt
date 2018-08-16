@@ -1,0 +1,41 @@
+PROBLEM STATEMENT
+A positive integer is said to be squarefree if it is divisible by no perfect square larger than 1. For example, the first few squarefree numbers are {1, 2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, ...}. Create a class SquareFree that contains a method getNumber, which is given an int n. The method should return the nth smallest squarefree number. Note this is 1-indexed, so if n = 1, the method should return the smallest squarefree number.
+
+
+DEFINITION
+Class:SquareFree
+Method:getNumber
+Parameters:int
+Returns:int
+Method signature:int getNumber(int n)
+
+
+CONSTRAINTS
+-n will be between 1 and 1,000,000,000 inclusive.
+
+
+EXAMPLES
+
+0)
+1
+
+Returns: 1
+
+One is the smallest squarefree number.
+
+1)
+13
+
+Returns: 19
+
+See the list of squarefree numbers given in the problem statement.
+
+2)
+100
+
+Returns: 163
+
+3)
+1234567
+
+Returns: 2030745

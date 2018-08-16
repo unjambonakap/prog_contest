@@ -1,0 +1,137 @@
+PROBLEM STATEMENT
+
+Given a rectangular grid consisting of the characters '#' and '.', find two non-overlapping diamond shapes among the '#' characters such that the sum of their radii is maximized. There is a diamond with radius r centered at xC, yC if all characters at position x, y (where |x - xC| + |y - yC| + 1 <= r) in the grid are '#'. The left grid below contains a diamond with radius 3. All the '#' characters in the grid are part of this diamond. The right grid contains a diamond with radius 2.  It is centered at (2, 1) and contains five '#' characters (coordinates are zero-based).
+
+
+
+{ "..#..",     { "###.",
+  ".###.",       "####",
+  "#####",       "..##"}
+  ".###.",
+  "..#.."}
+
+
+Create a class Diamonds that contains the method maxRadiusSum that takes a vector <string> grid
+and returns an int, the maximum sum of the radii of two non-overlapping diamonds.
+
+
+
+DEFINITION
+Class:Diamonds
+Method:maxRadiusSum
+Parameters:vector <string>
+Returns:int
+Method signature:int maxRadiusSum(vector <string> grid)
+
+
+NOTES
+-A diamond can have radius 0. See example 4.
+
+
+CONSTRAINTS
+-grid will contain between 1 and 50 elements, inclusive.
+-Each element in grid will contain between 1 and 50 characters, inclusive.
+-All elements in grid will contain the same number of characters.
+-Each character in the elements in grid will be either a '#' or a '.'.
+
+
+EXAMPLES
+
+0)
+{ "..#..",
+  ".###.",
+  "#####",
+  ".###.",
+  "..#.."}
+
+Returns: 3
+
+Here we have one diamond with radius 3. We can either pick that diamond and an empty diamond, or a diamond with radius 2 (there are 5 of them) and another with radius 1 (a single '#'). In both cases, we end up with a sum of 3. Note that all radius 2 diamonds overlap with each other.
+
+
+1)
+{ "..#..",
+  ".###.",
+  "#####",
+  ".####",
+  "..#.."}
+
+Returns: 4
+
+This is the grid from the previous example with one extra '#'.  We should now choose the diamond with radius 3 and use the extra '#' as our second diamond (radius 1).
+
+2)
+{"...###..",
+ "..#####.",
+ ".#######",
+ "#######.",
+ "######..",
+ "#####...",
+ ".###....",
+ "..#....."}
+
+Returns: 6
+
+The largest diamond has radius 4, but we should instead take two diamonds of radius 3 to get the maximum sum.
+
+3)
+{"##################################################",
+ "#########.########################################",
+ "#####..######################.####################",
+ ".###.#######.#######.######################.###.##",
+ "####.#.#####################.#####################",
+ "##############.########.#########.################",
+ "###################################.##############",
+ "#################################..###############",
+ "##########.#####################.#########.#######",
+ "######.####.############.#########################",
+ "##################.##############.################",
+ "#############################.##.##.##############",
+ "###########..###########.#.########.##############",
+ "#.################.######.########################",
+ "######.##########.##################.###########.#",
+ "###################.########.#####################",
+ "##################################################",
+ "###############################.##.#######.#######",
+ "######.###########################.##############.",
+ "######################################.#.#########",
+ "###########.#.####################.###########.###",
+ "########.#################.#######################",
+ "#######.#.####################.###################",
+ "###.######################.#####################.#",
+ "###################..####.#######.######.#########",
+ "#.#################.##############################",
+ "###################.#########.####################",
+ "########.#########################################",
+ "##################################.#############.#",
+ "####.##############.###########################.##",
+ "##################################.###.#####.#####",
+ "###########.##.###########################.#######",
+ "################.################.#######.######.#",
+ "##################################################",
+ "#######.##########################.###############",
+ "#################################################.",
+ "#########.##############..########################",
+ "###.#########################################.####",
+ "#####################################.###########.",
+ "########################.###############.#.#######",
+ "#################################################.",
+ "##########################.#######.######.########",
+ "##################.########.#.################.###",
+ "######.######.###################.#.#.############",
+ "####.#########.#########################.#########",
+ "##################..#################.############",
+ "#####.#.#######################.##.#############.#",
+ "####.#############################.###############",
+ "##########.########.##############.###.###########"}
+
+Returns: 14
+
+
+
+4)
+{".#"}
+
+Returns: 1
+
+

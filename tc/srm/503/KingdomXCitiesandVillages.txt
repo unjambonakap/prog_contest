@@ -1,0 +1,69 @@
+PROBLEM STATEMENT
+The Grid Kingdom lies on a plane. There are N cities and M villages in the Grid Kingdom, each is a point on the plane. The i-th city is located at coordinates (cityX[i], cityY[i]) and the i-th village is located at coordinates (villageX[i], villageY[i]). Initially, there are no roads in the kingdom, so no village is initially connected to any city.  
+
+To improve this, the king has ordered that each village shall be connected to a city by a system of roads. The scheme for building the roads is as follows: 
+
+While there exists a village that is not connected to any city:
+
+Pick one unconnected village (each has an equal probability of being chosen), call it V.
+Select a point, X, which is nearest to V, in terms of Euclidean Distance, and is either a city or a village-that-is-already-connected-to-a-city. If multiple such points are equally near, pick any of the nearest points with equal probability.
+Construct a road from V to X. The length of this road is equal to the Euclidean Distance between points V and X. V is now connected to a city.
+
+Return the expected total length of all the roads that will be constructed after all villages are connected to a city.
+
+DEFINITION
+Class:KingdomXCitiesandVillages
+Method:determineLength
+Parameters:int[], int[], int[], int[]
+Returns:double
+Method signature:double determineLength(int[] cityX, int[] cityY, int[] villageX, int[] villageY)
+
+
+NOTES
+-The Euclidean distance between two points (X1, Y1) and (X2, Y2) is defined as the square root of ((X1-X2)^2 + (Y1-Y2)^2).
+-The returned value must have an absolute or relative error less than 1e-9.
+
+
+CONSTRAINTS
+-cityX will contain between 1 and 50 elements, inclusive.
+-cityY will contain the same number of elements as cityX.
+-Each element in cityX and cityY will be between 0 and 1,000,000, inclusive.
+-villageX will contain between 1 and 50 elements, inclusive.
+-villageY will contain the same number of elements as villageX.
+-Each element in villageX and villageY will be between 0 and 1,000,000, inclusive.
+-The location of all cities will be distinct.
+-The location of all villages will be distinct.
+-There will be no pair of city and village that is located at the same location.
+
+
+EXAMPLES
+
+0)
+{3}
+{0}
+{3,3}
+{2,1}
+
+Returns: 2.5
+
+If village 0 is chosen first, the total length is 3. Otherwise it's 2. The expected length is their average.
+
+1)
+{1,4,7,10}
+{5,5,5,5}
+{1,4,7,10}
+{4,4,4,4}
+
+Returns: 4.0
+
+This time the order doesn't matter, each village will be connected to the city closest to it.
+
+2)
+{1,2,3}
+{4,4,4}
+{4,5,6}
+{4,4,4}
+
+Returns: 4.166666666666667
+
+

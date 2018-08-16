@@ -1,0 +1,114 @@
+PROBLEM STATEMENT
+In the solitaire game Poker Square, you arrange cards into a 5x5 grid, and each column and row is treated as a poker hand, for a total of ten hands created.  You have partially filled the board, and have a few cards remaining.  The current layout of the board is given in the vector <string> board.  The cards remaining to be placed on the board are given in the vector <string> remaining.
+
+Each hand is scored according to the following chart (the order of cards in a hand does not matter):
+
+Royal Flush: (100 points) T, J, Q, K, A, all of the same suit (JS TS AS KS QS)
+Straight Flush: (75 points) Five sequential card values, all of the same suit (7H 8H 9H TH JH)
+Four of a Kind: (50 points) Four cards with the same value (2C 8S 8H 8C 8D)
+Full House: (25 points) Three cards with the same value, and another two cards with a different value (8H 4C 8D 8C 4S)
+Flush: (20 points) All cards the same suit (2C 5C 7C QC AC)
+Straight: (15 points) Five cards with sequential values (8C 9S TC JH QD)
+Three of a Kind: (10 points) Three cards with the same value (2C 4S 8H 8C 8D)
+Two Pair: (5 points) Two cards with the same value, and another two cards with a different value (4H 4S 5H 8C 8D)
+One Pair: (2 points) Two cards with the same value (2C 4S 8H 5C 8D)
+
+
+The current board is given as five strings, each containing a space-separated list of five cards.  Each card is represented by two characters, the first character representing the value, and the second character the suit.  A card on the board denoted by two hyphens (--) represents a blank space that does not yet have a card placed.  Valid suits are 'S', 'H', 'D', or 'C'.  Card values, in increasing order, are '2'-'9', 'T', 'J', 'Q', 'K' or 'A'.
+
+Return the maximum score you can achieve if you arrange the remaining cards optimally.
+
+
+DEFINITION
+Class:PokerSquare
+Method:bestScore
+Parameters:vector <string>, vector <string>
+Returns:int
+Method signature:int bestScore(vector <string> board, vector <string> remaining)
+
+
+NOTES
+-'A' (ace) is considered only as a high value, thus A, 2, 3, 4, 5 is NOT a valid straight.
+-A hand will only score points for the highest matching point category.
+-A hand that does not match any categories will score 0 points.
+
+
+CONSTRAINTS
+-board will contain exactly 5 elements.
+-Each element of board will be in the format "C1 C2 C3 C4 C5", where each card is two characters, representing the value and suit of the card, or is "--" representing an empty space (quotes added for clarity).
+-remaining will contain between 1 and 8 elements, inclusive.
+-The number of elements in remaining will be equal to the number of empty spaces indicated in board.
+-Each element of remaining will contain exactly two characters, representing the value and suit of the card.
+-Each suit will be represented by 'S', 'H', 'D', or 'C'.
+-Each value will be represented by '2'-'9', 'T', 'J', 'Q', 'K' or 'A'.
+-No card will be represented more than once in the input, either on the board already, or remaining to be played.
+
+
+EXAMPLES
+
+0)
+{"-- 2H 4D 6H 8C", 
+ "2S 4H 6D 8D TS", 
+ "4S 6C 8S TC 3H", 
+ "6S 8H TD 3S 5C", 
+ "-- TH 5D 4C 2D"}
+{"QS", "KD"}
+
+Returns: 0
+
+Sorry, no points here.
+
+1)
+{"-- 2H 4D 6H 8C", 
+ "2S 4H 6D 8D TS", 
+ "4S 6C 8S TC 3H", 
+ "6S 8H TD 3S 5C", 
+ "-- TH 5D 4C 2D"}
+{"QS", "QD"}
+
+Returns: 2
+
+
+
+2)
+{"-- 2H 4D 6H 8C", 
+ "2S 4H 6D 8D TS", 
+ "4S 6C 8S TC 3H", 
+ "6S 8H TD 3S 5C", 
+ "-- TH 5D 4C --"}
+{"QS", "KS", "QD"}
+
+Returns: 22
+
+You can get 20 points for flush and 2 points for a pair. The optimal arrangement follows:
+
+{"KS 2H 4D 6H 8C", 
+ "2S 4H 6D 8D TS", 
+ "4S 6C 8S TC 3H", 
+ "6S 8H TD 3S 5C", 
+ "QS TH 5D 4C QD"}
+
+
+3)
+{"-- AH AD -- 2C", 
+ "KS KH KD -- 3C", 
+ "QS -- -- QC 4C", 
+ "JS JH JD -- 5C", 
+ "-- TH TD TC --"}
+{"AC", "QD", "KC", "QH", "TS", "AS", "6C", "JC"}
+
+Returns: 725
+
+
+
+4)
+{"6C 9S 4H QC --",
+ "2S 3C AS AH JH",
+ "-- 5C 2C KC --",
+ "QH QD TC 8S KS",
+ "JD 8D 7S 9H --"}
+{"TH","TS","5H","5D"}
+
+Returns: 31
+
+

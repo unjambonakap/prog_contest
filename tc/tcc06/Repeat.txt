@@ -1,0 +1,71 @@
+PROBLEM STATEMENT
+We have come up with a compression technique for lowercase text that contains a lot
+of repetition. We will use 'R' to mean repeat the preceding text. The area to
+be repeated will be all the text since the closest preceding 'M' (or since the beginning of
+the text if there is no preceding 'M').
+
+For example,  "abcabcdabcabcdxyxyz" could be expressed in compressed form 
+as "abcRdRMxyRz".
+To decompress this, the beginning abc is first repeated to become "abcabc",
+then "d" is added, and then all of that is repeated to make "abcabcdabcabcd".
+This is followed by the "xy" which is repeated and followed by the "z".
+
+Create a class Repeat that contains a method minLength that is given the text to
+be compressed and that returns the minimum number of characters that can be used
+to express it with this compression technique. Of course all the 'R' and 'M' 
+characters must be counted.
+
+
+
+DEFINITION
+Class:Repeat
+Method:minLength
+Parameters:string
+Returns:int
+Method signature:int minLength(string text)
+
+
+CONSTRAINTS
+-text will contain between 1 and 50 characters, inclusive.
+-Each character in text will be a lowercase letter 'a'-'z'.
+
+
+EXAMPLES
+
+0)
+"aaaaaaaa"
+
+Returns: 4
+
+
+
+   Either "aRRR" or "aaRR" is a way of compressing this to 4 characters.
+
+
+
+1)
+"aaaaaaa"
+
+Returns: 5
+
+
+
+   One way is with "aaaRa"
+
+2)
+"bcdcdcdcdxcdcdcdcd"
+
+Returns: 12
+
+
+
+   One way is "bMcdRRxMcdRR"
+
+3)
+"xyz"
+
+Returns: 3
+
+
+
+   You can always use no 'R's or 'M's.

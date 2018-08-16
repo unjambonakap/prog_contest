@@ -1,0 +1,77 @@
+PROBLEM STATEMENT
+This problem contains an image that can be viewed in the applet.
+The domino effect is a chain reaction triggered by a single tile falling down.  The tile falls into another tile, which falls into the next tile, and so on (see picture below).
+
+
+
+Consider an infinite line of cells, some of which are occupied by tiles.  We want to arrange the tiles in such a way that pushing the leftmost tile will lead to all the tiles falling down.  A tile will push down a neighboring tile to its right if there are between 1 and 4 free cells, inclusive, between them.
+
+You will be given a vector <string> cells.  Concatenate the elements of cells to create a single string representing a segment of the infinite line.  Tiles are represented by 'X' characters and free cells are represented by '.' characters.  All cells to the left and right of the given segment are free.    You may only move tiles into free cells.  Return the minimal number of tiles you must move to achieve the desired domino effect.
+
+
+
+DEFINITION
+Class:DominoesFalling
+Method:rearrangeTiles
+Parameters:vector <string>
+Returns:int
+Method signature:int rearrangeTiles(vector <string> cells)
+
+
+CONSTRAINTS
+-cells will contain between 1 and 50 elements, inclusive.
+-Each element of cells will contain between 1 and 50 characters, inclusive.
+-Each element of cells will contain only '.' and uppercase 'X' characters.
+-cells will contain at least two 'X' characters.
+
+
+EXAMPLES
+
+0)
+{"XX"}
+
+Returns: 1
+
+The tiles are too close. So, we need to move one them.
+
+1)
+{"X.....X"}
+
+Returns: 1
+
+The tiles are too far apart. So, we need to move one them.
+
+2)
+{"X.X............",
+ "...............",
+ ".....X.X.X.....",
+ "...............",
+ "............X.X"}
+
+Returns: 4
+
+
+
+3)
+{"X.X....X..X...", ".X......"}
+
+
+Returns: 0
+
+
+
+4)
+{".XX.X.XXXXXX", "X.X.XXXXXXXXXXXX", ".X.X.X.XXXXXXX.XXX", ".XXXXXX.XX", 
+ "XX.XXXXX.XXXXX", "XXXXX...X...X", "XXXX.XXXXXXXXX.XXXXX"}
+
+Returns: 34
+
+
+
+5)
+{".......X.X.", ".....X.....", ".............X", "....X...X..", ".X...X.X..", 
+ ".XXX........X......X", "......X..X....", "....X..........."}
+
+Returns: 4
+
+

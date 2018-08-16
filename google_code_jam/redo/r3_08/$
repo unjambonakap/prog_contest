@@ -1,0 +1,169 @@
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <algorithm>
+#include <numeric>
+#include <utility>
+#include <sstream>
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <cstring>
+#include <cstdio>
+//#include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <cassert>
+#include <climits>
+//#include <ext/hash_map>
+
+
+using namespace std;
+using namespace __gnu_cxx;
+
+
+
+#define REP(i,n) for(int i = 0; i < int(n); ++i)
+
+#define REPV(i, n) for (int i = (n) - 1; (int)i >= 0; --i)
+#define FOR(i, a, b) for(int i = (int)(a); i <= (int)(b); ++i)
+#define FORV(i, a, b) for(int i = (int)(a); i >= (int)(b); --i)
+
+#define FE(i,t) for (typeof((t).begin())i=(t).begin();i!=(t).end();++i)
+#define FEV(i,t) for (typeof((t).rbegin())i=(t).rbegin();i!=(t).rend();++i)
+
+#define SZ(a) (int((a).size()))
+#define two(x) (1 << (x))
+#define twoll(x) (1LL << (x))
+#define ALL(a) (a).begin(), (a).end()
+#define CLR(a) (a).clear()
+
+
+#define pb push_back
+#define PF push_front
+#define ST first
+#define ND second
+#define MP(x,y) make_pair(x, y)
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int,int> pii;
+typedef vector<int> vi;
+typedef vector<string> vs;
+typedef queue<int> qi;
+
+template<class T> void checkmin(T &a, T b){if (b<a)a=b;}
+template<class T> void checkmax(T &a, T b){if (b>a)a=b;}
+template<class T> void out(T t[], int n){REP(i, n)cout<<t[i]<<" "; cout<<endl;}
+template<class T> void out(vector<T> t, int n=-1){for (int i=0; i<(n==-1?t.size():n); ++i) cout<<t[i]<<" "; cout<<endl;}
+inline int count_bit(int n){return (n == 0)?0:1+count_bit(n&(n-1));}
+inline bool bit_set(int a, int b){return (a&two(b));}
+inline int low_bit(int n){return (n^n-1)&n;}
+inline int ctz(int n){return (n==0?-1:(n==1?0:ctz(n>>1)+1));}
+int toInt(string s){int a; istringstream(s)>>a; return a;}
+string toStr(int a){ostringstream os; os<<a; return os.str();}
+
+
+const int maxn=15;
+int mp[maxn][maxn];
+int xe, ye;
+int xs, ys;
+int xn, yn;
+int dist[maxn][maxn];
+int visited[maxn][maxn];
+int vx[]={-1, 1, 0, 0};
+int vy[]={0, 0, -1, 1};
+
+int in(int x, int y){return x>=0 && y>=0 && x<xn && y<yn;}
+struct state{
+    int x, y, c;
+    state(int x, int y, int c):x(x), y(y), c(c){}
+    bool operator<(const state &s)const{
+        if (c!=s.c) return c>s.c;
+        if (x!=s.x) return x<s.x;
+        return y<s.y;
+    }
+
+
+};
+
+
+void bfsa(){
+
+    queue<pii> q;
+    REP(i, xn) q.push(MP(i, -1)), q.push(MP(i, yn));
+    REP(i, yn) q.push(MP(-1, i)), q.push(MP(xn, i));
+    memset(dist, -1, sizeof(dist));
+    while(!q.empty()){
+        pii p=q.front(); q.pop();
+        int c=(!in(p.ST, p.ND)?0:dist[p.ST][p.ND]);
+        REP(k, 4){
+            int nx=p.ST+vx[k];
+            int ny=p.ND+vy[k];
+            if (in(nx, ny) && dist[nx][ny]==-1) dist[nx][ny]=c+1, q.push(MP(nx, ny));
+        }
+    }
+}
+
+void bfsb(){
+    queue<state> q;
+    q.push(state(xs, ys, 0));
+    memset(visited, 0, sizeof(visited));
+
+
+    while(!q.empty()){
+        state p=q.front(); q.pop();
+        if (visited[p.x][p.y]) continue;
+        visited[p.x][p.y]=1;
+
+        if (p.x==xe && p.y==ye){
+            printf("%d\n", p.c);
+            return;
+        }
+        int x, y;
+        REP(k, 4){
+            x=p.x+vx[k]; y=p.y+vy[k];
+            if (in(x, y) && !mp[x][y] && !visited[x][y]) q.push(state(x, y, p.c+1));
+            
+        }
+        REP(k, 4){
+            x=p.x; y=p.y;
+            while(in(x, y) && !mp[x][y]) x+=vx[k], y+=vy[k];
+            x-=vx[k], y-=vy[k];
+            if (!visited[x][y]) q.push(x, y, p.c+dist[p.x][p.y]);
+        }
+
+
+    }
+    printf("THE CAKE IS A LIE\n");
+
+}
+int main(){
+    int tn;
+    cin>>tn;
+    FOR(ti, 1, tn){
+        cin>>yn>>xn;
+        char c;
+        REP(i, yn) REP(j, xn){
+            cin>>c;
+            if (c=='O') xs=j, ys=i;
+            else if (c=='X') xe=j, ye=i;
+            mp[j][i]=c=='#';
+        }
+        bfsa();
+        printf("Case #%d: ", ti);
+        bfsb();
+
+
+
+    }
+
+    return 0;
+
+}
+
+

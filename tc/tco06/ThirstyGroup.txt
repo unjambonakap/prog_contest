@@ -1,0 +1,46 @@
+PROBLEM STATEMENT
+A group of friends is hanging out at a party. Seeing as it is very hot, everyone is trying to drink as much water as possible.
+
+At the beginning of the party, each person gets an initially empty glass and will use the same glass for the duration of the party.
+
+Everyone drinks water at a rate of one unit per second. There is a fixed amount of water available and everyone will refill their glass as soon as it is emptied. Refilling a glass before it is empty is not allowed. Refilling any glass takes one second, regardless of its capacity. Any number of people may refill at the same time, but if there is not enough water left for everyone to refill their glasses, those with lower-indexed glasses gain precedence.
+
+Observing that the glasses are not all of the same size, you notice that, by asking for a particular glass, you can maximize the amount of water you end up drinking. Given an int availableWater and a vector <int> capacities, return the 0-based index of the glass you should choose to maximize the amount of water you drink, breaking ties in favor of lower-indexed glasses.
+
+DEFINITION
+Class:ThirstyGroup
+Method:bestGlass
+Parameters:int, vector <int>
+Returns:int
+Method signature:int bestGlass(int availableWater, vector <int> capacities)
+
+
+CONSTRAINTS
+-availableWater will be between 0 and 2,000,000,000, inclusive.
+-capacities will contain between 1 and 50 elements, inclusive.
+-Each element of capacities will be between 1 and 10000, inclusive.
+
+
+EXAMPLES
+
+0)
+100
+{ 1, 20 }
+
+Returns: 1
+
+If you picked the smaller glass, you'd refill way too often.
+
+1)
+101
+{ 8, 10 }
+
+Returns: 0
+
+By picking the smaller glass, you'll end up drinking 51 units of water. After 54 seconds, you'll have drunk 6 full glasses (48 units), while the person with the other glass will have drunk 4 full glasses and would be working through their fifth (drinking 50 units in total). At that moment, you can refill your glass with the 3 units that are left.
+
+2)
+32
+{ 2, 4, 4, 4, 1 }
+
+Returns: 1

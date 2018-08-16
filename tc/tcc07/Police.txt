@@ -1,0 +1,55 @@
+PROBLEM STATEMENT
+
+There are n junctions in the city, some of them are connected by one-way roads. The mayor of the city would like to build police stations at some junctions to fight crime in the city.
+Building a police station at junction i costs cost[i].
+
+
+The police station at junction i is said to control junction j if it is possible for the police patrol to drive from junction i to junction j and back. Each junction must be controlled
+by some police station.
+
+
+You are given vector <int> cost and vector <string> roads. The j-th character of the i-th element of roads is 'Y' if there is a one-way road from junction i to junction j, or 'N' of there is none. Return the minimal total cost to build the police stations.
+
+
+DEFINITION
+Class:Police
+Method:minimalCost
+Parameters:vector <int>, vector <string>
+Returns:int
+Method signature:int minimalCost(vector <int> cost, vector <string> roads)
+
+
+CONSTRAINTS
+-cost will contain between 1 and 50 elements, inclusive.
+-Each element of cost will be between 1 and 10^6, inclusive.
+-roads will contain the same number of elements as cost.
+-Each element of roads will contain n characters, where n is the number of elements of roads.
+-Each element of roads will contain only characters 'Y' and 'N'.
+-For all i the element i of roads[i] will be 'N'.
+
+
+EXAMPLES
+
+0)
+{1, 2, 3, 4, 5}
+{"NNNYY", "YNNNN", "NNNYN", "NNYNN", "NYNNN"}
+
+Returns: 4
+
+You can build police stations in cities 1 and 3.
+
+1)
+{1000000,1000000}
+{"NY", "YN"}
+
+Returns: 1000000
+
+It is enough to build one station.
+
+2)
+{5, 3, 10, 4}
+{"NYNN", "NNYN", "NNNY", "YNNN"}
+
+Returns: 3
+
+

@@ -1,0 +1,87 @@
+PROBLEM STATEMENT
+
+John is playing a solitaire computer game.
+There are n cards numbered from 1 to n and m slots numbered form 1 to m from the left to the right.
+He has to place each card into some slot using the following rules.
+
+
+
+Basic rules:
+
+The first card (card number 1) may be placed in any slot.
+The second card (card number 2) must be placed exactly dist[0] slots to the left or exactly dist[0] slots to the right of the first card.
+Similarly, each card number i (i > 1) must be placed exactly dist[i-2] slots to the left or exactly dist[i-2] slots to the right of the previous card (card number i-1).
+Finally, if the last card (card number n) is exactly dist[n-1] slots to the left or exactly dist[n-1] slots to the right of the first card (card number 1) then John wins the game.
+
+
+
+
+Special cases:
+
+If an element of dist is equal to 0, then the corresponding card should be placed into the same slot as previous card.
+If an element of dist is equal to -1, then the distance between the corresponding card and the previous card can be arbitrary.
+
+
+
+
+You are given vector <int> dist that contains exactly n elements and the int m.
+Return the number (modulo 1234567891) of ways to place the cards into the slots so that John wins.
+
+
+
+DEFINITION
+Class:TheCards
+Method:find
+Parameters:vector <int>, int
+Returns:int
+Method signature:int find(vector <int> dist, int m)
+
+
+NOTES
+-More than one card can be placed into a single slot.
+-Slots do not wrap. There are no slots to the left of slot number 1 and no slots to the right of slot number m.
+
+
+CONSTRAINTS
+-dist will contain between 2 and 36 elements, inclusive.
+-Each element of dist will be between -1 and 10,000, inclusive.
+-m will be between 1 and 1,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{3, 1, 2, 1, 1}
+5
+
+Returns: 8
+
+Several possible solutions are shown below (in order from card 1 to card 5):
+
+slot 1, slot 4, slot 5, slot 3, slot 2;
+slot 1, slot 4, slot 3, slot 1, slot 2;
+slot 2, slot 5, slot 4, slot 2, slot 1;
+...
+
+
+1)
+{4, 7}
+47
+
+Returns: 0
+
+There is no way to win for John in this case.
+
+2)
+{1, 1, 1, 1}
+7
+
+Returns: 32
+
+3)
+{5, -1, -1, 4, 0, 2, -1, 8, 1, 2}
+11
+
+Returns: 4224
+
+

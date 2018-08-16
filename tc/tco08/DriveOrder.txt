@@ -1,0 +1,82 @@
+PROBLEM STATEMENT
+
+In Ukraine, the road intersections can be controlled or non-controlled. If an intersection is controlled by a traffic light, your actions are simple - go only if the green light is on. Things get more complicated when you get to a non-controlled intersection.
+
+You are given a vector <string> cars containing exactly 3 elements. Each character of element i of cars represents a car which is approaching a 3-way intersection along the i-th road. For each element, the first character represents the car which can pass the intersection immediately; its driver is now checking whether he has the priority to do so. The next car on the same road can get to the intersection only when the first car passes the intersection.  The third car waits for the first two to pass, and so on.
+
+
+When a car gets to the intersection, the driver must check whether any other cars are approaching the intersection from other roads. If he is the only driver at the intersection, he can go immediately. If there are at least 2 cars, they need to determine who will go first using the following rules:
+
+If one of the roads is major, then the car entering the intersection from that road gets the priority.
+If there is no major road or there are no cars on the major road, then the rule of the right hand is applied. Every driver at the intersection looks on the road which is the next to his right (road 1 is to the right of road 0, road 2 is to the right of road 1 and road 0 is to the right of road 2). If any driver doesn't have a car to his immediate right, he gets the priority.
+If there are cars on all roads, then the drivers themselves determine who will go first. We assume that the car marked by the alphabetically first letter will go first.
+
+
+
+As soon as one of the cars gets the priority to go, it passes the intersection and allows the next car on the same road (if any) to get to the intersection. The process is repeated with the new car taken into account. Given an int major, which gives you the 0-based index of the major road, return a string containing all cars from the input in the order they'll pass the intersection. If major is equal to -1, then there is no major road and all roads are of the same priority.
+
+
+DEFINITION
+Class:DriveOrder
+Method:determineOrder
+Parameters:vector <string>, int
+Returns:string
+Method signature:string determineOrder(vector <string> cars, int major)
+
+
+CONSTRAINTS
+-cars will contain exactly 3 elements.
+-Each element of cars will contain only uppercase letters ('A' - 'Z').
+-All characters in cars will be distinct.
+-major will be between -1 and 2, inclusive.
+
+
+EXAMPLES
+
+0)
+{"A", "B", ""}
+1
+
+Returns: "BA"
+
+The car at the major road gets the priority and goes first.
+
+1)
+{"A", "B", "CD"}
+2
+
+Returns: "CDBA"
+
+Cars C and D go first because they are at the major road. Then car B goes because it doesn't have any cars to its right.
+
+2)
+{"A", "B", "C"}
+-1
+
+Returns: "ACB"
+
+No major road and all roads are occupied. Rule 3 is applied, and car A goes first. Car C follows because it doesn't have any cars to its right.
+
+3)
+{"AD", "BC", "EF"}
+-1
+
+Returns: "ABCDEF"
+
+
+
+4)
+{"", "", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"}
+1
+
+Returns: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+A traffic jam.
+
+5)
+{"", "", ""}
+2
+
+Returns: ""
+
+An empty crossing.

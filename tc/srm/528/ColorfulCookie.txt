@@ -1,0 +1,69 @@
+PROBLEM STATEMENT
+Little Fox Jiro received a box from his sister Fox Ciel as a present. The box contained many cookies of various colors.
+Jiro wants to eat as many of these cookies as possible.
+
+The cookies are locked in a strange box. Jiro cannot take cookies from the box directly. On the box there is a dial and a button. These can be used to obtain cookies in the following way:
+
+Jiro uses the dial to choose any pair of distinct colors C1 and C2.
+Jiro pushes the button. If there are less than P1 cookies of color C1, nothing happens. Also, if there are less than P2 cookies of color C2, nothing happens. Otherwise, exactly P1 cookies of color C1 and exactly P2 cookies of color C2 drop out of the box and Jiro eats all of them.
+
+
+You are given a vector <int> cookies describing the initial contents of the box: for each i, the box contains cookies[i] cookies of color i. You are also given the ints P1 and P2.
+Your method must return the maximum number of cookies Jiro can eat by repeating above procedure optimally.
+
+DEFINITION
+Class:ColorfulCookie
+Method:getMaximum
+Parameters:vector <int>, int, int
+Returns:int
+Method signature:int getMaximum(vector <int> cookies, int P1, int P2)
+
+
+CONSTRAINTS
+-cookies will contain between 1 and 50 elements, inclusive.
+-Each element of cookies will be between 1 and 2,000, inclusive.
+-P1 and P2 will each be between 50 and 2,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{100, 100}
+50
+50
+
+Returns: 200
+
+The optimal solution is to select colors 0 and 1 and to push the button twice: each time obtaining 50 cookies of each color.
+
+1)
+{50, 250, 50}
+50
+100
+
+Returns: 300
+
+An optimal solution:
+
+Pick colors 0 and 1 (note that order matters) and push the button to obtain 50 cookies of color 0 and 100 cookies of color 1.
+Pick colors 2 and 1 (again, note the order) and push the button to obtain 50 cookies of color 2 and 100 cookies of color 1.
+
+This gives Jiro a total of 300 cookies. Note that 50 cookies of color 1 remained in the box, but there is no way to get them out.
+
+2)
+{2000}
+100
+200
+
+Returns: 0
+
+In this case all cookies have the same color. It is impossible to obtain any of them.
+
+3)
+{123, 456, 789, 555}
+58
+158
+
+Returns: 1728
+
+

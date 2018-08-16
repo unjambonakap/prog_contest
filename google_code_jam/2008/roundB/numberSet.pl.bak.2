@@ -1,0 +1,127 @@
+#!/usr/bin/perl -w
+use strict;
+
+my %primeHash;
+sub setPrimeList{
+	my $l = shift;
+	my ($i,$root,$prime,$a);
+
+	$i = 1;
+	$root = 1;
+	$primeHash{2} = 1;
+
+	for($a=3;$a <=$l;$a+=2){
+		$prime = 1;
+
+		$root ++ if ($root * $root < $a);
+		for ($i = 3;$i <= $root; $i += 2){
+			if ($a % $i == 0){
+				$prime = 0;
+				last;
+			}
+		}
+		$primeHash{$a} = 1 if ($prime == 1);
+	}
+
+}
+sub isPrime{
+	return (defined $primeHash{$_[0]})?1:0;
+
+}
+
+sub solve{
+	my($a,$b,$p) = @_;
+
+	my ($start,$end,$previousSet,$destSet,$found,$i,%setHash,$set,$destI,%changeHash,$newElemList);
+	$start = $p;
+	$end = int(($b-$a)/2)+1;
+	
+	$set = [];
+
+	for($a..$b){
+		push @$set, {value=>$_,set=>$_,elemList=>[$_-$a]};
+	}
+
+	for ($start..$end){
+		next if (isPrime($_) == 0);
+
+		undef $destSet;
+
+		print "$_\n";
+		my (@changeList,%changeHash);
+		$i = 0;
+		$newElemList = [];
+		while($i <= $b-$a){
+			$found = 0;
+			unless (defined $destSet and $destSet == $set->[$i]->{set}){
+
+				if (defined $destSet or $set->[$i]->{value} % $_ == 0){
+					$found = 1;
+					if (not defined $destSet){
+						$destSet = $set->[$i]->{set};
+						$destI = $i;
+					}else{
+						if (not defined $changeHash{$set->[$i]->{set}}){
+							push @$newElemList, @{$set->[$i]->{elemList}};
+							$changeHash{$set->[$i]->{set}} = 1;
+
+						}
+					}
+				}
+			}
+			$i += $_-1 if (defined $destSet);
+			$i ++;
+		}
+
+		if ($#$newElemList != -1){
+			push @$newElemList, @{$set->[$destI]->{elemList}};
+			foreach $i (@$newElemList){
+				print "updating $i\n";
+				@{$set->[$i]}{"set","elemList"} = ($destSet,$newElemList);
+
+			}
+		}
+
+	}
+
+	for ($i=0;$i<=$b-$a;$i++){
+		$setHash{$set->[$i]->{set}} = 1;
+	}
+	my @a = keys %setHash;
+	return $#a+1;
+
+
+
+}
+
+
+my ($n,$p,$a,$b,$s);
+
+$n = <>;
+chomp $n;
+
+
+setPrimeList(500001);
+#setPrimeList(1000);
+for (1..$n){
+	$s = <>;
+	chomp $s;
+
+	($a,$b,$p) = split(" ",$s);
+	print "Case #$_: ",solve($a,$b,$p),"\n";
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+

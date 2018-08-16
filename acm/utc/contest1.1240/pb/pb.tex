@@ -1,0 +1,59 @@
+\begin{problem}{Cycle detector}{stdin}{stdout}{2 seconds}
+
+
+%For this problem only, we will use the term graph instead of multigraph (can have more than one edge between the same 2 vertices).\\ 
+%Fox is playing a game alone. He starts on a vertex of a graph (undirected) and move along its edges. He would like to know whether or not it is possible to move indefinitely.
+%This game would be trivial without any restrictions so Fox has decided that he cannot move along an edge if it was also used during the previous move.\\ 
+%After a few games he found the game too easy and decided to call his friend Lin to play the game with him.\\ 
+%Lin plays the gamemaster. 
+%Initially he chooses the number of vertices $n$ of the graph on which they will play (the graph has originally no edges).\\ 
+%Then Lin has to perform a number $k$ of actions.
+%One action can be to either add an edge between two vertices of the graph (even if it already exists) or ask Fox to solve the game on the graph from a vertex of Lin's choice. By solving we mean deciding whether or not it is possible to move indefinitely from the starting position.
+%
+%Fox has only a short time to give his answer, can you help him?
+
+Fox and Lin are bored so they decide to play a game.
+Initially there is a multigraph (can have more than one edge between the same two vertices and loops) with $n$ vertices and no edges.
+Lin has to perform $k$ actions. \\ 
+There are two type of actions.
+For an action of type 0, Lin chooses two distinct vertices $x$ and $y$ and adds the edge $xy$ to the graph.
+For an action of type 1, Lin chooses a vertex $z$ and asks Fox whether the connected component containing $z$ is a tree.
+
+You are given each action of Lin in the chronological order, can you please help Fox answer the questions?
+
+
+\InputFile
+
+The first line contains two integers, the number $n$ of vertices in the graph and the number $k$ of actions to be done by Lin.\\
+Each of the next $k$ lines describes an action which is either of modification on the graph or a question.\\ 
+A line describing an action of type 0 contains 3 integers. $0$ is the first integer and the 2 remaining integers $x_i$ and $y_i$ are distinct and represent the edge to be added to the graph.\\ 
+A line describing an action of type 1 contains 2 integers. $1$ is the first integer and the second integer $z_i$ (the $z$ in the statement).
+
+The constraints are as follows:\\
+$2\le n \le 10^4$,\\ 
+$1\le k \le 10^4$,\\ 
+$1\le x_i,y_i,z_i \le n$, $x_i\not=y_i$ 
+
+\OutputFile
+
+For each question, output "1" (without the quotes) on a new line if the connected component is a tree and "0" otherwise.
+
+\Example
+
+\begin{examplewide}
+\exmp{
+2 4
+0 1 2
+1 1
+0 1 2
+1 2
+}{
+1
+0
+}%
+\end{examplewide}
+
+At the time of the first question, there is a single edge in the graph so it is a tree.\\
+For the second question there is two edges between the only two vertices of the graph. It is clearly not a tree, so you should output "0".
+
+\end{problem}

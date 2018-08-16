@@ -1,0 +1,70 @@
+PROBLEM STATEMENT
+A piecewise-linear directed path in the plane is defined by a sequence of
+points (its vertices). It is said to be "ccw-turning"
+if at each vertex (other than the first and last) as the path is traversed the 
+heading changes by more than 0
+but less than 180 degrees counterclockwise. The path may intersect itself or
+even trace over itself.
+  
+We are given a circle and the sequence of segment lengths that are encountered
+as we traverse a ccw-turning path. Each vertex of the path lies on the circle.
+What is the smallest Euclidean distance between the endpoints of such a path?
+
+Your method will be given radius and a vector <int> segLength and should return the
+minimum distance between the endpoints or -1 in case there is no such 
+ccw-turning path.
+
+
+
+DEFINITION
+Class:CCWTurning
+Method:minDistance
+Parameters:int, vector <int>
+Returns:double
+Method signature:double minDistance(int radius, vector <int> segLength)
+
+
+CONSTRAINTS
+-segLength will contain between 1 and 30 elements, inclusive.
+-Each element of segLength will be between 1 and 1,000, inclusive.
+-radius will be between 1 and 1,000, inclusive.
+
+
+EXAMPLES
+
+0)
+8
+{5,20,6}
+
+Returns: -1.0
+
+
+
+   The segment of length 20 cannot be part of a path inscribed in this circle.
+ 
+
+
+
+1)
+5
+{10,8}
+
+Returns: 6.0
+
+
+
+   A ccw-turning 10,8,6 right triangle can be inscribed in this circle.
+
+2)
+5
+{1,8} 
+
+Returns: 7.35989949685296
+
+
+
+   There are 2 different ccw-turning closed paths that could be inscribed.
+There is only one turning point. If we choose the less sharp turn we end up at
+a distance of 8.55989949685296 from the starting point, but if we take the
+sharper turn we achieve a distance of 7.35989949685296
+

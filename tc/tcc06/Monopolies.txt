@@ -1,0 +1,87 @@
+PROBLEM STATEMENT
+
+   0  1  2  3  4  5  6  7  8  9 10 
+  39                            11
+  38                            12
+  37                            13
+  36                            14
+  35                            15
+  34                            16
+  33                            17
+  32                            18
+  31                            19
+  30 29 28 27 26 25 24 23 22 21 20
+
+In a certain board game, there are 40 numbered squares arranged around the board as shown above. The players alternate
+turns. On each turn a player rolls 2 six-sided dice and moves forward (clockwise) the sum of the
+two values. If he lands on square 7, 22, or 36 he draws a card which may direct him
+to move forward to a specified square or to "go to jail". There are 20 cards, and  after a card has been drawn it is replaced and the cards are reshuffled: 
+    2 cards say "go to jail" 
+    1 card  says "go to square 11"
+    1 card says "go to square 24"
+    1 card says "go to square 29"
+    1 card says "go to square 39"
+    14 cards don't cause him to move 
+
+If he has not gone to jail and has rolled "doubles" (the 2 dice have the same value) he 
+continues his turn by rolling again and behaving as before. However, if he rolls doubles 
+3 times on one turn, he does not move the amount shown on the third roll -- instead 
+he "goes to jail".
+The player's turn ends after he moves on a roll that was not doubles, or when he goes to jail.
+
+One additional rule is that if a player lands on square 30, his turn ends after that move and he goes to jail.
+
+We want to analyze the beginning of a 2 player game. Both players start on square 0. We will pretend that a
+player is removed from the game when he goes to jail or when he gets past square 39 (possibly
+by being directed to move by a card). So if a card directs a player to a lower numbered square, the player is
+removed from the game before landing on that square. If a card directs a player to a higher numbered square, he
+has landed on both the square where he drew the card and on the square he was directed to.
+
+
+ For a particular square we want to know the probability that the 2nd player will land on it without
+having the first player land on it earlier. Create a class Monopolies that contains a method
+probability the is given square and that returns the desired probability.
+
+
+
+DEFINITION
+Class:Monopolies
+Method:probability
+Parameters:int
+Returns:double
+Method signature:double probability(int square)
+
+
+NOTES
+-A return value with either an absolute or relative error of less than 1.0E-9 is considered correct.
+
+
+CONSTRAINTS
+-square will be between 1 and 39, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+
+Returns: 0.0
+
+
+
+   No player can land on square 1 on his first time around the board, since the smallest
+   possible roll causes a player to move 2 squares forward.
+
+
+
+1)
+22
+
+Returns: 0.12122739832411301
+
+2)
+30
+
+Returns: 0.11905533142891316
+
+

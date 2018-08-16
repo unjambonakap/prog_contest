@@ -1,0 +1,116 @@
+PROBLEM STATEMENT
+Some jewels are placed in a rectangular grid on an infinite plane. 
+You are given vector <string> jewels describing the jewels. 
+If the j-th character of the i-th element of jewels is 'R', 'G' or 'B', 
+there is a red, green or blue jewel at the center of the j-th cell of the i-th row of the grid, respectively. 
+Jewels of the same color cannot be distinguished. 
+
+
+Alice draws two squares on this plane. 
+Their sides must be parallel to the axis and have length k.
+She is allowed to draw squares so that some part of them are on the outside of the grid. 
+Then she will get the jewels which lie in the inside of at least one of the two squares. 
+Note that the inside of a square does not contain its boundary. 
+She wants to make a chain of jewels, using some of the jewels she will get. 
+She does not have to use all of the jewels she will get. 
+A chain is a row of one or more jewels. 
+Chains are non-directional. 
+For example, chains R-G-B and B-G-R are considered equal. 
+How many different chains are possible, considering all the chains from all possible square locations? 
+Return the answer modulo 1,000,000,009. 
+
+
+DEFINITION
+Class:ColorfulJewelry
+Method:getChains
+Parameters:vector <string>, int
+Returns:int
+Method signature:int getChains(vector <string> jewels, int k)
+
+
+NOTES
+-For the purposes of this problem, a jewel is considered to be a single point.
+
+
+CONSTRAINTS
+-jewels will contain between 1 and 44 elements, inclusive. 
+-Each element of jewels will contain the same number of characters. 
+-Each element of jewels will contain between 1 and 44 characters, inclusive. 
+-Each character in jewels will be either 'R', 'G' or 'B'. 
+-k will be between 1 and 44, inclusive. 
+
+
+EXAMPLES
+
+0)
+{ "RGB" }
+
+1
+
+Returns: 6
+
+Alice can get at most two jewels. 
+The possible chains are: R, G, B, R-G, R-B, G-B. 
+
+
+1)
+{ "RGB" }
+
+2
+
+Returns: 9
+
+Alice can get all the three jewels. 
+
+
+2)
+{ "RGB" }
+
+10
+
+Returns: 9
+
+
+
+3)
+{ "RRRRR", 
+  "RGGRR", 
+  "RGGGG", 
+  "RRRGG" }
+
+2
+
+Returns: 280
+
+
+
+4)
+{ "RRRRRRRRRR", 
+  "RRRRRRRRRR", 
+  "RRRRRRRRRR", 
+  "RRRRRRRRRR", 
+  "RRRRRRRRRR", 
+  "RRRRRRRRRR", 
+  "RRRRRRRRRR", 
+  "RRRRRRRRRR", 
+  "RRRRRRRRRR", 
+  "RRRRRRRRRR" }
+
+6
+
+Returns: 68
+
+
+
+5)
+{ "RRRGGGGG", 
+  "RRRGGGGG", 
+  "RRRGGBBB", 
+  "GGGGGBBB", 
+  "GGGGGBBB" }
+
+4
+
+Returns: 613435159
+
+

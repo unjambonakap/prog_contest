@@ -1,0 +1,65 @@
+PROBLEM STATEMENT
+
+John is flying to Las Vegas for the TopCoder finals.  The flight is several hours long, and he can't sleep, so he decides to play his favorite mobile phone game.  The game is played on a n x n 2-dimensional plane, where (0, 0) is the lower-left corner.  There is a single monster at each point with integer coordinates except at (0, 0).  At (0, 0), there's a laser gun that John can use to kill monsters.  He can take at most k shots.  On each shot, he can aim the gun in any direction and press a button that releases an infinite laser ray that kills all monsters in its path.  The monsters are quite small so we can treat them as points.
+
+
+
+Some monsters were so afraid of John that they decided to escape before the game starts, and they are now missing from the battlefield.  You are given ints n and k, and a vector <string> missing.  Concatenate the elements of missing to obtain a comma separated list of the points where monsters are missing.  Each point is formatted as "row column" (quotes for clarity), where rows are numbered from bottom to top starting at 0 and columns are numbered from left to right starting at 0.  Return the maximum number of monsters that John can kill using no more than k shots.
+
+
+
+DEFINITION
+Class:TheBoredJohn
+Method:killMonsters
+Parameters:int, long long, vector <string>
+Returns:long long
+Method signature:long long killMonsters(int n, long long k, vector <string> missing)
+
+
+CONSTRAINTS
+-n will be between 2 and 4,000,000, inclusive.
+-k will be between 1 and 16,000,000,000,000, inclusive.
+-missing will contain between 1 and 50 elements, inclusive.
+-Each element of missing will consist of between 1 and 50 characters, inclusive.
+-missing, when concatenated, will contain a comma separated list of points.
+-missing will contain between 1 and n*n-1 points.
+-Each point in missing will be formatted "row column" (quotes for clarity), where each row and column is an integer between 0 and n-1, inclusive, with no extra leading zeroes.
+-All points in missing will be distinct.
+-missing will not contain the point "0 0".
+
+
+EXAMPLES
+
+0)
+3
+4
+{"1 1,0 1,1 0"}
+
+Returns: 4
+
+Here, John can't kill more than one monster with a single shot.
+
+1)
+2
+1000000000
+{"1 1,0 1,1 0"}
+
+Returns: 0
+
+2)
+9
+1
+{"8 2,0 1,7 6,6 8,3 3,0 5,3 4"}
+
+Returns: 8
+
+Just a single shot.
+
+3)
+6
+9
+{"0 3,2"," 4,3 3",",4 2,2 0"}
+
+Returns: 18
+
+

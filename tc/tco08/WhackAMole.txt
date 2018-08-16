@@ -1,0 +1,59 @@
+PROBLEM STATEMENT
+You are designing a new Whack-A-Mole game for the local carnival.  However, you have a mean streak, and you'd like to make the game impossible to win.
+
+The game consists of a certain number of holes arranged in a circle.  There are also a certain number of hammers attached to it.  Several players can play the game at once.  They each take one hammer, choose a hole, and then guard it.  If a mole ever pops out of that hole, they will WHACK it!
+
+The inner workings of the game are as follows.  There is a circular plate underneath the holes with several electronic "moles" attached to it, in some fixed configuration.  After the players are positioned, the game software will sense which holes are guarded.  It can then rotate the plate however it wants.  Finally, the moles will pop out of the holes they're currently under.  The software will do its best to position the moles to prevent any moles from getting WHACKed!
+
+Figure out a configuration of moles that allows you to prevent the players from WHACKing any moles, no matter how they position themselves.  A configuration may be represented as a string with an uppercase 'X' where the moles are positioned and an uppercase letter 'O' elsewhere.  (Of course, since the moles are on a circular plate, a given configuration has multiple string representations.)  Choose a configuration with the most moles; among these, return the lexicographically smallest string representation.
+
+DEFINITION
+Class:WhackAMole
+Method:placeMoles
+Parameters:int, int
+Returns:string
+Method signature:string placeMoles(int numHoles, int numHammers)
+
+
+NOTES
+-String A is smaller than String B if A has a smaller character at the first position where the strings differ.
+
+
+CONSTRAINTS
+-numHoles will be between 1 and 10, inclusive.
+-numHammers will be between 1 and numHoles, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+1
+
+Returns: "O"
+
+The only hole is guarded - a very unfriendly environment for moles!
+
+1)
+4
+2
+
+Returns: "OOOX"
+
+The correct arrangement of players will defeat both "OOXX" and "OXOX".
+
+2)
+5
+2
+
+Returns: "OOOXX"
+
+Every possible arrangement of players will still leave a pair of consecutive holes unguarded.
+
+3)
+6
+2
+
+Returns: "OOXOXX"
+
+

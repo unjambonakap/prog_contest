@@ -1,0 +1,154 @@
+PROBLEM STATEMENT
+
+Given an undirected graph G and a subset of its vertices S, the subgraph of G induced by S (denoted G/S) is defined as the subgraph of the graph G such that the following two conditions are satisfied:
+
+The set of vertices of the subgraph G/S is exactly S.
+For any two vertices x, y in S, there is an edge {x,y} in G/S if and only if there is such an edge in G.
+
+In other words, the induced subgraph always contains all the edges of G it may contain, given its vertices.
+
+
+In this problem, you are given a tree G containing n vertices and a positive integer k.
+Initially, the vertices of G are numbered from 0 to n-1, inclusive.
+The objective is to change this numbering
+so that all induced subgraphs over {i, i+1, .., i+k-1} are connected, for all 0 <= i <= n-k.
+How many ways of renumbering are there?
+
+
+The initial tree G is given as two vector <int>s edge1 and edge2, each containing n-1 elements.
+These two vector <int>s describe the endpoints of edges. For each i, there is an edge between the vertices edge1[i] and edge2[i].
+Let C be the number of ways to renumber the vertices that satisfy the condition above.
+Your method must return (C modulo 1,000,000,009).
+
+
+
+DEFINITION
+Class:InducedSubgraphs
+Method:getCount
+Parameters:vector <int>, vector <int>, int
+Returns:int
+Method signature:int getCount(vector <int> edge1, vector <int> edge2, int k)
+
+
+NOTES
+-A tree is a connected graph with no cycles.
+
+
+CONSTRAINTS
+-edge1 will contain between 1 and 40 elements, inclusive.
+-edge2 will contain the same number of elements as edge1.
+-Each element of edge1 and edge2 will be between 0 and n-1, inclusive, where n is (the number of elements in edge1) + 1.
+-A graph represented by edge1 and edge2 will be a tree.
+-k will be between 1 and n, inclusive.
+
+
+EXAMPLES
+
+0)
+{0, 1}
+{1, 2}
+2
+
+Returns: 2
+
+Initially, the graph looks as follows:
+
+   0-1-2
+
+There are two correct ways to assign the new numbers to its vertices:
+
+   0-1-2
+
+and
+
+   2-1-0
+
+
+
+1)
+{0, 1, 3}
+{2, 2, 2}
+3
+
+Returns: 12
+
+The given graph:
+
+     0-2-1
+       |
+       3
+
+Possible numberings are as follows.
+
+     0-1-2     0-1-3     2-1-3     3-1-2     2-1-0     3-1-0
+       |         |         |         |         |         |
+       3         2         0         0         3         2
+
+     0-2-3     1-2-3     3-2-1     3-2-0     0-2-1     1-2-0
+       |         |         |         |         |         |
+       1         0         0         1         3         3
+
+
+2)
+{5, 0, 1, 2, 2}
+{0, 1, 2, 4, 3}
+3
+
+Returns: 4
+
+The given graph:
+
+     5-0-1-2-4
+           |
+           3
+
+Possible ways:
+
+     0-1-2-3-4     0-1-2-3-5
+           |             |
+           5             4
+
+     5-4-3-2-1     5-4-3-2-0
+           |             |
+           0             1
+
+
+3)
+{0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6}
+{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}
+11
+
+Returns: 481904640
+
+
+
+4)
+{5, 9, 4, 10, 10, 0, 7, 6, 2, 1, 11, 8}
+
+{0, 0, 10, 3, 0, 6, 1, 1, 12, 12, 7, 11}
+
+6
+
+Returns: 800
+
+
+
+5)
+{0, 5, 1, 0, 2, 3, 5}
+
+{4, 7, 0, 6, 7, 5, 0}
+
+3
+
+Returns: 0
+
+
+
+6)
+{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}
+1
+
+Returns: 890964601
+
+

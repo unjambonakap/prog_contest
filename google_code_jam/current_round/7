@@ -1,0 +1,135 @@
+#!/usr/bin/perl -w
+use strict;
+
+
+sub cross{
+	my ($a,$b,$k) = @_;
+	my $a_inf_b = ($a->{price}->[$k-1] < $b->{price}->[$k-1])?1:0;
+	my $a_inf_b_next = ($a->{price}->[$k] < $b->{price}->[$k])?1:0;
+
+	return 1 if ($a_inf_b != $a_inf_b_next);
+	return 0;
+
+}
+
+
+sub solve{
+	my($n,$k,$p) = @_;
+	my($i,$j);
+
+	my ($ret);
+	$ret = 0;
+	foreach(1..$k-1){
+
+		foreach $i(0..$n-1){
+			next if ($p->[$i]->{stored} == 1);
+
+			foreach $j($i+1 .. $n-1){
+				next if defined $p->[$i]->{conflict}->{$j};
+
+				if (cross($p->[$i],$p->[$j],$_) == 1){
+					$p->[$i]->{conflicts}->{$j} = 1;
+					$p->[$j]->{conflicts}->{$i} = 1;
+					$p->[$j]->{nC} ++;
+					$p->[$i]->{nC} ++;
+
+				}
+
+
+			}
+		}
+	}
+
+	my @cList = ();
+
+	$ret = 1;
+	while(1){
+		my ($max,$t);
+
+		$t = [];
+		foreach $i (@cList){
+			foreach(keys %{$p->[$i]->{conflicts}}){
+				print "$_ $i\n";
+				print "clean conflict of $_ from $i => ",%{$p->[$i]->{conflicts}},"\n";
+				
+				undef $p->[$_]->{conflicts}->{$i};
+				$p->[$_]->{nC} --;
+			}
+		}
+		foreach(@$p){
+			print "%$_\n";
+			push @$t, $_ if ($_->{stored} == 0 and $_->{nC} > 0);
+		}
+
+		$p = [sort {$a->{nC} <=> $b->{nC}} @$t];
+		last if ($#$p == -1);
+
+		my $e = $p->[$#$p];
+
+		@cList = ($#$p);
+		$e->{stored} = 1;
+
+		
+		for ($i=$#$p-1;$i >= 0;$i--){
+			my $fine = 1;
+			foreach(@cList){
+				if (defined $p->[$i]->{conflicts}->{$_}){
+					$fine = 0;
+					last;
+				}
+			}
+			next if( $fine == 0);
+
+			$p->[$i]->{stored} = 1;
+			push @cList, $i;
+		}
+		$ret ++;
+
+	}
+
+	return $ret;
+
+}
+
+
+
+
+
+
+
+
+
+my ($nStuff);
+
+
+$nStuff = <>;
+chomp $nStuff;
+
+
+for(1..$nStuff){
+	next if ($_ != 3);
+	my ($s,$nT,$nK,$price,$i,$j);
+	$price = [];
+
+	$s = <>;
+	chomp $s;
+	($nT,$nK) = split(" ",$s);
+	foreach $i(0..$nT-1){
+		$s = <>;
+		chomp $s;
+		$price->[$i]->{stored} = 0;
+		$price->[$i]->{nC} = 0;
+		$price->[$i]->{id} = $i;
+		$price->[$i]->{conflicts} = {};
+		foreach $j(split(" ",$s)){
+			push @{$price->[$i]->{price}},$j;
+
+		}
+	}
+
+	print "Case #$_: ",solve($nT,$nK,$price),"\n";
+}
+
+
+
+

@@ -1,0 +1,59 @@
+PROBLEM STATEMENT
+Let's call a number constitutive if it can be expressed as a sum of three or more successive positive integers. For example, 14 is a constitutive number because 14 = 2+3+4+5, but 13 is not a constitutive number.
+
+You will be given two ints A and B. Return the number of constitutive numbers between A and B, inclusive.
+
+DEFINITION
+Class:ConstitutiveNumbers
+Method:count
+Parameters:int, int
+Returns:int
+Method signature:int count(int A, int B)
+
+
+CONSTRAINTS
+-A will be between 1 and 1,000,000,000, inclusive.
+-B will be between A and A + 1000, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+15
+
+Returns: 6
+
+The first 6 constitutive numbers are:
+
+6 = 1 + 2 + 3
+9 = 2 + 3 + 4
+10 = 1 + 2 + 3 + 4
+12 = 3 + 4 + 5
+14 = 2 + 3 + 4 + 5
+15 = 4 + 5 + 6
+
+
+1)
+1
+101
+
+Returns: 69
+
+2)
+1000
+1030
+
+Returns: 26
+
+3)
+7245723
+7246428
+
+Returns: 657
+
+4)
+1000000000
+1000001000
+
+Returns: 952

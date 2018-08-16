@@ -1,0 +1,76 @@
+PROBLEM STATEMENT
+The product value of a string is 
+the product of all the digits ('0'-'9') in the string. 
+For example, the product value of "123" is 1 * 2 * 3 = 6. 
+A string is called colorful if it contains only digits 
+and the product value of each of its nonempty contiguous substrings is distinct. 
+
+For example, the string "263" has six substrings: "2", "6", "3", "26", "63" and "263". 
+The product values of these substrings are: 2, 6, 3, 2 * 6 = 12, 6 * 3 = 18 
+and 2 * 6 * 3 = 36, respectively. 
+Since all six product values are distinct, "263" is colorful. 
+On the other hand, "236" is not colorful 
+because two of its substrings, "6" and "23", have the same product value (6 = 2 * 3). 
+
+Return the k-th (1-based) lexicographically smallest 
+colorful string of length n. 
+If there are less than k colorful strings of length n, 
+return an empty string instead. 
+
+
+DEFINITION
+Class:ColorfulStrings
+Method:getKth
+Parameters:int, int
+Returns:string
+Method signature:string getKth(int n, int k)
+
+
+NOTES
+-The lexicographically smaller of two strings is the one that has the smaller character ('0' < '1' < ... < '9') at the first position where they differ. 
+
+
+CONSTRAINTS
+-n will be between 1 and 50, inclusive. 
+-k will be between 1 and 1,000,000,000, inclusive. 
+
+
+EXAMPLES
+
+0)
+3
+4
+
+Returns: "238"
+
+The first four smallest colorful strings of length 3 are "234", "235", "237" and "238".
+
+
+1)
+4
+2000
+
+Returns: ""
+
+The number of colorful strings of length 4 is less than 2000.
+
+
+2)
+5
+1
+
+Returns: "23457"
+
+3)
+2
+22
+
+Returns: "52"
+
+4)
+6
+464
+
+Returns: "257936"
+
+

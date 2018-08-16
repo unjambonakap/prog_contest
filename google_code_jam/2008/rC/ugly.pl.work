@@ -1,0 +1,103 @@
+#!/usr/bin/perl -w
+use strict;
+use constant{
+	OP_MINUS=>0,
+	OP_PLUS=>1
+
+};
+
+my $storeLimit = 10;
+my $storedPos;
+my $concatPos;
+my $uglyPos = {};
+sub isUgly{
+	my $a = shift;
+
+	$uglyPos->{$a} = ($a % 2 and $a % 3 and $a % 5 and $a % 7)?0:1 if not defined $uglyPos->{$a};
+	return $uglyPos->{$a};
+
+
+
+}
+sub solve{
+	my ($i,$l,$previousElem,$lastOp,$currentElem) = @_;
+	my ($sum,$cS);
+
+
+	
+	$sum = 0;
+	if ($i == 0){
+		if ($lastOp == OP_PLUS){
+			$cS = $previousElem + $currentElem;
+		
+		}else{
+			$cS = $previousElem - $currentElem;
+		}
+		return 1 if (isUgly(abs($cS)));
+
+
+		return 0;
+
+
+	}else{
+		if ($lastOp == OP_PLUS){
+			$cS = $previousElem + $currentElem;
+		}else{
+			$cS = $previousElem - $currentElem;
+		}
+		if (not defined $storedPos->[$i+1]){
+
+
+			$sum += solve($i-1,$l,$cS,OP_PLUS,$l->[$i-1]);
+			$sum += solve($i-1,$l,$cS,OP_MINUS,$l->[$i-1]);
+#			if ($i <= $storeLimit){
+#
+#				$concatPos->[$i] = $l->[$i]*10+$concatPos->[$i-1];
+#				push @{$storedPos->[$i+1]},$concatPos->[$i];
+#
+#			}	
+#			foreach(@{$storedPos->[$i]}){
+#				push @{$storedPos->[$i+1]}, ($l->[$i]+$_,$l->[$i]-$_);
+#
+#
+#			}
+
+
+		}else{
+			foreach(@{$storedPos->[$i]}){
+				$sum ++ if (isUgly($cS+$_));
+				$sum ++ if (isUgly($cS-$_));
+			}
+		}
+		$sum += solve($i-1,$l,$previousElem,$lastOp,$currentElem*10+$l->[$i-1]);
+
+	}
+
+	return $sum;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+my ($n,$s,@r);
+
+$n = <>;
+chomp $n;
+for (1..$n){
+	$s = <>;
+	chomp $s;
+	@r = reverse split("",$s);
+	$storedPos = [undef,[$r[0]]];
+	$concatPos = [$r[0]];
+	print "Case #$_: ",solve($#r,[@r],0,OP_PLUS,$r[$#r]),"\n";
+
+}

@@ -1,0 +1,59 @@
+PROBLEM STATEMENT
+
+You have a n x n board and several checkers of different colors.  The i-th element of checkers is the number of checkers you have of color i.  You want to place all of the checkers on the board in such a way that no cell contains more than one checker.
+
+
+
+Return the number of different possible placements modulo 1234567891.  Two placements are equal if you can get one from the other by rotating the board.  Note that checkers of the same color are indistinguishable.  If you have more checkers than the number of cells on the board, there are no possible placements, so you should return 0.
+
+
+
+DEFINITION
+Class:TheBeautifulBoard
+Method:count
+Parameters:int, vector <int>
+Returns:int
+Method signature:int count(int n, vector <int> checkers)
+
+
+NOTES
+-You are not allowed to flip the board.
+
+
+CONSTRAINTS
+-n will be between 1 and 100,000, inclusive.
+-checkers will contain between 1 and 50 elements, inclusive.
+-Each element of checkers will be between 1 and 100,000, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+{1}
+
+Returns: 1
+
+It's simple.
+
+1)
+2
+{1, 2}
+
+Returns: 3
+
+There are only 3 different placements. Do not forget that you can't flip the board.
+
+2)
+3
+{1, 1}
+
+Returns: 18
+
+3)
+3
+{4, 2, 1, 3}
+
+Returns: 0
+
+Too many checkers.

@@ -1,0 +1,49 @@
+\begin{problem}{Bad divisor}{stdin}{stdout}{6.0 seconds}
+
+
+Little Petya really hates some number $z$. He defines the score of an integer $x$ as the number of time $z$ divides such integer.
+More formally, the score of $x$ is the largest integer $y$ for which $z^y$ divides $x$.
+
+Today little Petya is on the top-left cell (coordinates $(1,1)$) of a grid with $r$ rows and $c$ columns with a number inside each cell.
+He can only move one cell down or one cell to the left, without ever going outside the grid. 
+He keeps moving until he reaches the bottom-right cell (coordinates $(r,c)$) of the grid. 
+\par When he is on the bottom-right cell, he is given a number which is the product of every integer he has been on during his epic journey. 
+\par Help him find the minimum score he can achieve.
+
+
+\InputFile
+
+On the first line, 3 integers representing $r,c$ and $z$.
+Each of the next $r$ lines contains $c$ integers.
+The $j-th$ integer $a_{ij}$ of the $i-th$ line corresponds to the number is the cell $(i,j)$ of the grid.
+
+
+The constraints are as follows:
+$1\le r,c \le 1000$,\\ 
+$1\le z \le 5\times 10^4$,\\ 
+$0\le a_{ij} \le 10^{18}$,\\ 
+
+Please use \%Ld modifiers or cin/cout to handle 64-bit integers IO in C/C++
+
+\OutputFile
+
+Print a single integer, the minimum score achievable for little Petya.
+If the answer is not defined (goes to infinity), print "-1".
+
+\Example
+
+\begin{examplewide}
+\exmp{
+2 2 2
+2 6
+4 5
+}{
+2
+}%
+\end{examplewide}
+
+Little Petya starts on the cell with the number $2$ and should end on the cell with number $5$.
+\par In order to minimize his score, he should go to the left at the beginning, visiting the cell with number $6$. Like this, he will be given the integer $40$ which has a score 2.
+\par If he went down at the beginning, he would have had a score of 3.
+
+\end{problem}

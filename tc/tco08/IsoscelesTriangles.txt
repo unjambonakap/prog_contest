@@ -1,0 +1,56 @@
+PROBLEM STATEMENT
+A triangle is called isosceles if it has two sides of equal length. Two triangles are considered to be different if they have different sets of vertices. You have a grid of N x M square cells.  Return the number of different isosceles triangles you can form using only the centers of grid cells as vertices.
+
+DEFINITION
+Class:IsoscelesTriangles
+Method:count
+Parameters:int, int
+Returns:long long
+Method signature:long long count(int N, int M)
+
+
+CONSTRAINTS
+-N will be between 1 and 200, inclusive.
+-M will be between 1 and 200, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+10
+
+Returns: 0
+
+Any three centers of grid cells will lie on the same straight line, so it's impossible to form a triangle at all.
+
+1)
+2
+2
+
+Returns: 4
+
+We can select 4 triples of centers of grid cells, and all these triples will form isosceles triangles.
+
+2)
+2
+3
+
+Returns: 10
+
+All 10 isosceles triangles for a 2x3 grid are listed below ('X' stands for a triangle vertex):
+
+XX.  XX.  .X.  X..  X.X
+X..  .X.  XX.  XX.  .X.
+
+.XX  .XX  ..X  .X.  .X. 
+.X.  ..X  .XX  .XX  X.X 
+
+
+3)
+5
+4
+
+Returns: 248
+
+

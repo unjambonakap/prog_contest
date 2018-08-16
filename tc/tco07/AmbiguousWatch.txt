@@ -1,0 +1,51 @@
+PROBLEM STATEMENT
+
+You have a watch with only an hour hand and a minute hand. The watch is a round 12-hour watch. Both hands move continuously. 
+
+Both hands have the same length and are indistinguishable, so at certain moments, the time displayed is ambiguous.  A time is considered ambiguous if there exists a different time at which the hands appear to have the same positions. For example, the time moment on the picture is ambiguous. At this moment, you would not be able to tell if it was a little past 00:05, or a little past 01:00.
+
+
+
+
+
+You are given two times in the form "HH:MM" (quotes for clarity), where 00 <= HH < 12, and 00 <= MM < 60.  Return the number of ambiguous moments between startTime and finishTime, inclusive. The times represented by startTime and finishTime are in the same half of the day.
+
+
+DEFINITION
+Class:AmbiguousWatch
+Method:howMany
+Parameters:string, string
+Returns:int
+Method signature:int howMany(string startTime, string finishTime)
+
+
+CONSTRAINTS
+-startTime and finishTime will have the form "HH:MM" (quotes for clarity), where 00 <= HH < 12, 00 <= MM < 60.
+-startTime must be earlier than or the same as finishTime (in the same half of the day).
+
+
+EXAMPLES
+
+0)
+"00:00"
+"00:00"
+
+Returns: 0
+
+This moment is not ambiguous.
+
+1)
+"00:05"
+"00:06"
+
+Returns: 1
+
+There is one ambiguous moment in this time range. At that moment, you would not be able to tell if it was a little past 00:05, or a little past 01:00.
+
+2)
+"00:00"
+"01:00"
+
+Returns: 11
+
+

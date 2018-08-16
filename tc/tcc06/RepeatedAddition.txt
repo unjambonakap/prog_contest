@@ -1,0 +1,81 @@
+PROBLEM STATEMENT
+Repeated addition is a tedious task in which an integer A is first written on a piece of paper with a plain pencil, and then the integer X is repeatedly added to the number on paper until that number becomes B.
+
+Only one number is written on the paper at any given time. Addition is performed so that only digits that need changing are erased and replaced by new ones.
+
+In order to estimate how many erasers will be needed, return the total number of digits erased if repeated addition is performed as above. The three integers will be given as three strings.
+
+DEFINITION
+Class:RepeatedAddition
+Method:digitsErased
+Parameters:string, string, string
+Returns:long long
+Method signature:long long digitsErased(string A, string B, string X)
+
+
+NOTES
+-New digits may only be added to the left of the number already written (see example 5).
+
+
+CONSTRAINTS
+-A, B and X will represent integers between 1 and 10^16, inclusive.
+-A, B and X will not have leading zeroes.
+-A will be less than B.
+-(B-A) will be divisible by X.
+
+
+EXAMPLES
+
+0)
+"2"
+"6"
+"1"
+
+Returns: 4
+
+We start with the number 2. Adding 1 repeatedly gives the numbers 3, 4, 5 and 6. Every time we add 1 we need to erase the digit that was previously written, amounting to 4 erasures.
+
+1)
+"88"
+"107"
+"19"
+
+Returns: 2
+
+Only one addition is performed. The two 8 digits must be erased and replaced by 0 and 7.
+
+2)
+"123"
+"843"
+"120"
+
+Returns: 12
+
+
+
+3)
+"3"
+"811"
+"404"
+
+Returns: 4
+
+
+
+4)
+"2043601634821768"
+"4274721675435952"
+"3653414"
+
+Returns: 4522764117
+
+
+
+5)
+"12"
+"123"
+"111"
+
+Returns: 2
+
+

@@ -1,0 +1,96 @@
+PROBLEM STATEMENT
+Alice and Bob are playing a game on a NxN board.
+The game consists of four turns:
+
+In the first turn, neutral checkers are placed onto some (possibly none) cells. Neutral checkers do not belong to either Bob or Alice.
+In the second turn, three different cells are picked as the locations for Alice's checkers. The initial locations of Alice's checkers are restricted to the top row, the bottom row, the left column, and the right column of the board. In other words, Alice's checkers will always be adjacent to the borders of the board.
+In the third turn, Bob picks a set of empty cells (possibly none) where he places his own checkers.
+Finally, in the fourth turn, Alice gets to move her checkers across the board, with the goal to move two of her checkers into adjacent cells. Two cells are adjacent if they share a side.
+
+
+Here is a more detailed description of the fourth turn: During the fourth turn, Alice may perform steps.
+In each step, Alice picks one of her checkers and moves it to an empty cell adjacent to its current cell.
+Alice may make as many steps as she wants, including multiple steps with the same checker.
+
+The game can end in one of two ways:
+If Alice manages to move two of her checkers onto adjacent cells in the fourth turn, she wins and Bob receives 100 penalty points.
+If this is impossible, Bob wins and receives an amount of penalty points equal to the number of checkers he placed in the third turn.
+
+
+You are given the state of the board after the second turn as a vector <string> board.
+Character j of element i of board represents the cell at row i, column j (0-based indices).
+If the character is '.' (quotes for clarity), the respective cell is empty.
+If the character is 'A', the cell contains one of Alice's checkers.
+If the character is 'N', the cell contains a neutral checker.
+
+Return the best possible penalty that Bob can get if he decides the number and locations of his checkers optimally.
+That is, you want Bob's penalty to be as close to zero as possible.
+
+DEFINITION
+Class:Block3Checkers
+Method:blockThem
+Parameters:vector <string>
+Returns:int
+Method signature:int blockThem(vector <string> board)
+
+
+CONSTRAINTS
+-N will be between 2 and 20, inclusive.
+-board will contain N elements..
+-Each element of board will contain N characters.
+-The characters in board will be '.', 'A' or 'N'.
+-board will contain exactly three 'A' characters.
+-Character j of element i of board may only be 'A' if (i = 0) or (j = 0) or (i = N-1) or (j = N-1).
+
+
+EXAMPLES
+
+0)
+{"A......A",
+ "...N.N..",
+ ".NNN.NN.",
+ "NNNN.N.N",
+ "N.NN.NNN",
+ ".NNN.NNN",
+ "NNN...NN",
+ ".NN.A..N"}
+
+Returns: 1
+
+Bob can win by placing a single checker roughly into the middle of the top row: into the cell (0,4).
+
+1)
+{".....A",
+ "......",
+ "......",
+ "NNNNNN",
+ "A.....",
+ "A....."}
+
+Returns: 100
+
+Two of Alice's checkers are already on adjacent cells. There is nothing that Bob can do but allow Alice to win.
+
+2)
+{"A.N",
+ "NNA",
+ "AN."}
+
+Returns: 0
+
+It is already impossible for Alice to move two checkers to adjacent cells. Bob does not need to add any checker.
+
+3)
+{"......NA",
+ ".NNNN.N.",
+ ".N......",
+ "....NNNN",
+ "........",
+ ".N..NNN.",
+ "......N.",
+ "A.N....A"}
+
+
+Returns: 3
+
+

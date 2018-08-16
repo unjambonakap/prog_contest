@@ -1,0 +1,88 @@
+PROBLEM STATEMENT
+
+A single elimination tournament begins with teams numbered 1 through N, where N is a power of 2.
+In the first round, teams 1 and 2 compete against each other, teams 3 and 4 compete against each
+other, and so on up to teams N-1 and N.
+The N/2 losing teams are eliminated, and the N/2 winning teams advance to the second round.
+
+
+In the second round, the winner of teams 1 and 2 compete against the winner of teams 3 and 4.
+The winner of teams 5 and 6 compete against the winner of teams 7 and 8.
+The winner of teams N-3 and N-2 compete against the winner of teams N-1 and N.
+
+
+The tournament continues in this fashion, with half the remaining teams eliminated in each round, until there is only one team left.  This team is the winner of the tournament. Obviously, the numeration of the teams is very important for determining the winner. You want your favorite team to win the tournament, so you want to find the order which gives your team the best chances to become the winner.
+
+
+You will be given a vector <string> chances that contains exactly N elements, each containing exactly N space-separated probabilities.
+The j-th number in the i-th element of chances represents the probability (in percents) that team i will win a game against team j.
+The 1-based index of your favorite team in chances is team.
+You are to order the teams in such a way that your team will have the highest probability to win the tourney and return this probability as a double.
+See examples for further clarification.
+
+
+DEFINITION
+Class:SingleElimination
+Method:bestChance
+Parameters:vector <string>, int
+Returns:double
+Method signature:double bestChance(vector <string> chances, int team)
+
+
+NOTES
+-Your return value must have an absolute or relative error less than 1e-9.
+
+
+CONSTRAINTS
+-The number of elements in chances will be a power of 2 between 1 and 8, inclusive.
+-Each element of chances will be a single-space-separated list of integers, with no additional whitespace and no leading zeros.
+-Each element of chances will contain a number of integers equal to the number of elements in chances.
+-Each integer in chances will be between 0 and 100, inclusive.
+-The i-th integer in the j-th element of chances and the j-th integer in the i-th element of chances will sum to 100, if i != j.
+-The i-th integer if the i-th element of chances will be 0.
+-team will be between 1 and the number of elements in chances, inclusive.
+
+
+EXAMPLES
+
+0)
+{"0 90 0 100", "10 0 50 100", "100 50 0 100", "0 0 0 0"}
+1
+
+Returns: 0.45
+
+It's optimal for team 1 to play against team 4 in the first round.
+Team 1 always beats team 4, and to have any chances to win the tourney, needs team 2 to beat team 3 (with a 50%).
+Team 1 would then have a 90% chance of beating team 2 in the final game.
+Therefore, the correct answer is 0.5 * 0.9 = 0.45.
+
+1)
+{"0 90 0 100", "10 0 50 100", "100 50 0 100", "0 0 0 0"}
+3
+
+Returns: 0.9500000000000001
+
+The third team has much better chances.
+
+2)
+{ "0" }
+1
+
+Returns: 1.0
+
+
+
+3)
+{ "0 50 50 50 50 50 50 50",
+  "50 0 50 50 50 50 50 50",
+  "50 50 0 50 50 50 50 50",
+  "50 50 50 0 50 50 50 50",
+  "50 50 50 50 0 50 50 50",
+  "50 50 50 50 50 0 50 50",
+  "50 50 50 50 50 50 0 50",
+  "50 50 50 50 50 50 50 0" }
+6
+
+Returns: 0.125
+
+

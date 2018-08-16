@@ -1,0 +1,60 @@
+PROBLEM STATEMENT
+There are N points situated on a straight line. The i-th point is located at coordinate x[i] and has a mass of m[i]. The locatıon of each point is strongly fixed and cannot be changed by any forces. Coordinates of all points are distinct.
+When another point P is added on the line and its position is not fixed, the point falls under the impact of gravitational forces from each of the given N points.  Points located to the left of P force it to the left, and points located to the right of P force it to the right.  When two points are located a distance of d apart and have masses m1 and m2, the value of gravitational force between them is F = G * m1 * m2 / d^2, where G is some positive constant.
+Point P is said to be an equilibrium point if the vector sum of gravitational forces from all points on P equals zero.  In other words, the sum of the values of gravitational forces between P and all the points located to the left of P must be the same as the sum of the values of gravitational forces between P and all the points located to the right of P.
+It is known that there always exist exactly N-1 equilibrium points. Return a double[] containing their coordinates sorted in ascending order.
+
+DEFINITION
+Class:EquilibriumPoints
+Method:getPoints
+Parameters:int[], int[]
+Returns:double[]
+Method signature:double[] getPoints(int[] x, int[] m)
+
+
+NOTES
+-Each element of your return value must have an absolute or relative error less than 1e-9.
+-You don't need to know the mass of point P and the value of constant G to solve the problem.
+
+
+CONSTRAINTS
+-x will contain between 2 and 50 elements, inclusive.
+-m will contain the same number of elements as x.
+-Each element of x will be between 1 and 1000, inclusive.
+-Each element of m will be between 1 and 1000, inclusive.
+-x will be sorted in strictly ascending order.
+
+
+EXAMPLES
+
+0)
+{1, 2}
+{1, 1}
+
+Returns: {1.5 }
+
+When two points have the same mass, the equilibrium point is located exactly halfway between them.
+
+1)
+{1, 2}
+{1, 1000}
+
+Returns: {1.0306534300317156 }
+
+When two points have distinct masses, the equlibrium point is located closer to the point with lesser mass.
+
+2)
+{1, 2, 3}
+{1, 2, 1}
+
+Returns: {1.4060952084922507, 2.5939047915077493 }
+
+There are two equilibrium points located symmetrically with respect to the middle point of the input points.
+
+3)
+{2, 3, 5, 7}
+{3, 2, 7, 5}
+
+Returns: {2.532859446114924, 3.7271944335152813, 6.099953640852538 }
+
+

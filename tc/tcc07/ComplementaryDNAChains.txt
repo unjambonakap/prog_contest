@@ -1,0 +1,47 @@
+PROBLEM STATEMENT
+A DNA chain is a sequence of proteins of 4 types.  The types are encoded using the characters 'A', 'C', 'G', 'T'.  Two proteins are called complementary if one is of type 'A' and the other is of type 'T', or if one is of type 'C' and the other is of type 'G'.  Two DNA chains are called complementary if they have equal length, and the i-th protein in the first chain and the i-th protein in the second chain are complementary for all possible values of i.
+
+You will be given strings first and second, representing two DNA chains of equal length. Your goal is to make the two chains complementary. To do this, you can perform a number of replacements, where each replacement involves changing a single protein in either one of the chains to a different type.  Return the minimum number of replacements required to achieve your goal.
+
+DEFINITION
+Class:ComplementaryDNAChains
+Method:minReplaces
+Parameters:string, string
+Returns:int
+Method signature:int minReplaces(string first, string second)
+
+
+CONSTRAINTS
+-first will contain between 1 and 50 characters, inclusive.
+-second will contain the same number of characters as first.
+-Each character in first and second will be 'A', 'C', 'G' or 'T'.
+
+
+EXAMPLES
+
+0)
+"ACGT"
+"TGCA"
+
+Returns: 0
+
+The input DNA chains are already complementary, so no replacements are needed.
+
+1)
+"ACGT"
+"ACGT"
+
+Returns: 4
+
+We need 4 replacements to transform one of the input DNA chains to "TGCA":
+
+ACGT -> TCGT -> TGGT -> TGCT -> TGCA.
+
+
+2)
+"ATAGTACCAC"
+"CTTATTGGGT"
+
+Returns: 6
+
+

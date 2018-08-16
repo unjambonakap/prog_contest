@@ -1,0 +1,107 @@
+PROBLEM STATEMENT
+Surrounding Game is a single-player game played on a rectangular grid of cells.
+Cells are considered adjacent if they share a common side.
+(Hence, each cell has at most four adjacent cells. 
+The cells on the sides and in the corners of the grid have fewer adjacent cells than the ones inside the grid.)
+
+The game is played by placing stones into some of the cells.
+Each cell may only contain at most one stone.
+A cell is called dominated if at least one of the following two conditions holds:
+
+The cell contains a stone.
+All cells adjacent to the cell contain stones.
+
+
+Each cell of the grid contains two numbers, each from 0 to 61, inclusive:
+the cost of placing a stone into the cell, and the benefit from dominating the cell.
+At the end of the game, the overall score of the player is the sum of all benefits minus the sum of all costs.
+
+You are given the vector <string>s cost and benefit.
+The characters cost[i][j] and benefit[i][j] represent the two numbers written in the cell (i,j), using the following encoding:
+
+Characters '0'-'9' represent numbers 0-9.
+Characters 'a'-'z' represent numbers 10-35.
+Characters 'A'-'Z' represent numbers 36-61.
+
+
+For example, if character 7 of element 4 of cost is 'B', the cost of placing a stone into the cell (4,7) is 37.
+
+Calculate and return the maximal possible score for the given grid.
+
+DEFINITION
+Class:SurroundingGame
+Method:maxScore
+Parameters:vector <string>, vector <string>
+Returns:int
+Method signature:int maxScore(vector <string> cost, vector <string> benefit)
+
+
+CONSTRAINTS
+-cost will contain between 2 and 20 elements, inclusive.
+-cost and benefit will contain the same number of elements.
+-Each element of cost will contain between 2 and 20 characters, inclusive.
+-Each element of cost will contain the same number of characters.
+-Each element of benefit will contain the same number of characters as element 0 of cost.
+-Each character in cost and benefit will be a character from '0'-'9','a'-'z', or 'A'-'Z'.
+
+
+EXAMPLES
+
+0)
+{"21","12"}
+{"21","12"}
+
+Returns: 4
+
+The optimal solution is to put stones into (0,1) and (1,0). All the cells will be dominated and the overall score will be 6 - 2 = 4.
+
+1)
+{"ZZ","ZZ"}
+{"11","11"}
+
+Returns: 0
+
+The optimal solution is to put no stones.
+It is impossible to get a positive score.
+
+
+2)
+{"XXX","XXX","XXX"}
+{"aaa","aZa","aaa"}
+
+Returns: 2
+
+The optimal solution is to put a stone into (1,1).
+
+
+3)
+{"asam","atik"}
+{"123A","45BC"}
+
+Returns: 71
+
+4)
+{"IIIIIIII",
+ "IIWWWWII",
+ "IIWIIIII",
+ "IIWIIIII",
+ "IIWWWWII",
+ "IIIIIWII",
+ "IIIIIWII",
+ "IIWWWWII",
+ "IIIIIIII"}
+
+{"IIIIIIII",
+ "II0000II",
+ "II0II0II",
+ "II0II0II",
+ "II0000II",
+ "II0II0II",
+ "II0II0II",
+ "II0000II",
+ "IIIIIIII"}
+
+
+Returns: 606
+
+

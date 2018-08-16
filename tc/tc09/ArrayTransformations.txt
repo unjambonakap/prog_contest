@@ -1,0 +1,82 @@
+PROBLEM STATEMENT
+
+	You are given a vector <string> initialArray. Concatenate the elements of 
+	initialArray to obtain a single space separated list of non-negative integers. Call this array A.
+
+
+
+	You are allowed to perform operations of the following type on A. Choose two zero-based indices i and j 
+	such that 0 <= i <= j < n, where n is the number of elements in A. For each k between i and j, 
+	inclusive, if A[k] is greater than 0, decrease A[k] by 1.  The cost of such an operation is j - i + 1.
+
+
+	You are allowed to perform at most K operations. The total cost of all these operations 
+	must be less than or equal to M.  Your goal is to end up with an array where the largest 
+	value is as small as possible.  Return the largest value in this final array.
+
+
+
+DEFINITION
+Class:ArrayTransformations
+Method:minimalValue
+Parameters:vector <string>, int, int
+Returns:int
+Method signature:int minimalValue(vector <string> initialArray, int K, int M)
+
+
+CONSTRAINTS
+-initialArray will contain between 1 and 50 elements, inclusive.
+-Each element of initialArray will contain between 1 and 50 characters, inclusive.
+-initialArray will contain only spaces and digits ('0'-'9').
+-The elements of initialArray, when concatenated together, will contain a space-separated list of values. Let us call the concatenated string A.
+-A will contain no leading, trailing, or consecutive spaces.
+-A will contain between 1 and 250 values, inclusive.
+-Each value in A will be an integer between 0 and 2,000,000, inclusive, with no extra leading zeroes.
+-K will be between 1 and 500,000,000, inclusive.
+-M will be between 1 and 500,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{"1 5 9", " 2 9 0 ", "1"}
+10
+5
+
+Returns: 7
+
+1)
+{"1 5 9", " 2 9 0 ", "1"}
+5
+10
+
+Returns: 6
+
+One possible solution is to perform operations on the following indices
+
+[1, 5] = (1, 4, 8, 1, 8, 0, 1)
+[2, 2] = (1, 4, 7, 1, 8, 0, 1)
+[2, 2] = (1, 4, 6, 1, 8, 0, 1)
+[4, 4] = (1, 4, 6, 1, 7, 0, 1)
+[4, 4] = (1, 4, 6, 1, 6, 0, 1)
+
+
+The solution uses 5 operations with a total cost of 9.
+
+2)
+{"1 0 3 0 0 0 0 3 0 0"}
+3
+7
+
+Returns: 2
+
+We can perform one operation on indices [2, 7] to get the array {1, 0, 2, 0, 0, 0, 0, 2, 0, 0}.
+
+3)
+{"765 358 938 10 ", "83", "9", " 172"}
+100
+200
+
+Returns: 838
+
+The original array is {765, 358, 938, 10, 839, 172}.

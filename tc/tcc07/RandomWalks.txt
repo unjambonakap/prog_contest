@@ -1,0 +1,103 @@
+PROBLEM STATEMENT
+
+Fix a coordinate system in the plane. We will now make a random walk according to the following rules:
+Start at the point (0,0). In each step randomly choose one of the four basic directions, and
+move by 1 in this direction. You are forbidden to walk along the same line segment twice (regardless
+of the direction). Should a random choice require you to do this, ignore it and make a new choice.
+The walk ends as soon as you reach the point (0,0) again.
+
+
+
+To make our random choices, we will use a generator of pseudorandom numbers.
+Our generator will work as follows:
+Given is an int seed.
+Set x0=seed.
+Now, whenever you need to choose a new direction, follow these steps:
+
+
+
+Compute a new value xi+1 = (xi * 25173 + 13849) modulo 65536.
+Let d be the integer part of (xi+1/16384). In other words, d is given by the two most significant bits of xi+1.
+
+The value d=0 corresponds to a move by (0,+1), denoted 'U'.
+The value d=1 corresponds to a move by (0,-1), denoted 'D'.
+The value d=2 corresponds to a move by (-1,0), denoted 'L'.
+The value d=3 corresponds to a move by (+1,0), denoted 'R'.
+
+
+
+
+A random walk can be uniquely described by a string of letters 'U', 'D', 'L', and 'R'.
+The length of the walk is the number of steps made, or equivalently the number of letters
+in its representation.
+Write a method that will simulate the random walk and return its representation as a
+string.
+
+
+
+If the length of the walk exceeds 40, return only the first 20 and the last 20 characters,
+separated by three dots. (See Example #2.)
+
+If the length of the walk exceeds 200,000, return an empty string.
+
+
+
+DEFINITION
+Class:RandomWalks
+Method:generateWalk
+Parameters:int
+Returns:string
+Method signature:string generateWalk(int seed)
+
+
+NOTES
+-You can not get stuck during the random walk.
+-You are allowed to pass through a vertex twice, only using a previously used line segment is forbidden.
+
+
+CONSTRAINTS
+-seed will be between 1 and 65,535, inclusive.
+
+
+EXAMPLES
+
+0)
+9
+
+Returns: "LDRU"
+
+
+This random seed leads to a simple random path with only four steps.
+
+
+For reference, the generated random values are x1=43798, x2=28775, x3=63052, and x4=5461.
+
+
+1)
+21
+
+Returns: "DLUR"
+
+Again a path with four steps, but this time we have to ignore the third generated direction 'R'.
+
+
+2)
+124
+
+Returns: "RULUURDLLURULDLDLLLD...RURRUUURULDLDDDDRRRR"
+
+The generated path for this seed has length 42. Note that we still use three dots in the returned string, even though only two characters are left out.
+
+3)
+3
+
+Returns: "DDRRURDDLURRDRRRRDDL...RDRULUURDLLLDDRDLLDD"
+
+This path has length 6082.
+
+4)
+2
+
+Returns: ""
+
+This path doesn't return to (0,0) soon enough.

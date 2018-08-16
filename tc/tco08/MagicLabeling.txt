@@ -1,0 +1,77 @@
+PROBLEM STATEMENT
+You are given a vector <string> graph, containing N elements and representing an undirected graph on N vertices. The j-th character in the i-th element of graph (which is the same as the i-th character in the j-th element of graph) is 'Y' if the i-th and j-th vertices of the graph are connected by an edge, and is 'N' otherwise.
+You should label each vertex of the graph with an integer between 1 and M, inclusive, and then label each edge with the sum of its end vertices' labels. The labeling of vertices is called magic if each edge is labeled with the same integer. Two labelings of vertices are considered distinct if there's at least one vertex which has different labels in these labelings. Calculate the total count of distinct magic labelings of the given graph. Return this number modulo 1,000,003.
+
+DEFINITION
+Class:MagicLabeling
+Method:count
+Parameters:vector <string>, int
+Returns:int
+Method signature:int count(vector <string> graph, int M)
+
+
+CONSTRAINTS
+-graph will contain between 1 and 50 elements, inclusive.
+-Each element of graph will contain the same number of characters as the number of elements in graph.
+-Each character in each element of graph will be 'Y' or 'N'.
+-The i-th character in the i-th element of graph will be 'N' for all possible i.
+-The i-th character in the j-th element of graph will be the same as the j-th character in the i-th element of graph for all possible i and j.
+-M will be between 1 and 100, inclusive.
+
+
+EXAMPLES
+
+0)
+{"NNNNN",
+ "NNNNN",
+ "NNNNN",
+ "NNNNN",
+ "NNNNN"}
+100
+
+Returns: 970003
+
+Here we have 5 isolated vertices. As there are no edges at all, any labeling is magic. So the answer is 100^5 % 1000003 = 970003.
+
+1)
+{"NNNNN",
+ "NNNNN",
+ "NNNNY",
+ "NNNNN",
+ "NNYNN"}
+100
+
+Returns: 970003
+
+An edge and 3 isolated vertices. With a single edge, any labeling is still valid.
+
+2)
+{"NYY",
+ "YNN",
+ "YNN"}
+10
+
+Returns: 100
+
+Two edges joined at vertex 0. The labeling is magic if and only if vertices 1 and 2 have the same labels.
+
+3)
+{"NYNN",
+ "YNNN",
+ "NNNY",
+ "NNYN"}
+3
+
+Returns: 19
+
+Two separate edges. You can obtain the following sums on a single edge: 2 (1+1), 3 (1+2, 2+1), 4 (1+3, 2+2, 3+1), 5 (2+3, 3+2) and 6 (3+3). The number of ways to have the same sum on both edges is 1*1 + 2*2 + 3*3 + 2*2 + 1*1 = 19.
+
+4)
+{"NYY",
+ "YNY",
+ "YYN"}
+15
+
+Returns: 15
+
+A triangle. The labeling is magic if and only if all vertices have the same labels.

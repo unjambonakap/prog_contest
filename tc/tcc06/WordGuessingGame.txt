@@ -1,0 +1,71 @@
+PROBLEM STATEMENT
+Consider the following two player word game, which slightly resembles Mastermind:
+
+The first player secretly picks a word and tells its length to the second player.
+The second player then guesses a word, and the first player responds by telling whether
+the number of correct letters in correct positions is even or odd. This is repeated
+until the second player can figure out what the first player's picked word is (see the examples
+for clarifications).
+
+Create a class WordGuessingGame containing the method possibleWords which takes
+a vector <string> even containing all the guessed words so far where
+the correct number of letters in the correct position were even, and a vector <string>
+odd containing all the guessed words so far where the correct
+number of letters in the correct position were odd. The method should return a
+vector <string> containing all possible words that the first player
+could have picked. The vector <string> should be sorted in alphabetical order.
+
+
+DEFINITION
+Class:WordGuessingGame
+Method:possibleWords
+Parameters:vector <string>, vector <string>
+Returns:vector <string>
+Method signature:vector <string> possibleWords(vector <string> even, vector <string> odd)
+
+
+NOTES
+-Note that in this problem, "word" means any possible combination of uppercase letters ('A'-'Z').
+-If no words match the information given, return an empty vector <string> (see example 3).
+
+
+CONSTRAINTS
+-even and odd will together contain between 1 and 18 elements, inclusive.
+-All elements in even and odd will be of the same length (between 1 and 9 characters, inclusive).
+-All characters in even and odd will be uppercase letters ('A'-'Z').
+-The number of words matching the given information will be at most 100.
+
+
+EXAMPLES
+
+0)
+{"DAY","MAY","BUY"}
+{"SAY","DUE","TEN"}
+
+Returns: {"SEE" }
+
+
+0 or 2 letters are correct and at their correct location in the words "DAY" and "MAY". This tells us that the first letter can't be 'D' or 'M' because then one of the words would have an odd number of letters correct. "DAY" and "SAY" tell us that the first letter is either 'D' or 'S'. Therefore, the first letter must be 'S'.
+
+
+So the first letter is wrong in "MAY" and "BUY", and because they have the same parity, the second letter can't be 'A' or 'U'. Knowing that 'D' is not the first letter and 'U' is not the second, we can conclude from the word "DUE" that the last letter must be 'E'. Finally the word "TEN" tells us that the second letter must be 'E' because the other two letters in the word are wrong.
+
+
+
+1)
+{"QMNA","UQJE"}
+{"HUIF","QMZB","QEHJ","LBJL"}
+
+Returns: {"HBHB", "HBZJ", "HEZL", "LEIB", "LEZF", "LUHB", "LUZJ", "QBIA", "QBNF", "QUNL" }
+
+2)
+{"NODSN"}
+{"MOOTN","CRXXU","SREQR","DEREX","HOYGF","CDLCP","ZTDOC","STEEB"}
+
+Returns: {"CODER" }
+
+3)
+{}
+{"AB","BC","CA"}
+
+Returns: { }

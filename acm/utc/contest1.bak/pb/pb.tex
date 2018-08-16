@@ -1,0 +1,43 @@
+\begin{problem}{Moving along}{movalong.in}{movalong.out}{2 seconds}
+
+
+For this problem only, we will use the term graph instead of multigraph (can have more than one edge between the same 2 vertices).\\ 
+Fox is playing a game alone. He starts on a vertex of a graph (undirected) and move along its edges. He would like to know whether or not it is possible to move indefinitely.
+This game would be trivial without any restrictions so Fox is not allowed to move along an edge if it was also used during the previous move.\\ 
+After a few games he found the game too easy and decided to call his friend Lin to play the game with him.\\ 
+Lin plays the gamemaster. 
+Initially he chooses the number of vertices of the graph on which they will play (the graph has originally no edges).\\ 
+Then Lin has to perform a number $k$ of actions.
+One action can be to either add an edge between two vertices of the graph (even if it already exists) or ask Fox to solve the game on the graph from a vertex of Lin's choice.
+
+There is a countdown so Fox has to be very quick solving the game, can you help him?
+
+\InputFile
+
+On the first line a single integer $n$, the number of vertices in the graph.
+
+The next line contains the number $k$ of operations/questions asked by Lin (in order).\\ 
+The next $k$ lines describe either an operation or a question.\\ 
+A line describing an operation contains 3 integers. $0$ is the first integer and the 2 remaining integers $x_i$ and $y_i$ are distinct and represent the edge to be added to the graph.\\ 
+A line describing a question contains 2 integers. $1$ is the first integer and the second integer $z_i$ is the starting vertex at which Fox has to answer if he can play indefinitely.\\ 
+
+The constraints are as follows:
+$1\le n \le 10^3$,\\ 
+$1\le k \le 10^3$,\\ 
+$1\le x_i,y_i,z_i \le n$, $x_i\not=y_i$,\\ 
+
+\OutputFile
+
+For each question asked, print on a new line "Possible" if Fox can play indefinitely and "Impossible" otherwise.
+
+\Example
+
+\begin{examplewide}
+\exmp{
+0 1 12
+}{
+ans
+}%
+\end{examplewide}
+
+\end{problem}

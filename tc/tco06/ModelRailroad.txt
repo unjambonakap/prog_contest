@@ -1,0 +1,51 @@
+PROBLEM STATEMENT
+
+Your nephew was given a model railroad set as a gift.  This railroad set contains pieces of track that can be combined to form a closed loop.  There are two types of track:  curved pieces, each of which is a 60 degree arc of a circle, and straight pieces.  The radius of the arc is three feet, and each straight piece is two feet long.  
+
+
+You have six curved pieces, just enough to make a complete circle, and a given number of straight pieces.  Your nephew wants to know how many different track layouts he can construct.
+Two layouts are considered equivalent if one can be rotated (but not flipped) to be equivalent to the other.  Each layout must be a closed loop, with the pieces connected end-to-end.  The pieces will only connect in a smooth curve; you cannot connect two pieces at an angle. All possible layouts for five or fewer straight pieces are shown in the figure below:
+
+
+
+
+
+DEFINITION
+Class:ModelRailroad
+Method:countTracks
+Parameters:int
+Returns:long long
+Method signature:long long countTracks(int straight)
+
+
+CONSTRAINTS
+-straight will be between 0 and 1000, inclusive.
+
+
+EXAMPLES
+
+0)
+0
+
+Returns: 1
+
+The only possibility here is a perfect circle.
+
+1)
+1
+
+Returns: 1
+
+There is no way to use only one straight track and form a closed loop, so the extra piece is useless.
+
+2)
+3
+
+Returns: 3
+
+We can either use two straights on opposite sides to make a conventional oval track, or we can use three straights to make a rounded equilateral triangle, or we can make a perfect circle.
+
+3)
+5
+
+Returns: 6

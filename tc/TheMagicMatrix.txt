@@ -1,0 +1,73 @@
+PROBLEM STATEMENT
+A magic matrix is a square matrix filled with digits (0 to 9) such that its row sums and column sums all have the same last digit.
+John has n by n matrix.
+Its rows and columns are numbered from 0 to n-1.
+Some cells of the matrix already contain digits and some are empty.
+John wants to assign a value to each empty cell to get a magic matrix.
+
+
+You are given an int n and vector <int>s rows, columns, values.
+The number values[i] is the digit in John's matrix at row rows[i] and at column columns[i].
+Return the number of different matrices John can get modulo 1,234,567,891.
+
+
+DEFINITION
+Class:TheMagicMatrix
+Method:find
+Parameters:int, vector <int>, vector <int>, vector <int>
+Returns:int
+Method signature:int find(int n, vector <int> rows, vector <int> columns, vector <int> values)
+
+
+CONSTRAINTS
+-n will be between 1 and 1000, inclusive.
+-rows will contain between 1 and 10 elements, inclusive.
+-rows, columns and values will all contains the same number of elements.
+-Each element of rows will be between 0 and n-1, inclusive.
+-Each element of columns will be between 0 and n-1, inclusive.
+-Each element of values will be between 0 and 9, inclusive.
+-All pairs (rows[i], columns[i]) will be distinct.
+
+
+EXAMPLES
+
+0)
+2
+{0, 1}
+{1, 0}
+{4, 4}
+
+Returns: 10
+
+John will get a magic matrix only if he assigns equal values to both empty cells. 
+
+
+1)
+2
+{0, 1}
+{1, 0}
+{4, 7}
+
+Returns: 0
+
+
+
+2)
+4
+{0, 0, 0, 1, 2, 2, 2, 3, 3, 3}
+{0, 1, 2, 3, 0, 1, 2, 0, 1, 2}
+{3, 5, 1, 9, 5, 1, 8, 6, 7, 1}
+
+Returns: 2
+
+
+
+3)
+474
+{44, 77}
+{47, 74}
+{4, 7}
+
+Returns: 83494518
+
+

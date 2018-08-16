@@ -1,0 +1,71 @@
+PROBLEM STATEMENT
+After concatenating the elements of ops into a single string S, you will have a space-delimited list of operations.  The operations are as follows (all quotes are for clarity), and are performed on a special list data structure:
+
+ "AN" : Add the positive integer N to the end of the list.  For example, "A17" adds 17 to the end of the list.
+ "FN" : Find the positive integer N in the list.  For example, "F137" finds the integer 137 in the list. 
+
+We want to minimize the total cost of all the find operations.  Each time an add operation occurs, in addition to adding the corresponding integer to the end of the list, the integer is optionally added to the end of the skip cache.  The cost of finding an integer N is computed as follows:
+
+ If N belongs to the skip cache, the cost is the (1-based) position of N in the skip cache.  For example, the first skip cache element would cost 1, and the eighth element would cost 8. 
+ If N does not belong to the skip cache, the cost is the (1-based) position of N in the list added to the number of elements in the skip cache.  For example, if N is second in the list (and not in the skip cache), and the skip cache has 3 elements the cost would be 5.
+
+Assuming elements are added to the skip cache optimally, return the minimum possible total cost of all find operations.  The program using the list exhibits a certain level of locality in its access patterns.  Suppose that the integer M has been previously added, that M has not been queried (i.e., "FM") since the last add, and that M will be queried exactly K more times.  Here "previously added" means any time earlier in the operation sequence.  Then M will be queried at least K/2 (rounding up for odd K) times before the next add occurs, or the operation list ends (whichever occurs first). 
+
+DEFINITION
+Class:SkipList
+Method:minCost
+Parameters:vector <string>
+Returns:int
+Method signature:int minCost(vector <string> ops)
+
+
+NOTES
+-There is no bound on the size of the cache.
+
+
+CONSTRAINTS
+-ops will contain between 1 and 50 elements, inclusive.
+-Each element of ops will contain between 1 and 50 characters, inclusive.
+-Each character in ops will be 'A', 'F', a space (' '), or a digit ('0'-'9').
+-Once concatenated, the elements of ops will form a single space-delimited list of operations with no leading or trailing spaces.  Each operation will take the form (quotes for clarity) "AN" or "FN", where N denotes a positive integer between 1 and 10000, inclusive, with no leading zeros.
+-No integer will be added more than once.
+-The accesses will adhere to the locality constraint stated at the end of the problem statement.
+-Only previously added integers will be queried.
+
+
+EXAMPLES
+
+0)
+{"A1 ","A2 ","A3"," F3"," F3"," F3"}
+
+Returns: 3
+
+Here only the integer 3 is added to the cache.
+
+1)
+{"A1 F1 F1 F1 A2 F1 F2 F1 F2 F1" }
+
+Returns: 10
+
+By adding nothing to the cache each F1 costs 1 and each F2 costs 2.
+
+2)
+{"A1 F1 F1 F1 A2 F1 F2 F1 F2 F2 F2 F2 F2 F2" }
+
+Returns: 14
+
+Here we add only 2 to the cache.  The first 3 queries cost 1 each.  All remaining queries for 1 cost 2 each.  All queries for 2 cost 1.
+
+3)
+{"A10","000 A","900 A800 F800 A1 ","F1 F1 F1 F1 A2 F1 F1 A3 F1"}
+
+Returns: 10
+
+
+
+4)
+{"A1 A2 A3 A4 A5"}
+
+Returns: 0
+
+No queries.

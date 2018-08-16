@@ -1,0 +1,99 @@
+PROBLEM STATEMENT
+The Game of Life is a simulation which takes an initial state and shows its evolution over time.  The simulation takes place on an infinite 2-dimensional grid of cells, where each cell is either live or dead.  Each cell has exactly 8 neighbors (2 horizontal, 2 vertical, and 4 diagonal).  Once the initial layout of live and dead cells is known, the evolution of the grid happens step by step.  On each step, the state of the cells changes in the following way:
+
+Each live cell with less than 2 or more than 3 live neighbors becomes dead.
+
+Each dead cell with exactly 3 live neighbors becomes live.
+
+All other cells remain the same.
+
+All cells change their states simultaneously, so for each cell, the number of live neighbors is calculated before any changes are performed.
+
+You are given a vector <string> grid which describes the initial layout of cells on a rectangular section of the grid.  Unlike the classic game, in which the initial states of all the cells are known, grid contains cells of three types: live, dead and unknown, denoted by '1' (one), '0' (zero) and '?', respectively.  The j-th character of the i-th element of grid describes the cell at row i, column j of the rectangular section.  No cell will have more than one neighbor of type '?'.  All cells outside of the area described by grid are initially dead.
+
+Your task is to replace the unknown cells in the initial layout with live or dead cells in such a way that the total number of live cells after one step is maximized.  Return the maximal possible number of live cells after one step.
+
+DEFINITION
+Class:FuzzyLife
+Method:survivingCells
+Parameters:vector <string>
+Returns:int
+Method signature:int survivingCells(vector <string> grid)
+
+
+CONSTRAINTS
+-grid will contain between 2 and 50 elements, inclusive.
+-Each element of grid will contain between 2 and 50 characters, inclusive.
+-All elements of grid will contain the same number of characters.
+-Each character in grid will be '0', '1' or '?'.
+-No cell will have more than one neighboring cell of type '?'.
+
+
+EXAMPLES
+
+0)
+{"011",
+ "0?1",
+ "100"}
+
+Returns: 5
+
+There is only one unknown cell on the board, and two choices of filling it:
+
+011    011     011    011
+001 -> 001  or 011 -> 101
+100    000     100    010
+
+The first choice produces 3 live cells, and the second one produces 5 live cells.
+
+1)
+{"101",
+ "0?0",
+ "101"}
+
+Returns: 4
+
+Again only one unknown cell and two choices:
+
+101    000     101    010
+000 -> 000  or 010 -> 101
+101    000     101    010
+
+
+2)
+{"11",
+ "11"}
+
+Returns: 4
+
+It is possible to have no unknown cells.
+
+3)
+{"111",
+ "1?1",
+ "111"}
+
+Returns: 8
+
+The number of live cells doesn't depend on the choice of the unknown cell. Remember that the cells outside of the described part of the grid can turn live as well.
+
+4)
+{"?11?",
+ "0110",
+ "1001",
+ "?11?"}
+
+Returns: 12
+
+
+
+5)
+{"00100",
+ "01010",
+ "10?01",
+ "01010",
+ "00100"}
+
+Returns: 12
+
+Choosing '0' as the value of an unknown cell is sometimes better.

@@ -1,0 +1,50 @@
+PROBLEM STATEMENT
+Each element of text is a line of prose from some passage.  You will return a vector <string> that is read downward as opposed to left-to-right.  That is, the first element of text will correspond to the first "column" of the returned vector <string>, and so forth.
+
+DEFINITION
+Class:ProseFlip
+Method:getFlip
+Parameters:vector <string>
+Returns:vector <string>
+Method signature:vector <string> getFlip(vector <string> text)
+
+
+CONSTRAINTS
+-text will contain between 1 and 50 elements, inclusive.
+-Each element of text will contain between 1 and 50 characters, inclusive.
+-Each element of text will contain the same number of characters.
+-Each character in text will be an uppercase letter ('A'-'Z').
+
+
+EXAMPLES
+
+0)
+{
+"AAA",
+"BBB",
+"CCC"
+}
+
+Returns: {"ABC", "ABC", "ABC" }
+
+Rows of the input become columns of the return value.
+
+1)
+{"AAAAAAAAAAAAA"}
+
+Returns: {"A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A" }
+
+One long row.
+
+2)
+{
+"A",
+"A",
+"A",
+"A",
+"A"
+}
+
+Returns: {"AAAAA" }
+
+One long column.

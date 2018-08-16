@@ -1,0 +1,62 @@
+PROBLEM STATEMENT
+The function f: R -> R is called cool if there are integer numbers a0 <= a1 <= ... <= ak-1 (k >= 1) such that f(x) = |x - a0| + |x - a1| + ... + |x - ak-1| for every real value of x.
+
+You will be given a vector <int> values, containing n elements. You should find a cool function f such that f(i) = values[i] for every i, where 0 <= i < n. Return a vector <int>, containing the values a0, a1, ..., ak-1 for this function. If there are many possible answers, choose the one with the smallest number of elements. If tie still exists, return the lexicographically smallest vector <int>. Constraints will guarantee that values corresponds to at least one cool function.
+
+DEFINITION
+Class:CoolFunction
+Method:restore
+Parameters:vector <int>
+Returns:vector <int>
+Method signature:vector <int> restore(vector <int> values)
+
+
+CONSTRAINTS
+-values will contain between 1 and 50 elements, inclusive.
+-Each element of values will be between 0 and 50, inclusive.
+-values will correspond to at least one cool function.
+
+
+EXAMPLES
+
+0)
+{0}
+
+Returns: {0 }
+
+|x| is acceptable here.
+
+1)
+{50}
+
+Returns: {-50 }
+
+Here there are two variants with k=1: |x-50| and |x+50|. The second one is lexicographically smaller.
+
+2)
+{2, 4}
+
+Returns: {-2, 0 }
+
+
+
+3)
+{3, 3}
+
+Returns: {-2, 1 }
+
+
+
+4)
+{5, 1}
+
+Returns: {1, 1, 1, 2 }
+
+The return is not necessarily strictly increasing.
+
+5)
+{10, 4, 6}
+
+Returns: {1, 1, 1, 1, 2, 4 }
+
+

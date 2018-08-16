@@ -1,0 +1,76 @@
+PROBLEM STATEMENT
+We have a real number that we want to approximate with as few characters as 
+possible. We require that either the absolute
+error or the relative error must be strictly less than 10^-k. The absolute
+error is the absolute difference between the values of the shortened version 
+and the original.
+The relative error is the absolute error divided by the absolute value of 
+the original (or is taken to be infinity if the original is 0).
+
+We want the shortened version expressed as a string of digits, possibly with
+a decimal point. The original number is given to us in that form.
+Given k and number, 
+return the number of characters in the shortest approximation.
+
+
+
+DEFINITION
+Class:Neaten
+Method:shortest
+Parameters:int, string
+Returns:int
+Method signature:int shortest(int k, string number)
+
+
+CONSTRAINTS
+-k will be between 1 and 50, inclusive.
+-number will contain between 1 and 50 characters, inclusive.
+-number will contain at most one decimal point ('.').
+-Other than '.', number will contain only digits ('0'-'9').
+-number will contain at least one digit.
+
+
+EXAMPLES
+
+0)
+2
+ "00."
+
+Returns: 1
+
+The approximation "0" has 1 character and has an absolute error of 0.
+  
+
+
+1)
+2
+".20050"
+
+Returns: 2
+
+The approximation ".2" has 2 characters and has an absolute error of .0005 (which is less than .01).
+
+
+2)
+3
+"10000"
+
+Returns: 4
+
+The approximation "9995" has a relative error of 5/10000 (which is less than .001).
+
+3)
+1
+"0.90"
+
+Returns: 2
+
+Please note that the error must be strictly less than 10-k.
+
+4)
+3
+"91.909"
+
+Returns: 2
+
+

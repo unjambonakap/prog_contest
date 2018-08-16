@@ -1,0 +1,91 @@
+PROBLEM STATEMENT
+
+The vector <int> bag describes a bag of non-negative integers. A bag is the same thing as a set, only it may contain repeated elements.
+The order of elements in a bag does not matter.
+
+
+
+Given two bags A and B, we say that A is a sub-bag of B if A can be obtained by erasing zero or more elements from B.
+
+
+
+The weight of a bag is the sum of its elements.
+
+
+
+Examples: 
+The bags (1,2,1,3,1) and (3,1,1,1,2) are the same, but different from the bag (1,2,3,3). 
+Bags (1,2) and (3,1,1) are sub-bags of the bag (1,2,1,3,1), but bag (1,2,2) is not. 
+The weight of the bag (1,2,1,3,1) is 1+2+1+3+1=8.
+
+
+
+Write a method that will compute how many sub-bags of bag have a prime weight.
+
+
+DEFINITION
+Class:PrimeSums
+Method:getCount
+Parameters:vector <int>
+Returns:long long
+Method signature:long long getCount(vector <int> bag)
+
+
+NOTES
+-A prime number is a positive integer with exactly two positive integer divisors.
+-Zero (0) and one (1) are not prime numbers.
+
+
+CONSTRAINTS
+-bag will contain between 1 and 50 elements, inclusive.
+-Each element in bag will be between 0 and 10,000, inclusive.
+
+
+EXAMPLES
+
+0)
+{1,1,2,7}
+
+Returns: 5
+
+
+This bag has 12 different sub-bags: (1,1,2,7), (1,2,7), (2,7), (1,1,7), (1,7), (7), (1,1,2), (1,2), (2), (1,1), (1), and ().
+
+
+Out of these 12, 5 have prime weights: (1,1,2,7) has weight 11, (7) has weight 7, (1,2) has weight 3, and both (2) and (1,1) have weight 2.
+
+
+1)
+{1,1,1,1,1,1,1,1,1,1}
+
+Returns: 4
+
+This bag has eleven different sub-bags. Out of them four have prime weights (2, 3, 5, and 7).
+
+2)
+{4,6,8,10,12,14}
+
+Returns: 0
+
+The empty sub-bag has weight zero, and any other sub-bag has an even weight greater than 2.
+
+3)
+{1,2,4,8,16,32,64,128}
+
+Returns: 54
+
+
+
+4)
+{1234,5678,9012,3456,7890,2345,6789,123,4567,8901}
+
+Returns: 97
+
+
+
+5)
+{0,0,7}
+
+Returns: 3
+
+

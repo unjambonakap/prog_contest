@@ -1,0 +1,99 @@
+PROBLEM STATEMENT
+
+An airline company has flights to all major cities in some country. From any major city it is
+possible to reach any other major city either by a direct flight, or by two or more flights.
+The company has provided a matrix containing the cheapest cost when taking a trip between any pair of
+major cities. When several flights are needed for a trip, the cost for that trip is the sum
+of the costs of the direct flights. The cost for a direct flight is a positive integer.
+
+
+
+Given this matrix, you want to find the least possible total cost of all direct flights. You
+can assume that if a flight exists from A to B, another flight with the same cost exists from
+B to A (and you should only count one of these direct flights), and that no other flights between
+the same pair of cities exist with a different cost.
+
+
+
+Create a class CostMatrix containing the method leastTotalCost which takes as input a vector <string>
+matrix, describing the cost matrix as a symmetric table. Each row i (0-indexed) will contain
+a single space separated list of integers, where the jth integer (0-indexed) in row i is the
+cheapest cost to take a trip between cities i and j. The diagonal entries will all be 0.
+The method should return an int, the least possible total cost for all direct flights.
+If the cost matrix is inconsistent, return -1.
+
+
+
+DEFINITION
+Class:CostMatrix
+Method:leastTotalCost
+Parameters:vector <string>
+Returns:int
+Method signature:int leastTotalCost(vector <string> matrix)
+
+
+CONSTRAINTS
+-matrix will contain between 2 and 20 elements, inclusive.
+-Each element in matrix will be a single-space separated list of non-negative integers without leading or trailing spaces.
+-The number of integers in each element in matrix will be the same as the number of elements in matrix.
+-The ith integer in element j, where i != j, will be between 1 and 2500, inclusive, without leading zeros.
+-The ith integer in element i will be 0.
+-The ith integer in element j will be equal to the jth integer in element i.
+
+
+EXAMPLES
+
+0)
+{"0 2 2",
+ "2 0 2",
+ "2 2 0"}
+
+Returns: 6
+
+The only possible network of flight routes consists of three direct flights, each with cost 2, connecting every pair of cities, for a total cost of 6.
+
+1)
+{"0 6 15 2 6",
+ "6 0 9 8 12",
+ "15 9 0 16 18",
+ "2 8 16 0 4",
+ "6 12 18 4 0"}
+
+Returns: 55
+
+
+The least possible cost consists of the direct flights:
+
+
+
+City 0 - city 1 (cost 6)
+City 1 - city 2 (cost 9)
+City 0 - city 3 (cost 2)
+City 2 - city 3 (cost 16)
+City 3 - city 4 (cost 4)
+City 2 - city 4 (cost 18)
+
+
+2)
+{"0 1 6 17 26 13 7 16",
+ "1 0 5 16 25 12 7 15",
+ "6 5 0 21 21 8 12 11",
+ "17 16 21 0 41 28 23 31",
+ "26 25 21 41 0 13 32 10",
+ "13 12 8 28 13 0 19 3",
+ "7 7 12 23 32 19 0 22",
+ "16 15 11 31 10 3 22 0"}
+
+
+Returns: 69
+
+
+
+3)
+{"0 1 3", 
+ "1 0 1", 
+ "3 1 0"}
+
+Returns: -1
+
+The cost matrix is inconsistent since it says the cheapest cost to travel between city 0 and 2 is 3, even though it obviously can be done at cost 2 by making an intermediate landing at city 1.

@@ -1,0 +1,49 @@
+PROBLEM STATEMENT
+Dominoes is a game played with rectangular tiles. Each tile (domino) is split in half vertically and contains two numbers between 0 and 6, inclusive. One tile A can be played after tile B if the left number of A is the same as the right number of B. Several consecutively played tiles are called a line.  For example, the picture below shows a line containing four tiles.
+
+You will be given a vector <string> tiles. Each element of tiles will be in the format "X:Y" where X and Y are digits between 0 and 6, inclusive. You should arrange these tiles into as few lines as possible. You can turn over any tile, i.e., the tile "2:5" can also be used as "5:2". Each tile should be used exactly once. Your method should return the constructed lines as a  vector <string>. Each element should represent a single line, formatted as a dash-separated list of tiles in the order and orientation they occur in the line. If there is more than one solution possible, return the solution whose first element comes first lexicographically.
+If there are still multiple solutions, return the one among them whose second element comes first lexicographically, and so on.
+
+
+DEFINITION
+Class:DominoesLines
+Method:constructLines
+Parameters:vector <string>
+Returns:vector <string>
+Method signature:vector <string> constructLines(vector <string> tiles)
+
+
+CONSTRAINTS
+-tiles will contain between 1 and 50 elements, inclusive.
+-Each element of tiles will be in the format "X:Y" where X and Y are digits between 0 and 6, inclusive. 
+
+
+EXAMPLES
+
+0)
+{"1:0", "1:1", "1:2", "1:3", "1:4"}
+
+Returns: {"0:1-1:1-1:2", "3:1-1:4" }
+
+1)
+{"4:0", "4:1", "4:2", "4:3", "4:4"}
+
+Returns: {"0:4-4:1", "2:4-4:4-4:3" }
+
+2)
+{"0:0", "1:1", "2:2", "3:3", "6:6", "6:0"}
+
+Returns: {"0:0-0:6-6:6", "1:1", "2:2", "3:3" }
+
+3)
+{"0:4", "6:6", "1:2", "1:1", "3:1", "4:4", "0:1", "1:5", "5:0"}
+
+Returns: {"0:1-1:1-1:2", "3:1-1:5-5:0-0:4-4:4", "6:6" }
+
+4)
+{"3:1", "0:2", "6:1", "6:3", "4:6", "6:4", 
+ "2:3", "4:0", "5:2", "2:2", "6:6"}
+
+Returns: {"2:0-0:4", "3:1-1:6-6:4-4:6-6:6-6:3-3:2-2:2-2:5" }
+
+

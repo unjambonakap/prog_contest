@@ -1,0 +1,52 @@
+\begin{problem}{Timer}{stdin}{stdout}{2 seconds}
+
+
+
+\par You discovered a time capsule in your backyard. It has a timer consisting of a single number $k$ and a set of instructions.
+\par The instructions state that each time it is the $y_1$-th day of the month on the Maya calendar and the $y_2$-th day of the month on the Azteq calendar, the number on the timer decreases by 1 (it decreases at the very beginning of the day). 
+The capsule will open when the timer becomes $0$.
+\par You would like to know in how many days are left until the capsule opens.
+
+\par How fortunate that you took a minor last year in ancient civilizations not so long ago! You remember that there are $T_1$ days in a month of the Maya calendar and $T_2$ days in the Azteq one (yeah, you are in a parallel world). You also know that today is the $x_1$-th (resp. $x_2$) day of the month in the Maya (resp. Azteq) calendar .
+
+\InputFile
+
+The input consits of multiple test cases (no more than 10 test cases by input file).\\ 
+Each test case consists of 7 space separated integers on a single line. \\ 
+They represent in order: $k$, $x_1$, $x_2$, $y_1$, $y_2$, $T_1$ and $T_2$. \\ 
+The input ends by 7 zeros on a single line (see sample input).\\ 
+
+\par The constraints are as follows:
+
+$1\le k \le 10^9$,\\ 
+$1\le x_1,y_1 \le T_1$,\\ 
+$1\le x_2,y_2 \le T_2$,\\ 
+$1\le T_1,T_2 \le 1000$,\\ 
+
+
+\OutputFile
+
+Output the answer on a single line.\\ 
+Please use \%Ld modifiers or cin/cout to handle 64-bit integers IO in C/C++
+
+\Example
+
+\begin{examplewide}
+\exmp{
+1 1 3 2 2 2 3
+2 1 1 2 2 3 3
+1 1 1 1 1 1 1
+0 0 0 0 0 0 0
+}{
+5
+4
+1
+}%
+\end{examplewide}
+
+For the first example, the states on the calendar for each day are:\\ 
+(1,3), (2,1), (1,2), (2,3), (1,1), (2,2).\\
+On the beginning of the last day (state (2,2)), the timer is decreased to 0 and the capsul opens.\\ 
+Thus the answer is 5.
+
+\end{problem}

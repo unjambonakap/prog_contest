@@ -1,0 +1,65 @@
+PROBLEM STATEMENT
+
+A prefix of a string s is any string that can be obtained by erasing zero or more characters from the right end of s.
+A prefix-free set is a set of binary words in which no element is a prefix of another element in the set. For example {"00"} , {"00", "01", "110", "10"} and the empty set are examples of prefix-free sets. On the other hand, {"0","01"} and {"111","11","1"} are not prefix-free.
+
+You will be given a vector <string> cur containing a prefix-free set of binary words, and a long long k. Return the minimum sum of the lengths of all the words in a set of exactly k binary words that is prefix-free and includes all words from cur. If such a set does not exist, return -1. If the number to be returned is strictly greater than 1000000000000000000 (10^18), return -2 instead.
+
+
+DEFINITION
+Class:PrefixFreeSuperset
+Method:minSumLength
+Parameters:vector <string>, long long
+Returns:long long
+Method signature:long long minSumLength(vector <string> cur, long long k)
+
+
+CONSTRAINTS
+-cur will contain between 1 and 50 elements, inclusive.
+-Each element of cur will contain between 1 and 50 characters, inclusive.
+-Each character of each element of cur will be either '0' (zero) or '1' (one).
+-No element of cur will be a prefix of another element of cur.
+-k will be between the number of elements in cur and 1000000000000 (10^12), inclusive.
+
+
+EXAMPLES
+
+0)
+{"010"}
+4
+
+Returns: 9
+
+One optimal possibility is the set {"010","1","00","011"}
+
+1)
+{"01","000"}
+4
+
+Returns: 9
+
+The set {"000","01","10","11"} is prefix-free and includes all the words in cur, so it is a possible answer. The sum of the lengths of the words in that set is also minimal.
+
+2)
+{"0011","011110101","11101010111","11101010100000000","11101010100000001111"}
+1000000000000
+
+Returns: 39971901640560
+
+
+
+3)
+{"010","00","011","1"}
+4
+
+Returns: 9
+
+
+
+4)
+{"010","00","011","1"}
+5
+
+Returns: -1
+
+

@@ -1,0 +1,70 @@
+PROBLEM STATEMENT
+There is an infinite field divided into 1x1 squares.  A robot is standing in one of the squares.
+
+You are going to make the robot move according to the following algorithm.  Create a String S by concatenating times copies of the given string program.  Then, go through all the characters of S from beginning to end. For each character, move the robot to an adjacent square in the direction indicated by the character. 'U' means up, 'D' means down, 'L' means left and 'R' means right.
+
+After you have gone through all the characters of S, determine which squares have been visited by the robot.  A square is considered visited if the robot has been in it at least once. The starting and ending squares are considered visited. Return the total number of visited squares.
+
+DEFINITION
+Class:RobotSimulation
+Method:cellsVisited
+Parameters:string, int
+Returns:int
+Method signature:int cellsVisited(string program, int times)
+
+
+CONSTRAINTS
+-program will contain between 1 and 10 characters, inclusive.
+-Each character in program will be one of 'U', 'D', 'L' or 'R'.
+-times will be between 1 and 200,000,000, inclusive.
+
+
+EXAMPLES
+
+0)
+"RRR"
+100
+
+Returns: 301
+
+The robot will move to the right 300 times, so 301 squares will be visited.
+
+1)
+"DDU"
+100
+
+Returns: 102
+
+The robot will move according to the pattern "DDU" 100 times.  Initially, we have 1 visited square.  The first time the pattern "DDU" is applied, it adds 2 new squares, and each subsequent time this pattern is applied, only 1 new square is added.  Therefore the total number of visited squares is 1 + 2 + 1 * 99 = 102.
+
+2)
+"URLD"
+100
+
+Returns: 3
+
+After each repetition of the pattern "URLD", the robot returns to the initial cell. So the answer here doesn't depend on times and is always equal to 3.
+
+3)
+"UUDUDDLLDR"
+1
+
+Returns: 7
+
+
+
+4)
+"UUDUDDLLDR"
+12345678
+
+Returns: 37037039
+
+
+
+5)
+"RRUUULLDD"
+3603602
+
+Returns: 10810815
+
+

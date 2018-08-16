@@ -1,0 +1,92 @@
+PROBLEM STATEMENT
+
+You are given a vector <string> text. Concatenate all elements of text to make one string. 
+You are also given four strings a, b, c and d, all of which are 
+substrings of the concatenated text.  Find exactly one occurrence of each of these four strings in the 
+text (they are allowed to overlap).  Each character in the text that belongs to one or more of these 
+substring occurrences is called covered.  For example, if the text is "foursubstrings", and 
+a = "our", b = "s", c = "ring", and d = "sub", one possible configuration is:
+
+
+foursubstrings - text
+ our           - a
+    s          - b
+         ring  - c
+    sub        - d
+ ++++++  ++++  - covered letters
+
+
+The letters marked by '+' are covered.
+
+
+Return a vector <int> containing exactly two elements.  
+The first element should be the minimum possible number of covered 
+characters in a configuration, and the second element should be 
+the maximum possible number of covered characters.
+
+
+
+
+DEFINITION
+Class:FourSubstrings
+Method:getCoverageCount
+Parameters:vector <string>, string, string, string, string
+Returns:vector <int>
+Method signature:vector <int> getCoverageCount(vector <string> text, string a, string b, string c, string d)
+
+
+CONSTRAINTS
+-text will contain between 1 and 50 elements, inclusive.
+-Each element of text will contain between 1 and 50 characters, inclusive.
+-text will contain only lowercase letters ('a'-'z').
+-a, b, c and d will each contain between 1 and 50 characters, inclusive.
+-a, b, c and d will contain only lowercase letters ('a'-'z').
+-a, b, c and d will each be a substring of the concatenation of text.
+
+
+EXAMPLES
+
+0)
+{"abacaba"}
+"ab"
+"ba"
+"a"
+"c"
+
+Returns: {4, 6 }
+
+The minimal number of covered characters corresponds to "ABACaba", and the maximal corresponds to "ABACaBA" (the covered characters are shown in uppercase).
+
+1)
+{"hello"}
+"he"
+"l"
+"l"
+"o"
+
+Returns: {4, 5 }
+
+Occurrences of substrings may overlap.
+
+
+2)
+{"ababababa", "baba"}
+"ababababa"
+"ababababa"
+"ababababa"
+"ababababa"
+
+Returns: {9, 13 }
+
+
+
+3)
+{"foursubstrings"}
+"our"
+"s"
+"ring"
+"sub"
+
+Returns: {10, 11 }
+
+

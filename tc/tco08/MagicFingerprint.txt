@@ -1,0 +1,91 @@
+PROBLEM STATEMENT
+
+Given a positive integer N with at least two digits, we can define magic(N) as follows:
+Write N as a string of decimal digits. Now, for each two consecutive digits, compute their difference
+(a non-negative number less than ten), and write it down. In this way you'll obtain a new number,
+possibly with leading zeroes. Drop unnecessary leading zeroes if there are any.
+
+
+
+For example, magic(5913)=482, magic(1198)=081=81, and magic(666)=00=0.
+
+
+
+For any number N the sequence: N, magic(N), magic(magic(N)), ... will sooner or later terminate with a single-digit number.
+This final value is called the magic fingerprint of N.
+
+
+
+For example, for N=5913 we get the sequence: 5913, 482, 46, 2. Therefore the magic fingerprint of 5913 is 2.
+
+
+
+There are not too many numbers with the magic fingerprint seven (7). These numbers are considered lucky.
+
+
+
+Write a method that will compute the count of lucky numbers between A and B, inclusive.
+
+
+DEFINITION
+Class:MagicFingerprint
+Method:countLuckyNumbers
+Parameters:int, int
+Returns:int
+Method signature:int countLuckyNumbers(int A, int B)
+
+
+CONSTRAINTS
+-B will be between 1 and 1,000,000,000, inclusive.
+-A will be between 1 and B, inclusive.
+
+
+EXAMPLES
+
+0)
+1
+9
+
+Returns: 1
+
+The only single-digit lucky number is, of course, the lucky number seven.
+
+1)
+1
+100
+
+Returns: 6
+
+There are five two-digit lucky numbers: 18, 29, 70, 81, and 92.
+
+2)
+1198
+1198
+
+Returns: 1
+
+The number 1198 is lucky. The corresponding sequence is: 1198, 81, 7.
+
+3)
+1223
+1299
+
+Returns: 0
+
+This range contains no lucky numbers.
+
+4)
+999999930
+1000000000
+
+Returns: 2
+
+The two lucky numbers in this range are 999,999,980 and 999,999,992.
+
+5)
+100000
+1000000000
+
+Returns: 159720
+
+The largest output is obviously not much larger.

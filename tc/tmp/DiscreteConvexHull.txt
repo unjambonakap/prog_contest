@@ -1,0 +1,69 @@
+PROBLEM STATEMENT
+A convex set of points S in the XY plane is a set such that if two points p and q are in S, then the entire line segment with endpoints p and q is also contained in S. If we discretized the space into square cells, and think of subsets of cells, this concept becomes trivial because only rectangles and the empty set fulfill the definition. Therefore, we will make a more suitable definition for the discretized case.
+We consider an infinite plane of square cells, with each cell being identified by a distinct pair of integers (i,j) indicating its row and column. Two cells are adjacent if they share a border, so (i,j) is adjacent to (i+1,j), (i-1,j), (i,j+1) and (i,j-1). A path between cell (a,b) and cell (c,d) is a sequence of cells such that the first cell in the sequence is (a,b), the last cell is (c,d) and consecutive cells in the sequence are adjacent. A minimum path between (a,b) and (c,d) is a path that has a sequence that is as short as possible. There can be multiple minimum paths between a given pair of cells.
+Given a set S of cells, we will call it discrete-convex if for any pair of cells (a,b) and (c,d), both contained in S, at least one of the minimum paths between (a,b) and (c,d) is fully contained in S. You are asked, given a set of points T, to find a discrete-convex-hull of T, that is, a set S of minimum possible size that is discrete-convex and contains T.
+You will be given the set T as a vector <string> cells. Each element of cells will be a single-space separated list of cells, where each cell is described as two positive integers separated by a comma, representing respectively the row and column of the cell. Return the number of cells in a discrete-convex-hull for T.
+
+DEFINITION
+Class:DiscreteConvexHull
+Method:minArea
+Parameters:vector <string>
+Returns:long long
+Method signature:long long minArea(vector <string> cells)
+
+
+CONSTRAINTS
+-cells will contain between 1 and 50 elements, inclusive.
+-Each element of cells will contain between 1 and 50 characters, inclusive.
+-Each element of cells will be formatted as a single space separated list of cells, where a cell has the format "X,Y" (quotes for clarity) where X and Y are positive integers between 1 and 1000000000 (10^9), inclusive, with no leading zeroes.
+-Each cell described in cells will be distinct.
+-The total number of cells will be between 1 and 300, inclusive.
+
+
+EXAMPLES
+
+0)
+{"1,7 4,11 6,5 7,1 11,8"} 
+
+Returns: 26
+
+Here is a picture of this case. # marks the cells in T and X marks other cells in a possible discrete-convex-hull of T.
+
+
+......#....
+......X....
+......X....
+......XXXX#
+......XX...
+....#XXX...
+#XXXXXXX...
+.......X...
+.......X...
+.......X...
+.......#...
+
+
+1)
+{"1000000000,1 1,1000000000",
+ "1,1 1000000000,1000000000"}
+
+Returns: 1000000000000000000
+
+The discrete convex hull is the square containing all cells with row and column indices between 1 and 1000000000 (10^9), inclusive.
+
+2)
+{"1563,17653 793487,12"}
+
+Returns: 809566
+
+Any minimum path between the two cells is a discrete convex hull.
+
+3)
+{"1643,152 2342,32 53425,2",
+ "52,235 234,6346 265,65 234,23",
+ "352,45 128,63",
+ "100,200"}
+
+Returns: 266982
+
+

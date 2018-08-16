@@ -1,0 +1,94 @@
+PROBLEM STATEMENT
+A palindrome is a string that reads the same from left to right as it does from right to left.
+
+You are given a string s. The length of s is even. Each character of s is either 'o', 'x', or '?'
+Your task in this problem is to replace each occurrence of '?' in s with either 'o' or 'x' so that s becomes a palindrome.
+You are also given ints oCost and xCost.
+Replacing '?' with 'o' costs oCost, and replacing '?' with 'x' costs xCost.
+
+Return the minimum cost of replacing '?'s by 'x's and 'o's that turns s into a palindrome. If it is impossible to obtain a palindrome, return -1 instead.
+
+DEFINITION
+Class:MinCostPalindrome
+Method:getMinimum
+Parameters:string, int, int
+Returns:int
+Method signature:int getMinimum(string s, int oCost, int xCost)
+
+
+NOTES
+-You are not allowed to change an 'x' into an 'o' or vice versa.
+
+
+CONSTRAINTS
+-s will contain between 2 and 20 characters, inclusive.
+-The length of s will be even.
+-Each character of s will be either 'o' or 'x' or '?'.
+-oCost will be between 1 and 50, inclusive.
+-xCost will be between 1 and 50, inclusive.
+
+
+EXAMPLES
+
+0)
+"oxo?xox?"
+3
+5
+
+Returns: 8
+
+The only way to produce a palindrome is to replace s[3] with 'x' and s[7] with 'o'. The first replacement costs 5, the second costs 3, so the total cost is 3+5=8.
+
+1)
+"x??x"
+9
+4
+
+Returns: 8
+
+There are two ways to produce a palindrome here. The cheaper one is to change both '?'s to 'x's. This costs 4+4=8. Note that you are required to replace all '?'s.
+
+2)
+"ooooxxxx"
+12
+34
+
+Returns: -1
+
+There is no '?' character, and s is not a palindrome. We have no way to change it into a palindrome.
+
+3)
+"oxoxooxxxxooxoxo"
+7
+4
+
+Returns: 0
+
+There is no '?' character, and s is already a palindrome. Making no replacements does not cost anything.
+
+4)
+"?o"
+6
+2
+
+Returns: 6
+
+
+
+5)
+"????????????????????"
+50
+49
+
+Returns: 980
+
+
+
+6)
+"o??oxxo?xoox?ox??x??" 
+3
+10
+
+Returns: 38
+
+

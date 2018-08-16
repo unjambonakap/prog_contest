@@ -1,0 +1,76 @@
+PROBLEM STATEMENT
+You are playing a game of Hangman with your brother. He begins by choosing a word, and he writes down one blank for each letter in the word. You then repeatedly guess letters that you think could be in the word. Every time you guess a letter, your brother indicates every occurrence of that letter in the word by replacing blanks with the corresponding letter. For example, suppose your brother chooses the word, "NINJA".
+
+  - He begins by writing down 5 blanks, indicated here by dashes: "-----".
+  - Suppose you first guess the letter 'A'. Then, your brother would reveal the one instance of 'A' in the word: "----A".
+  - Suppose you next guess the letter 'N'. Then, your brother would reveal both instances of 'N' in the word: "N-N-A".
+  - Suppose you next guess the letter 'E'. Then, your brother would reveal nothing new since 'E' is not in the word: "N-N-A".
+
+Create a class Hangman that contains a method guessWord, which is given a string feedback and a vector <string> words. Since your brother is fairly predictable, you have determined that the word he is thinking of is an element of words. You also have the information he has given you after some number of guesses (possibly 0), given in feedback. As above, blanks are represented by dashes ('-'), and revealed letters are represented by capital letters ('A'-'Z'). You now wish to guess the word that your brother is thinking of. If there is exactly one element of words that is consistent with feedback, the method should return that element. Otherwise, it should return "".
+
+
+DEFINITION
+Class:Hangman
+Method:guessWord
+Parameters:string, vector <string>
+Returns:string
+Method signature:string guessWord(string feedback, vector <string> words)
+
+
+CONSTRAINTS
+-feedback will contain between 1 and 50 characters inclusive.
+-Each character in feedback will be either a capital letter ('A'-'Z') or a dash ('-').
+-words will contain between 1 and 50 elements inclusive.
+-Each element in words will contain between 1 and 50 characters inclusive.
+-No two elements in words will be equal.
+-Each character in each element of words will be a capital letter ('A'-'Z').
+
+
+EXAMPLES
+
+0)
+"N-N-A"
+{"NINJA", "NINJAS", "FLIPS", "OUT", "FRISBEE"}
+
+Returns: "NINJA"
+
+As described above, this feedback is consistent with "NINJA" after 'A' and 'N' have been guessed. It is not consistent with "NINJAS", since there are only 5 letters in feedback.
+
+1)
+"B--B--"
+{"BRINGS", "BARBED", "BUBBLE"}
+
+
+Returns: "BARBED"
+
+The only correct letter you have guessed is 'B'. If your brother had chosen the word, "BRINGS", then feedback would have been "B-----", and if your brother had chosen the word, "BUBBLE", then feedback would have been "B-BB--". This leaves only the possibility that your brother chose "BARBED", which is, in fact, consistent.
+
+2)
+"---------"
+{"MONKEY", "FORCE", "IS", "GAINING", "STRENGTH"}
+
+Returns: ""
+
+feedback is consistent with all nine-letter words, but there are no nine-letter words.
+
+3)
+"-AAA--"
+{"CAAABB", "BAAACC"}
+
+
+Returns: ""
+
+feedback is consistent with both words.
+
+4)
+"---H-O-H-B-OPHOB--"
+{"ROSACEA", "GYROVAGUE", "SHACONIAN", "ALTITONANT",
+ "BRACHIATION", "CERCOPITHECAN", "SCOLECOPHAGOUS",
+ "RESISTENTIALISM", "SLUBBERDEGULLION", 
+ "AICHMORHABDOPHOBIA", "SPECTOCLOACAPHOBIA",
+ "ULTRACREPIDARIANISM", "HIPPOPOTOMONSTROSESQUIPEDALIAN",
+ "CHARGOGGAGOGGMANCHAUGGAGOGGCHAUBUNAGUNGAMAUGG"}
+
+Returns: "AICHMORHABDOPHOBIA"
+
+Your brother has a big vocabulary.

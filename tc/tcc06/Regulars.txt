@@ -1,0 +1,62 @@
+PROBLEM STATEMENT
+Regular expressions are simple but powerful ways of describing patterns for
+strings of symbols. We will restrict our attention to describing binary strings 
+using only the special symbol * which means "zero or more occurrences". 
+So our simple regular expression will be a sequence of characters, all of which 
+are '0', '1' or '*'. Furthermore, each '*' will be preceded by a '0' or a '1' 
+and will apply to that single character.
+
+For example,  "01*00*"  describes all strings that start with '0', then have
+zero or more '1's, then have a '0', and then have zero or more '0's. The
+shortest string that satisfies this description is "00".
+
+Create a class Regulars that contains a method stringCt that is given a simple
+regular expression regex and an int maxLen and that returns the number of distinct 
+strings that satisfy regex and contain between 0 and maxLen characters, inclusive.
+
+
+
+DEFINITION
+Class:Regulars
+Method:stringCt
+Parameters:string, int
+Returns:long long
+Method signature:long long stringCt(string regex, int maxLen)
+
+
+CONSTRAINTS
+-regex will contain between 1 and 50 characters, inclusive.
+-Each character in regex will be '0' (zero), '1' (one), or '*'.
+-Each '*' in regex will be immediately preceded by '0' or '1'.
+-maxLen will be between 1 and 50, inclusive.
+
+
+EXAMPLES
+
+0)
+"0*"
+5
+
+Returns: 6
+
+
+
+   "","0","00","000","0000","00000" are the legal strings.
+
+
+
+1)
+"01*1*1*"
+3
+
+Returns: 3
+
+
+
+   "0","01","011" are the legal strings.
+
+2)
+"0*1*0*1*0*1*0*1*0*1*0*1*0*1*0*1*0*1*0*1*0*1*0*1*0*"
+50
+
+Returns: 1125899906842623

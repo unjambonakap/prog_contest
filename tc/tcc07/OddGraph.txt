@@ -1,0 +1,72 @@
+PROBLEM STATEMENT
+We want to design a network consisting of n identical Worker nodes and one Server node.
+The network must be connected 
+and must not contain any cycles. We also require that each Worker node must be connected to an 
+odd number of other nodes. How many distinct networks are there?
+
+Here is a listing of all the distinct networks containing exactly 5 worker nodes:
+                                                       
+       W               W     W              W          W  W 
+       |                \    |              |          | /   
+   W---S----W            S---W          S---W      S---W    
+       | \              /    |              |          | \  
+       W  W            W     W          W---W---W      W  W  
+                                                       
+
+Two configurations G and G' are not distinct if there is a 1-1 mapping between their nodes such that the server in G
+maps to the server in G', and such that for every pair of nodes in G the pair that they are mapped to in G' is connected
+if and only if the pair in G is connected. Note that two configurations are not distinct if they have the same connection pattern, even if they are different geometrically as displayed in the plane. For example, these
+two configurations with 8 worker nodes are not distinct:
+
+   W   W   W          W       W                                      
+   |   |   |          |       |  
+   W---S---W      W---S-------W                                                 
+   |   |   |          |       | 
+   W   W   W      W---W---W   W          
+                                                       
+Given n, return the number of distinct networks that can 
+be constructed with exactly n worker nodes.
+
+
+DEFINITION
+Class:OddGraph
+Method:count
+Parameters:int
+Returns:int
+Method signature:int count(int n)
+
+
+NOTES
+-The answer will fit in an int.
+
+
+CONSTRAINTS
+-n will be between 1 and 40, inclusive.    
+
+
+EXAMPLES
+
+0)
+5
+
+Returns: 4
+
+The 4 networks are listed above.
+
+
+
+1)
+1
+
+Returns: 1
+
+
+
+    S---W  is the only network with 1 worker node. 
+
+2)
+40
+
+Returns: 929556155
+
+

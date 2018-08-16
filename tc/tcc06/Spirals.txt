@@ -1,0 +1,111 @@
+PROBLEM STATEMENT
+Given the dimensions of a board, and a place to start, you will draw a spiral repeating sequence.  The repeating sequence is: 
+0,1,2,3,4,5,6,7,8,9,0,1,2,...
+First you will draw a '0' at the start position. The spiral is drawn starting right, then down, then left, then up, then right, ... repeating until no more can be drawn, making the tightest spiral possible.  For example:
+width = 5
+height = 5
+startx = 2
+starty = 2
+
+Beginning    Second      Later     Even Later  Finally
+  01234       01234       01234       01234      01234
+
+0 .....       .....       .....       012..      01234
+1 .....       .....       .678.       96789      96789 
+2 ..0..       ..01.       .501.       85010      85010
+3 .....       .....       .432.       74321      74321
+4 .....       .....       .....       65432      65432
+If there is no place to go, stop drawing and put '.' characters in all the unreached spots:
+width = 5
+height = 6
+startx = 1
+starty = 1
+
+Beginning    Second      Later     Even Later  Finally
+  01234       01234       01234       01234      01234
+
+0 .....       .....       678..       6789.      6789.
+1 .0...       .01..       501..       5010.      5010. 
+2 .....       .....       432..       4321.      4321.
+3 .....       .....       .....       ..32.      5432.
+4 .....       .....       .....       .....      .....
+5 .....       .....       .....       .....      .....
+
+Return the resulting drawing as a vector <string>.  The parameters height and width represent the number of elements, and the number of characters per element in the returned vector <string>, respectively.  startx and starty are the column and row (both 0-indexed from the upper left corner) at which the sequence should begin.
+
+DEFINITION
+Class:Spirals
+Method:draw
+Parameters:int, int, int, int
+Returns:vector <string>
+Method signature:vector <string> draw(int width, int height, int startx, int starty)
+
+
+CONSTRAINTS
+-width must be between 1 and 50, inclusive.
+-height must be between 1 and 50, inclusive.
+-startx must be between 0 and width-1, inclusive.
+-starty must be between 0 and height-1, inclusive.
+
+
+EXAMPLES
+
+0)
+5
+5
+2
+2
+
+Returns: {"01234", "96789", "85010", "74321", "65432" }
+
+The first example in the problem statement.
+
+1)
+5
+6
+1
+1
+
+Returns: {"6789.", "5010.", "4321.", "5432.", ".....", "....." }
+
+The second example from the problem statement.
+
+2)
+10
+10
+0
+0
+
+Returns: {"01........", "32........", "..........", "..........", "..........", "..........", "..........", "..........", "..........", ".........." }
+
+
+
+3)
+10
+10
+9
+9
+
+Returns: {"..........", "..........", "..........", "..........", "..........", "..........", "..........", "..........", "..........", ".........0" }
+
+
+
+4)
+1
+10
+0
+5
+
+Returns: {".", ".", ".", ".", ".", "0", ".", ".", ".", "." }
+
+
+
+5)
+11
+7
+8
+3
+
+Returns: {"...........", "......01234", "......96789", "......85010", "......74321", "......65432", "..........." }
+
+

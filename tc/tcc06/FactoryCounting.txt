@@ -1,0 +1,174 @@
+PROBLEM STATEMENT
+The ACME company is building a factory complex in your county which has k cities. The factory complex is split into n part-building factories and m part-assembling factories. Each factory must be built in a different city of your county because of polution regulations, and there must be a direct road between each building factory and each assembling factory.
+
+You will be given a vector <string> county. Character j of element i of county will be 'Y' if there is a direct road between city i and city j, and 'N' if there isn't. All roads are bidirectional. Return the number of ways the factory complex can be built in this county. Two factory complexes are different if the set of cities containing part-building factories is different in one than the other, or the set of cities containing part-assembling factories is different in one than the other
+
+DEFINITION
+Class:FactoryCounting
+Method:count
+Parameters:int, int, vector <string>
+Returns:long long
+Method signature:long long count(int n, int m, vector <string> county)
+
+
+CONSTRAINTS
+-n and m will each be between 1 and 8, inclusive.
+-county will have between 1 and 30 elements, inclusive.
+-Each element of county will have exactly k characters, where k is the number of elements in county.
+-Each character in each element of county will be either 'Y' or 'N'.
+-Character i of element i will always be 'N'.
+-For all i and j, where i != j, character i of element j of county will be equal to character j of element i.
+
+
+EXAMPLES
+
+0)
+2
+1
+{
+ "NYY",
+ "YNY",
+ "YYN"}
+
+Returns: 3
+
+Here we have the following possibilities:
+
+part-building factories: {1, 2}
+part-assembling factories: {3}
+
+
+part-building factories: {1, 3}
+part-assembling factories: {2}
+
+
+part-building factories: {2, 3}
+part-assembling factories: {1}
+
+
+1)
+2
+2
+{
+ "NYYYYN",
+ "YNYYNY",
+ "YYNYYY",
+ "YYYNYN",
+ "YNYYNY",
+ "NYYNYN"}
+
+Returns: 32
+
+
+
+2)
+1
+1
+{
+ "NNNNYN",
+ "NNNYNN",
+ "NNNNYN",
+ "NYNNYN",
+ "YNYYNN",
+ "NNNNNN"}
+
+Returns: 8
+
+There are a total of 4 direct roads.  For each direct road connecting cities a and b, we have two options: we can either put a part-building factory in city a and a part-assembling factory in city b, or vice versa.  Therefore, we have a total 8 possible factory complexes.
+
+3)
+3
+3
+{
+ "NYYYNYYNYY",
+ "YNYYYYYYYN",
+ "YYNYYYNYYN",
+ "YYYNYYNYNY",
+ "NYYYNYYYYY",
+ "YYYYYNYYNY",
+ "YYNNYYNYYN",
+ "NYYYYYYNNY",
+ "YYYNYNYNNY",
+ "YNNYYYNYYN"}
+
+Returns: 308
+
+
+
+4)
+7
+8
+{
+ "NYYYYYNYYYYYNYYYYYYYYYYNYYYYYY",
+ "YNYYYYYYYYYYYYYYYNYYYYYYYYYYYY",
+ "YYNYYYYYYYYYYYYNYNYYYNNYYYNYYY",
+ "YYYNYYYYYYYYNYYYYYNYYYYYYNYYYY",
+ "YYYYNYYYYYYYYYNYYYYYYYYYYYNYYY",
+ "YYYYYNYYNYYYYNYYYYYNYYYYYYYNNY",
+ "NYYYYYNYYYYYYYYYNYYYYNYYYYYYYY",
+ "YYYYYYYNYYYYYYYYYYYYYYYYYYYYYY",
+ "YYYYYNYYNYYYYNNYYYYYYYYNYYNNYY",
+ "YYYYYYYYYNYYNYYNYNYYNYYYYYYYYY",
+ "YYYYYYYYYYNYYNYYYYYYYNYYYYYYYY",
+ "YYYYYYYYYYYNYYYYNYYYYYYYYYYYYY",
+ "NYYNYYYYYNYYNYYYNYNYYYYYNYYYYY",
+ "YYYYYNYYNYNYYNYYYYYYYYYYYNYYNY",
+ "YYYYNYYYNYYYYYNNNYYYYYYYYYYYYY",
+ "YYNYYYYYYNYYYYNNYNYYYYYNNYYYNY",
+ "YYYYYYNYYYYNNYNYNNYYNYYYYYNYNY",
+ "YNNYYYYYYNYYYYYNNNYYNYYYYYYYYY",
+ "YYYNYYYYYYYYNYYYYYNNYYNYYYYYYY",
+ "YYYYYNYYYYYYYYYYYYNNYYYYYYYYYY",
+ "YYYYYYYYYNYYYYYYNNYYNYYYYYNYYY",
+ "YYNYYYNYYYNYYYYYYYYYYNYYYYYYYY",
+ "YYNYYYYYYYYYYYYYYYNYYYNYYYYYYY",
+ "NYYYYYYYNYYYYYYNYYYYYYYNYYYYYY",
+ "YYYYYYYYYYYYNYYNYYYYYYYYNYYYYY",
+ "YYYNYYYYYYYYYNYYYYYYYYYYYNYYYY",
+ "YYNYNYYYNYYYYYYYNYYYNYYYYYNYYY",
+ "YYYYYNYYNYYYYYYYYYYYYYYYYYYNYY",
+ "YYYYYNYYYYYYYNYNNYYYYYYYYYYYNN",
+ "YYYYYYYYYYYYYYYYYYYYYYYYYYYYNN"}
+
+Returns: 522891760
+
+
+
+5)
+8
+8
+{
+ "NYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
+ "YNYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
+ "YYNYYYYYYYYYYYYYYYYYYYYYYYYYYY",
+ "YYYNYYYYYYYYYYYYYYYYYYYYYYYYYY",
+ "YYYYNYYYYYYYYYYYYYYYYYYYYYYYYY",
+ "YYYYYNYYYYYYYYYYYYYYYYYYYYYYYY",
+ "YYYYYYNYYYYYYYYYYYYYYYYYYYYYYY",
+ "YYYYYYYNYYYYYYYYYYYYYYYYYYYYYY",
+ "YYYYYYYYNYYYYYYYYYYYYYYYYYYYYY",
+ "YYYYYYYYYNYYYYYYYYYYYYYYYYYYYY",
+ "YYYYYYYYYYNYYYYYYYYYYYYYYYYYYY",
+ "YYYYYYYYYYYNYYYYYYYYYYYYYYYYYY",
+ "YYYYYYYYYYYYNYYYYYYYYYYYYYYYYY",
+ "YYYYYYYYYYYYYNYYYYYYYYYYYYYYYY",
+ "YYYYYYYYYYYYYYNYYYYYYYYYYYYYYY",
+ "YYYYYYYYYYYYYYYNYYYYYYYYYYYYYY",
+ "YYYYYYYYYYYYYYYYNYYYYYYYYYYYYY",
+ "YYYYYYYYYYYYYYYYYNYYYYYYYYYYYY",
+ "YYYYYYYYYYYYYYYYYYNYYYYYYYYYYY",
+ "YYYYYYYYYYYYYYYYYYYNYYYYYYYYYY",
+ "YYYYYYYYYYYYYYYYYYYYNYYYYYYYYY",
+ "YYYYYYYYYYYYYYYYYYYYYNYYYYYYYY",
+ "YYYYYYYYYYYYYYYYYYYYYYNYYYYYYY",
+ "YYYYYYYYYYYYYYYYYYYYYYYNYYYYYY",
+ "YYYYYYYYYYYYYYYYYYYYYYYYNYYYYY",
+ "YYYYYYYYYYYYYYYYYYYYYYYYYNYYYY",
+ "YYYYYYYYYYYYYYYYYYYYYYYYYYNYYY",
+ "YYYYYYYYYYYYYYYYYYYYYYYYYYYNYY",
+ "YYYYYYYYYYYYYYYYYYYYYYYYYYYYNY",
+ "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYN"}
+
+Returns: 1871589827250
+
+
